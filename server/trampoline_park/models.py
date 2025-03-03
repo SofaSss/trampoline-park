@@ -4,22 +4,25 @@ from django.db import models
 ROLES = [
     ("CLIENT", "CLIENT"),
     ("COACH", "COACH"),
+    ("ADMIN", "ADMIN"),
 ]
 
 
 class User(AbstractUser):
     first_name = None
     last_name = None
-    email = None
+    email = models.EmailField(blank=True, null=True)
 
-    EMAIL_FIELD = None
-    USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = []
-    role = models.CharField(max_length=50, choices=ROLES, default="CLIENT")
+    EMAIL_FIELD = "email" #для автоматической отправки писем
+    USERNAME_FIELD = "username" #login для авторизации обязательное поле
+    REQUIRED_FIELDS = [] #больше обязательных полей не будет
+    role = models.CharField(max_length=50, choices=ROLES, default="ADMIN")
 
 
 
 class Client(models.Model):
+    first_name = models.CharField(max_length=50, blank=False, null=False,)
+    last_name = models.CharField(max_length=50, blank=False, null=False,)
     date_of_birth = models.DateField(blank=False, null=False, )
     phone_number = models.CharField(max_length=20, blank=False, null=False, )
     profile_picture = models.FileField(upload_to="profile_pictures", )
@@ -27,7 +30,10 @@ class Client(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+
 class Coach(models.Model):
+    first_name = models.CharField(max_length=50, blank=False, null=False, )
+    last_name = models.CharField(max_length=50, blank=False, null=False, )
     date_of_birth = models.DateField(blank=False, null=False, )
     phone_number = models.CharField(max_length=20, blank=False, null=False, )
     profile_picture = models.FileField(upload_to='profile_pictures')
