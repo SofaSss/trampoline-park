@@ -9,7 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/auth/", include("djoser.urls")),  # регистрация, получение списка пользователей, смена пароля и сброс пароля
     path("api/auth/", include("djoser.urls.jwt")),  # JWT-аутентификация (вход, обновление токена, верификация токена)
-    path("api/client/create/", ClientCreateAPIView.as_view()),
-
+    path("api/clientcreate/", ClientCreateAPIView.as_view()),
+    path("api/clientupdate/<int:pk>/", ClientAPIUpdate.as_view()),
+    path("api/clientdelete/<int:pk>/", ClientAPIDelete.as_view()),
 
 ]

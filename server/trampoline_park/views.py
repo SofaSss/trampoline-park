@@ -9,4 +9,14 @@ from trampoline_park.serializers import *
 
 class ClientCreateAPIView(generics.ListCreateAPIView):
     queryset = Client.objects.all()
-    serializer_class = ClientCreateSerializer
+    serializer_class = ClientSerializer
+
+class ClientAPIUpdate(generics.RetrieveUpdateAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
+class ClientAPIDelete(generics.RetrieveDestroyAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
+
