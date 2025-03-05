@@ -13,7 +13,8 @@ urlpatterns = [
     path("api/client/update/<int:pk>/", ClientAPIUpdate.as_view()),
     path("api/client/delete/<int:pk>/", ClientAPIDelete.as_view()),
     path("api/coach/view/", CoachAPIView.as_view()),
-    path("api/coach/update/", CoachAPIUpdate.as_view()),
-    path("api/coach/delete/", CoachAPIDelete.as_view()),
+    path("api/coach/update/<int:pk>/", CoachAPIUpdate.as_view()),
+    path("api/coach/delete/<int:pk>/", CoachAPIDelete.as_view()),
+    path("api/workouttype/view/", WorkoutTypeAPIView.as_view()),
 
 ]

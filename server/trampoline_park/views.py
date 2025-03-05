@@ -31,3 +31,8 @@ class CoachAPIUpdate(generics.RetrieveUpdateAPIView):
 class CoachAPIDelete(generics.RetrieveDestroyAPIView):
     queryset = Coach.objects.all()
     serializer_class = CoachSerializer
+
+
+class WorkoutTypeAPIView(generics.ListCreateAPIView):
+    queryset = WorkoutType.objects.all()
+    serializer_class = WorkoutTypeSerializer

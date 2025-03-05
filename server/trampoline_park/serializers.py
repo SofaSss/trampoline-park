@@ -73,7 +73,8 @@ class CoachSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Coach
-        # fields = [
+        fields = '__all__'
+ # fields = [
         #
         #     "id",  # Первичный ключ
         #     "first_name",
@@ -87,37 +88,35 @@ class CoachSerializer(serializers.ModelSerializer):
         #     "specialty",  # Вложенный список специальностей
         #     "achievement",  # Вложенный список достижений
         # ]
-        fields = '__all__'
-
 
 
 
 class WorkoutTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkoutType
-        fields = 'all'
+        fields = '__all__'
 
 class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout
-        fields = 'all'
+        fields = '__all__'
 
 class TypeOptionalServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkoutType
-        fields = 'all'
+        fields = '__all__'
 
 class OptionalServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = OptionalService
-        fields = 'all'
+        fields = '__all__'
 
 class CoachCostumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CoachCostume
-        fields = 'all'
+        fields = '__all__'
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = 'all'
+        fields = '__all__'
