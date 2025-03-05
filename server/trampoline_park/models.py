@@ -25,7 +25,7 @@ class Client(models.Model):
     last_name = models.CharField(max_length=50, blank=False, null=False,)
     date_of_birth = models.DateField(blank=False, null=False, )
     phone_number = models.CharField(max_length=20, blank=False, null=False, )
-    profile_picture = models.FileField(upload_to="profile_pictures", )
+    profile_picture = models.FileField(upload_to="profile_pictures", null = True, blank = True)
     is_healthy = models.BooleanField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
