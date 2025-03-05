@@ -20,3 +20,14 @@ class ClientAPIDelete(generics.RetrieveDestroyAPIView):
     serializer_class = ClientSerializer
 
 
+class CoachAPIView(generics.ListCreateAPIView):
+    queryset = Coach.objects.all()
+    serializer_class = CoachSerializer
+
+class CoachAPIUpdate(generics.RetrieveUpdateAPIView):
+    queryset = Coach.objects.all()
+    serializer_class = CoachSerializer
+
+class CoachAPIDelete(generics.RetrieveDestroyAPIView):
+    queryset = Coach.objects.all()
+    serializer_class = CoachSerializer

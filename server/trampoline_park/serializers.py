@@ -57,11 +57,67 @@ class ClientSerializer(serializers.ModelSerializer):
             "user"  # Вложенный объект user
         ]
 
+class CoachSpecialtySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CoachSpecialty
+        fields =  '__all__'
 
+class CoachAchievementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CoachAchievement
+        fields =  '__all__'
 
 class CoachSerializer(serializers.ModelSerializer):
+    # specialty = CoachSpecialtySerializer(many=True)
+    # achievement = CoachAchievementSerializer(many=True)
+
     class Meta:
         model = Coach
+        # fields = [
+        #
+        #     "id",  # Первичный ключ
+        #     "first_name",
+        #     "last_name",
+        #     "date_of_birth",
+        #     "phone_number",
+        #     "profile_picture",
+        #     "experience",
+        #     "quote",
+        #     "user",  # Связанный пользователь
+        #     "specialty",  # Вложенный список специальностей
+        #     "achievement",  # Вложенный список достижений
+        # ]
         fields = '__all__'
 
 
+
+
+class WorkoutTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkoutType
+        fields = 'all'
+
+class WorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workout
+        fields = 'all'
+
+class TypeOptionalServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkoutType
+        fields = 'all'
+
+class OptionalServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OptionalService
+        fields = 'all'
+
+class CoachCostumeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CoachCostume
+        fields = 'all'
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = 'all'

@@ -29,7 +29,11 @@ class Client(models.Model):
     is_healthy = models.BooleanField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+class CoachSpecialty(models.Model):
+    name = models.CharField(max_length=150,)
 
+class CoachAchievement(models.Model):
+    name = models.CharField(max_length=150)
 
 class Coach(models.Model):
     first_name = models.CharField(max_length=50, blank=False, null=False, )
@@ -40,16 +44,8 @@ class Coach(models.Model):
     experience = models.IntegerField(default=0, blank=False, null=False)
     quote = models.TextField(max_length=300, null=True)  # цитата
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-class CoachSpecialty(models.Model):
-    name = models.CharField(max_length=150,)
-    coaches = models.ManyToManyField(Coach,)
-
-
-class CoachAchievement(models.Model):
-    name = models.CharField(max_length=150)
-    coaches = models.ManyToManyField(Coach)
+    specialties = models.ManyToManyField(CoachSpecialty,)
+    achievements = models.ManyToManyField(CoachAchievement, )
 
 
 class WorkoutType(models.Model):
