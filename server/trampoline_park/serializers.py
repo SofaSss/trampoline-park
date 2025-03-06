@@ -7,88 +7,82 @@ from trampoline_park.models import User, Client, Coach, CoachSpecialty, CoachAch
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ("id", "username", "email",  "role")
 
 
-# class ClientSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Client
-#         fields = '__all__'
+class UserWithPasswordSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
 
+    class Meta:
+        model = User
+        fields = ("id", "username", "email", "role", "password", )
 
-
-# class ClientCreateSerializer(serializers.ModelSerializer):
-#     username = serializers.CharField(write_only=True)
-#     password = serializers.CharField(write_only=True)
-#     email = serializers.EmailField(required=False, allow_blank=True)
-#     role = serializers.CharField(default="CLIENT", write_only=True)
-#
-#
-#     class Meta:
-#         model = Client
-#         fields = [
-#             "username", "password", "email", "role",  # Поля User (только для создания)
-#             "first_name", "last_name", "date_of_birth",
-#             "phone_number", "profile_picture", "is_healthy",
-#         ]
-#
-#     def create(self, validated_data):
-#         user_data = {
-#             "username": validated_data.pop("username"),
-#             "password": validated_data.pop("password"),
-#             "email": validated_data.pop("email", ""),
-#             "role": validated_data.pop("role", "CLIENT"),
-#         }
-#         user = User.objects.create_user(**user_data)
-#
-#         client = Client.objects.create(user=user, **validated_data)
-#         return client
+    def create(self, validated_data):
+        # Создаём пользователя и хешируем пароль
+        user = User.objects.create_user(**validated_data)
+        user.profile.role = "client"
+        user.profile.save()
+        return user
 
 
 class ClientSerializer(serializers.ModelSerializer):
-    user = UserSerializer()  # Вложенный сериализатор
+    user = UserSerializer()
 
     class Meta:
         model = Client
-        fields = [
+        fields = (
             "id",
             "first_name", "last_name", "date_of_birth",
             "phone_number", "profile_picture", "is_healthy",
-            "user"  # Вложенный объект user
-        ]
+            "user"
+        )
+
+
+class ClientCreateSerializer(serializers.ModelSerializer):
+    user = UserWithPasswordSerializer()
+
+    class Meta:
+        model = Client
+        fields = (
+            "id",
+            "first_name", "last_name", "date_of_birth",
+            "phone_number", "profile_picture", "is_healthy",
+            "user"
+        )
+
+    def create(self, validated_data):
+        # Извлекаем данные пользователя
+        user_data = validated_data.pop("user")
+
+        # Добавляем роль по умолчанию
+        user_data["role"] = "client"
+
+        # Создаём пользователя
+        user = User.objects.create_user(**user_data)
+
+        # Создаём клиента и связываем с пользователем
+        client = Client.objects.create(user=user, **validated_data)
+
+        return client
 
 class CoachSpecialtySerializer(serializers.ModelSerializer):
     class Meta:
         model = CoachSpecialty
-        fields =  '__all__'
+        fields = '__all__'
+
 
 class CoachAchievementSerializer(serializers.ModelSerializer):
     class Meta:
         model = CoachAchievement
-        fields =  '__all__'
+        fields = '__all__'
+
 
 class CoachSerializer(serializers.ModelSerializer):
-    # specialty = CoachSpecialtySerializer(many=True)
-    # achievement = CoachAchievementSerializer(many=True)
+
 
     class Meta:
         model = Coach
         fields = '__all__'
- # fields = [
-        #
-        #     "id",  # Первичный ключ
-        #     "first_name",
-        #     "last_name",
-        #     "date_of_birth",
-        #     "phone_number",
-        #     "profile_picture",
-        #     "experience",
-        #     "quote",
-        #     "user",  # Связанный пользователь
-        #     "specialty",  # Вложенный список специальностей
-        #     "achievement",  # Вложенный список достижений
-        # ]
-
 
 
 class WorkoutTypeSerializer(serializers.ModelSerializer):
@@ -96,27 +90,34 @@ class WorkoutTypeSerializer(serializers.ModelSerializer):
         model = WorkoutType
         fields = '__all__'
 
+
 class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout
         fields = '__all__'
+
 
 class TypeOptionalServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkoutType
         fields = '__all__'
 
+
 class OptionalServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = OptionalService
         fields = '__all__'
+
 
 class CoachCostumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CoachCostume
         fields = '__all__'
 
+
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+
+

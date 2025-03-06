@@ -6,31 +6,32 @@ from trampoline_park.serializers import *
 
 
 # Create your views here.
+class UserListApiView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-class ClientCreateAPIView(generics.ListCreateAPIView):
+class ClientCreateAPIView(generics.CreateAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientCreateSerializer
+
+class ClientListAPIView(generics.ListAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
-class ClientAPIUpdate(generics.RetrieveUpdateAPIView):
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
-
-class ClientAPIDelete(generics.RetrieveDestroyAPIView):
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
 
 
-class CoachAPIView(generics.ListCreateAPIView):
+class CoachListAPIView(generics.ListAPIView):
     queryset = Coach.objects.all()
     serializer_class = CoachSerializer
 
-class CoachAPIUpdate(generics.RetrieveUpdateAPIView):
+class CoachRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateAPIView):
     queryset = Coach.objects.all()
     serializer_class = CoachSerializer
 
-class CoachAPIDelete(generics.RetrieveDestroyAPIView):
-    queryset = Coach.objects.all()
-    serializer_class = CoachSerializer
+
 
 
 class WorkoutTypeAPIView(generics.ListCreateAPIView):
