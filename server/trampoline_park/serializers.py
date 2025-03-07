@@ -51,7 +51,7 @@ class ClientCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user_data = validated_data.pop("user")
-        user_data["role"] = "client"
+        user_data["role"] = "CLIENT"
         user = User.objects.create_user(**user_data)
         client = Client.objects.create(user=user, **validated_data)
         return client
