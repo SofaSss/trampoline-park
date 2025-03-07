@@ -7,22 +7,7 @@ from trampoline_park.models import User, Client, Coach, CoachSpecialty, CoachAch
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("id", "username", "email",  "role")
-
-
-class UserWithPasswordSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
-
-    class Meta:
-        model = User
-        fields = ("id", "username", "email", "role", "password", )
-
-    def create(self, validated_data):
-        # Создаём пользователя и хешируем пароль
-        user = User.objects.create_user(**validated_data)
-        user.profile.role = "client"
-        user.profile.save()
-        return user
+        fields = ("id", "username", "email", "role")
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -38,6 +23,20 @@ class ClientSerializer(serializers.ModelSerializer):
         )
 
 
+class UserWithPasswordSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
+
+    class Meta:
+        model = User
+        fields = ("id", "username", "email", "role", "password",)
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        user.role = "client"
+        user.save()
+        return user
+
+
 class ClientCreateSerializer(serializers.ModelSerializer):
     user = UserWithPasswordSerializer()
 
@@ -51,19 +50,12 @@ class ClientCreateSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        # Извлекаем данные пользователя
         user_data = validated_data.pop("user")
-
-        # Добавляем роль по умолчанию
         user_data["role"] = "client"
-
-        # Создаём пользователя
         user = User.objects.create_user(**user_data)
-
-        # Создаём клиента и связываем с пользователем
         client = Client.objects.create(user=user, **validated_data)
-
         return client
+
 
 class CoachSpecialtySerializer(serializers.ModelSerializer):
     class Meta:
@@ -78,8 +70,6 @@ class CoachAchievementSerializer(serializers.ModelSerializer):
 
 
 class CoachSerializer(serializers.ModelSerializer):
-
-
     class Meta:
         model = Coach
         fields = '__all__'
@@ -119,5 +109,3 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
-
-

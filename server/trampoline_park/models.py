@@ -19,7 +19,6 @@ class User(AbstractUser):
     role = models.CharField(max_length=50, choices=ROLES, default="ADMIN")
 
 
-
 class Client(models.Model):
     first_name = models.CharField(max_length=50, blank=False, null=False,)
     last_name = models.CharField(max_length=50, blank=False, null=False,)
@@ -43,7 +42,7 @@ class Coach(models.Model):
     profile_picture = models.FileField(upload_to='profile_pictures')
     experience = models.IntegerField(default=0, blank=False, null=False)
     quote = models.TextField(max_length=300, null=True)  # цитата
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     specialties = models.ManyToManyField(CoachSpecialty,)
     achievements = models.ManyToManyField(CoachAchievement, )
 

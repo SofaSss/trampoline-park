@@ -6,29 +6,20 @@ from trampoline_park.models import *
 
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password', 'role')}),  # (Название секции, {поля секции: ()})
+        (None, {'fields': ('username', 'email', 'password', 'role')}),
     )
 
     add_fieldsets = (
         (None, {
-            'classes': ('wide',),  # настройка отображения - широкая в админке, чтобы удобнее вводить данные
+            'classes': ('wide',),
             'fields': ('username', 'email', 'password1', 'password2', 'role'),
         }),
     )
 
-    list_display = ('username', 'email', 'role',) #поля, отображаемые в списке пользователей
-    search_fields = ('username', 'email') #поля для поиска
-
-    def save_model(self, request, obj, form, change):
-        """хэширование пароля"""
-        if change:  # Если пользователь уже существует
-            if "password" in form.changed_data:
-                obj.set_password(obj.password)
-        else:  # Если создаётся новый пользователь
-            obj.set_password(obj.password)
+    list_display = ('username', 'email', 'role',)
+    search_fields = ('username', 'email')
 
 
-# Register your models here.
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Client)
 admin.site.register(Coach)

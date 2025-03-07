@@ -11,6 +11,6 @@ urlpatterns = [
     path("api/client/<int:pk>/", ClientRetrieveUpdateDestroyAPIView.as_view()),
     path("api/coach/list/", CoachListAPIView.as_view()),
     path("api/coach/<int:pk>/", CoachRetrieveUpdateDestroyAPIView.as_view()),
-    path("api/workouttype/view/", WorkoutTypeAPIView.as_view()),
+    path("api/workouttype/list/", WorkoutTypeAPIView.as_view()),
 
 ]
