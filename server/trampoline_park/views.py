@@ -1,7 +1,9 @@
+from django.template.defaulttags import now
 from django.utils.dateparse import parse_datetime
 from rest_framework import generics
 from rest_framework.exceptions import ValidationError
 
+from trampoline_park.models import PhotoVideoServicePrice
 from trampoline_park.serializers import *
 
 
@@ -69,11 +71,14 @@ class WorkoutListAPIView(generics.ListAPIView):
 
         start_date = self.request.query_params.get("start_date")
         end_date = self.request.query_params.get("end_date")
+        today_only = self.request.query_params.get("today")
 
         if start_date:
             queryset = queryset.filter(datetime__gte=parse_datetime(start_date))  # gte - >=
         if end_date:
             queryset = queryset.filter(datetime__lte=parse_datetime(end_date))  # lte - <=
+        if today_only and today_only.lower() == "true":
+            queryset = queryset.filter(datetime__date=now().date())
 
         return queryset
 
@@ -81,3 +86,61 @@ class WorkoutListAPIView(generics.ListAPIView):
 class WorkoutRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
+
+
+class OptionalServiceListAPIView(generics.ListAPIView):
+    queryset = OptionalService.objects.all()
+    serializer_class = OptionalServiceSerializer
+
+
+class CoachCostumeListAPIView(generics.ListAPIView):
+    queryset = CoachCostume.objects.all()
+    serializer_class = CoachCostumeSerializer
+
+
+class PhotoVideoServicePriceApiView(generics.ListAPIView):
+    queryset = PhotoVideoServicePrice.objects.all()
+    serializer_class = PhotoVideoServicePriceSerializer
+
+
+class EventCreateAPIView(generics.CreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+    def perform_create(self, serializer):
+        date = serializer.validated_data["date"]
+        event_start_time = serializer.validated_data["event_start_time"]
+        event_end_time = serializer.validated_data["event_end_time"]
+        is_photographer = serializer.validated_data["is_photographer"]
+        is_videographer = serializer.validated_data["is_videographer"]
+        optional_service = serializer.validated_data["optional_service"]
+        coach = serializer.validated_data["coach"]
+        coach_costume = serializer.validated_data["coach_costume"]
+
+        if Event.objects.filter(date=date,
+                                event_start_time=event_start_time,
+                                event_end_time=event_end_time,
+                                is_photographer=is_photographer,
+                                is_videographer=is_videographer,
+                                optional_service=optional_service,
+                                coach=coach,
+                                coach_costume=coach_costume
+                                ).exists():
+            raise ValidationError("Мероприятие уже создано.")
+
+        serializer.save()
+
+
+class EventListAPIView(generics.ListAPIView):
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Event.objects.all()
+
+        if user.role == 'COACH':
+            queryset = queryset.filter(coach=user.coach)
+        elif user.role == 'CLIENT':
+            queryset = queryset.filter(clients=user.client)
+
+        return queryset

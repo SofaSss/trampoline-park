@@ -15,4 +15,10 @@ urlpatterns = [
     path("api/workout/create/", WorkoutCreateAPIView.as_view()),
     path("api/workout/list/", WorkoutListAPIView.as_view()),
     path("api/workout/<int:pk>/", WorkoutRetrieveDestroyAPIView.as_view()),
+    path("api/optionalservice/list/", OptionalServiceListAPIView.as_view()),
+    path("api/coachcostume/list/", CoachCostumeListAPIView.as_view()),
+    path("api/photovideoprice/list/", PhotoVideoServicePriceApiView.as_view()),
+    path("api/event/create/", EventCreateAPIView.as_view()),
+    path("api/event/list/", EventListAPIView.as_view()),
+
 ]

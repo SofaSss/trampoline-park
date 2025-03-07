@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from trampoline_park.models import User, Client, Coach, CoachSpecialty, CoachAchievement, WorkoutType, Workout, \
-    OptionalService, CoachCostume, Event
+    OptionalService, CoachCostume, Event, PhotoVideoServicePrice
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -102,6 +102,12 @@ class OptionalServiceSerializer(serializers.ModelSerializer):
 class CoachCostumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CoachCostume
+        fields = '__all__'
+
+
+class PhotoVideoServicePriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PhotoVideoServicePrice
         fields = '__all__'
 
 
