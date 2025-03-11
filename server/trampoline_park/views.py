@@ -1,15 +1,15 @@
 from django.template.defaulttags import now
 from django.utils.dateparse import parse_datetime
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.exceptions import ValidationError
-
-from trampoline_park.models import PhotoVideoServicePrice
+from trampoline_park.permissions import *
 from trampoline_park.serializers import *
 
 
 class UserListApiView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (permissions.IsAdminUser,)
 
 
 class ClientCreateAPIView(generics.CreateAPIView):
@@ -20,11 +20,13 @@ class ClientCreateAPIView(generics.CreateAPIView):
 class ClientListAPIView(generics.ListAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
+    permission_classes = (IsAdminOrCoachOrReadOnly,)
 
 
 class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
+    permission_classes = (IsClientOrReadOnly,)
 
 
 class CoachListAPIView(generics.ListAPIView):
@@ -35,6 +37,7 @@ class CoachListAPIView(generics.ListAPIView):
 class CoachRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateAPIView):
     queryset = Coach.objects.all()
     serializer_class = CoachSerializer
+    permission_classes = (IsAdminOrCoachOrReadOnly,)
 
 
 class WorkoutTypeAPIView(generics.ListAPIView):
@@ -45,6 +48,7 @@ class WorkoutTypeAPIView(generics.ListAPIView):
 class WorkoutCreateAPIView(generics.CreateAPIView):
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
+    permission_classes = (IsAdminOrClient,)
 
     def perform_create(self, serializer):
         datetime = serializer.validated_data["datetime"]
@@ -106,6 +110,7 @@ class PhotoVideoServicePriceApiView(generics.ListAPIView):
 class EventCreateAPIView(generics.CreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    permissions = (IsAdminOrClient,)
 
     def perform_create(self, serializer):
         date = serializer.validated_data["date"]
