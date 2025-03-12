@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-
 from trampoline_park.models import *
 
 
@@ -20,8 +19,25 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('username', 'email')
 
 
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ("id", "first_name", "last_name", "phone_number", "is_healthy", "user")
+    search_fields = ("first_name", "last_name", "phone_number")
+    list_filter = ("is_healthy",)
+    readonly_fields = (
+        "first_name", "last_name", "date_of_birth", "phone_number", "profile_picture", "is_healthy", "user")
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request):
+        return False
+
+
 admin.site.register(User, CustomUserAdmin)
-admin.site.register(Client)
+admin.site.register(Client, ClientAdmin)
 admin.site.register(Coach)
 admin.site.register(CoachSpecialty)
 admin.site.register(CoachAchievement)

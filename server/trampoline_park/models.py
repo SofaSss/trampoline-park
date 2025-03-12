@@ -56,13 +56,14 @@ class WorkoutType(models.Model):
     price = models.IntegerField(null=False, blank=False)
     workout_picture = models.FileField(upload_to='workout_pictures')
     duration = models.IntegerField()
+    max_clients = models.IntegerField(default=1)
 
 
 class Workout(models.Model):
     datetime = models.DateTimeField(null=False, blank=False)
-    workout_type = models.ForeignKey(WorkoutType, on_delete=models.CASCADE)
-    coach = models.ForeignKey(Coach, on_delete=models.CASCADE)
-    clients = models.ManyToManyField(Client)
+    workout_type = models.ForeignKey(WorkoutType, on_delete=models.CASCADE, null=False, blank=False)
+    coach = models.ForeignKey(Coach, on_delete=models.CASCADE, null=False, blank=False)
+    clients = models.ManyToManyField(Client, blank=True)
 
 
 class TypeOptionalService(models.Model):
@@ -94,6 +95,6 @@ class Event(models.Model):
     is_photographer = models.BooleanField(blank=False, null=False)
     is_videographer = models.BooleanField(blank=False, null=False)
     optional_service = models.ForeignKey(OptionalService, on_delete=models.CASCADE, null=True, blank=True)
-    coach = models.ForeignKey(Coach, on_delete=models.CASCADE)
+    coach = models.ForeignKey(Coach, on_delete=models.CASCADE, null=True, blank=True)
     coach_costume = models.ForeignKey(CoachCostume, on_delete=models.CASCADE)
     clients = models.ForeignKey(Client, on_delete=models.CASCADE)

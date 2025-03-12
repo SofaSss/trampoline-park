@@ -1,7 +1,5 @@
 from rest_framework import serializers
-
-from trampoline_park.models import User, Client, Coach, CoachSpecialty, CoachAchievement, WorkoutType, Workout, \
-    OptionalService, CoachCostume, Event, PhotoVideoServicePrice
+from trampoline_park.models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -82,14 +80,19 @@ class WorkoutTypeSerializer(serializers.ModelSerializer):
 
 
 class WorkoutSerializer(serializers.ModelSerializer):
+    is_available = serializers.SerializerMethodField()
+
     class Meta:
         model = Workout
         fields = '__all__'
 
+    def get_is_available(self, obj):
+        return obj.clients.count() < obj.workout_type.max_clients
+
 
 class TypeOptionalServiceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = WorkoutType
+        model = TypeOptionalService
         fields = '__all__'
 
 

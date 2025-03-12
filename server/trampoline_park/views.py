@@ -1,15 +1,11 @@
-from django.template.defaulttags import now
+from django.shortcuts import get_object_or_404
 from django.utils.dateparse import parse_datetime
+from rest_framework.response import Response
 from rest_framework import generics, permissions
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticated
 from trampoline_park.permissions import *
 from trampoline_park.serializers import *
-
-
-class UserListApiView(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = (permissions.IsAdminUser,)
 
 
 class ClientCreateAPIView(generics.CreateAPIView):
@@ -20,7 +16,7 @@ class ClientCreateAPIView(generics.CreateAPIView):
 class ClientListAPIView(generics.ListAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes = (IsAdminOrCoachOrReadOnly,)
+    permission_classes = (IsAdminOrCoach,)
 
 
 class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -32,79 +28,129 @@ class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 class CoachListAPIView(generics.ListAPIView):
     queryset = Coach.objects.all()
     serializer_class = CoachSerializer
+    permission_classes = [IsAuthenticated, ]
 
 
-class CoachRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateAPIView):
+class CoachRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
     queryset = Coach.objects.all()
     serializer_class = CoachSerializer
     permission_classes = (IsAdminOrCoachOrReadOnly,)
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Coach.objects.all()
+        if user.role == 'COACH':
+            queryset = queryset.filter(clients=user.client)
+        return queryset
 
 
 class WorkoutTypeAPIView(generics.ListAPIView):
     queryset = WorkoutType.objects.all()
     serializer_class = WorkoutTypeSerializer
+    permission_classes = (IsAdminOrClient,)
 
 
-class WorkoutCreateAPIView(generics.CreateAPIView):
+class WorkoutTypeRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = WorkoutType.objects.all()
+    serializer_class = WorkoutTypeSerializer
+    permission_classes = (IsAdminOrClient,)
+
+
+class WorkoutUpdateAPIView(generics.UpdateAPIView):
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
     permission_classes = (IsAdminOrClient,)
 
-    def perform_create(self, serializer):
-        datetime = serializer.validated_data["datetime"]
-        workout_type = serializer.validated_data["workout_type"]
-        coach = serializer.validated_data["coach"]
+    def update(self, request, *args, **kwargs):
+        user = request.user
 
-        if Workout.objects.filter(datetime=datetime, workout_type=workout_type, coach=coach).exists():
-            raise ValidationError("Такая тренировка уже существует.")
+        workout = get_object_or_404(Workout, id=kwargs.get("pk"))
 
-        serializer.save()
+        if workout.clients.filter(id=user.client.id).exists():
+            raise ValidationError("Вы уже записаны на эту тренировку.")
+
+        max_clients = workout.workout_type.max_clients
+        if workout.clients.count() >= max_clients:
+            raise ValidationError(
+                f"На данную тренировку уже записано максимальное количество участников.")
+
+        workout.clients.add(user.client)
+        workout.save()
+
+        return Response({"detail": "Вы успешно записались на тренировку."})
 
 
 class WorkoutListAPIView(generics.ListAPIView):
     serializer_class = WorkoutSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
         user = self.request.user
         queryset = Workout.objects.all()
+        coach_id = self.request.query_params.get("coach_id")
+        workout_type_id = self.request.query_params.get("workout_type_id")
+        date = self.request.query_params.get("date")
 
         if user.role == 'COACH':
             queryset = queryset.filter(coach=user.coach)
+
         elif user.role == 'CLIENT':
-            queryset = queryset.filter(clients=user.client)
+            if date or workout_type_id or coach_id:
+                queryset = Workout.objects.all()
+            else:
+                queryset = queryset.filter(clients=user.client)
 
-        start_date = self.request.query_params.get("start_date")
-        end_date = self.request.query_params.get("end_date")
-        today_only = self.request.query_params.get("today")
+        if coach_id and user.role == 'CLIENT':
+            queryset = queryset.filter(coach_id=coach_id)
 
-        if start_date:
-            queryset = queryset.filter(datetime__gte=parse_datetime(start_date))  # gte - >=
-        if end_date:
-            queryset = queryset.filter(datetime__lte=parse_datetime(end_date))  # lte - <=
-        if today_only and today_only.lower() == "true":
-            queryset = queryset.filter(datetime__date=now().date())
+        if workout_type_id:
+            queryset = queryset.filter(workout_type_id=workout_type_id)
+
+        if date:
+            parsed_date = parse_datetime(date)
+            if parsed_date:
+                queryset = queryset.filter(datetime__date=parsed_date.date())
 
         return queryset
 
 
-class WorkoutRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+class WorkoutRetrieveAPIView(generics.RetrieveAPIView):
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class TypeOptionalServiceListAPIView(generics.ListAPIView):
+    queryset = TypeOptionalService.objects.all()
+    serializer_class = TypeOptionalServiceSerializer
+    permission_classes = (IsAdminOrClient,)
 
 
 class OptionalServiceListAPIView(generics.ListAPIView):
     queryset = OptionalService.objects.all()
     serializer_class = OptionalServiceSerializer
+    permission_classes = (IsAdminOrClient,)
+
+    def get_queryset(self):
+        queryset = OptionalService.objects.all()
+        type_optional_service_id = self.request.query_params.get("type_optional_service_id")
+
+        if type_optional_service_id:
+            queryset = queryset.filter(type=type_optional_service_id)
+
+        return queryset
 
 
 class CoachCostumeListAPIView(generics.ListAPIView):
     queryset = CoachCostume.objects.all()
     serializer_class = CoachCostumeSerializer
+    permission_classes = (IsAdminOrClient,)
 
 
 class PhotoVideoServicePriceApiView(generics.ListAPIView):
     queryset = PhotoVideoServicePrice.objects.all()
     serializer_class = PhotoVideoServicePriceSerializer
+    permission_classes = (IsAdminOrClient,)
 
 
 class EventCreateAPIView(generics.CreateAPIView):
@@ -119,7 +165,6 @@ class EventCreateAPIView(generics.CreateAPIView):
         is_photographer = serializer.validated_data["is_photographer"]
         is_videographer = serializer.validated_data["is_videographer"]
         optional_service = serializer.validated_data["optional_service"]
-        coach = serializer.validated_data["coach"]
         coach_costume = serializer.validated_data["coach_costume"]
 
         if Event.objects.filter(date=date,
@@ -128,7 +173,6 @@ class EventCreateAPIView(generics.CreateAPIView):
                                 is_photographer=is_photographer,
                                 is_videographer=is_videographer,
                                 optional_service=optional_service,
-                                coach=coach,
                                 coach_costume=coach_costume
                                 ).exists():
             raise ValidationError("Мероприятие уже создано.")
@@ -138,6 +182,7 @@ class EventCreateAPIView(generics.CreateAPIView):
 
 class EventListAPIView(generics.ListAPIView):
     serializer_class = EventSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
         user = self.request.user

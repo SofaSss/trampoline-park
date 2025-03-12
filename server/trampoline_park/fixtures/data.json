@@ -1,0 +1,176 @@
+[
+  {
+    "model": "trampoline_park.coachspecialty",
+    "pk": 1,
+    "fields": {
+      "name": "Фитнес-тренер"
+    }
+  },
+  {
+    "model": "trampoline_park.coachspecialty",
+    "pk": 2,
+    "fields": {
+      "name": "Йога-инструктор"
+    }
+  },
+  {
+    "model": "trampoline_park.coachspecialty",
+    "pk": 3,
+    "fields": {
+      "name": "Персональный тренер"
+    }
+  },
+  {
+    "model": "trampoline_park.coachachievement",
+    "pk": 1,
+    "fields": {
+      "name": "Сертификат международного тренера"
+    }
+  },
+  {
+    "model": "trampoline_park.coachachievement",
+    "pk": 2,
+    "fields": {
+      "name": "Призёр чемпионата по бодибилдингу"
+    }
+  },
+  {
+    "model": "trampoline_park.coachachievement",
+    "pk": 3,
+    "fields": {
+      "name": "Лучший тренер 2023 года"
+    }
+  },
+  {
+    "model": "trampoline_park.workouttype",
+    "pk": 1,
+    "fields": {
+      "name": "Силовая тренировка",
+      "description": "Развитие силы и выносливости",
+      "price": 1500,
+      "workout_picture": "workout_pictures/strength.jpg",
+      "duration": 60
+    }
+  },
+  {
+    "model": "trampoline_park.workouttype",
+    "pk": 2,
+    "fields": {
+      "name": "Кардио тренировка",
+      "description": "Улучшение сердечно-сосудистой системы",
+      "price": 1200,
+      "workout_picture": "workout_pictures/cardio.jpg",
+      "duration": 45
+    }
+  },
+  {
+    "model": "trampoline_park.workouttype",
+    "pk": 3,
+    "fields": {
+      "name": "Йога",
+      "description": "Гибкость, баланс и осознанность",
+      "price": 1300,
+      "workout_picture": "workout_pictures/yoga.jpg",
+      "duration": 75
+    }
+  },
+  {
+    "model": "trampoline_park.typeoptionalservice",
+    "pk": 1,
+    "fields": {
+      "name": "Массаж"
+    }
+  },
+  {
+    "model": "trampoline_park.typeoptionalservice",
+    "pk": 2,
+    "fields": {
+      "name": "Диетология"
+    }
+  },
+  {
+    "model": "trampoline_park.typeoptionalservice",
+    "pk": 3,
+    "fields": {
+      "name": "Консультация тренера"
+    }
+  },
+  {
+    "model": "trampoline_park.optionalservice",
+    "pk": 1,
+    "fields": {
+      "name": "Спортивный массаж",
+      "optional_service_picture": "optional_service_pictures/massage.jpg",
+      "type": 1,
+      "price": 2000
+    }
+  },
+  {
+    "model": "trampoline_park.optionalservice",
+    "pk": 2,
+    "fields": {
+      "name": "Консультация по питанию",
+      "optional_service_picture": "optional_service_pictures/diet.jpg",
+      "type": 2,
+      "price": 1000
+    }
+  },
+  {
+    "model": "trampoline_park.optionalservice",
+    "pk": 3,
+    "fields": {
+      "name": "Персональная тренировка",
+      "optional_service_picture": "optional_service_pictures/training.jpg",
+      "type": 3,
+      "price": 2500
+    }
+  },
+  {
+    "model": "trampoline_park.coachcostume",
+    "pk": 1,
+    "fields": {
+      "name": "Форма для силовых тренировок",
+      "price": 3000
+    }
+  },
+  {
+    "model": "trampoline_park.coachcostume",
+    "pk": 2,
+    "fields": {
+      "name": "Йога-комплект",
+      "price": 2500
+    }
+  },
+  {
+    "model": "trampoline_park.coachcostume",
+    "pk": 3,
+    "fields": {
+      "name": "Форма для кардио",
+      "price": 2800
+    }
+  },
+  {
+    "model": "trampoline_park.photovideoserviceprice",
+    "pk": 1,
+    "fields": {
+      "photographer_price": 5000,
+      "videographer_price": 8000
+    }
+  },
+  {
+    "model": "trampoline_park.photovideoserviceprice",
+    "pk": 2,
+    "fields": {
+      "photographer_price": 6000,
+      "videographer_price": 8500
+    }
+  },
+  {
+    "model": "trampoline_park.photovideoserviceprice",
+    "pk": 3,
+    "fields": {
+      "photographer_price": 7000,
+      "videographer_price": 9000
+    }
+  }
+]
