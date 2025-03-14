@@ -36,9 +36,34 @@ class ClientAdmin(admin.ModelAdmin):
         return False
 
 
+class CoachAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Персональная информация', {
+            'fields': ('first_name', 'last_name', 'date_of_birth', 'phone_number', 'profile_picture')
+        }),
+        ('Детали', {
+            'fields': ('experience', 'quote', 'specialties', 'achievements')
+        }),
+        ('Пользователь', {
+            'fields': ('user',)
+        }),
+    )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('first_name', 'last_name', 'date_of_birth', 'phone_number', 'user'),
+        }),
+    )
+
+    list_display = ('first_name', 'last_name', 'date_of_birth', 'phone_number', 'experience')
+    search_fields = ('first_name', 'last_name', 'user__username')
+    ordering = ('last_name', 'first_name')
+
+
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Client, ClientAdmin)
-admin.site.register(Coach)
+admin.site.register(Coach, CoachAdmin)
 admin.site.register(CoachSpecialty)
 admin.site.register(CoachAchievement)
 admin.site.register(WorkoutType)
