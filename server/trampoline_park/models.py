@@ -1,4 +1,6 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator
 from django.db import models
 
 ROLES = [
@@ -27,7 +29,8 @@ class Client(models.Model):
     first_name = models.CharField(max_length=50, blank=False, null=False, verbose_name="Имя")
     last_name = models.CharField(max_length=50, blank=False, null=False, verbose_name="Фамилия")
     date_of_birth = models.DateField(blank=False, null=False, verbose_name="Дата рождения")
-    phone_number = models.CharField(max_length=20, blank=False, null=False, verbose_name="Номер телефона")
+    phone_number = models.CharField(max_length=20, blank=False, null=False, verbose_name="Номер телефона",
+                                    unique=True, )
     profile_picture = models.FileField(upload_to="profile_pictures", null=True, blank=True,
                                        verbose_name="Фотография профиля")
     is_healthy = models.BooleanField(verbose_name="Сведения о здорвье")
@@ -42,7 +45,7 @@ class Client(models.Model):
 
 
 class CoachSpecialty(models.Model):
-    name = models.CharField(max_length=150, verbose_name="Специальность")
+    name = models.CharField(max_length=150, verbose_name="Специальность", unique=True)
 
     class Meta:
         verbose_name = "Специальность тренера"
@@ -53,7 +56,7 @@ class CoachSpecialty(models.Model):
 
 
 class CoachAchievement(models.Model):
-    name = models.CharField(max_length=150, verbose_name="Достижение")
+    name = models.CharField(max_length=150, verbose_name="Достижение", unique=True)
 
     class Meta:
         verbose_name = "Достижение тренера"
@@ -67,10 +70,11 @@ class Coach(models.Model):
     first_name = models.CharField(max_length=50, blank=False, null=False, verbose_name="Имя")
     last_name = models.CharField(max_length=50, blank=False, null=False, verbose_name="Фамилия")
     date_of_birth = models.DateField(blank=False, null=False, verbose_name="Дата рождения")
-    phone_number = models.CharField(max_length=20, blank=False, null=False, verbose_name="Номер телефона")
+    phone_number = models.CharField(max_length=20, blank=False, null=False, verbose_name="Номер телефона", unique=True)
     profile_picture = models.FileField(upload_to='profile_pictures', verbose_name="Фото профиля")
-    experience = models.IntegerField(default=0, blank=False, null=False, verbose_name="Стаж")
-    quote = models.TextField(max_length=300, null=True, verbose_name="Цитата")
+    experience = models.IntegerField(default=0, blank=False, null=False, verbose_name="Стаж",
+                                     validators=[MinValueValidator(1), ], )
+    quote = models.TextField(max_length=300, null=True, verbose_name="Цитата", )
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
     specialties = models.ManyToManyField(CoachSpecialty, verbose_name="Специальности")
     achievements = models.ManyToManyField(CoachAchievement, verbose_name="Достижения")
@@ -86,10 +90,11 @@ class Coach(models.Model):
 class WorkoutType(models.Model):
     name = models.CharField(max_length=100, unique=True, null=False, blank=False, verbose_name="Название тренировки")
     description = models.TextField(max_length=300, null=False, blank=False, verbose_name="Описание тренировки")
-    price = models.IntegerField(null=False, blank=False, verbose_name="Цена")
+    price = models.IntegerField(null=False, blank=False, verbose_name="Цена", validators=[MinValueValidator(1), ], )
     workout_picture = models.FileField(upload_to='workout_pictures', verbose_name="Фото")
-    duration = models.IntegerField(verbose_name="Продолжительность")
-    max_clients = models.IntegerField(default=1, verbose_name="Максимальное количество клиентов")
+    duration = models.IntegerField(verbose_name="Продолжительность", validators=[MinValueValidator(1), ], )
+    max_clients = models.IntegerField(default=1, verbose_name="Максимальное количество клиентов",
+                                      validators=[MinValueValidator(1), ], )
 
     class Meta:
         verbose_name = "Тип тренировки"
@@ -129,7 +134,7 @@ class OptionalService(models.Model):
     name = models.CharField(max_length=100, unique=True, null=False, blank=False, verbose_name="Название услуги")
     optional_service_picture = models.FileField(upload_to='optional_service_pictures', verbose_name="Фото")
     type = models.ForeignKey(TypeOptionalService, on_delete=models.CASCADE, verbose_name="Тип услуги")
-    price = models.IntegerField(verbose_name="Цена")
+    price = models.IntegerField(verbose_name="Цена", validators=[MinValueValidator(1), ], )
 
     class Meta:
         verbose_name = "Дополнительная услуга"
@@ -141,7 +146,8 @@ class OptionalService(models.Model):
 
 class CoachCostume(models.Model):
     name = models.CharField(max_length=100, unique=True, blank=False, null=False, verbose_name="Название")
-    price = models.IntegerField(verbose_name="Цена")
+    coach_costume_picture = models.FileField(upload_to='coach_costume_picture', verbose_name="Фото", )
+    price = models.IntegerField(verbose_name="Цена", validators=[MinValueValidator(1), ], )
 
     class Meta:
         verbose_name = "Костюм тренера"
@@ -152,8 +158,10 @@ class CoachCostume(models.Model):
 
 
 class PhotoVideoServicePrice(models.Model):
-    photographer_price = models.IntegerField(blank=False, null=False, verbose_name="Цена фотографа")
-    videographer_price = models.IntegerField(blank=False, null=False, verbose_name="Цена видеографа")
+    photographer_price = models.IntegerField(blank=False, null=False, verbose_name="Цена фотографа",
+                                             validators=[MinValueValidator(1), ], )
+    videographer_price = models.IntegerField(blank=False, null=False, verbose_name="Цена видеографа",
+                                             validators=[MinValueValidator(1), ], )
 
     class Meta:
         verbose_name = "Цена фото/видео услуг"
@@ -161,6 +169,11 @@ class PhotoVideoServicePrice(models.Model):
 
     def __str__(self):
         return f"Фотограф: {self.photographer_price} ₽, Видеограф: {self.videographer_price} ₽"
+
+    def save(self, *args, **kwargs):
+        if PhotoVideoServicePrice.objects.count() >= 1:
+            raise ValidationError("Невозможно создать больше одной записи.")
+        super().save(*args, **kwargs)
 
 
 class Event(models.Model):
@@ -170,8 +183,8 @@ class Event(models.Model):
     event_end_time = models.TimeField(blank=False, null=False, verbose_name="Время конца")
     is_photographer = models.BooleanField(blank=False, null=False, verbose_name="Услуги фотографа")
     is_videographer = models.BooleanField(blank=False, null=False, verbose_name="Услуги видеографа")
-    optional_service = models.ForeignKey(OptionalService, on_delete=models.CASCADE, null=True, blank=True,
-                                         verbose_name="Дополнительные услуги")
+    optional_service = models.ManyToManyField(OptionalService, blank=True,
+                                              verbose_name="Дополнительные услуги")
     coach = models.ForeignKey(Coach, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Тренер")
     coach_costume = models.ForeignKey(CoachCostume, on_delete=models.CASCADE, verbose_name="Костюм")
     clients = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Клиент")
@@ -182,3 +195,28 @@ class Event(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.date.strftime('%d.%m.%Y')} - {self.clients}"
+
+
+class VideoWarmUp(models.Model):
+    video = models.FileField(upload_to='video_warm_up', verbose_name="Видеоразминка")
+
+    class Meta:
+        verbose_name = "Видеоразминка"
+
+    def save(self, *args, **kwargs):
+        if VideoWarmUp.objects.count() >= 1:
+            raise ValidationError("Невозможно создать больше одной записи.")
+        super().save(*args, **kwargs)
+
+
+class Communication(models.Model):
+    name = models.CharField(unique=True, null=False, blank=False)
+    link = models.URLField(null=False, blank=False)
+    icon = models.FileField(upload_to="icons", null=False, blank=False)
+
+    class Meta:
+        verbose_name = "Социальная сеть"
+        verbose_name_plural = "Социальные сети"
+
+    def __str__(self):
+        return self.name
