@@ -170,10 +170,9 @@ class PhotoVideoServicePrice(models.Model):
     def __str__(self):
         return f"Фотограф: {self.photographer_price} ₽, Видеограф: {self.videographer_price} ₽"
 
-    def save(self, *args, **kwargs):
+    def clean(self, *args, **kwargs):
         if PhotoVideoServicePrice.objects.count() >= 1:
             raise ValidationError("Невозможно создать больше одной записи.")
-        super().save(*args, **kwargs)
 
 
 class Event(models.Model):
@@ -203,7 +202,7 @@ class VideoWarmUp(models.Model):
     class Meta:
         verbose_name = "Видеоразминка"
 
-    def save(self, *args, **kwargs):
+    def clean(self, *args, **kwargs):
         if VideoWarmUp.objects.count() >= 1:
             raise ValidationError("Невозможно создать больше одной записи.")
         super().save(*args, **kwargs)
