@@ -37,13 +37,13 @@ flutter:
   fonts:
     - family: SofiaSans
       fonts:
-        - asset: fonts/SofiaSans-Black.ttf
+        - asset: assets/fonts/SofiaSans-Black.ttf
           weight: 900
-        - asset: fonts/SofiaSans-Medium.ttf
+        - asset: assets/fonts/SofiaSans-Medium.ttf
           weight: 500
     - family: Montserrat
       fonts:
-        - asset: fonts/Montserrat-Medium.ttf
+        - asset: assets/fonts/Montserrat-Medium.ttf
           weight: 500
 
           

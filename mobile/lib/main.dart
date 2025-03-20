@@ -134,30 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
               hintText: 'Имя',
               icon: AppIcons.user,
             ),
-            BaseTextField(
-              controller: controller,
-              textInputType: TextInputType.name,
-              hintText: 'Имя',
-              icon: AppIcons.email,
-            ),
-            BaseTextField(
-              controller: controller,
-              textInputType: TextInputType.name,
-              hintText: 'Имя',
-              icon: AppIcons.eyeOff,
-            ),
-            BaseTextField(
-              controller: controller,
-              textInputType: TextInputType.name,
-              hintText: 'Имя',
-              icon: AppIcons.eyeOn,
-            ),
-            BaseTextField(
-              controller: controller,
-              textInputType: TextInputType.name,
-              hintText: 'Имя',
-              icon: AppIcons.phone,
-            ),
+
             BaseTextField(
               controller: controller,
               textInputType: TextInputType.name,
@@ -183,6 +160,13 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               onPressed: () => (),
               child: Text('Войти', style: TextStyle(color: AppColors.blue)),
+            ),
+            BaseBigCard(
+              imageUrl:
+                  'https://tvkrasnodar.ru/upload/iblock/767/27b9pgs0kee4x38b4pqz8onqx7jc63g6.jpeg',
+              name: 'Название',
+              shortDescription:
+                  'Вот такой вот у меня сегодня день: то живот болит, то кашляю ',
             ),
           ],
         ),
