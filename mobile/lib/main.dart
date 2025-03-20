@@ -168,6 +168,13 @@ class _MyHomePageState extends State<MyHomePage> {
               shortDescription:
                   'Вот такой вот у меня сегодня день: то живот болит, то кашляю ',
             ),
+            SizedBox(height: 10),
+            BaseMediunCard(
+              imageUrl:
+                  'https://sun9-28.userapi.com/impf/c846420/v846420085/3cefd/bR6vv2Ps0JI.jpg?size=402x604&quality=96&sign=2dc1fb8fcacbe99510bc01babe940a82&type=album',
+              name: 'Иван',
+              lastName: 'Иванов',
+            ),
           ],
         ),
       ),

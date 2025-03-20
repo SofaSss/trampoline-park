@@ -32,7 +32,7 @@ class _BaseBigCardState extends State<BaseBigCard> {
               height: AppConstants.bigCardHeight,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.network(widget.imageUrl, fit: BoxFit.fill),
+                child: Image.network(widget.imageUrl, fit: BoxFit.cover),
               ),
             ),
           ),
@@ -45,8 +45,10 @@ class _BaseBigCardState extends State<BaseBigCard> {
                 color: getRandomColor(),
                 shape: SlantedRoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
+                  slantWidth: 45,
                 ),
               ),
+
               child: Padding(
                 padding: const EdgeInsets.only(left: 30),
                 child: Column(

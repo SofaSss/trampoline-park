@@ -6,3 +6,4 @@ import 'package:mobile_trampoline_park/presentation/resources/theme_resources.da
 
 part 'base_text_field.dart';
 part 'base_big_card.dart';
+part 'base_medium_card.dart';
