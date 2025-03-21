@@ -22,11 +22,25 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "PDn": MessageLookupByLibrary.simpleMessage(
+      "Я согласен с политикой \\nобработки персональных данных",
+    ),
+    "email": MessageLookupByLibrary.simpleMessage("Почта"),
+    "lastname": MessageLookupByLibrary.simpleMessage("Фамилия"),
+    "name": MessageLookupByLibrary.simpleMessage("Имя"),
     "on_boarding_hello": MessageLookupByLibrary.simpleMessage(
       "Добро пожаловать в мир прыжков и веселья!",
     ),
     "on_boarding_text": MessageLookupByLibrary.simpleMessage(
       "Зарегистрируйтесь или войдите, чтобы легко бронировать тренировки, следить за расписанием и получать доступ к эксклюзивным событиям парка!",
+    ),
+    "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+    "phone": MessageLookupByLibrary.simpleMessage("Телефон"),
+    "repassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
+    "signIn": MessageLookupByLibrary.simpleMessage("Уже есть аккаунт?\\nВойти"),
+    "signUp": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
+    "signUpDescription": MessageLookupByLibrary.simpleMessage(
+      "Присоединяйтесь к нашему батутному сообществу! Это быстро и легко: бронируйте время, копите бонусы и прыгайте в удовольствие.",
     ),
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),

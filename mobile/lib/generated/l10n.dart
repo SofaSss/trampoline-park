@@ -84,6 +84,81 @@ class S {
   String get sign_up {
     return Intl.message('Регистрация', name: 'sign_up', desc: '', args: []);
   }
+
+  /// `Присоединяйтесь к нашему батутному сообществу! Это быстро и легко: бронируйте время, копите бонусы и прыгайте в удовольствие.`
+  String get signUpDescription {
+    return Intl.message(
+      'Присоединяйтесь к нашему батутному сообществу! Это быстро и легко: бронируйте время, копите бонусы и прыгайте в удовольствие.',
+      name: 'signUpDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Имя`
+  String get name {
+    return Intl.message('Имя', name: 'name', desc: '', args: []);
+  }
+
+  /// `Фамилия`
+  String get lastname {
+    return Intl.message('Фамилия', name: 'lastname', desc: '', args: []);
+  }
+
+  /// `Почта`
+  String get email {
+    return Intl.message('Почта', name: 'email', desc: '', args: []);
+  }
+
+  /// `Телефон`
+  String get phone {
+    return Intl.message('Телефон', name: 'phone', desc: '', args: []);
+  }
+
+  /// `Пароль`
+  String get password {
+    return Intl.message('Пароль', name: 'password', desc: '', args: []);
+  }
+
+  /// `Повторите пароль`
+  String get repassword {
+    return Intl.message(
+      'Повторите пароль',
+      name: 'repassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Зарегистрироваться`
+  String get signUp {
+    return Intl.message(
+      'Зарегистрироваться',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Уже есть аккаунт?\nВойти`
+  String get signIn {
+    return Intl.message(
+      'Уже есть аккаунт?\\nВойти',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Я согласен с политикой \nобработки персональных данных`
+  String get PDn {
+    return Intl.message(
+      'Я согласен с политикой \\nобработки персональных данных',
+      name: 'PDn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

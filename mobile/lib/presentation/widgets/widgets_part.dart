@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mobile_trampoline_park/presentation/helpers/helpers_part.dart';
@@ -7,3 +8,4 @@ import 'package:mobile_trampoline_park/presentation/resources/theme_resources.da
 part 'base_text_field.dart';
 part 'base_big_card.dart';
 part 'base_medium_card.dart';
+part 'base_auth_header.dart';

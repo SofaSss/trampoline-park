@@ -38,5 +38,11 @@ class AppTextStyles {
       fontSize: 14,
       color: AppColors.black,
     ),
+    bodySmall: TextStyle(
+      fontFamily: 'SofiaSans',
+      fontWeight: FontWeight.w400,
+      fontSize: 18,
+      color: AppColors.blue,
+    ),
   );
 }
