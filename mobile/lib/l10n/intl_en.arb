@@ -1,4 +1,6 @@
 {
-  "youHavePushedTheButtonThisManyTimes": "You have pushed the button this many times:",
-  "flutterDemoHomePage": "Flutter Demo Home Page"
+  "on_boarding_hello": "Добро пожаловать в мир прыжков и веселья!",
+  "on_boarding_text": "Зарегистрируйтесь или войдите, чтобы легко бронировать тренировки, следить за расписанием и получать доступ к эксклюзивным событиям парка!",
+  "sign_in": "Вход",
+  "sign_up": "Регистрация"
 }

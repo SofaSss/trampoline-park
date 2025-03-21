@@ -22,11 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "flutterDemoHomePage": MessageLookupByLibrary.simpleMessage(
-      "Flutter Demo Home Page",
+    "on_boarding_hello": MessageLookupByLibrary.simpleMessage(
+      "Добро пожаловать в мир прыжков и веселья!",
     ),
-    "youHavePushedTheButtonThisManyTimes": MessageLookupByLibrary.simpleMessage(
-      "You have pushed the button this many times:",
+    "on_boarding_text": MessageLookupByLibrary.simpleMessage(
+      "Зарегистрируйтесь или войдите, чтобы легко бронировать тренировки, следить за расписанием и получать доступ к эксклюзивным событиям парка!",
     ),
+    "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
+    "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
   };
 }

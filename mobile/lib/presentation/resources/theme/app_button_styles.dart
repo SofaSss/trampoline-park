@@ -33,4 +33,22 @@ class AppButtonStyles {
       ),
     ),
   );
+
+  static final OutlinedButtonThemeData outlinedButtonTheme =
+      OutlinedButtonThemeData(
+        style: ButtonStyle(
+          side: WidgetStateProperty.all(
+            const BorderSide(color: AppColors.blue),
+          ),
+          textStyle: WidgetStatePropertyAll(
+            const TextStyle(
+              fontFamily: 'SofiaSans',
+              fontWeight: FontWeight.w400,
+              fontSize: 18,
+              color: AppColors.blue,
+            ),
+          ),
+          fixedSize: WidgetStateProperty.all(Size(170, 40)),
+        ),
+      );
 }

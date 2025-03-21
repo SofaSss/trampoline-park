@@ -34,5 +34,8 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: AppButtonStyles.textButtonTheme.style,
     ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: AppButtonStyles.outlinedButtonTheme.style,
+    ),
   );
 }

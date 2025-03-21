@@ -20,13 +20,16 @@ dependencies:
   data:
     path: './data'
   flutter_svg: ^2.0.17
+  auto_route: ^10.0.1
+  
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  auto_route_generator: ^10.0.1
   flutter_lints: ^5.0.0
+  build_runner: 
 
 flutter:
   generate: true
@@ -34,6 +37,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/logo/
+    - assets/on_boarding_pictures/
   fonts:
     - family: SofiaSans
       fonts:

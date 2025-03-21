@@ -55,24 +55,34 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `You have pushed the button this many times:`
-  String get youHavePushedTheButtonThisManyTimes {
+  /// `Добро пожаловать в мир прыжков и веселья!`
+  String get on_boarding_hello {
     return Intl.message(
-      'You have pushed the button this many times:',
-      name: 'youHavePushedTheButtonThisManyTimes',
+      'Добро пожаловать в мир прыжков и веселья!',
+      name: 'on_boarding_hello',
       desc: '',
       args: [],
     );
   }
 
-  /// `Flutter Demo Home Page`
-  String get flutterDemoHomePage {
+  /// `Зарегистрируйтесь или войдите, чтобы легко бронировать тренировки, следить за расписанием и получать доступ к эксклюзивным событиям парка!`
+  String get on_boarding_text {
     return Intl.message(
-      'Flutter Demo Home Page',
-      name: 'flutterDemoHomePage',
+      'Зарегистрируйтесь или войдите, чтобы легко бронировать тренировки, следить за расписанием и получать доступ к эксклюзивным событиям парка!',
+      name: 'on_boarding_text',
       desc: '',
       args: [],
     );
+  }
+
+  /// `Вход`
+  String get sign_in {
+    return Intl.message('Вход', name: 'sign_in', desc: '', args: []);
+  }
+
+  /// `Регистрация`
+  String get sign_up {
+    return Intl.message('Регистрация', name: 'sign_up', desc: '', args: []);
   }
 }
 
