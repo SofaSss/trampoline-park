@@ -1,16 +1,31 @@
 from django.shortcuts import get_object_or_404
 from django.utils.dateparse import parse_datetime
+from djoser.email import ActivationEmail
 from rest_framework.response import Response
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from trampoline_park.permissions import *
 from trampoline_park.serializers import *
+from djoser import urls
 
 
 class ClientCreateAPIView(generics.CreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientCreateSerializer
+
+    def perform_create(self, serializer):
+        return serializer.save()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        client: Client = self.perform_create(serializer)
+        to = [client.user.email]
+        context = {"user": client.user}
+        ActivationEmail(self.request, context).send(to)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class ClientListAPIView(generics.ListAPIView):

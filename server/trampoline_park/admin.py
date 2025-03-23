@@ -5,7 +5,7 @@ from trampoline_park.models import *
 
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password', 'role')}),
+        (None, {'fields': ('username', 'email', 'password', 'role', 'is_active')}),
     )
 
     add_fieldsets = (

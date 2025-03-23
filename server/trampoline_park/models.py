@@ -14,6 +14,7 @@ class User(AbstractUser):
     first_name = None
     last_name = None
     email = models.EmailField(blank=True, null=True)
+    is_active = models.BooleanField(default=False)
 
     EMAIL_FIELD = "email"  # для автоматической отправки писем
     USERNAME_FIELD = "username"  # login для авторизации обязательное поле

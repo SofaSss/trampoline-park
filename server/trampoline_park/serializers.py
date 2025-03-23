@@ -1,8 +1,10 @@
+from django.conf import settings
+from djoser.serializers import UserCreateSerializer
 from rest_framework import serializers
 from trampoline_park.models import *
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(UserCreateSerializer):
     class Meta:
         model = User
         fields = ("id", "username", "email", "role")
@@ -10,6 +12,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 class ClientSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+    # def create(self, validated_data):
+    #     super().create(validated_data)
+    #     settings.EMAIL.activation(self.request, context).send(to)
 
     class Meta:
         model = Client
