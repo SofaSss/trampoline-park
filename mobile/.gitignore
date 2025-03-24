@@ -1,4 +1,7 @@
 ./assets/*
+*.g.dart
+*.freezed.dart
+*.gr.dart
 
 # Miscellaneous
 *.class

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mobile_trampoline_park/application/application_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/theme/theme_part.dart';
 import 'package:mobile_trampoline_park/presentation/routing/app_routing.dart';
-import 'generated/l10n.dart';
+import 'presentation/resources/localizations/generated/l10n.dart';
 
-void main() {
-  runApp(const TrampolinePark());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); 
+  await setUpDependencies();
+  runApp(TrampolinePark());
 }
 
 class TrampolinePark extends StatefulWidget {

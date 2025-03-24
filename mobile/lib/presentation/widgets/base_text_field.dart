@@ -12,6 +12,7 @@ class BaseTextField extends StatefulWidget {
     required this.hintText,
     required this.icon,
     this.enabled = true,
+    this.onTap,
     // this.inputFormatters,
   });
 
@@ -24,6 +25,7 @@ class BaseTextField extends StatefulWidget {
   final String hintText;
   final String icon;
   final bool enabled;
+  final void Function()? onTap;
 
   // final List<TextInputFormatter>? inputFormatters;
 
@@ -39,6 +41,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
       child: TextField(
         enabled: widget.enabled,
         controller: widget.controller,
+        onTap: widget.onTap,
         cursorColor: AppColors.blue,
         // inputFormatters: widget.inputFormatters,
         keyboardType: widget.textInputType,

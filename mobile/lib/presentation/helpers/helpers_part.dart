@@ -5,5 +5,6 @@ import 'package:mobile_trampoline_park/presentation/resources/theme_resources.da
 
 part 'get_random_color_helper.dart';
 part 'big_card_shape_helper.dart';
-part 'mediun_card_shape_helper.dart';
+part 'medium_card_shape_helper.dart';
 part 'auth_pictures_helper.dart';
+part 'date_time_helper.dart';

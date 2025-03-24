@@ -9,3 +9,4 @@ part 'base_text_field.dart';
 part 'base_big_card.dart';
 part 'base_medium_card.dart';
 part 'base_auth_header.dart';
+part 'base_switched.dart';
