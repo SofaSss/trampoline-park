@@ -34,8 +34,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
+          print("Текущий статус: ${state.status}");
+
+          if (state.errors.containsKey(InputErrorTypeEnum.isConfirmPDn)) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: SizedBox(
+                  width: MediaQuery.of(context).size.width - 20,
+                  height: 25,
+                  child: Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8.0),
+                        child: Icon(Icons.info, color: AppColors.white),
+                      ),
+                      Text(
+                        state.errors[InputErrorTypeEnum.isConfirmPDn]!.localize(
+                          context.localization,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
           if (state.status == Status.success) {
-            context.router.push(SignInRoute());
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              context.router.push(SignInRoute());
+            });
           }
         },
         builder: (context, state) {
@@ -54,18 +81,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textInputType: TextInputType.text,
                       hintText: context.localization.name,
                       icon: AppIcons.user,
+                      errorText: state.errors[InputErrorTypeEnum.textField]
+                          ?.localize(context.localization),
                     ),
                     BaseTextField(
                       controller: lastNameController,
                       textInputType: TextInputType.text,
-                      hintText: context.localization.lastname,
+                      hintText: context.localization.lastName,
                       icon: AppIcons.user,
+                      errorText: state.errors[InputErrorTypeEnum.textField]
+                          ?.localize(context.localization),
                     ),
                     BaseTextField(
                       controller: birthController,
-                      textInputType: TextInputType.none,
+                      textInputType: TextInputType.text,
                       hintText: context.localization.dateOfBirth,
                       icon: AppIcons.calendar,
+                      errorText: state.errors[InputErrorTypeEnum.textField]
+                          ?.localize(context.localization),
                       onTap: () async {
                         FocusScope.of(context).requestFocus(FocusNode());
                         final newDate = await DateTimeHelper.selectDate(
@@ -107,12 +140,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textInputType: TextInputType.emailAddress,
                       hintText: context.localization.email,
                       icon: AppIcons.email,
+                      errorText: state.errors[InputErrorTypeEnum.email]
+                          ?.localize(context.localization),
                     ),
                     BaseTextField(
                       controller: phoneController,
                       textInputType: TextInputType.phone,
                       hintText: context.localization.phone,
                       icon: AppIcons.phone,
+                      errorText: state.errors[InputErrorTypeEnum.phone]
+                          ?.localize(context.localization),
+                      inputFormatters: [
+                        MaskTextInputFormatter(
+                          mask: RegExpConstants.mask,
+                          filter: {"#": RegExp(r'[0-9]')},
+                          type: MaskAutoCompletionType.lazy,
+                        ),
+                      ],
                     ),
                     BaseTextField(
                       controller: passwordController,
@@ -120,6 +164,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintText: context.localization.password,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      errorText: state.errors[InputErrorTypeEnum.password]
+                          ?.localize(context.localization),
                     ),
                     BaseTextField(
                       controller: confirmPasswordController,
@@ -169,8 +215,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               email: emailController.text.trim(),
                               phone: phoneController.text.trim(),
                               password: passwordController.text.trim(),
-                              birth: selectedDate!,
+                              confirmPassword:
+                                  confirmPasswordController.text.trim(),
+                              birth: selectedDate,
                               isHealthy: isHealthySwitched,
+                              isConfirmPDn: isSwitchedPDn,
                             ),
                           );
                         },

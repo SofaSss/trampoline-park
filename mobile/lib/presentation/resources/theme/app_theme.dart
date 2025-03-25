@@ -5,7 +5,7 @@ class AppTheme {
     colorScheme: ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.blue,
-      onPrimary: AppColors.blue,
+      onPrimary: AppColors.white,
       secondary: AppColors.yellow,
       onSecondary: AppColors.black,
       error: AppColors.red,

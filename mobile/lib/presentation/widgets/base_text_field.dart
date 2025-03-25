@@ -13,7 +13,7 @@ class BaseTextField extends StatefulWidget {
     required this.icon,
     this.enabled = true,
     this.onTap,
-    // this.inputFormatters,
+    this.inputFormatters,
   });
 
   final TextEditingController? controller;
@@ -26,8 +26,7 @@ class BaseTextField extends StatefulWidget {
   final String icon;
   final bool enabled;
   final void Function()? onTap;
-
-  // final List<TextInputFormatter>? inputFormatters;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<BaseTextField> createState() => _BaseTextFieldState();
@@ -43,7 +42,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
         controller: widget.controller,
         onTap: widget.onTap,
         cursorColor: AppColors.blue,
-        // inputFormatters: widget.inputFormatters,
+        inputFormatters: widget.inputFormatters,
         keyboardType: widget.textInputType,
         maxLines: widget.isLargeText ? 3 : 1,
         obscureText: widget.isObscureText,

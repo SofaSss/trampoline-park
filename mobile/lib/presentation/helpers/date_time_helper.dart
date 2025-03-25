@@ -10,6 +10,7 @@ class DateTimeHelper {
       initialDate: selectedDate,
       firstDate: DateTime(1950),
       lastDate: DateTime(2017),
+      locale: const Locale('ru'),
     );
     if (selected != null && selected != selectedDate) {
       selectedDate = selected;

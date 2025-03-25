@@ -101,8 +101,8 @@ class S {
   }
 
   /// `Фамилия`
-  String get lastname {
-    return Intl.message('Фамилия', name: 'lastname', desc: '', args: []);
+  String get lastName {
+    return Intl.message('Фамилия', name: 'lastName', desc: '', args: []);
   }
 
   /// `Почта`
@@ -175,6 +175,66 @@ class S {
     return Intl.message(
       'У меня нет жалоб на здоровье',
       name: 'isHealthy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Номер телефона введен не верно`
+  String get wrongPhoneNumber {
+    return Intl.message(
+      'Номер телефона введен не верно',
+      name: 'wrongPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Почта введена неверно`
+  String get incorrectMail {
+    return Intl.message(
+      'Почта введена неверно',
+      name: 'incorrectMail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Пароль должен состоять из букв и цифр, длина - не менее 8 символов`
+  String get incorrectPassword {
+    return Intl.message(
+      'Пароль должен состоять из букв и цифр, длина - не менее 8 символов',
+      name: 'incorrectPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Пароли не совпадают`
+  String get passwordNotMatch {
+    return Intl.message(
+      'Пароли не совпадают',
+      name: 'passwordNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Необходимо заполнить поле`
+  String get emptyField {
+    return Intl.message(
+      'Необходимо заполнить поле',
+      name: 'emptyField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Без согласия на обработку персональных данных невозможно продолжить использование сервиса`
+  String get isConfirmPDn {
+    return Intl.message(
+      'Без согласия на обработку персональных данных невозможно продолжить использование сервиса',
+      name: 'isConfirmPDn',
       desc: '',
       args: [],
     );

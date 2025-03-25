@@ -11,3 +11,4 @@ part './api/dto/sign_up_dto.dart';
 part './api/dto/user_dto.dart';
 part 'api/api_routes/sign_up_api.dart';
 part 'services/user_service.dart';
+part 'exceptions/api_error.dart';

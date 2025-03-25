@@ -27,10 +27,22 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
     "email": MessageLookupByLibrary.simpleMessage("Почта"),
+    "emptyField": MessageLookupByLibrary.simpleMessage(
+      "Необходимо заполнить поле",
+    ),
+    "incorrectMail": MessageLookupByLibrary.simpleMessage(
+      "Почта введена неверно",
+    ),
+    "incorrectPassword": MessageLookupByLibrary.simpleMessage(
+      "Пароль должен состоять из букв и цифр, длина - не менее 8 символов",
+    ),
+    "isConfirmPDn": MessageLookupByLibrary.simpleMessage(
+      "Без согласия на обработку персональных данных невозможно продолжить использование сервиса",
+    ),
     "isHealthy": MessageLookupByLibrary.simpleMessage(
       "У меня нет жалоб на здоровье",
     ),
-    "lastname": MessageLookupByLibrary.simpleMessage("Фамилия"),
+    "lastName": MessageLookupByLibrary.simpleMessage("Фамилия"),
     "name": MessageLookupByLibrary.simpleMessage("Имя"),
     "on_boarding_hello": MessageLookupByLibrary.simpleMessage(
       "Добро пожаловать в мир прыжков и веселья!",
@@ -39,6 +51,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Зарегистрируйтесь или войдите, чтобы легко бронировать тренировки, следить за расписанием и получать доступ к эксклюзивным событиям парка!",
     ),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+    "passwordNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Пароли не совпадают",
+    ),
     "phone": MessageLookupByLibrary.simpleMessage("Телефон"),
     "repassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
     "signIn": MessageLookupByLibrary.simpleMessage("Уже есть аккаунт?\\nВойти"),
@@ -48,5 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Номер телефона введен не верно",
+    ),
   };
 }

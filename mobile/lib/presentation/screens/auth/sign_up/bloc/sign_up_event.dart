@@ -8,7 +8,9 @@ abstract class SignUpEvent with _$SignUpEvent {
     required String email,
     required String phone,
     required String password,
-    required DateTime birth,
+    required String confirmPassword,
+    required DateTime? birth,
     required bool isHealthy,
+    required bool isConfirmPDn,
   }) = _SignUp;
 }

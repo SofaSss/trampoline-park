@@ -5,7 +5,7 @@ class UserUseCases {
 
   UserUseCases({required this.userService});
 
-  Future<UnregisteredUser> signUp({
+  Future<void> signUp({
     required String name,
     required String lastName,
     required String email,
@@ -24,6 +24,6 @@ class UserUseCases {
       isHealthy: isHealthy,
     );
     await userService.signUp(unregisteredUser);
-    return unregisteredUser;
+    // return unregisteredUser;
   }
 }
