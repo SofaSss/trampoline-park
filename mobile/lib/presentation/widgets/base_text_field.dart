@@ -57,6 +57,8 @@ class _BaseTextFieldState extends State<BaseTextField> {
         decoration: InputDecoration(
           hintText: widget.hintText,
           errorText: widget.errorText,
+          errorMaxLines: 3,
+
           suffixIcon: Padding(
             padding: const EdgeInsets.all(15),
             child: SvgPicture.asset(

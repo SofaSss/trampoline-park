@@ -25,6 +25,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "PDn": MessageLookupByLibrary.simpleMessage(
       "Я согласен с политикой \\nобработки персональных данных",
     ),
+    "activateAccount": MessageLookupByLibrary.simpleMessage(
+      "На Вашу электронную почту отправлено письмо для активации аккаунта",
+    ),
+    "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
     "email": MessageLookupByLibrary.simpleMessage("Почта"),
     "emptyField": MessageLookupByLibrary.simpleMessage(
@@ -55,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Пароли не совпадают",
     ),
     "phone": MessageLookupByLibrary.simpleMessage("Телефон"),
+    "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
     "repassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
     "signIn": MessageLookupByLibrary.simpleMessage("Уже есть аккаунт?\\nВойти"),
     "signUp": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
@@ -63,6 +68,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "textPDn": MessageLookupByLibrary.simpleMessage(
+      "Я (далее - Заявитель) даю согласие Гриенко Александру Юрьевичу, ИНН 616389500742, адрес Ростовская область, город Ростов-на-Дону, ул.Ларина, 45с2 (далее — Оператор) на автоматизированную, а также без использования средств автоматизации, обработку моих персональных данных, предоставленных мною Оператору посредством сети Интернет через сайт https://xn--1-7sbaci3bivnagncpfakg8m.xn--p1ai/, а именно фамилия, имя, отчество, год, месяц, дата рождения, пол; включая сбора, записи, систематизации, накопления, хранения, уточнения (обновления, изменения), извлечения, использования, передачу (предоставление, доступ), обезличивания, блокирования удаления и уничтожения, а также на вышеуказанную обработку иных моих персональных данных, полученных в результате их обработки, включая обработку третьими лицами. Целями обработки персональных данных является: предоставление услуг, заключение договора. Указанное согласие дано на срок 1 год. Я уведомлен, что предоставление указанного выше согласия является моим правом, а не обязанностью, данные согласия могут быть отозваны в порядке, предусмотренном законодательством Российской Федерации. Согласие может быть отозвано субъектом персональных данных путем обращения к Оператору с заявлением, оформленным в письменной форме.",
+    ),
+    "titlePDn": MessageLookupByLibrary.simpleMessage(
+      "Согласие на обработку персональных данных",
+    ),
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",
     ),

@@ -13,8 +13,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     Emitter<SignUpState> emit,
   ) async {
     try {
-      print(event.isConfirmPDn);
-
       final errors = {
         ...ValidationHelper.validateText(text: event.name),
         ...ValidationHelper.validateText(text: event.lastName),
@@ -27,8 +25,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ),
         ...ValidationHelper.isConfirmPDn(isConfirmPDn: event.isConfirmPDn),
       };
-
-      print(errors);
 
       if (errors.isNotEmpty) {
         emit(state.copyWith(status: Status.loaded, errors: errors));
@@ -57,13 +53,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           ),
         );
       } else {
-        emit(
-          state.copyWith(
-            status: Status.failure,
-          ),
-        );
+        emit(state.copyWith(status: Status.failure));
       }
     }
   }
-  }
-
+}

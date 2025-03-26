@@ -34,35 +34,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
-          print("Текущий статус: ${state.status}");
-
           if (state.errors.containsKey(InputErrorTypeEnum.isConfirmPDn)) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: SizedBox(
-                  width: MediaQuery.of(context).size.width - 20,
-                  height: 25,
-                  child: Row(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(right: 8.0),
-                        child: Icon(Icons.info, color: AppColors.white),
-                      ),
-                      Text(
-                        state.errors[InputErrorTypeEnum.isConfirmPDn]!.localize(
-                          context.localization,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              baseSnackBar(
+                context: context,
+                message: state.errors[InputErrorTypeEnum.isConfirmPDn]!
+                    .localize(context.localization),
               ),
             );
           }
           if (state.status == Status.success) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              context.router.push(SignInRoute());
-            });
+            ScaffoldMessenger.of(context)
+                .showSnackBar(
+                  baseSnackBar(
+                    context: context,
+                    message: context.localization.activateAccount,
+                  ),
+                )
+                .closed
+                .then((_) => context.router.push(SignInRoute()));
           }
         },
         builder: (context, state) {
@@ -174,7 +164,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
                     ),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -188,7 +177,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         SizedBox(width: 10),
                         TextButton(
-                          onPressed: () => (),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return baseAlertDialog(
+                                  context: context,
+                                  title: context.localization.titlePDn,
+                                  text: context.localization.textPDn,
+                                );
+                              },
+                            );
+                          },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -241,15 +241,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               );
+            case Status.failure:
+              return FailureWidget();
+
+            case Status.loading:
+              return BaseProgressIndicator();
 
             default:
-              return const Center(
-                child: SizedBox(
-                  height: 24,
-                  width: 24,
-                  child: CircularProgressIndicator(),
-                ),
-              );
+              return Container();
           }
         },
       ),

@@ -21,19 +21,19 @@ class AppTextStyles {
       color: AppColors.white,
     ),
     headlineSmall: TextStyle(
-      fontFamily: 'Montserrst',
+      fontFamily: 'Montserrat',
       fontWeight: FontWeight.w500,
       fontSize: 13,
       color: AppColors.gray,
     ),
     bodyMedium: TextStyle(
-      fontFamily: 'Montserrst',
+      fontFamily: 'Montserrat',
       fontWeight: FontWeight.w500,
       fontSize: 13,
       color: AppColors.white,
     ),
     bodyLarge: TextStyle(
-      fontFamily: 'Montserrst',
+      fontFamily: 'Montserrat',
       fontWeight: FontWeight.w500,
       fontSize: 14,
       color: AppColors.black,
