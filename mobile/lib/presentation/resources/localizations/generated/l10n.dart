@@ -140,7 +140,6 @@ class S {
     );
   }
 
-
   /// `Дата рождения`
   String get dateOfBirth {
     return Intl.message(

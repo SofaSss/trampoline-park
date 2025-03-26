@@ -24,6 +24,5 @@ class UserUseCases {
       isHealthy: isHealthy,
     );
     await userService.signUp(unregisteredUser);
-    // return unregisteredUser;
   }
 }
