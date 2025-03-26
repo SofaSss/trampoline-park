@@ -1,13 +1,13 @@
 part of '../infrastructure_part.dart';
 
 class UserService implements IUserService {
-  final SignUpApi signUpApi;
+  final UserApi userApi;
 
-  UserService({required this.signUpApi});
+  UserService({required this.userApi});
 
   @override
   Future<void> signUp(UnregisteredUser model) async {
-    final signUpDto = SignUpDto(
+    final signUpDto = SignUpInfraDto(
       firstName: model.name,
       lastName: model.lastName,
       phone: model.phone,
@@ -20,6 +20,20 @@ class UserService implements IUserService {
       ),
     );
 
-    await signUpApi.signUp(signUpDto.toJson());
+    await userApi.signUp(signUpDto.toJson());
+  }
+
+  @override
+  Future<TokenDto> signIn(SignInDto dto) async {
+    final SignInInfraDto signInInfraDto = SignInInfraDto(
+      email: dto.email,
+      password: dto.password,
+    );
+    TokenInfraDto tokenInfraDto = await userApi.signIn(signInInfraDto);
+    TokenDto tokenDto = TokenDto(
+      accessToken: tokenInfraDto.accessToken,
+      refreshToken: tokenInfraDto.refreshToken,
+    );
+    return tokenDto;
   }
 }

@@ -25,4 +25,12 @@ class UserUseCases {
     );
     await userService.signUp(unregisteredUser);
   }
+
+  Future<TokenDto> signIn({required String email, required String password}) async {
+    final SignInDto signInModel = SignInDto(
+      email: email,
+      password: password,
+    );
+   return await userService.signIn(signInModel);
+  }
 }

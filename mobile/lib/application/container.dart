@@ -7,9 +7,9 @@ Future<void> setUpDependencies() async {
 
   injection
     ..registerLazySingleton<Dio>(() => dio)
-    ..registerLazySingleton<SignUpApi>(() => SignUpApi(dio))
+    ..registerLazySingleton<UserApi>(() => UserApi(dio))
     ..registerLazySingleton<IUserService>(
-      () => UserService(signUpApi: injection()),
+      () => UserService(userApi: injection()),
     )
     ..registerLazySingleton<UserUseCases>(
       () => UserUseCases(userService: injection()),

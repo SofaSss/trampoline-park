@@ -9,11 +9,35 @@ class TokenUseCases {
     required String accessToken,
     required String refreshToken,
   }) async {
-    TokenModel tokenModel = TokenModel(
+    TokenDto tokenDto = TokenDto(
       accessToken: accessToken,
       refreshToken: refreshToken,
     );
-    await tokenService.safeTokens(tokenModel: tokenModel);
+    await tokenService.safeTokens(tokenDto: tokenDto);
+  }
+
+  Future<TokenDto?> refreshTokens() async {
+    final String? refreshToken = await getRefreshToken();
+    if (refreshToken != null) {
+      final TokenDto tokenDto = await tokenService.refreshTokens(
+        refreshToken: refreshToken,
+      );
+      await safeTokens(
+        accessToken: tokenDto.accessToken,
+        refreshToken: tokenDto.refreshToken,
+      );
+
+      final newAccessToken = await getAccessToken();
+      final newRefreshToken = await getRefreshToken();
+
+      if (newAccessToken == null || newRefreshToken == null) return null;
+
+      return TokenDto(
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+      );
+    }
+    return null;
   }
 
   Future<String?> getAccessToken() async {

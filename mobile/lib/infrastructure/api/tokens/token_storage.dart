@@ -5,7 +5,7 @@ class TokenStorage {
 
   TokenStorage({required this.storage});
 
-  Future<void> safeTokens({required TokenDto tokenDto}) async {
+  Future<void> safeTokens({required TokenInfraDto tokenDto}) async {
     await storage.write(key: 'access_token', value: tokenDto.accessToken);
     await storage.write(key: 'refresh_token', value: tokenDto.refreshToken);
   }

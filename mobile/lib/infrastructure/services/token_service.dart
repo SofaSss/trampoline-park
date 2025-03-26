@@ -2,16 +2,17 @@ part of '../infrastructure_part.dart';
 
 class TokenService implements ITokenService {
   final TokenStorage tokenStorage;
+  final TokenApi tokenApi;
 
-  TokenService({required this.tokenStorage});
+  TokenService({required this.tokenApi, required this.tokenStorage});
 
   @override
-  Future<void> safeTokens({required TokenModel tokenModel}) async {
-    final TokenDto tokenDto = TokenDto(
-      accessToken: tokenModel.accessToken,
-      refreshToken: tokenModel.refreshToken,
+  Future<void> safeTokens({required TokenDto tokenDto}) async {
+    final TokenInfraDto tokenInfraDto = TokenInfraDto(
+      accessToken: tokenDto.accessToken,
+      refreshToken: tokenDto.refreshToken,
     );
-    await tokenStorage.safeTokens(tokenDto: tokenDto);
+    await tokenStorage.safeTokens(tokenDto: tokenInfraDto);
   }
 
   @override
@@ -32,5 +33,17 @@ class TokenService implements ITokenService {
   @override
   Future<void> deleteRefreshToken() async {
     await tokenStorage.deleteRefreshToken();
+  }
+
+  @override
+  Future<TokenDto> refreshTokens({required String refreshToken}) async {
+    final TokenInfraDto tokenInfraDto = await tokenApi.refreshTokens(
+      refreshToken: refreshToken,
+    );
+    final TokenDto tokenDto = TokenDto(
+      accessToken: tokenInfraDto.accessToken,
+      refreshToken: tokenInfraDto.refreshToken,
+    );
+    return tokenDto;
   }
 }
