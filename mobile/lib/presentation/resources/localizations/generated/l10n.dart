@@ -140,25 +140,6 @@ class S {
     );
   }
 
-  /// `Уже есть аккаунт?\nВойти`
-  String get signIn {
-    return Intl.message(
-      'Уже есть аккаунт?\\nВойти',
-      name: 'signIn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Я согласен с политикой \nобработки персональных данных`
-  String get PDn {
-    return Intl.message(
-      'Я согласен с политикой \\nобработки персональных данных',
-      name: 'PDn',
-      desc: '',
-      args: [],
-    );
-  }
 
   /// `Дата рождения`
   String get dateOfBirth {
@@ -278,6 +259,16 @@ class S {
   /// `Закрыть`
   String get close {
     return Intl.message('Закрыть', name: 'close', desc: '', args: []);
+  }
+
+  /// `С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.`
+  String get signInTitle {
+    return Intl.message(
+      'С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.',
+      name: 'signInTitle',
+      desc: '',
+      args: [],
+    );
   }
 }
 

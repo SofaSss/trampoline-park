@@ -31,23 +31,23 @@ class _BaseAuthHeaderState extends State<BaseAuthHeader> {
           ),
 
           Positioned(
-            left: 30,
+            left: 40,
             top: 40,
             child: AuthPicturesHelper(picture: OnBoardingPictures.heart),
           ),
           Positioned(
-            right: 30,
-            top: 40,
+            right: 20,
+            top: 30,
             child: AuthPicturesHelper(picture: OnBoardingPictures.leaf),
           ),
           Positioned(
-            left: 30,
-            bottom: 40,
+            left: 50,
+            bottom: 20,
             child: AuthPicturesHelper(picture: OnBoardingPictures.star),
           ),
           Positioned(
-            right: 30,
-            bottom: 40,
+            right: 100,
+            bottom: 10,
             child: AuthPicturesHelper(picture: OnBoardingPictures.fish),
           ),
           Positioned(

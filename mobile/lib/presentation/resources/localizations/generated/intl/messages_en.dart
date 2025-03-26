@@ -22,9 +22,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "PDn": MessageLookupByLibrary.simpleMessage(
-      "Я согласен с политикой \\nобработки персональных данных",
-    ),
     "activateAccount": MessageLookupByLibrary.simpleMessage(
       "На Вашу электронную почту отправлено письмо для активации аккаунта",
     ),
@@ -61,7 +58,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "phone": MessageLookupByLibrary.simpleMessage("Телефон"),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
     "repassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
-    "signIn": MessageLookupByLibrary.simpleMessage("Уже есть аккаунт?\\nВойти"),
+    "signInTitle": MessageLookupByLibrary.simpleMessage(
+      "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
+    ),
     "signUp": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
     "signUpDescription": MessageLookupByLibrary.simpleMessage(
       "Присоединяйтесь к нашему батутному сообществу! Это быстро и легко: бронируйте время, копите бонусы и прыгайте в удовольствие.",
