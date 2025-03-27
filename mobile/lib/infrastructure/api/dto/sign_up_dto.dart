@@ -8,7 +8,7 @@ abstract class SignUpInfraDto with _$SignUpInfraDto {
     @JsonKey(name: 'phone_number') required String phone,
     @JsonKey(name: 'date_of_birth') required String dateOfBirth,
     @JsonKey(name: 'is_healthy') required bool isHealthy,
-    required UserDto user,
+    required UserInfraDto user,
   }) = _SignUpInfraDto;
 
   factory SignUpInfraDto.fromJson(Map<String, Object?> json) =>

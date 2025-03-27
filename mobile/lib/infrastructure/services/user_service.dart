@@ -13,7 +13,7 @@ class UserService implements IUserService {
       phone: model.phone,
       dateOfBirth: DateFormat('yyyy-MM-dd').format(model.birth),
       isHealthy: model.isHealthy,
-      user: UserDto(
+      user: UserInfraDto(
         username: model.email,
         email: model.email,
         password: model.password,
@@ -29,7 +29,9 @@ class UserService implements IUserService {
       email: dto.email,
       password: dto.password,
     );
-    TokenInfraDto tokenInfraDto = await userApi.signIn(signInInfraDto);
+
+    TokenInfraDto tokenInfraDto = await userApi.signIn(signInInfraDto.toJson());
+
     TokenDto tokenDto = TokenDto(
       accessToken: tokenInfraDto.accessToken,
       refreshToken: tokenInfraDto.refreshToken,

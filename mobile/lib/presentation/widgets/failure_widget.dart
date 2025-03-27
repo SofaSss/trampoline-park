@@ -5,22 +5,25 @@ class FailureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 10,
-        children: [
-          SvgPicture.asset(
-            AppIcons.logo,
-            width: 100,
-            height: 100,
-            color: AppColors.gray,
-          ),
-          Text(
-            'Что-то пошло не так...',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-        ],
+    return Container(
+      color: AppColors.white,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 10,
+          children: [
+            SvgPicture.asset(
+              AppIcons.logo,
+              width: 100,
+              height: 100,
+              color: AppColors.gray,
+            ),
+            Text(
+              context.localization.failure,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ],
+        ),
       ),
     );
   }

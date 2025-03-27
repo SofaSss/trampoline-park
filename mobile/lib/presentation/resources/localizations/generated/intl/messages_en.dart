@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emptyField": MessageLookupByLibrary.simpleMessage(
       "Необходимо заполнить поле",
     ),
+    "failure": MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
     "incorrectMail": MessageLookupByLibrary.simpleMessage(
       "Почта введена неверно",
     ),

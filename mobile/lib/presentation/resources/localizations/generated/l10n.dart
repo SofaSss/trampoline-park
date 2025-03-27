@@ -269,6 +269,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Что-то пошло не так...`
+  String get failure {
+    return Intl.message(
+      'Что-то пошло не так...',
+      name: 'failure',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

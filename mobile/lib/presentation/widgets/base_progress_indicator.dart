@@ -5,17 +5,20 @@ class BaseProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 20,
-        children: [
-          CircularProgressIndicator(strokeWidth: 3),
-          Text(
-            context.localization.progressText,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ],
+    return Container(
+      color: AppColors.white,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 20,
+          children: [
+            CircularProgressIndicator(strokeWidth: 3),
+            Text(
+              context.localization.progressText,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
       ),
     );
   }

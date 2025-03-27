@@ -1,13 +1,13 @@
 part of '../../infrastructure_part.dart';
 
 @freezed
-abstract class UserDto with _$UserDto {
-  const factory UserDto({
+abstract class UserInfraDto with _$UserInfraDto {
+  const factory UserInfraDto({
     required String username,
     required String email,
     required String password,
-  }) = _UserDto;
+  }) = _UserInfraDto;
 
-  factory UserDto.fromJson(Map<String, Object?> json) =>
-      _$UserDtoFromJson(json);
+  factory UserInfraDto.fromJson(Map<String, Object?> json) =>
+      _$UserInfraDtoFromJson(json);
 }
