@@ -30,7 +30,7 @@ class _TrampolineParkState extends State<TrampolinePark> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      title: 'Батутный парк №1',
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
