@@ -1,7 +1,16 @@
-enum Status {
+enum Status { loading, loaded, failure, success }
+
+enum SignInStatus {
   loading,
   loaded,
   failure,
-  success,
-  isFetching,
-  }
+  toClientMainScreen,
+  toCoachMainScreen,
+}
+
+enum InitialStatus {
+  loading,
+  toOnBoardingScreen,
+  toClientMainScreen,
+  toCoachMainScreen,
+}

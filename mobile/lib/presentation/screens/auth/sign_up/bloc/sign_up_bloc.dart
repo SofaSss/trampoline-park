@@ -1,12 +1,12 @@
 part of '../sign_up_part.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  SignUpBloc({required this.userUseCases})
+  SignUpBloc({required this.authUserUseCases})
     : super(const SignUpState(status: Status.loaded)) {
     on<SignUpEvent>(_signUpEvent);
   }
 
-  final UserUseCases userUseCases;
+  final AuthUserUseCases authUserUseCases;
 
   Future<void> _signUpEvent(
     SignUpEvent event,
@@ -33,7 +33,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
       emit(state.copyWith(status: Status.loading));
 
-      await userUseCases.signUp(
+      await authUserUseCases.signUp(
         name: event.name,
         lastName: event.lastName,
         email: event.email,

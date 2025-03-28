@@ -5,6 +5,18 @@ class TokenUseCases {
 
   TokenUseCases({required this.tokenService});
 
+  Future<bool> isFirstRun() async {
+    return await tokenService.isFirstRun();
+  }
+
+  Future<void> setIsFirstRun({required bool isFirstRun}) async {
+    if (isFirstRun) {
+      await tokenService.deleteAccessToken();
+      await tokenService.deleteRefreshToken();
+      await tokenService.setIsFirstRun(isFirstRun: false);
+    }
+  }
+
   Future<void> safeTokens({
     required String accessToken,
     required String refreshToken,

@@ -10,12 +10,13 @@ part 'application_part.freezed.dart';
 
 part 'container.dart';
 
-part 'interfaces/user_interface.dart';
+part 'interfaces/auth_user_interface.dart';
 part 'interfaces/token_interface.dart';
 
-part 'use_cases/user_use_cases.dart';
+part 'use_cases/auth_user_use_cases.dart';
 part 'use_cases/token_use_cases.dart';
 
 part 'dto/sign_in_dto.dart';
 part 'dto/token_dto.dart';
+part 'dto/get_user_role_dto.dart';
 

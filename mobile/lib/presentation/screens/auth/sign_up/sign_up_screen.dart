@@ -10,7 +10,7 @@ class SignUpScreen extends StatefulWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) => SignUpBloc(userUseCases: injection()),
+      create: (_) => SignUpBloc(authUserUseCases: injection()),
       child: this,
     );
   }

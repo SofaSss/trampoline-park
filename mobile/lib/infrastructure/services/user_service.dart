@@ -1,12 +1,13 @@
 part of '../infrastructure_part.dart';
 
-class UserService implements IUserService {
+class UserService implements IAuthUserService {
   final UserApi userApi;
+  final TokenStorage tokenStorage;
 
-  UserService({required this.userApi});
+  UserService({required this.tokenStorage, required this.userApi});
 
   @override
-  Future<void> signUp(UnregisteredUser model) async {
+  Future<void> signUp({required UnregisteredUser model}) async {
     final signUpDto = SignUpInfraDto(
       firstName: model.name,
       lastName: model.lastName,
@@ -24,18 +25,29 @@ class UserService implements IUserService {
   }
 
   @override
-  Future<TokenDto> signIn(SignInDto dto) async {
+  Future<TokenDto> signIn({required SignInDto dto}) async {
     final SignInInfraDto signInInfraDto = SignInInfraDto(
       email: dto.email,
       password: dto.password,
     );
 
-    TokenInfraDto tokenInfraDto = await userApi.signIn(signInInfraDto.toJson());
+    final TokenInfraDto tokenInfraDto = await userApi.signIn(
+      signInInfraDto.toJson(),
+    );
 
-    TokenDto tokenDto = TokenDto(
+    final TokenDto tokenDto = TokenDto(
       accessToken: tokenInfraDto.accessToken,
       refreshToken: tokenInfraDto.refreshToken,
     );
+
+    await tokenStorage.safeTokens(tokenDto: tokenInfraDto);
     return tokenDto;
+  }
+
+  @override
+  Future<GetUserRoleDto> getUserRole() async {
+    final user = await userApi.getUser();
+    final GetUserRoleDto userRoleDto = GetUserRoleDto(role: user.role);
+    return userRoleDto;
   }
 }

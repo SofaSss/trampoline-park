@@ -1,12 +1,12 @@
 part of '../sign_in_part.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  SignInBloc({required this.userUseCases})
-    : super(const SignInState(status: Status.loaded)) {
+  SignInBloc({required this.authUserUseCases})
+    : super(const SignInState(status: SignInStatus.loaded)) {
     on<SignInEvent>(_signInEvent);
   }
 
-  final UserUseCases userUseCases;
+  final AuthUserUseCases authUserUseCases;
 
   Future<void> _signInEvent(
     SignInEvent event,
@@ -22,17 +22,24 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       };
 
       if (errors.isNotEmpty) {
-        emit(state.copyWith(errors: errors, status: Status.loaded));
+        emit(state.copyWith(errors: errors, status: SignInStatus.loaded));
         return;
       }
 
-      emit(state.copyWith(status: Status.loading));
+      emit(state.copyWith(status: SignInStatus.loading));
 
-      await userUseCases.signIn(email: event.email, password: event.password);
+      await authUserUseCases.signIn(email: event.email, password: event.password);
 
-      emit(state.copyWith(status: Status.success));
+      final isClient = await authUserUseCases.isClient();
+      final isCoach = await authUserUseCases.isCoach();
+
+      if (isClient) {
+        emit(state.copyWith(status: SignInStatus.toClientMainScreen));
+      } else if (isCoach) {
+        emit(state.copyWith(status: SignInStatus.toCoachMainScreen));
+      }
     } catch (_) {
-      emit(state.copyWith(status: Status.failure));
+      emit(state.copyWith(status: SignInStatus.failure));
     }
   }
 }

@@ -9,4 +9,7 @@ abstract class UserApi {
 
   @POST('auth/jwt/create/')
   Future<TokenInfraDto> signIn(@Body() Map<String, dynamic> signInDto);
+
+  @GET('auth/users/me/')
+  Future<GetUserInfraDto> getUser();
 }

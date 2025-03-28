@@ -1,14 +1,9 @@
 part of '../application_part.dart';
 
-abstract class ITokenService{
+abstract class ITokenService {
+  Future<TokenDto> refreshTokens({required String refreshToken});
 
-  Future<TokenDto> refreshTokens({
-    required String refreshToken,
-  });
-
-  Future<void> safeTokens({
-    required TokenDto tokenDto,
-  });
+  Future<void> safeTokens({required TokenDto tokenDto});
 
   Future<String?> getAccessToken();
 
@@ -17,4 +12,8 @@ abstract class ITokenService{
   Future<String?> getRefreshToken();
 
   Future<void> deleteRefreshToken();
+
+  Future<bool> isFirstRun();
+
+  Future<void> setIsFirstRun({required bool isFirstRun});
 }

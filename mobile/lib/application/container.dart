@@ -7,11 +7,28 @@ Future<void> setUpDependencies() async {
 
   injection
     ..registerLazySingleton<Dio>(() => dio)
-    ..registerLazySingleton<UserApi>(() => UserApi(dio))
-    ..registerLazySingleton<IUserService>(
-      () => UserService(userApi: injection()),
+    ..registerLazySingleton<TokenApi>(() => TokenApi(dio))
+    ..registerLazySingleton<FlutterSecureStorage>(() => FlutterSecureStorage())
+    ..registerLazySingleton<TokenStorage>(
+      () => TokenStorage(storage: injection()),
     )
-    ..registerLazySingleton<UserUseCases>(
-      () => UserUseCases(userService: injection()),
+    ..registerLazySingleton<ITokenService>(
+      () => TokenService(tokenApi: injection(), tokenStorage: injection()),
+    )
+    ..registerLazySingleton<TokenUseCases>(
+      () => TokenUseCases(tokenService: injection()),
+    );
+
+  final tokenInterceptor = DioInterceptor(injection<TokenUseCases>());
+  dio.interceptors.add(tokenInterceptor);
+
+  injection
+    ..registerLazySingleton<DioInterceptor>(() => tokenInterceptor)
+    ..registerLazySingleton<UserApi>(() => UserApi(dio))
+    ..registerLazySingleton<IAuthUserService>(
+      () => UserService(userApi: injection(), tokenStorage: injection()),
+    )
+    ..registerLazySingleton<AuthUserUseCases>(
+      () => AuthUserUseCases(authUserService: injection()),
     );
 }

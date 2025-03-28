@@ -10,7 +10,7 @@ class SignInScreen extends StatefulWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) => SignInBloc(userUseCases: injection()),
+      create: (_) => SignInBloc(authUserUseCases: injection()),
       child: this,
     );
   }
@@ -24,13 +24,15 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInBloc, SignInState>(
       listener: (context, state) {
-        if (state.status == Status.success) {
-          context.router.replaceAll([MainRoute()]);
+        if (state.status == SignInStatus.toClientMainScreen) {
+          context.router.replaceAll([ClientMainRoute()]);
+        } else if (state.status == SignInStatus.toCoachMainScreen) {
+          context.router.replaceAll([CoachMainRoute()]);
         }
       },
       builder: (context, state) {
         switch (state.status) {
-          case Status.loaded:
+          case SignInStatus.loaded:
             return Scaffold(
               body: SingleChildScrollView(
                 child: Column(
@@ -92,10 +94,10 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             );
 
-          case Status.loading:
+          case SignInStatus.loading:
             return BaseProgressIndicator();
 
-          case Status.failure:
+          case SignInStatus.failure:
             return FailureWidget();
 
           default:
