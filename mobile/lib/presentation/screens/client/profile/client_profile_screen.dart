@@ -1,4 +1,4 @@
-part of 'profile_part.dart';
+part of 'client_profile_part.dart';
 
 class ClientProfileScreen extends StatefulWidget {
   const ClientProfileScreen({super.key});

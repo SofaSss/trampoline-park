@@ -1,3 +1,3 @@
 import 'package:flutter/material.dart';
 
-part 'workouts_screen.dart';
+part 'client_profile_screen.dart';

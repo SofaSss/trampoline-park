@@ -12,8 +12,4 @@ abstract class ITokenService {
   Future<String?> getRefreshToken();
 
   Future<void> deleteRefreshToken();
-
-  Future<bool> isFirstRun();
-
-  Future<void> setIsFirstRun({required bool isFirstRun});
 }

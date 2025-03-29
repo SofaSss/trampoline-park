@@ -14,13 +14,11 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
     Emitter<InitialState> emit,
   ) async {
     try {
-      final String? accessToken = await tokenUseCases.getAccessToken();
-      final bool isFirstRun = await tokenUseCases.isFirstRun();
+      final String? refreshToken = await tokenUseCases.getRefreshToken();
       final bool isClient = await userUseCases.isClient();
       final bool isCoach = await userUseCases.isCoach();
-      await tokenUseCases.setIsFirstRun(isFirstRun: isFirstRun);
 
-      if (accessToken != null) {
+      if (refreshToken != null) {
         if (isClient) {
           emit(state.copyWith(status: InitialStatus.toClientMainScreen));
         } else if (isCoach) {

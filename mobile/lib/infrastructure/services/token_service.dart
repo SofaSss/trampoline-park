@@ -37,28 +37,16 @@ class TokenService implements ITokenService {
 
   @override
   Future<TokenDto> refreshTokens({required String refreshToken}) async {
-    final refresh = tokenStorage.getRefreshToken();
+    final refresh = await tokenStorage.getRefreshToken();
+    if (refresh == null) {
+      throw Exception();
+    }
     final Map<String, dynamic> data = {'refresh': refresh};
-    final TokenInfraDto tokenInfraDto = await tokenApi.refreshTokens(
-      refresh: data,
-    );
+    final  accessToken = await tokenApi.refreshTokens(refresh: data);
     final TokenDto tokenDto = TokenDto(
-      accessToken: tokenInfraDto.accessToken,
-      refreshToken: tokenInfraDto.refreshToken,
+      accessToken: accessToken.access,
+      refreshToken: refresh,
     );
     return tokenDto;
-  }
-
-  @override
-  Future<bool> isFirstRun() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? isFirstRun = prefs.getBool('isFirstRun');
-    return isFirstRun ?? true;
-  }
-
-  @override
-  Future<void> setIsFirstRun({required bool isFirstRun}) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isFirstRun', isFirstRun);
   }
 }

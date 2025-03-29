@@ -5,7 +5,7 @@ abstract class TokenApi {
   factory TokenApi(Dio dio, {String baseUrl}) = _TokenApi;
 
   @POST('auth/jwt/refresh/')
-  Future<TokenInfraDto> refreshTokens({
+  Future<AccessTokenInfraDto> refreshTokens({
     @Body() required Map<String, dynamic> refresh,
   });
 }

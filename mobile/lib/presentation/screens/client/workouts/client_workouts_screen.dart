@@ -1,4 +1,4 @@
-part of 'workouts_part.dart';
+part of 'client_workouts_part.dart';
 
 class ClientWorkoutsScreen extends StatefulWidget {
   const ClientWorkoutsScreen({super.key});
