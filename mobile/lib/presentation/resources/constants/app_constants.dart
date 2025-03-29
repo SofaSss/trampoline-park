@@ -5,4 +5,5 @@ class AppConstants {
   static const double bigCardWidth = 296;
   static const double mediumCardHeight = 170;
   static const double mediumCardWidth = 130;
+  static const String empty = '';
 }

@@ -16,3 +16,5 @@ part 'base_snack_bar.dart';
 part 'failure_widget.dart';
 part 'base_alert_dialog.dart';
 part 'base_progress_indicator.dart';
+part 'navigation_bar/base_navigation_bar.dart';
+part 'navigation_bar/icon_navigation_bar.dart';

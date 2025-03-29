@@ -9,16 +9,26 @@ class ClientMainScreen extends StatefulWidget {
 }
 
 class _ClientMainScreenState extends State<ClientMainScreen> {
+  int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.blue,
-      child: Center(
-        child: Text(
-          'Тут будут виджеты для клиента',
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
+    return Scaffold(
+      bottomNavigationBar: baseNavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        selectedIndex: currentPageIndex,
       ),
+      body:
+          <Widget>[
+            ClientHomeScreen(),
+
+            ClientWorkoutsScreen(),
+
+            ClientProfileScreen(),
+          ][currentPageIndex],
     );
   }
 }

@@ -14,7 +14,9 @@ class InitialScreen extends StatefulWidget implements AutoRouteWrapper {
           (_) =>
               InitialBloc(tokenUseCases: injection(), userUseCases: injection())
                 ..add(InitialEvent.checkToken()),
-      child: this,
+      child: Builder(
+        builder: (context) => this,
+      ),
     );
   }
 }

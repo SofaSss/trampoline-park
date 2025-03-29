@@ -9,16 +9,27 @@ class CoachMainScreen extends StatefulWidget {
 }
 
 class _CoachMainScreenState extends State<CoachMainScreen> {
+  int currentPageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.yellow,
-      child: Center(
-        child: Text(
-          'Тут будут виджеты для тренера',
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
+    return Scaffold(
+      bottomNavigationBar: baseNavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        selectedIndex: currentPageIndex,
       ),
+      body:
+          <Widget>[
+            CoachHomeScreen(),
+
+            CoachWorkoutsScreen(),
+
+            CoachProfileScreen(),
+          ][currentPageIndex],
     );
   }
 }
