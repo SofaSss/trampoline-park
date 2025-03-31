@@ -30,5 +30,12 @@ Future<void> setUpDependencies() async {
     )
     ..registerLazySingleton<AuthUserUseCases>(
       () => AuthUserUseCases(authUserService: injection()),
+    )
+    ..registerLazySingleton<ClientApi>(() => ClientApi(dio))
+    ..registerLazySingleton<IClientService>(
+      () => ClientService(clientApi: injection()),
+    )
+    ..registerLazySingleton<ClientUseCases>(
+      () => ClientUseCases(clientService: injection()),
     );
 }

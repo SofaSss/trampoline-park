@@ -1,11 +1,11 @@
 part of '../application_part.dart';
 
-class UserUseCases {
+class ClientUseCases {
   final IClientService clientService;
 
-  UserUseCases({required this.clientService});
+  ClientUseCases({required this.clientService});
 
-  Future<ClientModel> getUser({required int id}) async {
+  Future<ClientModel> getClientById({required int id}) async {
     return await clientService.getClientById(id: id);
   }
 }
