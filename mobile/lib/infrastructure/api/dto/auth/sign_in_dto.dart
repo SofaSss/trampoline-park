@@ -1,4 +1,4 @@
-part of '../../infrastructure_part.dart';
+part of '../../../infrastructure_part.dart';
 
 @freezed
 abstract class SignInInfraDto with _$SignInInfraDto {

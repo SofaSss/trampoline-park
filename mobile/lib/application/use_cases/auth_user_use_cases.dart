@@ -14,7 +14,7 @@ class AuthUserUseCases {
     required DateTime birth,
     required bool isHealthy,
   }) async {
-    UnregisteredUser unregisteredUser = UnregisteredUser(
+    UnregisteredClient unregisteredUser = UnregisteredClient(
       name: name,
       lastName: lastName,
       email: email,

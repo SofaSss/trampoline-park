@@ -1,8 +1,8 @@
 part of '../domain_part.dart';
 
 @freezed
-abstract class UnregisteredUser with _$UnregisteredUser{
-  const factory UnregisteredUser({
+abstract class UnregisteredClient with _$UnregisteredClient{
+  const factory UnregisteredClient({
     required String name,
     required String lastName,
     required String email,
@@ -10,5 +10,5 @@ abstract class UnregisteredUser with _$UnregisteredUser{
     required String password,
     required DateTime birth,
     required bool isHealthy,
-  }) = _UnregisteredUser;
+  }) = _UnregisteredClient;
 }

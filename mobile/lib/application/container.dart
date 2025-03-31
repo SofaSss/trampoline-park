@@ -24,9 +24,9 @@ Future<void> setUpDependencies() async {
 
   injection
     ..registerLazySingleton<DioInterceptor>(() => tokenInterceptor)
-    ..registerLazySingleton<UserApi>(() => UserApi(dio))
+    ..registerLazySingleton<AuthUserApi>(() => AuthUserApi(dio))
     ..registerLazySingleton<IAuthUserService>(
-      () => UserService(userApi: injection(), tokenStorage: injection()),
+      () => AuthUserService(userApi: injection(), tokenStorage: injection()),
     )
     ..registerLazySingleton<AuthUserUseCases>(
       () => AuthUserUseCases(authUserService: injection()),

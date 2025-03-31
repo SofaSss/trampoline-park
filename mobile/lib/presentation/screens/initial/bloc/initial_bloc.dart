@@ -3,13 +3,13 @@ part of '../initial_part.dart';
 class InitialBloc extends Bloc<InitialEvent, InitialState> {
   InitialBloc({required this.tokenUseCases, required this.userUseCases})
     : super(InitialState(status: InitialStatus.loading)) {
-    on<InitialEvent>(_initialEvent);
+    on<_CheckToken>(_checkToken);
   }
 
   final TokenUseCases tokenUseCases;
   final AuthUserUseCases userUseCases;
 
-  Future<void> _initialEvent(
+  Future<void> _checkToken(
     InitialEvent event,
     Emitter<InitialState> emit,
   ) async {

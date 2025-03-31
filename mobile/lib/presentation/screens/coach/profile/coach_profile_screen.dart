@@ -16,6 +16,6 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
         'Профиль тренера',
         style: Theme.of(context).textTheme.bodyLarge,
       ),
-    );;
+    );
   }
 }

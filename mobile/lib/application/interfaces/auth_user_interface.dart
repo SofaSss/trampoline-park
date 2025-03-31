@@ -1,7 +1,7 @@
 part of '../application_part.dart';
 
 abstract class IAuthUserService {
-  Future<void> signUp({required UnregisteredUser model});
+  Future<void> signUp({required UnregisteredClient model});
 
   Future<TokenDto> signIn({required SignInDto dto});
 

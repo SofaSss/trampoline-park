@@ -52,7 +52,7 @@ class _TrampolineParkState extends State<TrampolinePark> {
               ),
             ]);
           } else {
-            return const DeepLink([OnBoardingRoute()]);
+            return const DeepLink([InitialRoute()]);
           }
         },
       ),

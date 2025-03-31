@@ -12,22 +12,27 @@ import 'package:retrofit/retrofit.dart';
 part 'infrastructure_part.freezed.dart';
 part 'infrastructure_part.g.dart';
 
-part './api/dto/sign_up_dto.dart';
-part './api/dto/user_dto.dart';
-part './api/dto/token_dto.dart';
-part 'api/dto/sign_in_dto.dart';
-part 'api/dto/get_user_dto.dart';
-part 'api/dto/access_dto.dart';
-part 'api/dto/activate_dto.dart';
+part 'api/dto/auth/sign_up_dto.dart';
+part 'api/dto/auth/unregistered_user_dto.dart';
+part 'api/dto/auth/sign_in_dto.dart';
+part 'api/dto/auth/activate_dto.dart';
 
-part 'api/api_routes/user_api.dart';
+part 'api/dto/tokens/token_dto.dart';
+part 'api/dto/tokens/access_dto.dart';
+
+part 'api/dto/get_user_dto.dart';
+part 'api/dto/client/client_dto.dart';
+
+part 'api/api_routes/auth_user_api.dart';
 part 'api/api_routes/token_api.dart';
+part 'api/api_routes/client_api.dart';
 
 part 'api/tokens/token_storage.dart';
 part 'api/tokens/interceptor.dart';
 
-part 'services/user_service.dart';
+part 'services/auth_user_service.dart';
 part 'services/token_service.dart';
+part 'services/client_service.dart';
 
 part 'exceptions/api_error.dart';
 part 'exceptions/connection_exception.dart';

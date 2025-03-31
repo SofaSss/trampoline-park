@@ -12,11 +12,13 @@ part 'container.dart';
 
 part 'interfaces/auth_user_interface.dart';
 part 'interfaces/token_interface.dart';
+part 'interfaces/client_interface.dart';
 
 part 'use_cases/auth_user_use_cases.dart';
 part 'use_cases/token_use_cases.dart';
+part 'use_cases/client_use_cases.dart';
 
-part 'dto/sign_in_dto.dart';
-part 'dto/token_dto.dart';
-part 'dto/get_user_role_dto.dart';
-part 'dto/activate_dto.dart';
+part 'dto/token/token_dto.dart';
+part 'dto/auth/get_user_role_dto.dart';
+part 'dto/auth/activate_dto.dart';
+part 'dto/auth/sign_in_dto.dart';

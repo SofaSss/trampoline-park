@@ -11,11 +11,11 @@ class CoachWorkoutsScreen extends StatefulWidget {
 class _CoachWorkoutsScreenState extends State<CoachWorkoutsScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Center(
+    return Center(
       child: Text(
         'Тренировки тренера',
         style: Theme.of(context).textTheme.bodyLarge,
       ),
-    );;
+    );
   }
 }

@@ -1,4 +1,4 @@
-part of '../application_part.dart';
+part of '../../application_part.dart';
 
 @freezed
 abstract class GetUserRoleDto with _$GetUserRoleDto {

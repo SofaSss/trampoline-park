@@ -5,8 +5,8 @@ import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart'
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: InitialRoute.page, path: '/'),
-    AutoRoute(page: OnBoardingRoute.page, path: '/'),
+    AutoRoute(page: InitialRoute.page),
+    AutoRoute(page: OnBoardingRoute.page),
     AutoRoute(page: SignInRoute.page),
     AutoRoute(page: SignUpRoute.page),
     AutoRoute(

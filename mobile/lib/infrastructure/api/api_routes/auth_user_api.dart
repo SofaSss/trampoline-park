@@ -1,8 +1,8 @@
 part of '../../infrastructure_part.dart';
 
 @RestApi()
-abstract class UserApi {
-  factory UserApi(Dio dio, {String baseUrl}) = _UserApi;
+abstract class AuthUserApi {
+  factory AuthUserApi(Dio dio, {String baseUrl}) = _AuthUserApi;
 
   @POST('client/create/')
   Future<void> signUp(@Body() Map<String, dynamic> signUpDto);

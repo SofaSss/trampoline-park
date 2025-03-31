@@ -1,8 +1,8 @@
 part of '../domain_part.dart';
 
 @freezed
-abstract class UserModel with _$UserModel {
-  const factory UserModel({
+abstract class ClientModel with _$ClientModel {
+  const factory ClientModel({
     required int id,
     required String firstName,
     required String lastName,
@@ -11,5 +11,5 @@ abstract class UserModel with _$UserModel {
     required String phone,
     bool? isHealthy,
     String? profilePicture,
-  }) = _UserModel;
+  }) = _ClientModel;
 }

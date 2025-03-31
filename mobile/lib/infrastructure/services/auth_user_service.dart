@@ -1,20 +1,20 @@
 part of '../infrastructure_part.dart';
 
-class UserService implements IAuthUserService {
-  final UserApi userApi;
+class AuthUserService implements IAuthUserService {
+  final AuthUserApi userApi;
   final TokenStorage tokenStorage;
 
-  UserService({required this.tokenStorage, required this.userApi});
+  AuthUserService({required this.tokenStorage, required this.userApi});
 
   @override
-  Future<void> signUp({required UnregisteredUser model}) async {
+  Future<void> signUp({required UnregisteredClient model}) async {
     final signUpDto = SignUpInfraDto(
       firstName: model.name,
       lastName: model.lastName,
       phone: model.phone,
       dateOfBirth: DateFormat('yyyy-MM-dd').format(model.birth),
       isHealthy: model.isHealthy,
-      user: UserInfraDto(
+      user: UnregisteredUserInfraDto(
         username: model.email,
         email: model.email,
         password: model.password,
