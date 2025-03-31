@@ -289,6 +289,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Профиль`
+  String get profile {
+    return Intl.message('Профиль', name: 'profile', desc: '', args: []);
+  }
+
+  /// `Старый пароль`
+  String get oldPassword {
+    return Intl.message(
+      'Старый пароль',
+      name: 'oldPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Новый пароль`
+  String get newPassword {
+    return Intl.message(
+      'Новый пароль',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Обновить данные`
+  String get update {
+    return Intl.message('Обновить данные', name: 'update', desc: '', args: []);
+  }
+
+  /// `Вы можете удалить аккаунт`
+  String get deleteAccount {
+    return Intl.message(
+      'Вы можете удалить аккаунт',
+      name: 'deleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

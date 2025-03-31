@@ -30,6 +30,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
+    "deleteAccount": MessageLookupByLibrary.simpleMessage(
+      "Вы можете удалить аккаунт",
+    ),
     "email": MessageLookupByLibrary.simpleMessage("Почта"),
     "emptyField": MessageLookupByLibrary.simpleMessage(
       "Необходимо заполнить поле",
@@ -49,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "lastName": MessageLookupByLibrary.simpleMessage("Фамилия"),
     "name": MessageLookupByLibrary.simpleMessage("Имя"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
+    "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
     "on_boarding_hello": MessageLookupByLibrary.simpleMessage(
       "Добро пожаловать в мир прыжков и веселья!",
     ),
@@ -60,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Пароли не совпадают",
     ),
     "phone": MessageLookupByLibrary.simpleMessage("Телефон"),
+    "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
     "repassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
     "signInTitle": MessageLookupByLibrary.simpleMessage(
@@ -77,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "titlePDn": MessageLookupByLibrary.simpleMessage(
       "Согласие на обработку персональных данных",
     ),
+    "update": MessageLookupByLibrary.simpleMessage("Обновить данные"),
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",
     ),

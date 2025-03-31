@@ -1,5 +1,6 @@
 part of 'coach_home_part.dart';
 
+@RoutePage()
 class CoachHomeScreen extends StatefulWidget {
   const CoachHomeScreen({super.key});
 

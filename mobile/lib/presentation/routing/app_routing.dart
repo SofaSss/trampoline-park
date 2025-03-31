@@ -9,8 +9,22 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: OnBoardingRoute.page, path: '/'),
     AutoRoute(page: SignInRoute.page),
     AutoRoute(page: SignUpRoute.page),
-    AutoRoute(page: ClientMainRoute.page),
-    AutoRoute(page: CoachMainRoute.page),
+    AutoRoute(
+      page: ClientMainRoute.page,
+      children: [
+        AutoRoute(page: ClientHomeRoute.page),
+        AutoRoute(page: ClientWorkoutsRoute.page),
+        AutoRoute(page: ClientProfileRoute.page),
+      ],
+    ),
+    AutoRoute(
+      page: CoachMainRoute.page,
+      children: [
+        AutoRoute(page: CoachHomeRoute.page),
+        AutoRoute(page: CoachWorkoutsRoute.page),
+        AutoRoute(page: CoachProfileRoute.page),
+      ],
+    ),
     AutoRoute(page: ActivationRoute.page),
   ];
 }

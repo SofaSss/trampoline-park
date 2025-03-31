@@ -1,5 +1,6 @@
 part of 'client_home_part.dart';
 
+@RoutePage()
 class ClientHomeScreen extends StatefulWidget {
   const ClientHomeScreen({super.key});
 

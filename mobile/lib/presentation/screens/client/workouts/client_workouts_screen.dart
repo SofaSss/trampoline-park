@@ -1,5 +1,6 @@
 part of 'client_workouts_part.dart';
 
+@RoutePage()
 class ClientWorkoutsScreen extends StatefulWidget {
   const ClientWorkoutsScreen({super.key});
 

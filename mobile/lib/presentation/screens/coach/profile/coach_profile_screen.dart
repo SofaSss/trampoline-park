@@ -1,5 +1,6 @@
 part of 'coach_profile_part.dart';
 
+@RoutePage()
 class CoachProfileScreen extends StatefulWidget {
   const CoachProfileScreen({super.key});
 
