@@ -6,4 +6,6 @@ abstract class IAuthUserService {
   Future<TokenDto> signIn({required SignInDto dto});
 
   Future<GetUserRoleDto> getUserRole();
+
+  Future<void> activateUser({required ActivateDto activateDto});
 }

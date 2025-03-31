@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "activateAccount": MessageLookupByLibrary.simpleMessage(
       "На Вашу электронную почту отправлено письмо для активации аккаунта",
     ),
+    "activeAccount": MessageLookupByLibrary.simpleMessage(
+      "Учетная запись активирована",
+    ),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
     "email": MessageLookupByLibrary.simpleMessage("Почта"),

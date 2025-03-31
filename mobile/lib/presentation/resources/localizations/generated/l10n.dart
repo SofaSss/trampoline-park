@@ -279,6 +279,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Учетная запись активирована`
+  String get activeAccount {
+    return Intl.message(
+      'Учетная запись активирована',
+      name: 'activeAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

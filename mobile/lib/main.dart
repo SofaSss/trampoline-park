@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mobile_trampoline_park/application/application_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/theme/theme_part.dart';
 import 'package:mobile_trampoline_park/presentation/routing/app_routing.dart';
+import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart';
 import 'presentation/resources/localizations/generated/l10n.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); 
+  WidgetsFlutterBinding.ensureInitialized();
   await setUpDependencies();
   runApp(TrampolinePark());
 }
@@ -40,7 +42,20 @@ class _TrampolineParkState extends State<TrampolinePark> {
       supportedLocales: S.delegate.supportedLocales,
       locale: const Locale('ru'),
       theme: AppTheme.lightTheme,
-      routerConfig: _appRouter.config(),
+      routerConfig: _appRouter.config(
+        deepLinkBuilder: (deepLink) {
+          if (deepLink.path.contains('/activation/')) {
+            return DeepLink([
+              ActivationRoute(
+                uid: deepLink.path.split('/').reversed.elementAt(1),
+                token: deepLink.path.split('/').reversed.first,
+              ),
+            ]);
+          } else {
+            return const DeepLink([OnBoardingRoute()]);
+          }
+        },
+      ),
     );
   }
 }

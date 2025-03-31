@@ -14,3 +14,4 @@ enum InitialStatus {
   toClientMainScreen,
   toCoachMainScreen,
 }
+

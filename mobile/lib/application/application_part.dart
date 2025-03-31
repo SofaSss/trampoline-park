@@ -19,4 +19,4 @@ part 'use_cases/token_use_cases.dart';
 part 'dto/sign_in_dto.dart';
 part 'dto/token_dto.dart';
 part 'dto/get_user_role_dto.dart';
-
+part 'dto/activate_dto.dart';

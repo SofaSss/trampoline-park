@@ -50,4 +50,13 @@ class UserService implements IAuthUserService {
     final GetUserRoleDto userRoleDto = GetUserRoleDto(role: user.role);
     return userRoleDto;
   }
+
+  @override
+  Future<void> activateUser({required ActivateDto activateDto}) async {
+    final ActivateInfraDto activateInfraDto = ActivateInfraDto(
+      uid: activateDto.uid,
+      token: activateDto.token,
+    );
+    await userApi.activateUser(activateDto: activateInfraDto.toJson());
+  }
 }

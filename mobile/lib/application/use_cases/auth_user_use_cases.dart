@@ -43,4 +43,12 @@ class AuthUserUseCases {
     final userRole = await authUserService.getUserRole();
     return userRole.role == 'COACH';
   }
+
+  Future<void> activateUser({
+    required String uid,
+    required String token,
+  }) async {
+    final ActivateDto activateDto = ActivateDto(uid: uid, token: token);
+    await authUserService.activateUser(activateDto: activateDto);
+  }
 }
