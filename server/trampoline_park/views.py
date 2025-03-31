@@ -10,6 +10,11 @@ from trampoline_park.serializers import *
 from djoser import urls
 
 
+class UserRetrieveApiView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
+
 class ClientCreateAPIView(generics.CreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientCreateSerializer

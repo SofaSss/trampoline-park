@@ -13,14 +13,13 @@ ROLES = [
 class User(AbstractUser):
     first_name = None
     last_name = None
-    email = models.EmailField(blank=True, null=True)
-    is_active = models.BooleanField(default=False)
+    email = models.EmailField(blank=True, null=True, unique=True)
+    is_active = models.BooleanField(default=True)
 
-    EMAIL_FIELD = "email"  # для автоматической отправки писем
-    USERNAME_FIELD = "username"  # login для авторизации обязательное поле
-    REQUIRED_FIELDS = []  # больше обязательных полей не будет
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "username"
     role = models.CharField(max_length=50, choices=ROLES, default="ADMIN", verbose_name="Роль пользователя")
-
+    REQUIRED_FIELDS = ["role"]  # больше обязательных полей не будет
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"

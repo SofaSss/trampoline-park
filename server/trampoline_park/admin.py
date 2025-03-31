@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.base_user import BaseUserManager
+
 from trampoline_park.models import *
 
 

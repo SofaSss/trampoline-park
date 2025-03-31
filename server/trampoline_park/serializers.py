@@ -7,7 +7,8 @@ from trampoline_park.models import *
 class UserSerializer(UserCreateSerializer):
     class Meta:
         model = User
-        fields = ("id", "username", "email", "role")
+        fields = ("id", "username", "email", "role", "is_active",)
+        ref_name = 'CustomUserSerializer'
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -31,7 +32,7 @@ class UserWithPasswordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("id", "username", "email", "role", "password",)
+        fields = ("id", "username", "email", "role", "password","is_active",)
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -55,6 +56,7 @@ class ClientCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user_data = validated_data.pop("user")
         user_data["role"] = "CLIENT"
+        user_data["is_active"] = False
         user = User.objects.create_user(**user_data)
         client = Client.objects.create(user=user, **validated_data)
         return client

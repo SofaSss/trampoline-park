@@ -11,7 +11,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.187.73',
+    '127.0.0.1',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,11 +23,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
     'trampoline_park',
     'rest_framework',
     'djoser',
     'rest_framework_simplejwt',
-    'whitenoise'
+    'whitenoise',
 
 ]
 
@@ -99,6 +103,11 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        'LOCATION': os.path.join(BASE_DIR, 'media'),
+    },
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+        'LOCATION': os.path.join(BASE_DIR, 'media'),
     },
 }
 
@@ -121,7 +130,7 @@ REST_FRAMEWORK = {
 DJOSER = {
     "USER_CREATE_PASSWORD_RETYPE": True,  # повторный ввод пароля при регистрации
     "SEND_ACTIVATION_EMAIL": True,  # отключение подтверждения email (если True, потребуется email-сервис)
-    'ACTIVATION_URL': 'api/auth/users/activation/{uid}/{token}/',
+    'ACTIVATION_URL': 'activation/{uid}/{token}/',
     "SERIALIZERS": {
         "user_create": "djoser.serializers.UserCreateSerializer",  # Стандартный сериализатор
         "user": "djoser.serializers.UserSerializer",  # Вывод данных о пользователе
@@ -143,6 +152,10 @@ SERVER_EMAIL = os.getenv('SERVER_EMAIL')
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+SWAGGER_SETTINGS = {
+    'VALIDATOR_URL': 'http://192.168.187.73:8000',
+}
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
