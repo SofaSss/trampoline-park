@@ -15,6 +15,7 @@ class UserRetrieveApiView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
 
+
 class ClientCreateAPIView(generics.CreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientCreateSerializer
@@ -31,6 +32,22 @@ class ClientCreateAPIView(generics.CreateAPIView):
         ActivationEmail(self.request, context).send(to)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class CurrentClientRetrieveAPIView(generics.RetrieveAPIView):
+    serializer_class = ClientSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self):
+        return Client.objects.get(user=self.request.user)
+
+
+class CurrentCoachRetrieveAPIView(generics.RetrieveAPIView):
+    serializer_class = CoachSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self):
+        return Coach.objects.get(user=self.request.user)
 
 
 class ClientListAPIView(generics.ListAPIView):

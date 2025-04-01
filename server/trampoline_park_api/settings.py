@@ -154,7 +154,18 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SWAGGER_SETTINGS = {
-    'VALIDATOR_URL': 'http://192.168.187.73:8000',
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'Введите токен в формате: Bearer <your_token>',
+        },
+    },
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+    'SECURITY_REQUIREMENTS': [{'Bearer': []}],
+
 }
 
 SIMPLE_JWT = {
