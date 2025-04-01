@@ -27,7 +27,13 @@ class _ClientMainScreenState extends State<ClientMainScreen> {
 
             ClientWorkoutsScreen(),
 
-            ClientProfileScreen(),
+            BlocProvider(
+              create:
+                  (_) =>
+                      ClientProfileBloc(clientUseCases: injection())
+                        ..add(ClientProfileEvent.getCurrentClient()),
+              child: ClientProfileScreen(),
+            ),
           ][currentPageIndex],
     );
   }

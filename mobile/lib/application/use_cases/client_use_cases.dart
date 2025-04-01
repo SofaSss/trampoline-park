@@ -5,6 +5,10 @@ class ClientUseCases {
 
   ClientUseCases({required this.clientService});
 
+  Future<ClientModel> getCurrentClient() async {
+    return await clientService.getCurrentClient();
+  }
+
   Future<ClientModel> getClientById({required int id}) async {
     return await clientService.getClientById(id: id);
   }

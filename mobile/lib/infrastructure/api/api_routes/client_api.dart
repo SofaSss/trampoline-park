@@ -4,6 +4,9 @@ part of '../../infrastructure_part.dart';
 abstract class ClientApi {
   factory ClientApi(Dio dio, {String baseUrl}) = _ClientApi;
 
+  @GET('client/me/')
+  Future<ClientInfraDto> getCurrentClient();
+
   @GET('client/{id}/')
   Future<ClientInfraDto> getClient({@Path('id') required int id});
 }

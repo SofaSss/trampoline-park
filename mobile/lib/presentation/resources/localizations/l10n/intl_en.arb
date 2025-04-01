@@ -31,5 +31,8 @@
   "oldPassword": "Старый пароль",
   "newPassword": "Новый пароль",
   "update": "Обновить данные",
-  "deleteAccount": "Вы можете удалить аккаунт"
+  "deleteAccount": "Вы можете удалить аккаунт",
+  "changePassword": "Изменить пароль:",
+  "hi": "Привет,",
+  "batuter": "Батутер!"
 }

@@ -28,6 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeAccount": MessageLookupByLibrary.simpleMessage(
       "Учетная запись активирована",
     ),
+    "batuter": MessageLookupByLibrary.simpleMessage("Батутер!"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль:"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage(
@@ -38,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Необходимо заполнить поле",
     ),
     "failure": MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
+    "hi": MessageLookupByLibrary.simpleMessage("Привет,"),
     "incorrectMail": MessageLookupByLibrary.simpleMessage(
       "Почта введена неверно",
     ),

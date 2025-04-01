@@ -127,7 +127,7 @@ class ClientProfileRoute extends _i14.PageRouteInfo<void> {
   static _i14.PageInfo page = _i14.PageInfo(
     name,
     builder: (data) {
-      return const _i4.ClientProfileScreen();
+      return _i14.WrappedRoute(child: const _i4.ClientProfileScreen());
     },
   );
 }

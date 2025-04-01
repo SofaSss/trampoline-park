@@ -9,6 +9,7 @@ abstract class ClientInfraDto with _$ClientInfraDto {
     @JsonKey(name: 'date_of_birth') required String dateOfBirth,
     @JsonKey(name: 'phone_number') required String phone,
     @JsonKey(name: 'is_healthy') required bool isHealthy,
+    @JsonKey(name: 'profile_picture') String? profilePicture,
     required GetUserInfraDto user,
   }) = _ClientInfraDto;
 

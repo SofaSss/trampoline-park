@@ -329,6 +329,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Изменить пароль:`
+  String get changePassword {
+    return Intl.message(
+      'Изменить пароль:',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Привет,`
+  String get hi {
+    return Intl.message('Привет,', name: 'hi', desc: '', args: []);
+  }
+
+  /// `Батутер!`
+  String get batuter {
+    return Intl.message('Батутер!', name: 'batuter', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -19,3 +19,4 @@ part 'base_progress_indicator.dart';
 part 'navigation_bar/base_navigation_bar.dart';
 part 'navigation_bar/icon_navigation_bar.dart';
 part 'base_app_bar.dart';
+part 'base_profile_picture.dart';
