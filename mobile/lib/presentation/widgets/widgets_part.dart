@@ -23,4 +23,5 @@ part 'base_app_bar.dart';
 part 'base_profile_picture.dart';
 part 'profile/profile_header.dart';
 part 'profile/profile_switched.dart';
+part 'profile/profile_change_password.dart';
 part 'notifications/sign_out_alert_dialog.dart';

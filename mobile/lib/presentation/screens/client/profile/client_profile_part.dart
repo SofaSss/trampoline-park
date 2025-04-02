@@ -24,3 +24,5 @@ part 'bloc/client_profile_bloc.dart';
 part 'bloc/client_profile_event.dart';
 part 'bloc/client_profile_state.dart';
 part 'client_profile_screen.dart';
+part 'client_data_section.dart';
+part 'client_delete_account_section.dart';

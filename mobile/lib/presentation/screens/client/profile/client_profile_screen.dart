@@ -95,40 +95,14 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                       firstName: state.name,
                       lastName: state.lastName,
                     ),
-                    BaseTextField(
-                      controller: birthController,
-                      textInputType: TextInputType.text,
-                      hintText: context.localization.dateOfBirth,
-                      readOnly: true,
-                      icon: AppIcons.calendar,
-                    ),
-                    BaseTextField(
-                      readOnly: true,
-                      controller: emailController,
-                      textInputType: TextInputType.emailAddress,
-                      hintText: context.localization.email,
-                      icon: AppIcons.email,
-                    ),
-                    BaseTextField(
-                      controller: phoneController,
-                      textInputType: TextInputType.phone,
-                      hintText: context.localization.phone,
-                      icon: AppIcons.phone,
-                      inputFormatters: [
-                        MaskTextInputFormatter(
-                          mask: RegExpConstants.mask,
-                          filter: {"#": RegExp(r'[0-9]')},
-                          type: MaskAutoCompletionType.lazy,
-                        ),
-                      ],
-                    ),
-                    ProfileSwitched(
-                      value: isHealthySwitched,
-                      onChange:
+                    ClientDataSection(
+                      birthController: birthController,
+                      emailController: emailController,
+                      phoneController: phoneController,
+                      isHealthySwitched: isHealthySwitched,
+                      onChangeHealthySwitched:
                           (value) => setState(() => isHealthySwitched = value),
-                    ),
-                    ElevatedButton(
-                      onPressed:
+                      onPressedChangeData:
                           () => (context.read<ClientProfileBloc>().add(
                             ClientProfileEvent.updateClient(
                               profilePicture: _image,
@@ -136,136 +110,52 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                               isHealthy: isHealthySwitched,
                             ),
                           )),
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                          AppColors.blue,
-                        ),
-                      ),
-                      child: Text(context.localization.update),
                     ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 21.0, top: 20),
-                        child: Text(
-                          context.localization.changePassword,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ),
-                    ),
-                    BaseTextField(
-                      controller: oldPasswordController,
-                      textInputType: TextInputType.visiblePassword,
-                      hintText: context.localization.oldPassword,
-                      icon: AppIcons.eyeOff,
-                      isObscureText: true,
-                      errorText:
+                    ProfileChangePasswordSection(
+                      oldPasswordController: oldPasswordController,
+                      newPasswordController: newPasswordController,
+                      confirmNewPasswordController:
+                          confirmNewPasswordController,
+                      oldPasswordErrorText:
                           state.errors[InputErrorTypeEnum.textField]?.localize(
                             context.localization,
                           ) ??
                           state.apiErrors['current_password'],
-                    ),
-                    BaseTextField(
-                      controller: newPasswordController,
-                      textInputType: TextInputType.visiblePassword,
-                      hintText: context.localization.newPassword,
-                      icon: AppIcons.eyeOff,
-                      isObscureText: true,
-                      errorText:
+                      newPasswordErrorText:
                           state.errors[InputErrorTypeEnum.password]?.localize(
                             context.localization,
                           ) ??
                           state.apiErrors['new_password'],
-                    ),
-                    BaseTextField(
-                      controller: confirmNewPasswordController,
-                      textInputType: TextInputType.visiblePassword,
-                      hintText: context.localization.rePassword,
-                      icon: AppIcons.eyeOff,
-                      isObscureText: true,
-                      errorText:
+                      confirmNewPasswordErrorText:
                           state.errors[InputErrorTypeEnum.password]?.localize(
                             context.localization,
                           ) ??
                           state.apiErrors['re_new_password'],
+                      onPressedChangePassword:
+                          () => (context.read<ClientProfileBloc>().add(
+                            ClientProfileEvent.setPassword(
+                              oldPassword: oldPasswordController.text.trim(),
+                              newPassword: newPasswordController.text.trim(),
+                              reNewPassword:
+                                  confirmNewPasswordController.text.trim(),
+                            ),
+                          )),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: ElevatedButton(
-                        onPressed:
-                            () => (context.read<ClientProfileBloc>().add(
-                              ClientProfileEvent.setPassword(
-                                oldPassword: oldPasswordController.text.trim(),
-                                newPassword: newPasswordController.text.trim(),
-                                reNewPassword:
-                                    confirmNewPasswordController.text.trim(),
-                              ),
-                            )),
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all(
-                            AppColors.blue,
+                    ClientDeleteAccountSection(
+                      passwordController: deleteAccountPasswordController,
+                      passwordErrorText:
+                          state.errors[InputErrorTypeEnum.textField]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['current_password'],
+                      onSureDeleteAccount: () {
+                        context.read<ClientProfileBloc>().add(
+                          ClientProfileEvent.deleteAccount(
+                            password:
+                                deleteAccountPasswordController.text.trim(),
                           ),
-                        ),
-                        child: Text(context.localization.changePassword),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        final clientProfileBloc =
-                            context.read<ClientProfileBloc>();
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return confirmAlertDialog(
-                              context: context,
-                              onSure: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return confirmAlertDialog(
-                                      context: context,
-                                      widgetContent: BaseTextField(
-                                        controller:
-                                            deleteAccountPasswordController,
-                                        textInputType:
-                                            TextInputType.visiblePassword,
-                                        hintText: context.localization.password,
-                                        icon: AppIcons.eyeOff,
-                                        isObscureText: true,
-                                        errorText:
-                                            state
-                                                .errors[InputErrorTypeEnum
-                                                    .textField]
-                                                ?.localize(
-                                                  context.localization,
-                                                ) ??
-                                            state.apiErrors['current_password'],
-                                      ),
-                                      sureText: context.localization.delete,
-                                      onSure: () {
-                                        clientProfileBloc.add(
-                                          ClientProfileEvent.deleteAccount(
-                                            password:
-                                                deleteAccountPasswordController
-                                                    .text
-                                                    .trim(),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                );
-                              },
-                              content: context.localization.sureDeleteAccount,
-                              sureText: context.localization.delete,
-                            );
-                          },
                         );
                       },
-                      child: Text(
-                        context.localization.deleteAccount,
-                        style: TextStyle(color: AppColors.red),
-                      ),
                     ),
                   ],
                 ),
