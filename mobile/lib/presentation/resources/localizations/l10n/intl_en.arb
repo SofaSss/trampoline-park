@@ -34,5 +34,6 @@
   "deleteAccount": "Вы можете удалить аккаунт",
   "changePassword": "Изменить пароль:",
   "hi": "Привет,",
-  "batuter": "Батутер!"
+  "batuter": "Батутер!",
+  "updateProfileIsSuccess": "Данные успешно обновлены"
 }

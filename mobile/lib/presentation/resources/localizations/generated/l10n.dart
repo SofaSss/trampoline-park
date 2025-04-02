@@ -349,6 +349,16 @@ class S {
   String get batuter {
     return Intl.message('Батутер!', name: 'batuter', desc: '', args: []);
   }
+
+  /// `Данные успешно обновлены`
+  String get updateProfileIsSuccess {
+    return Intl.message(
+      'Данные успешно обновлены',
+      name: 'updateProfileIsSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

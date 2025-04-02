@@ -27,6 +27,17 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +49,14 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           ).format(state.birthday!);
           emailController.text = state.email ?? AppConstants.empty;
           phoneController.text = state.phone ?? AppConstants.empty;
+          isHealthySwitched = state.isHealthy!;
+        } else if (state.status == Status.success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            baseSnackBar(
+              context: context,
+              message: context.localization.updateProfileIsSuccess,
+            ),
+          );
         }
       },
       builder: (context, state) {
@@ -53,32 +72,13 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Row(
-                        spacing: 10,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          BaseProfilePicture(imageUrl: state.profilePicture),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                state.name ?? context.localization.hi,
-                                style: Theme.of(context).textTheme.displayLarge
-                                    ?.copyWith(color: AppColors.lightBlue),
-                              ),
-                              Text(
-                                state.lastName ?? context.localization.batuter,
-                                style: Theme.of(context).textTheme.displayLarge
-                                    ?.copyWith(color: AppColors.lightBlue),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    ProfileHeader(
+                      onTapProfilePicture: _pickImage,
+                      pickImage: _image,
+                      imageUrl: state.profilePicture,
+                      firstName: state.name,
+                      lastName: state.lastName,
                     ),
-
                     BaseTextField(
                       controller: birthController,
                       textInputType: TextInputType.text,
@@ -88,7 +88,6 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                       },
                       icon: AppIcons.calendar,
                     ),
-
                     BaseTextField(
                       controller: emailController,
                       textInputType: TextInputType.emailAddress,
@@ -108,25 +107,10 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 21),
-                          child: BaseSwitchedWidget(
-                            value: state.isHealthy ?? isHealthySwitched,
-                            onChange: (bool value) {
-                              setState(() {
-                                isHealthySwitched = value;
-                              });
-                            },
-                          ),
-                        ),
-                        Text(
-                          context.localization.isHealthy,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ],
+                    ProfileSwitched(
+                      value: isHealthySwitched,
+                      onChange:
+                          (value) => setState(() => isHealthySwitched = value),
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -162,7 +146,14 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: ElevatedButton(
-                        onPressed: () => (),
+                        onPressed:
+                            () => (context.read<ClientProfileBloc>().add(
+                              ClientProfileEvent.updateClient(
+                                profilePicture: _image,
+                                phoneNumber: phoneController.text.trim(),
+                                isHealthy: isHealthySwitched,
+                              ),
+                            )),
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all(
                             AppColors.blue,
@@ -171,7 +162,6 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                         child: Text(context.localization.update),
                       ),
                     ),
-
                     TextButton(
                       onPressed: () => (),
                       child: Text(

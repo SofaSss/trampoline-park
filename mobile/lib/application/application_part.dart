@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_trampoline_park/domain/domain_part.dart';
@@ -22,3 +24,4 @@ part 'dto/token/token_dto.dart';
 part 'dto/auth/get_user_role_dto.dart';
 part 'dto/auth/activate_dto.dart';
 part 'dto/auth/sign_in_dto.dart';
+part 'dto/client/update_client_dto.dart';

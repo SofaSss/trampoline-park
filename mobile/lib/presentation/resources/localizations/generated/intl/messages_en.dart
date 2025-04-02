@@ -87,6 +87,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Согласие на обработку персональных данных",
     ),
     "update": MessageLookupByLibrary.simpleMessage("Обновить данные"),
+    "updateProfileIsSuccess": MessageLookupByLibrary.simpleMessage(
+      "Данные успешно обновлены",
+    ),
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",
     ),

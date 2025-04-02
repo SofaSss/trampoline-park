@@ -21,7 +21,9 @@ part 'api/dto/tokens/token_dto.dart';
 part 'api/dto/tokens/access_dto.dart';
 
 part 'api/dto/get_user_dto.dart';
+
 part 'api/dto/client/client_dto.dart';
+part 'api/dto/client/update_client_dto.dart';
 
 part 'api/api_routes/auth_user_api.dart';
 part 'api/api_routes/token_api.dart';
@@ -39,3 +41,4 @@ part 'exceptions/connection_exception.dart';
 part 'exceptions/token_exception.dart';
 
 part 'helpers/has_network_helper.dart';
+part 'helpers/converter_file_helper.dart';

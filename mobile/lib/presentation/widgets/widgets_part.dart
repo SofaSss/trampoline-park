@@ -6,6 +6,7 @@ import 'package:mobile_trampoline_park/presentation/extensions/extensions_part.d
 import 'package:mobile_trampoline_park/presentation/helpers/helpers_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/constants/constants_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/theme_resources.dart/theme_resources_part.dart';
+import 'dart:io';
 
 part 'base_text_field.dart';
 part 'base_big_card.dart';
@@ -20,3 +21,5 @@ part 'navigation_bar/base_navigation_bar.dart';
 part 'navigation_bar/icon_navigation_bar.dart';
 part 'base_app_bar.dart';
 part 'base_profile_picture.dart';
+part 'profile/profile_header.dart';
+part 'profile/profile_switched.dart';
