@@ -35,5 +35,9 @@
   "changePassword": "Изменить пароль:",
   "hi": "Привет,",
   "batuter": "Батутер!",
-  "updateProfileIsSuccess": "Данные успешно обновлены"
+  "updateProfileIsSuccess": "Данные успешно обновлены",
+  "signOut": "Выход",
+  "cancel": "Отмена",
+  "sureToSignOut": "Действительно ли вы хотите выйти?",
+  "confirmation": "Подтверждение"
 }

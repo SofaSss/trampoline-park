@@ -9,4 +9,6 @@ abstract class ClientProfileEvent with _$ClientProfileEvent {
     String? phoneNumber,
     bool? isHealthy,
   }) = _UpdateClient;
+
+  const factory ClientProfileEvent.signOut() = _SignOut;
 }

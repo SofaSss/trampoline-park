@@ -4,6 +4,7 @@ AppBar baseAppBar({
   required BuildContext context,
   required String title,
   required void Function()? back,
+  void Function()? onSignOut,
   bool actions = false,
 }) {
   return AppBar(
@@ -33,7 +34,17 @@ AppBar baseAppBar({
         actions
             ? [
               TextButton(
-                onPressed: () => (),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return signOutAlertDialog(
+                        context: context,
+                        onSignOut: onSignOut,
+                      );
+                    },
+                  );
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: AppColors.white,
@@ -42,7 +53,7 @@ AppBar baseAppBar({
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Выход',
+                      context.localization.signOut,
                       style: TextStyle(color: AppColors.red),
                     ),
                   ),

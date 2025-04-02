@@ -29,8 +29,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Учетная запись активирована",
     ),
     "batuter": MessageLookupByLibrary.simpleMessage("Батутер!"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль:"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
+    "confirmation": MessageLookupByLibrary.simpleMessage("Подтверждение"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage(
       "Вы можете удалить аккаунт",
@@ -74,12 +76,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "signInTitle": MessageLookupByLibrary.simpleMessage(
       "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
     ),
+    "signOut": MessageLookupByLibrary.simpleMessage("Выход"),
     "signUp": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
     "signUpDescription": MessageLookupByLibrary.simpleMessage(
       "Присоединяйтесь к нашему батутному сообществу! Это быстро и легко: бронируйте время, копите бонусы и прыгайте в удовольствие.",
     ),
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "sureToSignOut": MessageLookupByLibrary.simpleMessage(
+      "Действительно ли вы хотите выйти?",
+    ),
     "textPDn": MessageLookupByLibrary.simpleMessage(
       "Я (далее - Заявитель) даю согласие Гриенко Александру Юрьевичу, ИНН 616389500742, адрес Ростовская область, город Ростов-на-Дону, ул.Ларина, 45с2 (далее — Оператор) на автоматизированную, а также без использования средств автоматизации, обработку моих персональных данных, предоставленных мною Оператору посредством сети Интернет через сайт https://xn--1-7sbaci3bivnagncpfakg8m.xn--p1ai/, а именно фамилия, имя, отчество, год, месяц, дата рождения, пол; включая сбора, записи, систематизации, накопления, хранения, уточнения (обновления, изменения), извлечения, использования, передачу (предоставление, доступ), обезличивания, блокирования удаления и уничтожения, а также на вышеуказанную обработку иных моих персональных данных, полученных в результате их обработки, включая обработку третьими лицами. Целями обработки персональных данных является: предоставление услуг, заключение договора. Указанное согласие дано на срок 1 год. Я уведомлен, что предоставление указанного выше согласия является моим правом, а не обязанностью, данные согласия могут быть отозваны в порядке, предусмотренном законодательством Российской Федерации. Согласие может быть отозвано субъектом персональных данных путем обращения к Оператору с заявлением, оформленным в письменной форме.",
     ),

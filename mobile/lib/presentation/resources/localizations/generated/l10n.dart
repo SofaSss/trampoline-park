@@ -359,6 +359,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Выход`
+  String get signOut {
+    return Intl.message('Выход', name: 'signOut', desc: '', args: []);
+  }
+
+  /// `Отмена`
+  String get cancel {
+    return Intl.message('Отмена', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Действительно ли вы хотите выйти?`
+  String get sureToSignOut {
+    return Intl.message(
+      'Действительно ли вы хотите выйти?',
+      name: 'sureToSignOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Подтверждение`
+  String get confirmation {
+    return Intl.message(
+      'Подтверждение',
+      name: 'confirmation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

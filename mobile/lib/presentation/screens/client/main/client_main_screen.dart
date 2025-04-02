@@ -29,9 +29,10 @@ class _ClientMainScreenState extends State<ClientMainScreen> {
 
             BlocProvider(
               create:
-                  (_) =>
-                      ClientProfileBloc(clientUseCases: injection())
-                        ..add(ClientProfileEvent.getCurrentClient()),
+                  (_) => ClientProfileBloc(
+                    clientUseCases: injection(),
+                    tokenUseCases: injection(),
+                  )..add(ClientProfileEvent.getCurrentClient()),
               child: ClientProfileScreen(),
             ),
           ][currentPageIndex],

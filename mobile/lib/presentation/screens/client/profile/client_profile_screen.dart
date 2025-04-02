@@ -11,9 +11,10 @@ class ClientProfileScreen extends StatefulWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create:
-          (_) =>
-              ClientProfileBloc(clientUseCases: injection())
-                ..add(ClientProfileEvent.getCurrentClient()),
+          (_) => ClientProfileBloc(
+            clientUseCases: injection(),
+            tokenUseCases: injection(),
+          )..add(ClientProfileEvent.getCurrentClient()),
       child: this,
     );
   }
@@ -68,6 +69,12 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                 title: context.localization.profile,
                 actions: true,
                 back: () => (context.router.push(ClientHomeRoute()),),
+                onSignOut: () {
+                  context.read<ClientProfileBloc>().add(
+                    ClientProfileEvent.signOut(),
+                  );
+                  context.router.replaceAll([OnBoardingRoute()]);
+                },
               ),
               body: SingleChildScrollView(
                 child: Column(
