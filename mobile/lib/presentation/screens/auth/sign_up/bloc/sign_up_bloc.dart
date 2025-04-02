@@ -49,7 +49,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         emit(
           state.copyWith(
             status: Status.failure,
-            errorMessage: error.errorMessage,
+            // errorMessage: error.errorMessage,
           ),
         );
       } else {

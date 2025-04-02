@@ -13,7 +13,8 @@ class BaseTextField extends StatefulWidget {
     required this.icon,
     this.enabled = true,
     this.onTap,
-    this.inputFormatters,
+    this.inputFormatters, 
+   this.readOnly = false,
   });
 
   final TextEditingController? controller;
@@ -27,6 +28,7 @@ class BaseTextField extends StatefulWidget {
   final bool enabled;
   final void Function()? onTap;
   final List<TextInputFormatter>? inputFormatters;
+  final bool readOnly;
 
   @override
   State<BaseTextField> createState() => _BaseTextFieldState();
@@ -38,6 +40,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 21),
       child: TextField(
+        readOnly: widget.readOnly,
         enabled: widget.enabled,
         controller: widget.controller,
         onTap: widget.onTap,

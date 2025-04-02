@@ -1,15 +1,20 @@
 part of '../client_profile_part.dart';
 
 class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
-  ClientProfileBloc({required this.tokenUseCases, required this.clientUseCases})
-    : super(const ClientProfileState(status: Status.loading)) {
+  ClientProfileBloc({
+    required this.authUserUseCases,
+    required this.tokenUseCases,
+    required this.clientUseCases,
+  }) : super(const ClientProfileState(status: Status.loading)) {
     on<_GetCurrentClient>(_getCurrentClient);
     on<_UpdateClient>(_updateClient);
     on<_SignOut>(_signOut);
+    on<_SetPassword>(_setPassword);
   }
 
   final ClientUseCases clientUseCases;
   final TokenUseCases tokenUseCases;
+  final AuthUserUseCases authUserUseCases;
 
   Future<void> _getCurrentClient(
     _GetCurrentClient event,
@@ -64,6 +69,44 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
       await tokenUseCases.deleteRefreshToken();
     } catch (_) {
       emit(state.copyWith(status: Status.failure));
+    }
+  }
+
+  Future<void> _setPassword(
+    _SetPassword event,
+    Emitter<ClientProfileState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(status: Status.loading));
+      final errors = {
+        ...ValidationHelper.validateText(text: event.oldPassword),
+        ...ValidationHelper.validatePassword(
+          password: event.newPassword,
+          confirmPassword: event.reNewPassword,
+        ),
+      };
+      if (errors.isNotEmpty) {
+        emit(state.copyWith(status: Status.loaded, errors: errors));
+        return;
+      }
+
+      await authUserUseCases.setPassword(
+        newPassword: event.newPassword,
+        reNewPassword: event.reNewPassword,
+        oldPassword: event.oldPassword,
+      );
+      add(_GetCurrentClient());
+      emit(state.copyWith(status: Status.success));
+    } catch (e) {
+      if (e is ApiError) {
+        final Map<String, String> apiErrors = {};
+        e.errorMessages?.forEach((key, value) {
+          apiErrors[key] = value;
+        });
+        emit(state.copyWith(status: Status.loaded, apiErrors: apiErrors));
+      } else {
+        emit(state.copyWith(status: Status.failure));
+      }
     }
   }
 }

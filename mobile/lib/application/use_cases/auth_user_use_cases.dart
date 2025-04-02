@@ -51,4 +51,17 @@ class AuthUserUseCases {
     final ActivateDto activateDto = ActivateDto(uid: uid, token: token);
     await authUserService.activateUser(activateDto: activateDto);
   }
+
+  Future<void> setPassword({
+    required String newPassword,
+    required String reNewPassword,
+    required String oldPassword,
+  }) async {
+    final SetPasswordDto setPasswordDto = SetPasswordDto(
+      newPassword: newPassword,
+      reNewPassword: reNewPassword,
+      oldPassword: oldPassword,
+    );
+    await authUserService.setPassword(setPasswordDto: setPasswordDto);
+  }
 }

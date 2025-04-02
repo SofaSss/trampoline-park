@@ -30,7 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "batuter": MessageLookupByLibrary.simpleMessage("Батутер!"),
     "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
-    "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль:"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "confirmation": MessageLookupByLibrary.simpleMessage("Подтверждение"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
@@ -72,7 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "phone": MessageLookupByLibrary.simpleMessage("Телефон"),
     "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
-    "repassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
+    "rePassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
     "signInTitle": MessageLookupByLibrary.simpleMessage(
       "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
     ),

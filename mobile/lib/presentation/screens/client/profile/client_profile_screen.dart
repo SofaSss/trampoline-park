@@ -14,6 +14,7 @@ class ClientProfileScreen extends StatefulWidget implements AutoRouteWrapper {
           (_) => ClientProfileBloc(
             clientUseCases: injection(),
             tokenUseCases: injection(),
+            authUserUseCases: injection(),
           )..add(ClientProfileEvent.getCurrentClient()),
       child: this,
     );
@@ -25,8 +26,9 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
   final TextEditingController birthController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
+  final TextEditingController oldPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmNewPasswordController =
       TextEditingController();
   File? _image;
   final ImagePicker _picker = ImagePicker();
@@ -58,6 +60,9 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
               message: context.localization.updateProfileIsSuccess,
             ),
           );
+          oldPasswordController.clear();
+          newPasswordController.clear();
+          confirmNewPasswordController.clear();
         }
       },
       builder: (context, state) {
@@ -90,12 +95,11 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                       controller: birthController,
                       textInputType: TextInputType.text,
                       hintText: context.localization.dateOfBirth,
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                      },
+                      readOnly: true,
                       icon: AppIcons.calendar,
                     ),
                     BaseTextField(
+                      readOnly: true,
                       controller: emailController,
                       textInputType: TextInputType.emailAddress,
                       hintText: context.localization.email,
@@ -119,6 +123,22 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                       onChange:
                           (value) => setState(() => isHealthySwitched = value),
                     ),
+                    ElevatedButton(
+                      onPressed:
+                          () => (context.read<ClientProfileBloc>().add(
+                            ClientProfileEvent.updateClient(
+                              profilePicture: _image,
+                              phoneNumber: phoneController.text.trim(),
+                              isHealthy: isHealthySwitched,
+                            ),
+                          )),
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(
+                          AppColors.blue,
+                        ),
+                      ),
+                      child: Text(context.localization.update),
+                    ),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -130,35 +150,51 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                       ),
                     ),
                     BaseTextField(
-                      controller: passwordController,
+                      controller: oldPasswordController,
                       textInputType: TextInputType.visiblePassword,
                       hintText: context.localization.oldPassword,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      errorText:
+                          state.errors[InputErrorTypeEnum.textField]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['current_password'],
                     ),
                     BaseTextField(
-                      controller: passwordController,
+                      controller: newPasswordController,
                       textInputType: TextInputType.visiblePassword,
                       hintText: context.localization.newPassword,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      errorText:
+                          state.errors[InputErrorTypeEnum.password]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['new_password'],
                     ),
                     BaseTextField(
-                      controller: confirmPasswordController,
+                      controller: confirmNewPasswordController,
                       textInputType: TextInputType.visiblePassword,
-                      hintText: context.localization.repassword,
+                      hintText: context.localization.rePassword,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      errorText:
+                          state.errors[InputErrorTypeEnum.password]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['re_new_password'],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: ElevatedButton(
                         onPressed:
                             () => (context.read<ClientProfileBloc>().add(
-                              ClientProfileEvent.updateClient(
-                                profilePicture: _image,
-                                phoneNumber: phoneController.text.trim(),
-                                isHealthy: isHealthySwitched,
+                              ClientProfileEvent.setPassword(
+                                oldPassword: oldPasswordController.text.trim(),
+                                newPassword: newPasswordController.text.trim(),
+                                reNewPassword:
+                                    confirmNewPasswordController.text.trim(),
                               ),
                             )),
                         style: ButtonStyle(
@@ -166,7 +202,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                             AppColors.blue,
                           ),
                         ),
-                        child: Text(context.localization.update),
+                        child: Text(context.localization.changePassword),
                       ),
                     ),
                     TextButton(

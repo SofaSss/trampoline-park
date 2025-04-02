@@ -160,7 +160,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     BaseTextField(
                       controller: confirmPasswordController,
                       textInputType: TextInputType.visiblePassword,
-                      hintText: context.localization.repassword,
+                      hintText: context.localization.rePassword,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
                     ),

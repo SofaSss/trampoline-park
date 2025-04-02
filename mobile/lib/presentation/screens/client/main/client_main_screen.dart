@@ -32,6 +32,7 @@ class _ClientMainScreenState extends State<ClientMainScreen> {
                   (_) => ClientProfileBloc(
                     clientUseCases: injection(),
                     tokenUseCases: injection(),
+                    authUserUseCases: injection(),
                   )..add(ClientProfileEvent.getCurrentClient()),
               child: ClientProfileScreen(),
             ),

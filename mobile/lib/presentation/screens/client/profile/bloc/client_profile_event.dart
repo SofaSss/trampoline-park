@@ -11,4 +11,10 @@ abstract class ClientProfileEvent with _$ClientProfileEvent {
   }) = _UpdateClient;
 
   const factory ClientProfileEvent.signOut() = _SignOut;
+
+  const factory ClientProfileEvent.setPassword({
+    required String oldPassword,
+    required String newPassword,
+    required String reNewPassword,
+  }) = _SetPassword;
 }

@@ -25,3 +25,4 @@ part 'dto/auth/get_user_role_dto.dart';
 part 'dto/auth/activate_dto.dart';
 part 'dto/auth/sign_in_dto.dart';
 part 'dto/client/update_client_dto.dart';
+part 'dto/auth/set_password_dto.dart';

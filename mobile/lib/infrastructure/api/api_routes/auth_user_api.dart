@@ -17,4 +17,9 @@ abstract class AuthUserApi {
   Future<void> activateUser({
     @Body() required Map<String, dynamic> activateDto,
   });
+
+  @POST('auth/users/set_password/')
+  Future<void> setPassword({
+    @Body() required Map<String, dynamic> setPasswordDto,
+  });
 }

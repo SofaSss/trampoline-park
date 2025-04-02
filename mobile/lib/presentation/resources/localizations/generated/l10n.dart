@@ -121,10 +121,10 @@ class S {
   }
 
   /// `Повторите пароль`
-  String get repassword {
+  String get rePassword {
     return Intl.message(
       'Повторите пароль',
-      name: 'repassword',
+      name: 'rePassword',
       desc: '',
       args: [],
     );
@@ -330,10 +330,10 @@ class S {
     );
   }
 
-  /// `Изменить пароль:`
+  /// `Изменить пароль`
   String get changePassword {
     return Intl.message(
-      'Изменить пароль:',
+      'Изменить пароль',
       name: 'changePassword',
       desc: '',
       args: [],

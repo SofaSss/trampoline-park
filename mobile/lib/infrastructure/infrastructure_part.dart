@@ -16,6 +16,7 @@ part 'api/dto/auth/sign_up_dto.dart';
 part 'api/dto/auth/unregistered_user_dto.dart';
 part 'api/dto/auth/sign_in_dto.dart';
 part 'api/dto/auth/activate_dto.dart';
+part 'api/dto/auth/set_password_dto.dart';
 
 part 'api/dto/tokens/token_dto.dart';
 part 'api/dto/tokens/access_dto.dart';

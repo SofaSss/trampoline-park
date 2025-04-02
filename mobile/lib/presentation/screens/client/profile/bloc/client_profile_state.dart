@@ -11,6 +11,8 @@ abstract class ClientProfileState with _$ClientProfileState{
     bool? isHealthy,
     String? email,
     String? phone,
+    @Default({}) Map<InputErrorTypeEnum, InputFieldError> errors,
+    @Default({}) Map<String, String> apiErrors,
   })=_ClientProfileState;
 
 }

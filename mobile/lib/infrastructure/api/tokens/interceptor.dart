@@ -9,18 +9,19 @@ class DioInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final excludePaths = ['client/create/', 'auth/jwt/create/', 'auth/jwt/refresh/'];
-    final isUnSignInPath = excludePaths.any(
-      (p) => (options.path.contains(p)),
-    );
+    final excludePaths = [
+      'client/create/',
+      'auth/jwt/create/',
+      'auth/jwt/refresh/',
+    ];
+    final isUnSignInPath = excludePaths.any((p) => (options.path.contains(p)));
     if (isUnSignInPath) {
       return handler.next(options);
     }
     final accessToken = await tokenUseCase.getAccessToken();
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
-    } 
-    else {
+    } else {
       final refreshToken = await tokenUseCase.getRefreshToken();
       if (refreshToken == null) {
         return handler.reject(DioException(requestOptions: options));
@@ -50,6 +51,22 @@ class DioInterceptor extends Interceptor {
       } catch (e) {
         await tokenUseCase.deleteRefreshToken();
         return handler.reject(TokenException(requestOptions: options));
+      }
+    }
+
+    if (err.response?.statusCode == 400) {
+      try {
+        final apiError = ApiError(
+          requestOptions: options,
+          response: err.response,
+          error: err.error,
+          type: err.type,
+        );
+
+        return handler.reject(apiError);
+      } catch (e) {
+        final apiError = ApiError(requestOptions: options);
+        return handler.reject(apiError);
       }
     }
 

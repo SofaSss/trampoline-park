@@ -59,4 +59,14 @@ class AuthUserService implements IAuthUserService {
     );
     await userApi.activateUser(activateDto: activateInfraDto.toJson());
   }
+
+  @override
+  Future<void> setPassword({required SetPasswordDto setPasswordDto}) async {
+    final SetPasswordInfraDto setPasswordInfraDto = SetPasswordInfraDto(
+      newPassword: setPasswordDto.newPassword,
+      reNewPassword: setPasswordDto.reNewPassword,
+      oldPassword: setPasswordDto.oldPassword,
+    );
+    await userApi.setPassword(setPasswordDto: setPasswordInfraDto.toJson());
+  }
 }
