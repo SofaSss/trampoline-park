@@ -26,7 +26,7 @@ class _ActivationScreenState extends State<ActivationScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<ActivationBloc, ActivationState>(
       listener: (context, state) {
-        if (state.status == Status.success) {
+        if (state.status == StatusProfile.success) {
           ScaffoldMessenger.of(context)
               .showSnackBar(
                 baseSnackBar(
@@ -40,9 +40,9 @@ class _ActivationScreenState extends State<ActivationScreen> {
       },
       builder: (context, state) {
         switch (state.status) {
-          case Status.loading:
+          case StatusProfile.loading:
             return BaseProgressIndicator();
-          case Status.failure:
+          case StatusProfile.failure:
             return FailureWidget();
           default:
             return Container();

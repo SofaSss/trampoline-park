@@ -1,4 +1,11 @@
-enum Status { loading, loaded, failure, success }
+enum StatusProfile {
+  loading,
+  loaded,
+  failure,
+  success,
+  successSignOut,
+  successDeleteAccount,
+}
 
 enum SignInStatus {
   loading,
@@ -14,4 +21,3 @@ enum InitialStatus {
   toClientMainScreen,
   toCoachMainScreen,
 }
-

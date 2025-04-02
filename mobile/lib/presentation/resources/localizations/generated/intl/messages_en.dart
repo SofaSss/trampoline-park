@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "confirmation": MessageLookupByLibrary.simpleMessage("Подтверждение"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
+    "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage(
       "Вы можете удалить аккаунт",
     ),
@@ -73,6 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
     "rePassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
+    "shureDeleteAccount": MessageLookupByLibrary.simpleMessage(
+      "Вы действительно хотите удалить аккаунт?",
+    ),
     "signInTitle": MessageLookupByLibrary.simpleMessage(
       "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
     ),

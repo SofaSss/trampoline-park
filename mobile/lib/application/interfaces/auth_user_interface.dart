@@ -10,4 +10,6 @@ abstract class IAuthUserService {
   Future<void> activateUser({required ActivateDto activateDto});
 
   Future<void> setPassword({required SetPasswordDto setPasswordDto});
+
+  Future<void> deleteAccount({required DeleteAccountDto deleteAccountDto});
 }

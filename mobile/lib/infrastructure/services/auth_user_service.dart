@@ -69,4 +69,14 @@ class AuthUserService implements IAuthUserService {
     );
     await userApi.setPassword(setPasswordDto: setPasswordInfraDto.toJson());
   }
+
+  @override
+  Future<void> deleteAccount({
+    required DeleteAccountDto deleteAccountDto,
+  }) async {
+    final DeleteAccountInfraDto password = DeleteAccountInfraDto(
+      password: deleteAccountDto.password,
+    );
+    await userApi.deleteAccount(password: password.toJson());
+  }
 }

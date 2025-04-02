@@ -2,7 +2,7 @@ part of '../sign_up_part.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc({required this.authUserUseCases})
-    : super(const SignUpState(status: Status.loaded)) {
+    : super(const SignUpState(status: StatusProfile.loaded)) {
     on<SignUpEvent>(_signUpEvent);
   }
 
@@ -27,11 +27,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       };
 
       if (errors.isNotEmpty) {
-        emit(state.copyWith(status: Status.loaded, errors: errors));
+        emit(state.copyWith(status: StatusProfile.loaded, errors: errors));
         return;
       }
 
-      emit(state.copyWith(status: Status.loading));
+      emit(state.copyWith(status: StatusProfile.loading));
 
       await authUserUseCases.signUp(
         name: event.name,
@@ -43,17 +43,17 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         isHealthy: event.isHealthy,
       );
 
-      emit(state.copyWith(status: Status.success));
+      emit(state.copyWith(status: StatusProfile.success));
     } catch (error) {
       if (error is ApiError) {
         emit(
           state.copyWith(
-            status: Status.failure,
+            status: StatusProfile.failure,
             // errorMessage: error.errorMessage,
           ),
         );
       } else {
-        emit(state.copyWith(status: Status.failure));
+        emit(state.copyWith(status: StatusProfile.failure));
       }
     }
   }

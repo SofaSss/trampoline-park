@@ -28,6 +28,8 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController oldPasswordController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController deleteAccountPasswordController =
+      TextEditingController();
   final TextEditingController confirmNewPasswordController =
       TextEditingController();
   File? _image;
@@ -46,14 +48,14 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<ClientProfileBloc, ClientProfileState>(
       listener: (context, state) {
-        if (state.status == Status.loaded) {
+        if (state.status == StatusProfile.loaded) {
           birthController.text = DateFormat(
             'dd-MM-yyyy',
           ).format(state.birthday!);
           emailController.text = state.email ?? AppConstants.empty;
           phoneController.text = state.phone ?? AppConstants.empty;
           isHealthySwitched = state.isHealthy!;
-        } else if (state.status == Status.success) {
+        } else if (state.status == StatusProfile.success) {
           ScaffoldMessenger.of(context).showSnackBar(
             baseSnackBar(
               context: context,
@@ -63,11 +65,14 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           oldPasswordController.clear();
           newPasswordController.clear();
           confirmNewPasswordController.clear();
+        } else if (state.status == StatusProfile.successDeleteAccount ||
+            state.status == StatusProfile.successSignOut) {
+          context.router.replaceAll([OnBoardingRoute()]);
         }
       },
       builder: (context, state) {
         switch (state.status) {
-          case Status.loaded:
+          case StatusProfile.loaded:
             return Scaffold(
               appBar: baseAppBar(
                 context: context,
@@ -78,7 +83,6 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                   context.read<ClientProfileBloc>().add(
                     ClientProfileEvent.signOut(),
                   );
-                  context.router.replaceAll([OnBoardingRoute()]);
                 },
               ),
               body: SingleChildScrollView(
@@ -206,7 +210,58 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () => (),
+                      onPressed: () {
+                        final clientProfileBloc =
+                            context.read<ClientProfileBloc>();
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return confirmAlertDialog(
+                              context: context,
+                              onSure: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return confirmAlertDialog(
+                                      context: context,
+                                      widgetContent: BaseTextField(
+                                        controller:
+                                            deleteAccountPasswordController,
+                                        textInputType:
+                                            TextInputType.visiblePassword,
+                                        hintText: context.localization.password,
+                                        icon: AppIcons.eyeOff,
+                                        isObscureText: true,
+                                        errorText:
+                                            state
+                                                .errors[InputErrorTypeEnum
+                                                    .textField]
+                                                ?.localize(
+                                                  context.localization,
+                                                ) ??
+                                            state.apiErrors['current_password'],
+                                      ),
+                                      sureText: context.localization.delete,
+                                      onSure: () {
+                                        clientProfileBloc.add(
+                                          ClientProfileEvent.deleteAccount(
+                                            password:
+                                                deleteAccountPasswordController
+                                                    .text
+                                                    .trim(),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                              content: context.localization.sureDeleteAccount,
+                              sureText: context.localization.delete,
+                            );
+                          },
+                        );
+                      },
                       child: Text(
                         context.localization.deleteAccount,
                         style: TextStyle(color: AppColors.red),
@@ -216,9 +271,9 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                 ),
               ),
             );
-          case Status.loading:
+          case StatusProfile.loading:
             return BaseProgressIndicator();
-          case Status.failure:
+          case StatusProfile.failure:
             return FailureWidget();
           default:
             return Container();

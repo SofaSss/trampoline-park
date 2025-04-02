@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/rendering.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as fvs;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:dio/dio.dart';
@@ -17,6 +18,7 @@ part 'api/dto/auth/unregistered_user_dto.dart';
 part 'api/dto/auth/sign_in_dto.dart';
 part 'api/dto/auth/activate_dto.dart';
 part 'api/dto/auth/set_password_dto.dart';
+part 'api/dto/auth/delete_account.dart';
 
 part 'api/dto/tokens/token_dto.dart';
 part 'api/dto/tokens/access_dto.dart';

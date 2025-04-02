@@ -2,7 +2,7 @@ part of '../activation_part.dart';
 
 class ActivationBloc extends Bloc<ActivationEvent, ActivationState> {
   ActivationBloc({required this.authUserUseCases})
-    : super(const ActivationState(status: Status.loading)) {
+    : super(const ActivationState(status: StatusProfile.loading)) {
     on<ActivationEvent>(_activationEvent);
   }
 
@@ -14,9 +14,9 @@ class ActivationBloc extends Bloc<ActivationEvent, ActivationState> {
   ) async {
     try {
       await authUserUseCases.activateUser(uid: event.uid, token: event.token);
-      emit(state.copyWith(status: Status.success));
+      emit(state.copyWith(status: StatusProfile.success));
     } catch (_) {
-      emit(state.copyWith(status: Status.failure));
+      emit(state.copyWith(status: StatusProfile.failure));
     }
   }
 }

@@ -43,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             );
           }
-          if (state.status == Status.success) {
+          if (state.status == StatusProfile.success) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(
                   baseSnackBar(
@@ -57,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
         builder: (context, state) {
           switch (state.status) {
-            case Status.loaded:
+            case StatusProfile.loaded:
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -241,10 +241,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               );
-            case Status.failure:
+            case StatusProfile.failure:
               return FailureWidget();
 
-            case Status.loading:
+            case StatusProfile.loading:
               return BaseProgressIndicator();
 
             default:

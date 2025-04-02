@@ -64,4 +64,10 @@ class AuthUserUseCases {
     );
     await authUserService.setPassword(setPasswordDto: setPasswordDto);
   }
+
+  Future<void> deleteAccount({required String password}) async {
+    await authUserService.deleteAccount(
+      deleteAccountDto: DeleteAccountDto(password: password),
+    );
+  }
 }

@@ -5,11 +5,12 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
     required this.authUserUseCases,
     required this.tokenUseCases,
     required this.clientUseCases,
-  }) : super(const ClientProfileState(status: Status.loading)) {
+  }) : super(const ClientProfileState(status: StatusProfile.loading)) {
     on<_GetCurrentClient>(_getCurrentClient);
     on<_UpdateClient>(_updateClient);
     on<_SignOut>(_signOut);
     on<_SetPassword>(_setPassword);
+    on<_DeleteAccount>(_deleteAccount);
   }
 
   final ClientUseCases clientUseCases;
@@ -24,7 +25,7 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
       final client = await clientUseCases.getCurrentClient();
       emit(
         state.copyWith(
-          status: Status.loaded,
+          status: StatusProfile.loaded,
           profilePicture: client.profilePicture,
           name: client.firstName,
           lastName: client.lastName,
@@ -35,7 +36,7 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
         ),
       );
     } catch (_) {
-      emit(state.copyWith(status: Status.failure));
+      emit(state.copyWith(status: StatusProfile.failure));
     }
   }
 
@@ -44,7 +45,7 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
     Emitter<ClientProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(status: Status.loading));
+      emit(state.copyWith(status: StatusProfile.loading));
 
       await clientUseCases.updateClient(
         isHealthy: event.isHealthy,
@@ -53,9 +54,9 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
       );
 
       add(_GetCurrentClient());
-      emit(state.copyWith(status: Status.success));
+      emit(state.copyWith(status: StatusProfile.success));
     } catch (_) {
-      emit(state.copyWith(status: Status.failure));
+      emit(state.copyWith(status: StatusProfile.failure));
     }
   }
 
@@ -64,11 +65,12 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
     Emitter<ClientProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(status: Status.loading));
+      emit(state.copyWith(status: StatusProfile.loading));
       await tokenUseCases.deleteAccessToken();
       await tokenUseCases.deleteRefreshToken();
+      emit(state.copyWith(status: StatusProfile.successSignOut));
     } catch (_) {
-      emit(state.copyWith(status: Status.failure));
+      emit(state.copyWith(status: StatusProfile.failure));
     }
   }
 
@@ -77,7 +79,7 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
     Emitter<ClientProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(status: Status.loading));
+      emit(state.copyWith(status: StatusProfile.loading));
       final errors = {
         ...ValidationHelper.validateText(text: event.oldPassword),
         ...ValidationHelper.validatePassword(
@@ -86,7 +88,7 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
         ),
       };
       if (errors.isNotEmpty) {
-        emit(state.copyWith(status: Status.loaded, errors: errors));
+        emit(state.copyWith(status: StatusProfile.loaded, errors: errors));
         return;
       }
 
@@ -96,16 +98,41 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
         oldPassword: event.oldPassword,
       );
       add(_GetCurrentClient());
-      emit(state.copyWith(status: Status.success));
+      emit(state.copyWith(status: StatusProfile.success));
     } catch (e) {
       if (e is ApiError) {
         final Map<String, String> apiErrors = {};
         e.errorMessages?.forEach((key, value) {
           apiErrors[key] = value;
         });
-        emit(state.copyWith(status: Status.loaded, apiErrors: apiErrors));
+        emit(
+          state.copyWith(status: StatusProfile.loaded, apiErrors: apiErrors),
+        );
       } else {
-        emit(state.copyWith(status: Status.failure));
+        emit(state.copyWith(status: StatusProfile.failure));
+      }
+    }
+  }
+
+  Future<void> _deleteAccount(
+    _DeleteAccount event,
+    Emitter<ClientProfileState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(status: StatusProfile.loading));
+      await authUserUseCases.deleteAccount(password: event.password);
+      emit(state.copyWith(status: StatusProfile.successDeleteAccount));
+    } catch (e) {
+      if (e is ApiError) {
+        final Map<String, String> apiErrors = {};
+        e.errorMessages?.forEach((key, value) {
+          apiErrors[key] = value;
+        });
+        emit(
+          state.copyWith(status: StatusProfile.loaded, apiErrors: apiErrors),
+        );
+      } else {
+        emit(state.copyWith(status: StatusProfile.failure));
       }
     }
   }

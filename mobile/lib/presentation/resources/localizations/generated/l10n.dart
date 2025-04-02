@@ -389,6 +389,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Вы действительно хотите удалить аккаунт?`
+  String get sureDeleteAccount {
+    return Intl.message(
+      'Вы действительно хотите удалить аккаунт?',
+      name: 'shureDeleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Удалить`
+  String get delete {
+    return Intl.message('Удалить', name: 'delete', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

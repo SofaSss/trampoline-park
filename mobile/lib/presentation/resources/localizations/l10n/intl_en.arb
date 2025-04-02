@@ -39,5 +39,7 @@
   "signOut": "Выход",
   "cancel": "Отмена",
   "sureToSignOut": "Действительно ли вы хотите выйти?",
-  "confirmation": "Подтверждение"
+  "confirmation": "Подтверждение",
+  "shureDeleteAccount": "Вы действительно хотите удалить аккаунт?",
+  "delete": "Удалить"
 }

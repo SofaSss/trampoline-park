@@ -17,4 +17,7 @@ abstract class ClientProfileEvent with _$ClientProfileEvent {
     required String newPassword,
     required String reNewPassword,
   }) = _SetPassword;
+
+  const factory ClientProfileEvent.deleteAccount({required String password}) =
+      _DeleteAccount;
 }

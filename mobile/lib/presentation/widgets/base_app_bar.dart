@@ -38,9 +38,11 @@ AppBar baseAppBar({
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return signOutAlertDialog(
+                      return confirmAlertDialog(
                         context: context,
-                        onSignOut: onSignOut,
+                        onSure: onSignOut,
+                        content: context.localization.sureToSignOut,
+                        sureText: context.localization.signOut,
                       );
                     },
                   );

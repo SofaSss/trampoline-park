@@ -3,7 +3,7 @@ part of '../client_profile_part.dart';
 @freezed 
 abstract class ClientProfileState with _$ClientProfileState{
   const factory ClientProfileState({
-    required Status status,
+    required StatusProfile status,
     String? profilePicture,
     String? name,
     String? lastName,

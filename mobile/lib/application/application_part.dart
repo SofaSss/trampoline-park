@@ -26,3 +26,4 @@ part 'dto/auth/activate_dto.dart';
 part 'dto/auth/sign_in_dto.dart';
 part 'dto/client/update_client_dto.dart';
 part 'dto/auth/set_password_dto.dart';
+part 'dto/auth/delete_account_dto.dart';

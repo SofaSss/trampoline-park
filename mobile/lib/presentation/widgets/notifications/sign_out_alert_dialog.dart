@@ -1,15 +1,17 @@
 part of '../widgets_part.dart';
 
-AlertDialog signOutAlertDialog({
+AlertDialog confirmAlertDialog({
   required BuildContext context,
-  required void Function()? onSignOut,
+  required void Function()? onSure,
+  String? content,
+  required String sureText,
+  Widget? widgetContent,
 }) {
   return AlertDialog(
     title: Text(context.localization.confirmation),
-    content: Text(
-      context.localization.sureToSignOut,
-      style: Theme.of(context).textTheme.displayMedium,
-    ),
+    content:
+        widgetContent ??
+        Text(content!, style: Theme.of(context).textTheme.displayMedium),
     actions: [
       TextButton(
         onPressed: () {
@@ -17,10 +19,7 @@ AlertDialog signOutAlertDialog({
         },
         child: Text(context.localization.cancel),
       ),
-      TextButton(
-        onPressed: onSignOut,
-        child: Text(context.localization.signOut),
-      ),
+      TextButton(onPressed: onSure, child: Text(sureText)),
     ],
   );
 }

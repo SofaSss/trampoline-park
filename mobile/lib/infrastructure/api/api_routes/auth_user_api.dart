@@ -22,4 +22,7 @@ abstract class AuthUserApi {
   Future<void> setPassword({
     @Body() required Map<String, dynamic> setPasswordDto,
   });
+
+  @DELETE('auth/users/me/')
+  Future<void> deleteAccount({@Body() required Map<String, dynamic> password});
 }
