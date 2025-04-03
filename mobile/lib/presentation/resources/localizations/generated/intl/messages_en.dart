@@ -74,9 +74,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
     "rePassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
-    "shureDeleteAccount": MessageLookupByLibrary.simpleMessage(
-      "Вы действительно хотите удалить аккаунт?",
-    ),
     "signInTitle": MessageLookupByLibrary.simpleMessage(
       "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
     ),
@@ -87,6 +84,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "sureDeleteAccount": MessageLookupByLibrary.simpleMessage(
+      "Вы действительно хотите удалить аккаунт?",
+    ),
     "sureToSignOut": MessageLookupByLibrary.simpleMessage(
       "Действительно ли вы хотите выйти?",
     ),

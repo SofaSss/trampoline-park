@@ -394,7 +394,7 @@ class S {
   String get sureDeleteAccount {
     return Intl.message(
       'Вы действительно хотите удалить аккаунт?',
-      name: 'shureDeleteAccount',
+      name: 'sureDeleteAccount',
       desc: '',
       args: [],
     );

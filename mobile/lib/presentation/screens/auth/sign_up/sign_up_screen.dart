@@ -130,16 +130,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textInputType: TextInputType.emailAddress,
                       hintText: context.localization.email,
                       icon: AppIcons.email,
-                      errorText: state.errors[InputErrorTypeEnum.email]
-                          ?.localize(context.localization),
+                      errorText:
+                          state.errors[InputErrorTypeEnum.email]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['email'],
                     ),
                     BaseTextField(
                       controller: phoneController,
                       textInputType: TextInputType.phone,
                       hintText: context.localization.phone,
                       icon: AppIcons.phone,
-                      errorText: state.errors[InputErrorTypeEnum.phone]
-                          ?.localize(context.localization),
+                      errorText:
+                          state.errors[InputErrorTypeEnum.phone]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['phone_number'],
                       inputFormatters: [
                         MaskTextInputFormatter(
                           mask: RegExpConstants.mask,

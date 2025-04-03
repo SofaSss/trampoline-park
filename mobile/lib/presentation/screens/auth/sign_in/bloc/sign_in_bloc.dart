@@ -38,8 +38,18 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       } else if (isCoach) {
         emit(state.copyWith(status: SignInStatus.toCoachMainScreen));
       }
-    } catch (_) {
-      emit(state.copyWith(status: SignInStatus.failure));
+    } catch (e) {
+      if (e is ApiError) {
+        final Map<String, String> apiErrors = {};
+        e.errorMessages?.forEach((key, value) {
+          apiErrors[key] = value;
+        });
+        emit(
+          state.copyWith(status: SignInStatus.loaded, apiErrors: apiErrors),
+        );
+      } else {
+        emit(state.copyWith(status: SignInStatus.failure));
+      }
     }
   }
 }

@@ -5,6 +5,6 @@ abstract class SignUpState with _$SignUpState {
   const factory SignUpState({
     required StatusProfile status,
     @Default({}) Map<InputErrorTypeEnum, InputFieldError> errors,
-    String? errorMessage,
+    @Default({}) Map<String, dynamic> apiErrors,
   }) = _SignUpState;
 }

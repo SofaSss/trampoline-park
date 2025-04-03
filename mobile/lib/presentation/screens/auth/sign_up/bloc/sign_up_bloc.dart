@@ -44,14 +44,16 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
 
       emit(state.copyWith(status: StatusProfile.success));
-    } catch (error) {
-      if (error is ApiError) {
+    } catch (e) {
+      if (e is ApiError) {
+        final Map<String, String> apiErrors = {};
+        e.errorMessages?.forEach((key, value) {
+          apiErrors[key] = value;
+        });
         emit(
-          state.copyWith(
-            status: StatusProfile.failure,
-            // errorMessage: error.errorMessage,
-          ),
+          state.copyWith(status: StatusProfile.loaded, apiErrors: apiErrors),
         );
+        print(state.apiErrors);
       } else {
         emit(state.copyWith(status: StatusProfile.failure));
       }

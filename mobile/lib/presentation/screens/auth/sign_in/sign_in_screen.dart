@@ -50,7 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         hintText: context.localization.email,
                         icon: AppIcons.email,
                         errorText: state.errors[InputErrorTypeEnum.email]
-                            ?.localize(context.localization),
+                            ?.localize(context.localization) ?? state.apiErrors['username'],
                       ),
                     ),
                     BaseTextField(
@@ -60,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
                       errorText: state.errors[InputErrorTypeEnum.password]
-                          ?.localize(context.localization),
+                          ?.localize(context.localization) ?? state.apiErrors['password'],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20, bottom: 10),
