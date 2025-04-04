@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Вы можете удалить аккаунт",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Почта"),
+    "emailResetPassword": MessageLookupByLibrary.simpleMessage(
+      "На Вашу почту отправлено письмо для сброса пароля",
+    ),
     "emptyField": MessageLookupByLibrary.simpleMessage(
       "Необходимо заполнить поле",
     ),
@@ -74,6 +77,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
     "rePassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
+    "resetPassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
+    "resetPasswordDescription": MessageLookupByLibrary.simpleMessage(
+      "Чтобы обеспечить безопасность вашей учетной записи, придумайте надежный новый пароль.",
+    ),
+    "resetPasswordTitle": MessageLookupByLibrary.simpleMessage(
+      "Восстановление пароля",
+    ),
     "signInTitle": MessageLookupByLibrary.simpleMessage(
       "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
     ),
@@ -84,6 +94,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "successResetPassword": MessageLookupByLibrary.simpleMessage(
+      "Пароль успешно обновлен",
+    ),
     "sureDeleteAccount": MessageLookupByLibrary.simpleMessage(
       "Вы действительно хотите удалить аккаунт?",
     ),

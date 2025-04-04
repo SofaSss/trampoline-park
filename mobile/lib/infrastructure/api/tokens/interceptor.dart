@@ -13,6 +13,8 @@ class DioInterceptor extends Interceptor {
       'client/create/',
       'auth/jwt/create/',
       'auth/jwt/refresh/',
+      'auth/users/reset_password/',
+      'auth/users/reset_password_confirm/',
     ];
     final isUnSignInPath = excludePaths.any((p) => (options.path.contains(p)));
     if (isUnSignInPath) {

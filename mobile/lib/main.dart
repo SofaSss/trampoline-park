@@ -51,6 +51,13 @@ class _TrampolineParkState extends State<TrampolinePark> {
                 token: deepLink.path.split('/').reversed.first,
               ),
             ]);
+          } else if (deepLink.path.contains('/reset-password/')) {
+            return DeepLink([
+              ResetPasswordRoute(
+                uid: deepLink.path.split('/').reversed.elementAt(2),
+                token: deepLink.path.split('/').reversed.elementAt(1),
+              ),
+            ]);
           } else {
             return const DeepLink([InitialRoute()]);
           }

@@ -13,6 +13,7 @@ enum SignInStatus {
   failure,
   toClientMainScreen,
   toCoachMainScreen,
+  successSendResetPassword,
 }
 
 enum InitialStatus {
@@ -21,3 +22,5 @@ enum InitialStatus {
   toClientMainScreen,
   toCoachMainScreen,
 }
+
+enum Status { loading, loaded, failure, success }

@@ -12,4 +12,10 @@ abstract class IAuthUserService {
   Future<void> setPassword({required SetPasswordDto setPasswordDto});
 
   Future<void> deleteAccount({required DeleteAccountDto deleteAccountDto});
+
+  Future<void> sendResetPasswordUrl({
+    required SendResetPasswordDto sendResetPasswordDto,
+  });
+
+  Future<void> resetPassword({required ResetPasswordDto resetPasswordDto});
 }

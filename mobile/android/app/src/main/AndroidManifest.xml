@@ -31,7 +31,8 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="192.168.187.73" android:pathPrefix="/activation/" />
+                <data android:scheme="http" android:host="192.168.129.73" android:pathPrefix="/activation/" />
+                <data android:scheme="http" android:host="192.168.129.73" android:pathPrefix="/reset-password/" />
             </intent-filter>
 
         </activity>

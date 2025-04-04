@@ -28,6 +28,13 @@ class _SignInScreenState extends State<SignInScreen> {
           context.router.replaceAll([ClientMainRoute()]);
         } else if (state.status == SignInStatus.toCoachMainScreen) {
           context.router.replaceAll([CoachMainRoute()]);
+        } else if (state.status == SignInStatus.successSendResetPassword) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            baseSnackBar(
+              context: context,
+              message: context.localization.emailResetPassword,
+            ),
+          );
         }
       },
       builder: (context, state) {
@@ -49,8 +56,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         textInputType: TextInputType.emailAddress,
                         hintText: context.localization.email,
                         icon: AppIcons.email,
-                        errorText: state.errors[InputErrorTypeEnum.email]
-                            ?.localize(context.localization) ?? state.apiErrors['username'],
+                        errorText:
+                            state.errors[InputErrorTypeEnum.email]?.localize(
+                              context.localization,
+                            ) ??
+                            state.apiErrors['username'],
                       ),
                     ),
                     BaseTextField(
@@ -59,11 +69,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       hintText: context.localization.password,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
-                      errorText: state.errors[InputErrorTypeEnum.password]
-                          ?.localize(context.localization) ?? state.apiErrors['password'],
+                      errorText:
+                          state.errors[InputErrorTypeEnum.password]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['password'],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20, bottom: 10),
+                      padding: const EdgeInsets.only(top: 20),
                       child: ElevatedButton(
                         onPressed: () async {
                           context.read<SignInBloc>().add(
@@ -80,6 +93,19 @@ class _SignInScreenState extends State<SignInScreen> {
                           fixedSize: WidgetStatePropertyAll(Size(160, 10)),
                         ),
                         child: Text(context.localization.sign_in),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed:
+                          () => (context.read<SignInBloc>().add(
+                            SignInEvent.sendResetPassword(
+                              email: emailController.text.trim(),
+                            ),
+                          )),
+                      child: Text(
+                        context.localization.resetPassword,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: AppColors.red),
                       ),
                     ),
                     TextButton(

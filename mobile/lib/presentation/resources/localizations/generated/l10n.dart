@@ -404,6 +404,56 @@ class S {
   String get delete {
     return Intl.message('Удалить', name: 'delete', desc: '', args: []);
   }
+
+  /// `Пароль успешно обновлен`
+  String get successResetPassword {
+    return Intl.message(
+      'Пароль успешно обновлен',
+      name: 'successResetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Восстановление пароля`
+  String get resetPasswordTitle {
+    return Intl.message(
+      'Восстановление пароля',
+      name: 'resetPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Чтобы обеспечить безопасность вашей учетной записи, придумайте надежный новый пароль.`
+  String get resetPasswordDescription {
+    return Intl.message(
+      'Чтобы обеспечить безопасность вашей учетной записи, придумайте надежный новый пароль.',
+      name: 'resetPasswordDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Изменить пароль`
+  String get resetPassword {
+    return Intl.message(
+      'Изменить пароль',
+      name: 'resetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `На Вашу почту отправлено письмо для сброса пароля`
+  String get emailResetPassword {
+    return Intl.message(
+      'На Вашу почту отправлено письмо для сброса пароля',
+      name: 'emailResetPassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

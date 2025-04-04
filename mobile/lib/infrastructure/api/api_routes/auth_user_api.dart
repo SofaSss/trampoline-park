@@ -25,4 +25,12 @@ abstract class AuthUserApi {
 
   @DELETE('auth/users/me/')
   Future<void> deleteAccount({@Body() required Map<String, dynamic> password});
+
+  @POST('auth/users/reset_password/')
+  Future<void> sendResetPassword({@Body() required Map<String, dynamic> email});
+
+  @POST('auth/users/reset_password_confirm/')
+  Future<void> resetPassword({
+    @Body() required Map<String, dynamic> resetPassword,
+  });
 }

@@ -70,4 +70,28 @@ class AuthUserUseCases {
       deleteAccountDto: DeleteAccountDto(password: password),
     );
   }
+
+  Future<void> sendResetPassword({required String email}) async {
+    final SendResetPasswordDto sendResetPasswordDto = SendResetPasswordDto(
+      email: email,
+    );
+    await authUserService.sendResetPasswordUrl(
+      sendResetPasswordDto: sendResetPasswordDto,
+    );
+  }
+
+  Future<void> resetPassword({
+    required String uid,
+    required String token,
+    required String password,
+    required String rePassword,
+  }) async {
+    final ResetPasswordDto resetPasswordDto = ResetPasswordDto(
+      uid: uid,
+      token: token,
+      password: password,
+      rePassword: rePassword,
+    );
+    await authUserService.resetPassword(resetPasswordDto: resetPasswordDto);
+  }
 }

@@ -26,5 +26,6 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: ActivationRoute.page),
+    AutoRoute(page: ResetPasswordRoute.page),
   ];
 }
