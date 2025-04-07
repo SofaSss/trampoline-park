@@ -23,17 +23,10 @@ class DioInterceptor extends Interceptor {
     final accessToken = await tokenUseCase.getAccessToken();
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
+      return handler.next(options);
     } else {
-      final refreshToken = await tokenUseCase.getRefreshToken();
-      if (refreshToken == null) {
-        return handler.reject(DioException(requestOptions: options));
-      }
-
-      final tokens = await tokenUseCase.refreshTokens();
-      options.headers['Authorization'] = 'Bearer ${tokens.accessToken}';
+      return handler.reject(TokenException(requestOptions: options));
     }
-
-    return handler.next(options);
   }
 
   @override

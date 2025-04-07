@@ -1,4 +1,4 @@
-part of 'widgets_part.dart';
+part of '../widgets_part.dart';
 
 class BaseBigCard extends StatefulWidget {
   const BaseBigCard({
@@ -32,7 +32,20 @@ class _BaseBigCardState extends State<BaseBigCard> {
               height: AppConstants.bigCardHeight,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.network(widget.imageUrl, fit: BoxFit.cover),
+                child: Image.network(
+                  widget.imageUrl,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    } else {
+                      return BaseAnimatedBuilder(
+                        height: AppConstants.bigCardWidth - 130,
+                        width: AppConstants.bigCardHeight,
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ),

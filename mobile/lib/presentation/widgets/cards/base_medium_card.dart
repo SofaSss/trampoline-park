@@ -1,7 +1,7 @@
-part of 'widgets_part.dart';
+part of '../widgets_part.dart';
 
-class BaseMediunCard extends StatefulWidget {
-  const BaseMediunCard({
+class BaseMediumCard extends StatefulWidget {
+  const BaseMediumCard({
     super.key,
     required this.imageUrl,
     required this.name,
@@ -13,10 +13,10 @@ class BaseMediunCard extends StatefulWidget {
   final String lastName;
 
   @override
-  State<BaseMediunCard> createState() => _BaseMediunCardState();
+  State<BaseMediumCard> createState() => _BaseMediumCardState();
 }
 
-class _BaseMediunCardState extends State<BaseMediunCard> {
+class _BaseMediumCardState extends State<BaseMediumCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,7 +32,20 @@ class _BaseMediunCardState extends State<BaseMediunCard> {
               height: AppConstants.mediumCardHeight - 20,
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                child: Image.network(widget.imageUrl, fit: BoxFit.cover),
+                child: Image.network(
+                  widget.imageUrl,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    } else {
+                      return BaseAnimatedBuilder(
+                        height: AppConstants.mediumCardHeight - 20,
+                        width: AppConstants.mediumCardWidth,
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ),

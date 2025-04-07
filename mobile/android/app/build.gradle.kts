@@ -24,7 +24,7 @@ android {
         applicationId = "com.example.mobile_trampoline_park"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdkVersion(21)
+        minSdkVersion(26)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -43,4 +43,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation("com.yandex.android:maps.mobile:4.1.0-lite")
 }

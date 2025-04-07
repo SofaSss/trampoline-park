@@ -454,6 +454,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Не удалось открыть ссылку`
+  String get linkError {
+    return Intl.message(
+      'Не удалось открыть ссылку',
+      name: 'linkError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Связаться с нами`
+  String get conntect {
+    return Intl.message(
+      'Связаться с нами',
+      name: 'conntect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Нужна помощь?`
+  String get needHelp {
+    return Intl.message('Нужна помощь?', name: 'needHelp', desc: '', args: []);
+  }
+
+  /// `Привет, Батутер!`
+  String get hiHome {
+    return Intl.message('Привет, Батутер!', name: 'hiHome', desc: '', args: []);
+  }
+
+  /// `Веселье, спорт и активный отдых ждут тебя. Выбери, что подходит именно тебе)`
+  String get homeDescription {
+    return Intl.message(
+      'Веселье, спорт и активный отдых ждут тебя. Выбери, что подходит именно тебе)',
+      name: 'homeDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Услуги`
+  String get services {
+    return Intl.message('Услуги', name: 'services', desc: '', args: []);
+  }
+
+  /// `Наши тренеры`
+  String get coaches {
+    return Intl.message('Наши тренеры', name: 'coaches', desc: '', args: []);
+  }
+
+  /// `Видео-разминка`
+  String get video {
+    return Intl.message('Видео-разминка', name: 'video', desc: '', args: []);
+  }
+
+  /// `Правильная разминка для безопасности и максимального эффекта от прыжков.`
+  String get videoDescription {
+    return Intl.message(
+      'Правильная разминка для безопасности и максимального эффекта от прыжков.',
+      name: 'videoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Мы рядом)`
+  String get map {
+    return Intl.message('Мы рядом)', name: 'map', desc: '', args: []);
+  }
+
+  /// `ул. Ларина, 45, стр. 2.`
+  String get adress {
+    return Intl.message(
+      'ул. Ларина, 45, стр. 2.',
+      name: 'adress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ул. Ларина, 45, стр. 2.`
+  String get addres {
+    return Intl.message(
+      'ул. Ларина, 45, стр. 2.',
+      name: 'addres',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ул. Ларина, 45, стр. 2.`
+  String get address {
+    return Intl.message(
+      'ул. Ларина, 45, стр. 2.',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

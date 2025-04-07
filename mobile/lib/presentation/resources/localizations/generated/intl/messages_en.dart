@@ -28,11 +28,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeAccount": MessageLookupByLibrary.simpleMessage(
       "Учетная запись активирована",
     ),
+    "addres": MessageLookupByLibrary.simpleMessage("ул. Ларина, 45, стр. 2."),
+    "address": MessageLookupByLibrary.simpleMessage("ул. Ларина, 45, стр. 2."),
+    "adress": MessageLookupByLibrary.simpleMessage("ул. Ларина, 45, стр. 2."),
     "batuter": MessageLookupByLibrary.simpleMessage("Батутер!"),
     "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
+    "coaches": MessageLookupByLibrary.simpleMessage("Наши тренеры"),
     "confirmation": MessageLookupByLibrary.simpleMessage("Подтверждение"),
+    "conntect": MessageLookupByLibrary.simpleMessage("Связаться с нами"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
     "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage(
@@ -47,6 +52,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "failure": MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
     "hi": MessageLookupByLibrary.simpleMessage("Привет,"),
+    "hiHome": MessageLookupByLibrary.simpleMessage("Привет, Батутер!"),
+    "homeDescription": MessageLookupByLibrary.simpleMessage(
+      "Веселье, спорт и активный отдых ждут тебя. Выбери, что подходит именно тебе)",
+    ),
     "incorrectMail": MessageLookupByLibrary.simpleMessage(
       "Почта введена неверно",
     ),
@@ -60,7 +69,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "У меня нет жалоб на здоровье",
     ),
     "lastName": MessageLookupByLibrary.simpleMessage("Фамилия"),
+    "linkError": MessageLookupByLibrary.simpleMessage(
+      "Не удалось открыть ссылку",
+    ),
+    "map": MessageLookupByLibrary.simpleMessage("Мы рядом)"),
     "name": MessageLookupByLibrary.simpleMessage("Имя"),
+    "needHelp": MessageLookupByLibrary.simpleMessage("Нужна помощь?"),
     "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
     "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
     "on_boarding_hello": MessageLookupByLibrary.simpleMessage(
@@ -84,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "resetPasswordTitle": MessageLookupByLibrary.simpleMessage(
       "Восстановление пароля",
     ),
+    "services": MessageLookupByLibrary.simpleMessage("Услуги"),
     "signInTitle": MessageLookupByLibrary.simpleMessage(
       "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
     ),
@@ -112,6 +127,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "update": MessageLookupByLibrary.simpleMessage("Обновить данные"),
     "updateProfileIsSuccess": MessageLookupByLibrary.simpleMessage(
       "Данные успешно обновлены",
+    ),
+    "video": MessageLookupByLibrary.simpleMessage("Видео-разминка"),
+    "videoDescription": MessageLookupByLibrary.simpleMessage(
+      "Правильная разминка для безопасности и максимального эффекта от прыжков.",
     ),
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",

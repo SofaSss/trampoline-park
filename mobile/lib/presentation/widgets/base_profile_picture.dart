@@ -12,30 +12,68 @@ class BaseProfilePicture extends StatefulWidget {
 class _BaseProfilePictureState extends State<BaseProfilePicture> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 21.0),
-      child: Container(
-        height: 80,
-        width: 80,
-        decoration: BoxDecoration(
-          color: AppColors.lightBlue,
-          shape: BoxShape.circle,
-        ),
-        child:
-            widget.pickImage != null
-                ? ClipRRect(
-                  borderRadius: BorderRadius.circular(180),
-                  child: Image.file(widget.pickImage!, fit: BoxFit.cover),
-                )
-                : widget.imageUrl != null
-                ? ClipRRect(
-                  borderRadius: BorderRadius.circular(180),
-                  child: Image.network(widget.imageUrl!, fit: BoxFit.cover),
-                )
-                : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(AppIcons.logo),
-                ),
+    return SizedBox(
+      height: 105,
+      width: 140,
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            left: 20,
+            child:
+                widget.pickImage != null
+                    ? ClipRRect(
+                      borderRadius: BorderRadius.circular(180),
+                      child: Image.file(
+                        widget.pickImage!,
+                        fit: BoxFit.cover,
+                        height: 95,
+                        width: 95,
+                      ),
+                    )
+                    : widget.imageUrl != null
+                    ? ClipRRect(
+                      borderRadius: BorderRadius.circular(180),
+                      child: Image.network(
+                        widget.imageUrl!,
+                        fit: BoxFit.cover,
+                        height: 95,
+                        width: 95,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          } else {
+                            return BaseAnimatedBuilder(height: 95, width: 95);
+                          }
+                        },
+                      ),
+                    )
+                    : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 95,
+                        width: 95,
+                        decoration: BoxDecoration(
+                          color: AppColors.lightBlue,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: SvgPicture.asset(AppIcons.logo),
+                        ),
+                      ),
+                    ),
+          ),
+          Positioned(
+            left: 15,
+            bottom: 0,
+            child: SvgPicture.asset(
+              OnBoardingPictures.profilePicture,
+              height: 105,
+              width: 105,
+            ),
+          ),
+        ],
       ),
     );
   }
