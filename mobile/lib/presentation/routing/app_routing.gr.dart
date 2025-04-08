@@ -300,18 +300,41 @@ class ResetPasswordRouteArgs {
 
 /// generated route for
 /// [_i13.ServiceDetailScreen]
-class ServiceDetailRoute extends _i16.PageRouteInfo<void> {
-  const ServiceDetailRoute({List<_i16.PageRouteInfo>? children})
-    : super(ServiceDetailRoute.name, initialChildren: children);
+class ServiceDetailRoute extends _i16.PageRouteInfo<ServiceDetailRouteArgs> {
+  ServiceDetailRoute({
+    _i17.Key? key,
+    required int id,
+    List<_i16.PageRouteInfo>? children,
+  }) : super(
+         ServiceDetailRoute.name,
+         args: ServiceDetailRouteArgs(key: key, id: id),
+         initialChildren: children,
+       );
 
   static const String name = 'ServiceDetailRoute';
 
   static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
-      return const _i13.ServiceDetailScreen();
+      final args = data.argsAs<ServiceDetailRouteArgs>();
+      return _i16.WrappedRoute(
+        child: _i13.ServiceDetailScreen(key: args.key, id: args.id),
+      );
     },
   );
+}
+
+class ServiceDetailRouteArgs {
+  const ServiceDetailRouteArgs({this.key, required this.id});
+
+  final _i17.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'ServiceDetailRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

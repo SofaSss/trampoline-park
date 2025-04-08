@@ -28,4 +28,20 @@ class WorkoutService implements IWorkoutService {
 
     return listModel;
   }
+
+  @override
+  Future<WorkoutTypeModel> getWorkoutType({required int id}) async {
+    final WorkoutTypeInfraDto workoutTypeInfraDto = await workoutApi
+        .getWorkoutType(id: id);
+    final WorkoutTypeModel workoutTypeModel = WorkoutTypeModel(
+      id: workoutTypeInfraDto.id,
+      name: workoutTypeInfraDto.name,
+      description: workoutTypeInfraDto.description,
+      price: workoutTypeInfraDto.price,
+      workoutPicture: workoutTypeInfraDto.workoutPicture,
+      duration: workoutTypeInfraDto.duration,
+      maxClients: workoutTypeInfraDto.maxClients,
+    );
+    return workoutTypeModel;
+  }
 }

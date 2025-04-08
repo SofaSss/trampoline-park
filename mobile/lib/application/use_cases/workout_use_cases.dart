@@ -14,4 +14,8 @@ class WorkoutUseCases {
       offset: offset,
     );
   }
+
+  Future<WorkoutTypeModel> getWorkoutType({required int id}) async {
+    return await workoutService.getWorkoutType(id: id);
+  }
 }

@@ -594,6 +594,16 @@ class S {
       args: [],
     );
   }
+
+  /// `ч`
+  String get hour {
+    return Intl.message('ч', name: 'hour', desc: '', args: []);
+  }
+
+  /// `Записаться`
+  String get enter {
+    return Intl.message('Записаться', name: 'enter', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -9,4 +9,7 @@ abstract class WorkoutApi {
     @Query('limit') int? limit,
     @Query('offset') int? offset,
   });
+
+  @GET('workout_type/{id}/')
+  Future<WorkoutTypeInfraDto> getWorkoutType({@Path() required int id});
 }

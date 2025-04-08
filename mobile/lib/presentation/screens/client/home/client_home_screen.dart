@@ -91,7 +91,9 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                               ),
                               onTap:
                                   () => (context.router.push(
-                                    ServiceDetailRoute(),
+                                    ServiceDetailRoute(
+                                      id: state.workouts[index].id,
+                                    ),
                                   )),
                             );
                           },

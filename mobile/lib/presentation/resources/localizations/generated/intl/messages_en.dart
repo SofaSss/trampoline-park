@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emptyField": MessageLookupByLibrary.simpleMessage(
       "Необходимо заполнить поле",
     ),
+    "enter": MessageLookupByLibrary.simpleMessage("Записаться"),
     "excursion": MessageLookupByLibrary.simpleMessage(
       "Онлайн-экскурсия по парку",
     ),
@@ -71,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "homeDescription": MessageLookupByLibrary.simpleMessage(
       "Веселье, спорт и активный отдых ждут тебя. Выбери, что подходит именно тебе)",
     ),
+    "hour": MessageLookupByLibrary.simpleMessage("ч"),
     "incorrectMail": MessageLookupByLibrary.simpleMessage(
       "Почта введена неверно",
     ),
