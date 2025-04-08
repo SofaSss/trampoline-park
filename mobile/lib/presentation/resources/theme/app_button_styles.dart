@@ -12,6 +12,7 @@ class AppButtonStyles {
               color: Colors.white,
             ),
           ),
+          backgroundColor: WidgetStatePropertyAll(AppColors.blue),
           padding: WidgetStatePropertyAll(
             EdgeInsets.symmetric(vertical: 8, horizontal: 15),
           ),

@@ -82,11 +82,17 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                           scrollDirection: Axis.horizontal,
                           itemCount: state.workouts.length,
                           itemBuilder: (context, index) {
-                            return BaseBigCard(
-                              imageUrl: state.workouts[index].workoutPicture,
-                              name: state.workouts[index].name,
-                              shortDescription:
-                                  state.workouts[index].description,
+                            return GestureDetector(
+                              child: BaseBigCard(
+                                imageUrl: state.workouts[index].workoutPicture,
+                                name: state.workouts[index].name,
+                                shortDescription:
+                                    state.workouts[index].description,
+                              ),
+                              onTap:
+                                  () => (context.router.push(
+                                    ServiceDetailRoute(),
+                                  )),
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) {

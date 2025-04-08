@@ -9,6 +9,7 @@ import 'package:mobile_trampoline_park/presentation/enums/status_enum.dart';
 import 'package:mobile_trampoline_park/presentation/extensions/extensions_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/constants/constants_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/theme_resources.dart/theme_resources_part.dart';
+import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart';
 import 'package:mobile_trampoline_park/presentation/widgets/widgets_part.dart';
 import 'package:video_player/video_player.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart' as mapkit;
