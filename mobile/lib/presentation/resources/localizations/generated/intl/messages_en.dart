@@ -28,14 +28,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeAccount": MessageLookupByLibrary.simpleMessage(
       "Учетная запись активирована",
     ),
-    "addres": MessageLookupByLibrary.simpleMessage("ул. Ларина, 45, стр. 2."),
-    "address": MessageLookupByLibrary.simpleMessage("ул. Ларина, 45, стр. 2."),
-    "adress": MessageLookupByLibrary.simpleMessage("ул. Ларина, 45, стр. 2."),
+    "address": MessageLookupByLibrary.simpleMessage(
+      "ул. Ларина, 45, стр. 2.📍",
+    ),
     "batuter": MessageLookupByLibrary.simpleMessage("Батутер!"),
     "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "coaches": MessageLookupByLibrary.simpleMessage("Наши тренеры"),
+    "coachesDescription": MessageLookupByLibrary.simpleMessage(
+      "Опытные тренеры для ярких и безопасных прыжков!🤸‍♂️",
+    ),
     "confirmation": MessageLookupByLibrary.simpleMessage("Подтверждение"),
     "conntect": MessageLookupByLibrary.simpleMessage("Связаться с нами"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
@@ -50,7 +53,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "emptyField": MessageLookupByLibrary.simpleMessage(
       "Необходимо заполнить поле",
     ),
+    "excursion": MessageLookupByLibrary.simpleMessage(
+      "Онлайн-экскурсия по парку",
+    ),
+    "excursionDescription": MessageLookupByLibrary.simpleMessage(
+      "Приготовьтесь очень внимательно слушать нашего гида😁",
+    ),
     "failure": MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
+    "happyBirthday": MessageLookupByLibrary.simpleMessage(
+      "День Рождения под ключ",
+    ),
+    "happyBirthdayDescription": MessageLookupByLibrary.simpleMessage(
+      "Устройте незабываемый праздник ребенку🎂",
+    ),
     "hi": MessageLookupByLibrary.simpleMessage("Привет,"),
     "hiHome": MessageLookupByLibrary.simpleMessage("Привет, Батутер!"),
     "homeDescription": MessageLookupByLibrary.simpleMessage(
@@ -99,6 +114,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Восстановление пароля",
     ),
     "services": MessageLookupByLibrary.simpleMessage("Услуги"),
+    "servicesDescription": MessageLookupByLibrary.simpleMessage(
+      "Все развлечения и активности парка — в одном месте! 🎉",
+    ),
     "signInTitle": MessageLookupByLibrary.simpleMessage(
       "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
     ),
@@ -130,7 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "video": MessageLookupByLibrary.simpleMessage("Видео-разминка"),
     "videoDescription": MessageLookupByLibrary.simpleMessage(
-      "Правильная разминка для безопасности и максимального эффекта от прыжков.",
+      "Правильная разминка для безопасности и максимального эффекта от прыжков.🤸‍♂️",
     ),
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",

@@ -28,10 +28,22 @@ part 'api/dto/get_user_dto.dart';
 
 part 'api/dto/client/client_dto.dart';
 part 'api/dto/client/update_client_dto.dart';
+part 'api/dto/client/video_warm_up_dto.dart';
+part 'api/dto/client/communication_dto.dart';
+
+part 'api/dto/coach/achievement_dto.dart';
+part 'api/dto/coach/specialty_dto.dart';
+part 'api/dto/coach/coach_dto.dart';
+
+part 'api/dto/workout/workout_dto.dart';
+
+part 'api/dto/wrapper_dto.dart';
 
 part 'api/api_routes/auth_user_api.dart';
 part 'api/api_routes/token_api.dart';
 part 'api/api_routes/client_api.dart';
+part 'api/api_routes/workout_api.dart';
+part 'api/api_routes/coach_api.dart';
 
 part 'api/tokens/token_storage.dart';
 part 'api/tokens/interceptor.dart';
@@ -39,6 +51,8 @@ part 'api/tokens/interceptor.dart';
 part 'services/auth_user_service.dart';
 part 'services/token_service.dart';
 part 'services/client_service.dart';
+part 'services/workout_service.dart';
+part 'services/coach_service.dart';
 
 part 'exceptions/api_error.dart';
 part 'exceptions/connection_exception.dart';

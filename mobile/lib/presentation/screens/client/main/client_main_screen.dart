@@ -23,7 +23,21 @@ class _ClientMainScreenState extends State<ClientMainScreen> {
       ),
       body:
           <Widget>[
-            ClientHomeScreen(),
+            BlocProvider(
+              create:
+                  (_) =>
+                      ClientHomeBloc(
+                          clientUseCases: injection(),
+                          workoutUseCases: injection(),
+                          coachUseCases: injection(),
+                        )
+                        ..add(ClientHomeEvent.getProfilePicture())
+                        ..add(ClientHomeEvent.getWorkoutTypeList())
+                        ..add(ClientHomeEvent.getCoachList())
+                        ..add(ClientHomeEvent.getVideoWarmUp())
+                        ..add(ClientHomeEvent.getCommunicationList()),
+              child: ClientHomeScreen(),
+            ),
 
             ClientWorkoutsScreen(),
 

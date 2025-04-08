@@ -18,4 +18,13 @@ abstract class ClientApi {
 
   @GET('client/{id}/')
   Future<ClientInfraDto> getClient({@Path('id') required int id});
+
+  @GET('video_warm_up/{id}/')
+  Future<VideoWarmUpInfraDto> getVideoWarmUp({@Path('id') required int id});
+
+  @GET('communication/list/')
+  Future<ResponseWrapperDto<CommunicationInfraDto>> getCommunicationList({
+    @Query('limit') int? limit,
+    @Query('offset') int? offset,
+  });
 }

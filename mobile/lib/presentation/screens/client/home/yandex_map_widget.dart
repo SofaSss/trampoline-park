@@ -30,12 +30,15 @@ class _YandexMapWidgetState extends State<YandexMapWidget> {
             image: mapkit.BitmapDescriptor.fromAssetImage(
               'assets/logo/ic_pin.png',
             ),
-            scale: 1, // по желанию
+            scale: 1,
           ),
         ),
         onTap: (object, point) {
           ScaffoldMessenger.of(context).showSnackBar(
-            baseSnackBar(context: context, message: 'ул. Ларина, 45, стр. 2'),
+            baseSnackBar(
+              context: context,
+              message: context.localization.address,
+            ),
           );
         },
       ),

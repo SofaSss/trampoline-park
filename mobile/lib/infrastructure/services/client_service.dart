@@ -63,4 +63,35 @@ class ClientService implements IClientService {
 
     return updateClient;
   }
+
+  @override
+  Future<VideoWarmUpModel> getVideoWarmUp({required int id}) async {
+    final VideoWarmUpInfraDto videoWarmUpInfraDto = await clientApi
+        .getVideoWarmUp(id: id);
+    final VideoWarmUpModel videoWarmUpModel = VideoWarmUpModel(
+      id: videoWarmUpInfraDto.id,
+      video: videoWarmUpInfraDto.video,
+    );
+    return videoWarmUpModel;
+  }
+
+  @override
+  Future<List<CommunicationModel>> getCommunicationList({
+    int? limit,
+    int? offset,
+  }) async {
+    final ResponseWrapperDto<CommunicationInfraDto> response = await clientApi
+        .getCommunicationList(limit: limit, offset: offset);
+
+    final List<CommunicationModel> communicationList =
+        response.results.map((communication) {
+          return CommunicationModel(
+            id: communication.id,
+            link: communication.link,
+            icon: communication.icon,
+          );
+        }).toList();
+
+    return communicationList;
+  }
 }

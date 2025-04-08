@@ -1,8 +1,13 @@
 part of 'client_home_part.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
-  const VideoPlayerWidget({super.key, required this.videoPath});
+  const VideoPlayerWidget({
+    super.key,
+    required this.videoPath,
+    this.isVerticalVideo = false,
+  });
   final String videoPath;
+  final bool isVerticalVideo;
 
   @override
   State<VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
@@ -11,30 +16,43 @@ class VideoPlayerWidget extends StatefulWidget {
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-
-  late VideoPlayerController _videoController;
-  late Future<void> _initializeVideoPlayerFuture;
+  VideoPlayerController? _videoController;
+  Future<void>? _initializeVideoPlayerFuture;
+  String? _currentVideoPath;
 
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.networkUrl(
-      Uri.parse(widget.videoPath),
-    );
-
-    _initializeVideoPlayerFuture = _videoController.initialize();
-    _videoController.setLooping(true);
-
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
     )..repeat();
+
+    _initVideo(widget.videoPath);
+  }
+
+  Future<void> _initVideo(String path) async {
+    _videoController?.dispose();
+    _videoController = VideoPlayerController.networkUrl(Uri.parse(path));
+    _initializeVideoPlayerFuture = _videoController!.initialize().then((_) {
+      setState(() {});
+    });
+    _videoController!.setLooping(true);
+    _currentVideoPath = path;
+  }
+
+  @override
+  void didUpdateWidget(covariant VideoPlayerWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.videoPath != oldWidget.videoPath) {
+      _initVideo(widget.videoPath);
+    }
   }
 
   @override
   void dispose() {
     _animationController.dispose();
-    _videoController.dispose();
+    _videoController?.dispose();
     super.dispose();
   }
 
@@ -43,7 +61,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
     return FutureBuilder(
       future: _initializeVideoPlayerFuture,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            _videoController != null &&
+            _videoController!.value.isInitialized) {
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: ClipRRect(
@@ -52,27 +72,27 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
                 alignment: Alignment.center,
                 children: [
                   AspectRatio(
-                    aspectRatio: _videoController.value.aspectRatio,
-                    child: VideoPlayer(_videoController),
+                    aspectRatio: _videoController!.value.aspectRatio,
+                    child: VideoPlayer(_videoController!),
                   ),
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _videoController.value.isPlaying
-                            ? _videoController.pause()
-                            : _videoController.play();
+                        _videoController!.value.isPlaying
+                            ? _videoController!.pause()
+                            : _videoController!.play();
                       });
                     },
                     child:
-                        _videoController.value.isPlaying
+                        _videoController!.value.isPlaying
                             ? null
                             : Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.black45,
                                 shape: BoxShape.circle,
                               ),
                               padding: const EdgeInsets.all(8),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.play_arrow,
                                 color: Colors.white,
                                 size: 32,
@@ -84,11 +104,19 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
             ),
           );
         } else {
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: BaseAnimatedBuilder(
-              height: AppConstants.videoHeight,
-              width: AppConstants.videoWidth,
+          return Center(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: BaseAnimatedBuilder(
+                height:
+                    widget.isVerticalVideo
+                        ? AppConstants.verticalVideoHeight
+                        : AppConstants.videoHeight,
+                width:
+                    widget.isVerticalVideo
+                        ? AppConstants.verticalVideoWidth
+                        : AppConstants.videoWidth,
+              ),
             ),
           );
         }

@@ -1,8 +1,13 @@
 part of 'widgets_part.dart';
 
 class LinkIconWidget extends StatefulWidget {
-  const LinkIconWidget({super.key, required this.connectUrl});
+  const LinkIconWidget({
+    super.key,
+    required this.connectUrl,
+    required this.icon,
+  });
   final String connectUrl;
+  final String icon;
 
   @override
   State<LinkIconWidget> createState() => _LinkIconWidgetState();
@@ -39,12 +44,12 @@ class _LinkIconWidgetState extends State<LinkIconWidget> {
                   );
                 },
                 sureText: context.localization.conntect,
-                content: context.localization.needHelp,
+                content: 'Прыгаем в наши соцсети? Там много всего интересного о Батутном парке №1!',
               );
             },
           );
         },
-        child: SvgPicture.asset(AppIcons.tg, width: 55, height: 55),
+        child: SvgPicture.network(widget.icon, width: 55, height: 55),
       ),
     );
   }

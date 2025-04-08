@@ -53,7 +53,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         emit(
           state.copyWith(status: StatusProfile.loaded, apiErrors: apiErrors),
         );
-        print(state.apiErrors);
       } else {
         emit(state.copyWith(status: StatusProfile.failure));
       }

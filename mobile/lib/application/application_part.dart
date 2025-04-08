@@ -15,10 +15,14 @@ part 'container.dart';
 part 'interfaces/auth_user_interface.dart';
 part 'interfaces/token_interface.dart';
 part 'interfaces/client_interface.dart';
+part 'interfaces/workout_interface.dart';
+part 'interfaces/coach_interface.dart';
 
 part 'use_cases/auth_user_use_cases.dart';
 part 'use_cases/token_use_cases.dart';
 part 'use_cases/client_use_cases.dart';
+part 'use_cases/workout_use_cases.dart';
+part 'use_cases/coach_use_cases.dart';
 
 part 'dto/token/token_dto.dart';
 part 'dto/auth/get_user_role_dto.dart';
