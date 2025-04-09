@@ -173,7 +173,9 @@ class CoachDetailRoute extends _i17.PageRouteInfo<CoachDetailRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<CoachDetailRouteArgs>();
-      return _i6.CoachDetailScreen(key: args.key, id: args.id);
+      return _i17.WrappedRoute(
+        child: _i6.CoachDetailScreen(key: args.key, id: args.id),
+      );
     },
   );
 }

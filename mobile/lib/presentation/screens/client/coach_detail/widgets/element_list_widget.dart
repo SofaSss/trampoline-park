@@ -1,4 +1,4 @@
-part of 'coach_detail_part.dart';
+part of '../coach_detail_part.dart';
 
 class ElementListWidget extends StatefulWidget {
   const ElementListWidget({super.key, required this.element});

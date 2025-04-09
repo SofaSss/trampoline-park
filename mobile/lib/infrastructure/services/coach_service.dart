@@ -33,4 +33,30 @@ class CoachService implements ICoachService {
         }).toList();
     return coachList;
   }
+
+  @override
+  Future<CoachModel> getCoachById({required int id}) async {
+    final CoachInfraDto coachInfraDto = await coachApi.getCoachById(id: id);
+    final CoachModel coachModel = CoachModel(
+      id: coachInfraDto.id,
+      firstName: coachInfraDto.firstName,
+      lastName: coachInfraDto.lastName,
+      birthday: DateTime.parse(coachInfraDto.dateOfBirth),
+      phone: coachInfraDto.phone,
+      profilePicture: coachInfraDto.profilePicture,
+      experience: coachInfraDto.experience,
+      quote: coachInfraDto.quote,
+      email: coachInfraDto.user.username,
+      specialties:
+          coachInfraDto.specialties.map((specialty) {
+            return specialty.name;
+          }).toList(),
+      achievements:
+          coachInfraDto.achievements.map((achievement) {
+            return achievement.name;
+          }).toList(),
+    );
+
+    return coachModel;
+  }
 }

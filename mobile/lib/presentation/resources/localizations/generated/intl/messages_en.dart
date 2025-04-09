@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
+    "coach": MessageLookupByLibrary.simpleMessage("Тренер"),
     "coaches": MessageLookupByLibrary.simpleMessage("Наши тренеры"),
     "coachesDescription": MessageLookupByLibrary.simpleMessage(
       "Опытные тренеры для ярких и безопасных прыжков!🤸‍♂️",
@@ -66,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "excursionDescription": MessageLookupByLibrary.simpleMessage(
       "Приготовьтесь очень внимательно слушать нашего гида😁",
     ),
+    "experience": MessageLookupByLibrary.simpleMessage("Стаж"),
     "failure": MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
     "happyBirthday": MessageLookupByLibrary.simpleMessage(
       "День Рождения под ключ",
@@ -162,5 +164,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",
     ),
+    "years": MessageLookupByLibrary.simpleMessage("год(а)"),
   };
 }

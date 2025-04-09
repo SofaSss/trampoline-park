@@ -12,7 +12,7 @@ abstract class CoachModel with _$CoachModel {
     required int experience,
     required String quote,
     required String email,
-    required List specialties,
-    required List achievements,
+    required List<String> specialties,
+    required List<String> achievements,
   }) = _CoachModel;
 }

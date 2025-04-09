@@ -634,6 +634,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Стаж`
+  String get experience {
+    return Intl.message('Стаж', name: 'experience', desc: '', args: []);
+  }
+
+  /// `год(а)`
+  String get years {
+    return Intl.message('год(а)', name: 'years', desc: '', args: []);
+  }
+
+  /// `Тренер`
+  String get coach {
+    return Intl.message('Тренер', name: 'coach', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

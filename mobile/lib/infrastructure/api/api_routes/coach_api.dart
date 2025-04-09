@@ -9,4 +9,7 @@ abstract class CoachApi {
     @Query('limit') int? limit,
     @Query('offset') int? offset,
   });
+
+  @GET('coach/{id}/')
+  Future<CoachInfraDto> getCoachById({@Path() required int id});
 }

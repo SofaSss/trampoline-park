@@ -68,5 +68,8 @@
   "enter": "Записаться",
   "achievements": "Спортинвые достижения",
   "specialization": "Специализация",
-  "enterToWorkout": "Записаться на тренировку"
+  "enterToWorkout": "Записаться на тренировку",
+  "experience": "Стаж",
+  "years": "год(а)",
+  "coach": "Тренер"
 }

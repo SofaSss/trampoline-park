@@ -29,3 +29,4 @@ part 'notifications/sign_out_alert_dialog.dart';
 part 'base_animated_builder.dart';
 part 'link_icon_widget.dart';
 part 'base_image_network_widget.dart';
+part 'back_icon.dart';
