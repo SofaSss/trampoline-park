@@ -117,10 +117,18 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                           scrollDirection: Axis.horizontal,
                           itemCount: state.coaches.length,
                           itemBuilder: (context, index) {
-                            return BaseMediumCard(
-                              imageUrl: state.coaches[index].profilePicture,
-                              name: state.coaches[index].firstName,
-                              lastName: state.coaches[index].lastName,
+                            return GestureDetector(
+                              child: BaseMediumCard(
+                                imageUrl: state.coaches[index].profilePicture,
+                                name: state.coaches[index].firstName,
+                                lastName: state.coaches[index].lastName,
+                              ),
+                              onTap:
+                                  () => (context.router.push(
+                                    CoachDetailRoute(
+                                      id: state.coaches[index].id,
+                                    ),
+                                  )),
                             );
                           },
                           separatorBuilder: (context, index) {

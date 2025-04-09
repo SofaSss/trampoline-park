@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "achievements": MessageLookupByLibrary.simpleMessage(
+      "Спортинвые достижения",
+    ),
     "activateAccount": MessageLookupByLibrary.simpleMessage(
       "На Вашу электронную почту отправлено письмо для активации аккаунта",
     ),
@@ -54,6 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Необходимо заполнить поле",
     ),
     "enter": MessageLookupByLibrary.simpleMessage("Записаться"),
+    "enterToWorkout": MessageLookupByLibrary.simpleMessage(
+      "Записаться на тренировку",
+    ),
     "excursion": MessageLookupByLibrary.simpleMessage(
       "Онлайн-экскурсия по парку",
     ),
@@ -129,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "specialization": MessageLookupByLibrary.simpleMessage("Специализация"),
     "successResetPassword": MessageLookupByLibrary.simpleMessage(
       "Пароль успешно обновлен",
     ),

@@ -604,6 +604,36 @@ class S {
   String get enter {
     return Intl.message('Записаться', name: 'enter', desc: '', args: []);
   }
+
+  /// `Спортинвые достижения`
+  String get achievements {
+    return Intl.message(
+      'Спортинвые достижения',
+      name: 'achievements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Специализация`
+  String get specialization {
+    return Intl.message(
+      'Специализация',
+      name: 'specialization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Записаться на тренировку`
+  String get enterToWorkout {
+    return Intl.message(
+      'Записаться на тренировку',
+      name: 'enterToWorkout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
