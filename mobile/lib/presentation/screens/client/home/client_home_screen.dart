@@ -161,44 +161,48 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                             context.localization.happyBirthdayDescription,
                       ),
                       Center(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          height: 250,
-                          decoration: BoxDecoration(
-                            color: AppColors.blue,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            spacing: 7,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  bottomLeft: Radius.circular(20),
+                        child: GestureDetector(
+                          onTap:
+                              () => (context.router.push(BookingEventRoute())),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            height: 250,
+                            decoration: BoxDecoration(
+                              color: AppColors.blue,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              spacing: 7,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20),
+                                  ),
+                                  child: Image.asset(
+                                    'assets/on_boarding_pictures/event.jpg',
+                                    fit: BoxFit.cover,
+                                    width: 300,
+                                    height: 250,
+                                  ),
                                 ),
-                                child: Image.asset(
-                                  'assets/on_boarding_pictures/event.jpg',
-                                  fit: BoxFit.cover,
-                                  width: 300,
-                                  height: 250,
-                                ),
-                              ),
-                              Expanded(
-                                child: Center(
-                                  child: Transform(
-                                    alignment: Alignment.center,
-                                    transform:
-                                        Matrix4.identity()
-                                          ..scale(-1.0, 1.0, 1.0),
-                                    child: Icon(
-                                      Icons.arrow_back_ios_rounded,
-                                      color: AppColors.white,
-                                      size: 40,
+                                Expanded(
+                                  child: Center(
+                                    child: Transform(
+                                      alignment: Alignment.center,
+                                      transform:
+                                          Matrix4.identity()
+                                            ..scale(-1.0, 1.0, 1.0),
+                                      child: Icon(
+                                        Icons.arrow_back_ios_rounded,
+                                        color: AppColors.white,
+                                        size: 40,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

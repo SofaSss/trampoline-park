@@ -24,30 +24,32 @@ class ActivationScreen extends StatefulWidget implements AutoRouteWrapper {
 class _ActivationScreenState extends State<ActivationScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ActivationBloc, ActivationState>(
-      listener: (context, state) {
-        if (state.status == StatusProfile.success) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(
-                baseSnackBar(
-                  context: context,
-                  message: context.localization.activeAccount,
-                ),
-              )
-              .closed
-              .then((_) => context.router.replace(SignInRoute()));
-        }
-      },
-      builder: (context, state) {
-        switch (state.status) {
-          case StatusProfile.loading:
-            return BaseProgressIndicator();
-          case StatusProfile.failure:
-            return FailureWidget();
-          default:
-            return Container();
-        }
-      },
+    return Scaffold(
+      body: BlocConsumer<ActivationBloc, ActivationState>(
+        listener: (context, state) {
+          if (state.status == StatusProfile.success) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(
+                  baseSnackBar(
+                    context: context,
+                    message: context.localization.activeAccount,
+                  ),
+                )
+                .closed
+                .then((_) => context.router.replace(SignInRoute()));
+          }
+        },
+        builder: (context, state) {
+          switch (state.status) {
+            case StatusProfile.loading:
+              return BaseProgressIndicator();
+            case StatusProfile.failure:
+              return FailureWidget();
+            default:
+              return Container();
+          }
+        },
+      ),
     );
   }
 }

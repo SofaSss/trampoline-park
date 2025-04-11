@@ -13,6 +13,7 @@ class DioInterceptor extends Interceptor {
       'client/create/',
       'auth/jwt/create/',
       'auth/jwt/refresh/',
+      'auth/users/activation/',
       'auth/users/reset_password/',
       'auth/users/reset_password_confirm/',
     ];

@@ -1,4 +1,4 @@
-part of 'coach_detail_part.dart';
+part of '../coach_detail_part.dart';
 
 class QuoteWidget extends StatefulWidget {
   const QuoteWidget({super.key, required this.quote});

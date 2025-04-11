@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ул. Ларина, 45, стр. 2.📍",
     ),
     "batuter": MessageLookupByLibrary.simpleMessage("Батутер!"),
+    "booking": MessageLookupByLibrary.simpleMessage("Забронировать"),
     "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
@@ -92,6 +93,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "isHealthy": MessageLookupByLibrary.simpleMessage(
       "У меня нет жалоб на здоровье",
+    ),
+    "isOptionalService": MessageLookupByLibrary.simpleMessage(
+      "Выбери дополнительные услуги:",
+    ),
+    "isPhotograph": MessageLookupByLibrary.simpleMessage(
+      "Нужен ли будет фотограф?",
+    ),
+    "isVideograph": MessageLookupByLibrary.simpleMessage(
+      "Нужен ли будет видео оператор?",
     ),
     "lastName": MessageLookupByLibrary.simpleMessage("Фамилия"),
     "linkError": MessageLookupByLibrary.simpleMessage(

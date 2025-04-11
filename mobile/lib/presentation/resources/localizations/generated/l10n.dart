@@ -649,6 +649,41 @@ class S {
   String get coach {
     return Intl.message('Тренер', name: 'coach', desc: '', args: []);
   }
+
+  /// `Нужен ли будет фотограф?`
+  String get isPhotograph {
+    return Intl.message(
+      'Нужен ли будет фотограф?',
+      name: 'isPhotograph',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Нужен ли будет видео оператор?`
+  String get isVideograph {
+    return Intl.message(
+      'Нужен ли будет видео оператор?',
+      name: 'isVideograph',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выбери дополнительные услуги:`
+  String get isOptionalService {
+    return Intl.message(
+      'Выбери дополнительные услуги:',
+      name: 'isOptionalService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Забронировать`
+  String get booking {
+    return Intl.message('Забронировать', name: 'booking', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

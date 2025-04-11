@@ -5,6 +5,8 @@ class AppConstants {
   static const double bigCardWidth = 296;
   static const double mediumCardHeight = 170;
   static const double mediumCardWidth = 130;
+  static const double chooseMediumCardHeight = 175;
+  static const double chooseMediumCardWidth = 135;
   static const String empty = '';
   static const double videoWidth = 400;
   static const double videoHeight = videoWidth * 9 / 16;

@@ -53,8 +53,8 @@ class _TrampolineParkState extends State<TrampolinePark> {
           if (deepLink.path.contains('/activation/')) {
             return DeepLink([
               ActivationRoute(
-                uid: deepLink.path.split('/').reversed.elementAt(1),
-                token: deepLink.path.split('/').reversed.first,
+                uid: deepLink.path.split('/').reversed.elementAt(2),
+                token: deepLink.path.split('/').reversed.elementAt(1),
               ),
             ]);
           } else if (deepLink.path.contains('/reset-password/')) {
