@@ -9,3 +9,6 @@ part 'models/workout_type_model.dart';
 part 'models/coach_model.dart';
 part 'models/video_warm_up_model.dart';
 part 'models/communication_model.dart';
+part 'models/optional_service_model.dart';
+part 'models/coach_costume_model.dart';
+part 'models/photo_video_price_model.dart';

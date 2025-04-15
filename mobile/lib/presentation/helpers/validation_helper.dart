@@ -4,7 +4,7 @@ class ValidationHelper {
   static Map<InputErrorTypeEnum, InputFieldError> validateText({
     required String text,
   }) {
-    if (text.isEmpty) {
+    if (text.isEmpty || text == 'null') {
       return {InputErrorTypeEnum.textField: InputFieldError.emptyField};
     }
     return {};

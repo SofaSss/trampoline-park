@@ -43,8 +43,8 @@ class _LinkIconWidgetState extends State<LinkIconWidget> {
                     context: context,
                   );
                 },
-                sureText: context.localization.conntect,
-                content: 'Прыгаем в наши соцсети? Там много всего интересного о Батутном парке №1!',
+                sureText: context.localization.connect,
+                content: context.localization.jumpInCommunication,
               );
             },
           );

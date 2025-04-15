@@ -12,7 +12,7 @@ part of '../booking_event_part.dart';
         backgroundColor: color,
         fixedSize: Size(150, 40),
         side: isSelected
-            ? BorderSide(color: color)
+            ? BorderSide(color: AppColors.black)
             : BorderSide(color: AppColors.white, width: 4),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),

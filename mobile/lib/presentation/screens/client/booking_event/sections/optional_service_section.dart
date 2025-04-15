@@ -1,52 +1,41 @@
 part of '../booking_event_part.dart';
 
-class AnimatorSection extends StatefulWidget {
-  const AnimatorSection({
+class OptionalServiceSection extends StatefulWidget {
+  const OptionalServiceSection({
     super.key,
-    required this.animators,
+    required this.optionalServiceList,
     this.selectedIndex,
     required this.onSelected,
-    this.errorText,
+    required this.optionalServiceType,
   });
-  final List<CoachCostumeModel> animators;
+  final String optionalServiceType;
+  final List<OptionalServiceModel> optionalServiceList;
   final int? selectedIndex;
   final ValueChanged<int?> onSelected;
-  final String? errorText;
 
   @override
-  State<AnimatorSection> createState() => _AnimatorSectionState();
+  State<OptionalServiceSection> createState() => _OptionalServiceSectionState();
 }
 
-class _AnimatorSectionState extends State<AnimatorSection> {
+class _OptionalServiceSectionState extends State<OptionalServiceSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 18.0, left: 10, bottom: 10),
+          padding: const EdgeInsets.only(top: 10.0, left: 10, bottom: 10),
           child: Text(
-            context.localization.chooseAnimator,
-            style: Theme.of(context).textTheme.displayLarge,
+            widget.optionalServiceType,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
-        widget.errorText != null
-            ? Padding(
-              padding: const EdgeInsets.only(left: 18.0),
-              child: Text(
-                widget.errorText!,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyLarge?.copyWith(color: AppColors.red),
-              ),
-            )
-            : SizedBox(),
         SizedBox(
           height: AppConstants.chooseMediumCardHeight,
           child: ListView.separated(
             padding: EdgeInsets.only(left: 20, right: 20),
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: widget.optionalServiceList.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
@@ -54,7 +43,6 @@ class _AnimatorSectionState extends State<AnimatorSection> {
                     widget.selectedIndex == index ? null : index,
                   );
                 },
-
                 child: Container(
                   width: AppConstants.chooseMediumCardWidth,
                   height: AppConstants.chooseMediumCardHeight,
@@ -67,14 +55,16 @@ class _AnimatorSectionState extends State<AnimatorSection> {
                   ),
                   child: Center(
                     child: Stack(
-                      children: [
-                        BaseMediumCard(
-                          imageUrl: widget.animators[index].picture,
-                          description: widget.animators[index].name,
-                          name: AppConstants.empty,
-                          lastName: AppConstants.empty,
-                        ),
-                        Positioned(
+                      children: [BaseMediumCard(
+                        imageUrl:
+                            widget
+                                .optionalServiceList[index]
+                                .optionalServicePicture,
+                        description: widget.optionalServiceList[index].name,
+                        name: AppConstants.empty,
+                        lastName: AppConstants.empty,
+                      ),
+                      Positioned(
                           top: 2,
                           right: 5,
                           child: Container(
@@ -86,13 +76,13 @@ class _AnimatorSectionState extends State<AnimatorSection> {
                             ),
                             child: Center(
                               child: Text(
-                                '${widget.animators[index].price.toString()} ${context.localization.rubH}',
+                                '${widget.optionalServiceList[index].price.toString()} ${context.localization.rub}',
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ),
                           ),
                         ),
-                      ],
+                      ]
                     ),
                   ),
                 ),

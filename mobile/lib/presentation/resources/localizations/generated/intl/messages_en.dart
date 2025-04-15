@@ -34,10 +34,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "address": MessageLookupByLibrary.simpleMessage(
       "ул. Ларина, 45, стр. 2.📍",
     ),
+    "all": MessageLookupByLibrary.simpleMessage("Всего: "),
+    "animator": MessageLookupByLibrary.simpleMessage("Аниматор: "),
     "batuter": MessageLookupByLibrary.simpleMessage("Батутер!"),
     "booking": MessageLookupByLibrary.simpleMessage("Забронировать"),
+    "bookingEvent": MessageLookupByLibrary.simpleMessage(
+      "Бронирование праздника",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
+    "chooseAnimator": MessageLookupByLibrary.simpleMessage("Выбери аниматора:"),
+    "chooseDate": MessageLookupByLibrary.simpleMessage("Выберите дату"),
+    "chooseTime": MessageLookupByLibrary.simpleMessage("Выбери время"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "coach": MessageLookupByLibrary.simpleMessage("Тренер"),
     "coaches": MessageLookupByLibrary.simpleMessage("Наши тренеры"),
@@ -45,7 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Опытные тренеры для ярких и безопасных прыжков!🤸‍♂️",
     ),
     "confirmation": MessageLookupByLibrary.simpleMessage("Подтверждение"),
-    "conntect": MessageLookupByLibrary.simpleMessage("Связаться с нами"),
+    "connect": MessageLookupByLibrary.simpleMessage("Связаться с нами"),
+    "date": MessageLookupByLibrary.simpleMessage("Дата: "),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Дата рождения"),
     "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage(
@@ -58,9 +67,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "emptyField": MessageLookupByLibrary.simpleMessage(
       "Необходимо заполнить поле",
     ),
+    "end": MessageLookupByLibrary.simpleMessage("Конец"),
     "enter": MessageLookupByLibrary.simpleMessage("Записаться"),
     "enterToWorkout": MessageLookupByLibrary.simpleMessage(
       "Записаться на тренировку",
+    ),
+    "eventSuccessBooking": MessageLookupByLibrary.simpleMessage(
+      "Мероприятие успешно забронировано!",
     ),
     "excursion": MessageLookupByLibrary.simpleMessage(
       "Онлайн-экскурсия по парку",
@@ -82,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Веселье, спорт и активный отдых ждут тебя. Выбери, что подходит именно тебе)",
     ),
     "hour": MessageLookupByLibrary.simpleMessage("ч"),
+    "hours": MessageLookupByLibrary.simpleMessage("час"),
     "incorrectMail": MessageLookupByLibrary.simpleMessage(
       "Почта введена неверно",
     ),
@@ -100,17 +114,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "isPhotograph": MessageLookupByLibrary.simpleMessage(
       "Нужен ли будет фотограф?",
     ),
-    "isVideograph": MessageLookupByLibrary.simpleMessage(
+    "isVideographer": MessageLookupByLibrary.simpleMessage(
       "Нужен ли будет видео оператор?",
+    ),
+    "jumpInCommunication": MessageLookupByLibrary.simpleMessage(
+      "Прыгаем в наши соцсети? Там много всего интересного о Батутном парке №1!",
     ),
     "lastName": MessageLookupByLibrary.simpleMessage("Фамилия"),
     "linkError": MessageLookupByLibrary.simpleMessage(
       "Не удалось открыть ссылку",
     ),
+    "managerEventMessage": MessageLookupByLibrary.simpleMessage(
+      "🔔 В течении дня Вам позвонит менеджер для уточнения информации",
+    ),
     "map": MessageLookupByLibrary.simpleMessage("Мы рядом)"),
+    "masterClass": MessageLookupByLibrary.simpleMessage("Мастер- класс: "),
+    "masterClasses": MessageLookupByLibrary.simpleMessage("Мастер-классы:"),
+    "minutes": MessageLookupByLibrary.simpleMessage("мин"),
     "name": MessageLookupByLibrary.simpleMessage("Имя"),
+    "need": MessageLookupByLibrary.simpleMessage("Нужен"),
     "needHelp": MessageLookupByLibrary.simpleMessage("Нужна помощь?"),
     "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
+    "no": MessageLookupByLibrary.simpleMessage("Нет"),
+    "notNeed": MessageLookupByLibrary.simpleMessage("Не нужен"),
+    "ok": MessageLookupByLibrary.simpleMessage("Ок"),
     "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
     "on_boarding_hello": MessageLookupByLibrary.simpleMessage(
       "Добро пожаловать в мир прыжков и веселья!",
@@ -123,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Пароли не совпадают",
     ),
     "phone": MessageLookupByLibrary.simpleMessage("Телефон"),
+    "photo": MessageLookupByLibrary.simpleMessage("Фотограф: "),
     "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
     "rePassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
@@ -133,10 +161,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "resetPasswordTitle": MessageLookupByLibrary.simpleMessage(
       "Восстановление пароля",
     ),
+    "rub": MessageLookupByLibrary.simpleMessage("руб."),
+    "rubH": MessageLookupByLibrary.simpleMessage("руб/ч"),
     "services": MessageLookupByLibrary.simpleMessage("Услуги"),
     "servicesDescription": MessageLookupByLibrary.simpleMessage(
       "Все развлечения и активности парка — в одном месте! 🎉",
     ),
+    "showProgram": MessageLookupByLibrary.simpleMessage("Шоу-программа: "),
+    "showPrograms": MessageLookupByLibrary.simpleMessage("Шоу-программы:"),
     "signInTitle": MessageLookupByLibrary.simpleMessage(
       "С возвращением! Войдите, чтобы продолжить наслаждаться прыжками и управлять своим аккаунтом.",
     ),
@@ -148,6 +180,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
     "specialization": MessageLookupByLibrary.simpleMessage("Специализация"),
+    "start": MessageLookupByLibrary.simpleMessage("Начало"),
+    "successBooking": MessageLookupByLibrary.simpleMessage(
+      "Успешное бронирование",
+    ),
+    "successBookingEvent": MessageLookupByLibrary.simpleMessage(
+      "Мероприятие успешно забронировано",
+    ),
     "successResetPassword": MessageLookupByLibrary.simpleMessage(
       "Пароль успешно обновлен",
     ),
@@ -160,6 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "textPDn": MessageLookupByLibrary.simpleMessage(
       "Я (далее - Заявитель) даю согласие Гриенко Александру Юрьевичу, ИНН 616389500742, адрес Ростовская область, город Ростов-на-Дону, ул.Ларина, 45с2 (далее — Оператор) на автоматизированную, а также без использования средств автоматизации, обработку моих персональных данных, предоставленных мною Оператору посредством сети Интернет через сайт https://xn--1-7sbaci3bivnagncpfakg8m.xn--p1ai/, а именно фамилия, имя, отчество, год, месяц, дата рождения, пол; включая сбора, записи, систематизации, накопления, хранения, уточнения (обновления, изменения), извлечения, использования, передачу (предоставление, доступ), обезличивания, блокирования удаления и уничтожения, а также на вышеуказанную обработку иных моих персональных данных, полученных в результате их обработки, включая обработку третьими лицами. Целями обработки персональных данных является: предоставление услуг, заключение договора. Указанное согласие дано на срок 1 год. Я уведомлен, что предоставление указанного выше согласия является моим правом, а не обязанностью, данные согласия могут быть отозваны в порядке, предусмотренном законодательством Российской Федерации. Согласие может быть отозвано субъектом персональных данных путем обращения к Оператору с заявлением, оформленным в письменной форме.",
     ),
+    "time": MessageLookupByLibrary.simpleMessage("Дата: "),
     "titlePDn": MessageLookupByLibrary.simpleMessage(
       "Согласие на обработку персональных данных",
     ),
@@ -171,9 +211,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "videoDescription": MessageLookupByLibrary.simpleMessage(
       "Правильная разминка для безопасности и максимального эффекта от прыжков.🤸‍♂️",
     ),
+    "videographer": MessageLookupByLibrary.simpleMessage("Видеограф"),
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",
     ),
     "years": MessageLookupByLibrary.simpleMessage("год(а)"),
+    "yes": MessageLookupByLibrary.simpleMessage("Да"),
   };
 }

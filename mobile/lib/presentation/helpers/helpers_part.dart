@@ -11,3 +11,4 @@ part 'medium_card_shape_helper.dart';
 part 'auth_pictures_helper.dart';
 part 'date_time_helper.dart';
 part 'validation_helper.dart';
+part 'time_helper.dart';

@@ -44,15 +44,23 @@ part 'api/api_routes/token_api.dart';
 part 'api/api_routes/client_api.dart';
 part 'api/api_routes/workout_api.dart';
 part 'api/api_routes/coach_api.dart';
+part 'api/api_routes/event_api.dart';
 
 part 'api/tokens/token_storage.dart';
 part 'api/tokens/interceptor.dart';
+
+part 'api/dto/event/optional_service/type_optional_service_dto.dart';
+part 'api/dto/event/optional_service/optional_service_dto.dart';
+part 'api/dto/event/coach_costume/coach_costume_dto.dart';
+part 'api/dto/event/event/create_event_dto.dart';
+part 'api/dto/event/photo_video/photo_video_price_dto.dart';
 
 part 'services/auth_user_service.dart';
 part 'services/token_service.dart';
 part 'services/client_service.dart';
 part 'services/workout_service.dart';
 part 'services/coach_service.dart';
+part 'services/event_service.dart';
 
 part 'exceptions/api_error.dart';
 part 'exceptions/connection_exception.dart';

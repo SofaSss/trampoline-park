@@ -7,4 +7,5 @@ class OnBoardingPictures {
   static String leaf = 'assets/on_boarding_pictures/leaf.svg';
   static String logo = 'assets/on_boarding_pictures/logo_white.svg';
   static String profilePicture = 'assets/on_boarding_pictures/profile_picture.svg';
+  static String eventLogo = 'assets/logo/event_logo.png';
 }

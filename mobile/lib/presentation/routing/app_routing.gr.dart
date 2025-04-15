@@ -103,7 +103,7 @@ class BookingEventRoute extends _i18.PageRouteInfo<void> {
   static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i2.BookingEventScreen();
+      return _i18.WrappedRoute(child: const _i2.BookingEventScreen());
     },
   );
 }
@@ -424,6 +424,22 @@ class SignUpRoute extends _i18.PageRouteInfo<void> {
     name,
     builder: (data) {
       return _i18.WrappedRoute(child: const _i17.SignUpScreen());
+    },
+  );
+}
+
+/// generated route for
+/// [_i2.SuccessBookingEventScreen]
+class SuccessBookingEventRoute extends _i18.PageRouteInfo<void> {
+  const SuccessBookingEventRoute({List<_i18.PageRouteInfo>? children})
+    : super(SuccessBookingEventRoute.name, initialChildren: children);
+
+  static const String name = 'SuccessBookingEventRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.SuccessBookingEventScreen();
     },
   );
 }

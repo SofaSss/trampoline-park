@@ -466,10 +466,10 @@ class S {
   }
 
   /// `Связаться с нами`
-  String get conntect {
+  String get connect {
     return Intl.message(
       'Связаться с нами',
-      name: 'conntect',
+      name: 'connect',
       desc: '',
       args: [],
     );
@@ -661,10 +661,10 @@ class S {
   }
 
   /// `Нужен ли будет видео оператор?`
-  String get isVideograph {
+  String get isVideographer {
     return Intl.message(
       'Нужен ли будет видео оператор?',
-      name: 'isVideograph',
+      name: 'isVideographer',
       desc: '',
       args: [],
     );
@@ -683,6 +683,216 @@ class S {
   /// `Забронировать`
   String get booking {
     return Intl.message('Забронировать', name: 'booking', desc: '', args: []);
+  }
+
+  /// `Ок`
+  String get ok {
+    return Intl.message('Ок', name: 'ok', desc: '', args: []);
+  }
+
+  /// `мин`
+  String get minutes {
+    return Intl.message('мин', name: 'minutes', desc: '', args: []);
+  }
+
+  /// `час`
+  String get hours {
+    return Intl.message('час', name: 'hours', desc: '', args: []);
+  }
+
+  /// `Мероприятие успешно забронировано`
+  String get successBookingEvent {
+    return Intl.message(
+      'Мероприятие успешно забронировано',
+      name: 'successBookingEvent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Дата: `
+  String get time {
+    return Intl.message('Дата: ', name: 'time', desc: '', args: []);
+  }
+
+  /// `Дата: `
+  String get date {
+    return Intl.message('Дата: ', name: 'date', desc: '', args: []);
+  }
+
+  /// `Фотограф: `
+  String get photo {
+    return Intl.message('Фотограф: ', name: 'photo', desc: '', args: []);
+  }
+
+  /// `Да`
+  String get yes {
+    return Intl.message('Да', name: 'yes', desc: '', args: []);
+  }
+
+  /// `Нет`
+  String get no {
+    return Intl.message('Нет', name: 'no', desc: '', args: []);
+  }
+
+  /// `Аниматор: `
+  String get animator {
+    return Intl.message('Аниматор: ', name: 'animator', desc: '', args: []);
+  }
+
+  /// `Мастер- класс: `
+  String get masterClass {
+    return Intl.message(
+      'Мастер- класс: ',
+      name: 'masterClass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Шоу-программа: `
+  String get showProgram {
+    return Intl.message(
+      'Шоу-программа: ',
+      name: 'showProgram',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Всего: `
+  String get all {
+    return Intl.message('Всего: ', name: 'all', desc: '', args: []);
+  }
+
+  /// `Бронирование праздника`
+  String get bookingEvent {
+    return Intl.message(
+      'Бронирование праздника',
+      name: 'bookingEvent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выберите дату`
+  String get chooseDate {
+    return Intl.message(
+      'Выберите дату',
+      name: 'chooseDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Мастер-классы:`
+  String get masterClasses {
+    return Intl.message(
+      'Мастер-классы:',
+      name: 'masterClasses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Шоу-программы:`
+  String get showPrograms {
+    return Intl.message(
+      'Шоу-программы:',
+      name: 'showPrograms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выбери время`
+  String get chooseTime {
+    return Intl.message('Выбери время', name: 'chooseTime', desc: '', args: []);
+  }
+
+  /// `Начало`
+  String get start {
+    return Intl.message('Начало', name: 'start', desc: '', args: []);
+  }
+
+  /// `Конец`
+  String get end {
+    return Intl.message('Конец', name: 'end', desc: '', args: []);
+  }
+
+  /// `Прыгаем в наши соцсети? Там много всего интересного о Батутном парке №1!`
+  String get jumpInCommunication {
+    return Intl.message(
+      'Прыгаем в наши соцсети? Там много всего интересного о Батутном парке №1!',
+      name: 'jumpInCommunication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Видеограф`
+  String get videographer {
+    return Intl.message('Видеограф', name: 'videographer', desc: '', args: []);
+  }
+
+  /// `Успешное бронирование`
+  String get successBooking {
+    return Intl.message(
+      'Успешное бронирование',
+      name: 'successBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Мероприятие успешно забронировано!`
+  String get eventSuccessBooking {
+    return Intl.message(
+      'Мероприятие успешно забронировано!',
+      name: 'eventSuccessBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `🔔 В течении дня Вам позвонит менеджер для уточнения информации`
+  String get managerEventMessage {
+    return Intl.message(
+      '🔔 В течении дня Вам позвонит менеджер для уточнения информации',
+      name: 'managerEventMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Нужен`
+  String get need {
+    return Intl.message('Нужен', name: 'need', desc: '', args: []);
+  }
+
+  /// `Выбери аниматора:`
+  String get chooseAnimator {
+    return Intl.message(
+      'Выбери аниматора:',
+      name: 'chooseAnimator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `руб/ч`
+  String get rubH {
+    return Intl.message('руб/ч', name: 'rubH', desc: '', args: []);
+  }
+
+  /// `Не нужен`
+  String get notNeed {
+    return Intl.message('Не нужен', name: 'notNeed', desc: '', args: []);
+  }
+
+  /// `руб.`
+  String get rub {
+    return Intl.message('руб.', name: 'rub', desc: '', args: []);
   }
 }
 

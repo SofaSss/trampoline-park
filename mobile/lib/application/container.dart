@@ -51,5 +51,15 @@ Future<void> setUpDependencies() async {
     )
     ..registerLazySingleton<CoachUseCases>(
       () => CoachUseCases(coachService: injection()),
+    )
+    ..registerLazySingleton<EventApi>(() => (EventApi(dio)))
+    ..registerLazySingleton<IEventService>(
+      () => (EventService(eventApi: injection())),
+    )
+    ..registerLazySingleton<EventUseCases>(
+      () => (EventUseCases(
+        eventService: injection(),
+        clientService: injection(),
+      )),
     );
 }

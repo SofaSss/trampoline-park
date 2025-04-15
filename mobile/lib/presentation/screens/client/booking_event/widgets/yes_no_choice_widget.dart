@@ -6,9 +6,11 @@ class YesNoChoiceWidget extends StatefulWidget {
     required this.title,
     required this.initialValue,
     required this.onChanged,
+    required this.price,
   });
 
   final String title;
+  final String price;
   final bool? initialValue;
   final void Function(bool) onChanged;
 
@@ -37,9 +39,17 @@ class _YesNoChoiceWidgetState extends State<YesNoChoiceWidget> {
         Center(
           child: Padding(
             padding: const EdgeInsets.only(top: 18.0, left: 10, bottom: 10),
-            child: Text(
-              widget.title,
-              style: Theme.of(context).textTheme.displayLarge,
+            child: Column(
+              children: [
+                Text(
+                  widget.title,
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                Text(
+                  '${widget.price} ${context.localization.rubH}',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
             ),
           ),
         ),
@@ -47,14 +57,14 @@ class _YesNoChoiceWidgetState extends State<YesNoChoiceWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             choiceButton(
-              label: 'Нужен',
+              label:context.localization.need,
               isSelected: selected == true,
               onTap: () => _updateSelection(true),
               color: AppColors.green,
             ),
             SizedBox(width: 10),
             choiceButton(
-              label: 'Не нужен',
+              label: context.localization.notNeed,
               isSelected: selected == false,
               onTap: () => _updateSelection(false),
               color: AppColors.red,

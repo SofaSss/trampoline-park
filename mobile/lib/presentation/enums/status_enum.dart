@@ -23,4 +23,12 @@ enum InitialStatus {
   toCoachMainScreen,
 }
 
+enum EventStatus {
+  loading,
+  loaded,
+  failure,
+  successCreateEvent,
+  successValidateEvent,
+}
+
 enum Status { loading, loaded, failure, success }
