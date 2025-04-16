@@ -21,6 +21,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CoachDetailRoute.page),
     AutoRoute(page: BookingEventRoute.page),
     AutoRoute(page: SuccessBookingEventRoute.page),
+    AutoRoute(page: SignUpWorkoutRoute.page),
     AutoRoute(
       page: CoachMainRoute.page,
       children: [

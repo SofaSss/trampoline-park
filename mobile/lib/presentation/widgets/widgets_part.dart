@@ -32,3 +32,4 @@ part 'link_icon_widget.dart';
 part 'base_image_network_widget.dart';
 part 'back_icon.dart';
 part 'app_bars/app_bar_with_calendar.dart';
+part 'cards/base_workout_card.dart';

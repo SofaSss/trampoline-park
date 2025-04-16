@@ -5,6 +5,7 @@ import 'package:mobile_trampoline_park/application/application_part.dart';
 import 'package:mobile_trampoline_park/presentation/enums/status_enum.dart';
 import 'package:mobile_trampoline_park/presentation/extensions/extensions_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/theme_resources.dart/theme_resources_part.dart';
+import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart';
 import 'package:mobile_trampoline_park/presentation/widgets/widgets_part.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

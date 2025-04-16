@@ -894,6 +894,11 @@ class S {
   String get rub {
     return Intl.message('руб.', name: 'rub', desc: '', args: []);
   }
+
+  /// `Мест:`
+  String get spaces {
+    return Intl.message('Мест:', name: 'spaces', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

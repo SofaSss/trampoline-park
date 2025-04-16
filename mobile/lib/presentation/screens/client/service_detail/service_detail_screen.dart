@@ -69,7 +69,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                   ),
                   SizedBox(height: 15),
                   ElevatedButton(
-                    onPressed: () => (),
+                    onPressed:
+                        () => (context.router.push(
+                          SignUpWorkoutRoute(workoutTypeId: widget.id),
+                        )),
                     child: Text(context.localization.enter),
                   ),
                 ],

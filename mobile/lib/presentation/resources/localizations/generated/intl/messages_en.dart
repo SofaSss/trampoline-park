@@ -179,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sign_in": MessageLookupByLibrary.simpleMessage("Вход"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "spaces": MessageLookupByLibrary.simpleMessage("Мест:"),
     "specialization": MessageLookupByLibrary.simpleMessage("Специализация"),
     "start": MessageLookupByLibrary.simpleMessage("Начало"),
     "successBooking": MessageLookupByLibrary.simpleMessage(

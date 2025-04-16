@@ -97,7 +97,10 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: ElevatedButton(
-                            onPressed: () => (),
+                            onPressed:
+                                () => (context.router.push(
+                                  SignUpWorkoutRoute(coachId: widget.id),
+                                )),
                             child: Text(context.localization.enterToWorkout),
                           ),
                         ),
