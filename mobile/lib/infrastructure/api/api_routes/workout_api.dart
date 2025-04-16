@@ -12,4 +12,14 @@ abstract class WorkoutApi {
 
   @GET('workout_type/{id}/')
   Future<WorkoutTypeInfraDto> getWorkoutType({@Path() required int id});
+
+   @GET('workout/list/')
+  Future<ResponseWrapperDto<WorkoutInfraDto>> getWorkoutList({
+    @Query('limit') int? limit,
+    @Query('offset') int? offset,
+    @Query('coach_id') int? coachId,
+    @Query('workout_type_id') int? workoutTypeId,
+    @Query('date') String? date,
+  });
 }
+

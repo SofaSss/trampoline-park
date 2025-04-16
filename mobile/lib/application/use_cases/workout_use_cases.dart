@@ -18,4 +18,20 @@ class WorkoutUseCases {
   Future<WorkoutTypeModel> getWorkoutType({required int id}) async {
     return await workoutService.getWorkoutType(id: id);
   }
+
+  Future<List<WorkoutModel>> getWorkoutList({
+    int? limit,
+    int? offset,
+    int? coachId,
+    int? workoutTypeId,
+    DateTime? date,
+  }) async {
+    return await workoutService.getWorkoutList(
+      limit: limit,
+      offset: offset,
+      coachId: coachId,
+      workoutTypeId: workoutTypeId,
+      date: date,
+    );
+  }
 }

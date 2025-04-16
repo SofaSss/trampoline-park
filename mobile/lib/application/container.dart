@@ -38,19 +38,22 @@ Future<void> setUpDependencies() async {
     ..registerLazySingleton<ClientUseCases>(
       () => ClientUseCases(clientService: injection()),
     )
-    ..registerLazySingleton<WorkoutApi>(() => WorkoutApi(dio))
-    ..registerLazySingleton<IWorkoutService>(
-      () => WorkoutService(workoutApi: injection()),
-    )
-    ..registerLazySingleton<WorkoutUseCases>(
-      () => WorkoutUseCases(workoutService: injection()),
-    )
     ..registerLazySingleton<CoachApi>(() => CoachApi(dio))
     ..registerLazySingleton<ICoachService>(
       () => (CoachService(coachApi: injection())),
     )
     ..registerLazySingleton<CoachUseCases>(
       () => CoachUseCases(coachService: injection()),
+    )
+    ..registerLazySingleton<WorkoutApi>(() => WorkoutApi(dio))
+    ..registerLazySingleton<IWorkoutService>(
+      () => WorkoutService(
+        workoutApi: injection(),
+        coachService: CoachService(coachApi: injection()),
+      ),
+    )
+    ..registerLazySingleton<WorkoutUseCases>(
+      () => WorkoutUseCases(workoutService: injection()),
     )
     ..registerLazySingleton<EventApi>(() => (EventApi(dio)))
     ..registerLazySingleton<IEventService>(

@@ -456,10 +456,12 @@ class SignUpWorkoutRoute extends _i19.PageRouteInfo<SignUpWorkoutRouteArgs> {
       final args = data.argsAs<SignUpWorkoutRouteArgs>(
         orElse: () => const SignUpWorkoutRouteArgs(),
       );
-      return _i18.SignUpWorkoutScreen(
-        key: args.key,
-        coachId: args.coachId,
-        workoutTypeId: args.workoutTypeId,
+      return _i19.WrappedRoute(
+        child: _i18.SignUpWorkoutScreen(
+          key: args.key,
+          coachId: args.coachId,
+          workoutTypeId: args.workoutTypeId,
+        ),
       );
     },
   );

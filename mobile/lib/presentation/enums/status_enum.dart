@@ -31,4 +31,6 @@ enum EventStatus {
   successValidateEvent,
 }
 
+enum WorkoutStatus { loading, loaded, failure, success }
+
 enum Status { loading, loaded, failure, success }

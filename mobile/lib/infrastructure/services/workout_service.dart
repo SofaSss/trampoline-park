@@ -2,8 +2,9 @@ part of '../infrastructure_part.dart';
 
 class WorkoutService implements IWorkoutService {
   final WorkoutApi workoutApi;
+  final CoachService coachService;
 
-  WorkoutService({required this.workoutApi});
+  WorkoutService({required this.coachService, required this.workoutApi});
 
   @override
   Future<List<WorkoutTypeModel>> getListWorkoutList({
@@ -43,5 +44,36 @@ class WorkoutService implements IWorkoutService {
       maxClients: workoutTypeInfraDto.maxClients,
     );
     return workoutTypeModel;
+  }
+
+  @override
+  Future<List<WorkoutModel>> getWorkoutList({
+    int? limit,
+    int? offset,
+    int? coachId,
+    int? workoutTypeId,
+    DateTime? date,
+  }) async {
+    final response = await workoutApi.getWorkoutList(
+      limit: limit,
+      offset: offset,
+      date: date != null ? DateFormat('yyyy-MM-dd').format(date) : null,
+      coachId: coachId,
+      workoutTypeId: workoutTypeId,
+    );
+
+    final List<WorkoutModel> workoutModelList = await Future.wait(
+      response.results.map((workout) async {
+        return WorkoutModel(
+          id: workout.id,
+          dateTime: workout.dateTime,
+          workoutType: await getWorkoutType(id: workout.workoutType),
+          coach: await coachService.getCoachById(id: workout.coach),
+          clients: workout.clients,
+        );
+      }),
+    );
+
+    return workoutModelList;
   }
 }

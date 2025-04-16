@@ -35,6 +35,7 @@ part 'api/dto/coach/achievement_dto.dart';
 part 'api/dto/coach/specialty_dto.dart';
 part 'api/dto/coach/coach_dto.dart';
 
+part 'api/dto/workout/workout_type_dto.dart';
 part 'api/dto/workout/workout_dto.dart';
 
 part 'api/dto/wrapper_dto.dart';
