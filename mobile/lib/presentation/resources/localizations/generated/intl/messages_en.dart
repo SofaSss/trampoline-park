@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
     "chooseAnimator": MessageLookupByLibrary.simpleMessage("Выбери аниматора:"),
     "chooseDate": MessageLookupByLibrary.simpleMessage("Выберите дату"),
+    "chooseFilter": MessageLookupByLibrary.simpleMessage("Выбери категории"),
     "chooseTime": MessageLookupByLibrary.simpleMessage("Выбери время"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "coach": MessageLookupByLibrary.simpleMessage("Тренер"),
@@ -213,6 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Правильная разминка для безопасности и максимального эффекта от прыжков.🤸‍♂️",
     ),
     "videographer": MessageLookupByLibrary.simpleMessage("Видеограф"),
+    "workoutType": MessageLookupByLibrary.simpleMessage("Тип тренировки"),
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",
     ),

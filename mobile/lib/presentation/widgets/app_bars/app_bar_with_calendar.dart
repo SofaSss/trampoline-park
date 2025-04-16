@@ -6,9 +6,20 @@ AppBar appBarWithCalendar({
   required void Function()? back,
   required List<DateTime> days,
   required void Function(DateTime day) onTapDate,
+  void Function()? onPressedDrawerIcon,
   required DateTime selectedDate,
+  bool? isDrawer,
 }) {
   return AppBar(
+    actions:
+        isDrawer != null
+            ? [
+              IconButton(
+                onPressed: onPressedDrawerIcon,
+                icon: Icon(Icons.filter_alt, color: AppColors.yellow, size: 40),
+              ),
+            ]
+            : [],
     leading: Padding(
       padding: const EdgeInsets.only(left: 10.0),
       child: GestureDetector(

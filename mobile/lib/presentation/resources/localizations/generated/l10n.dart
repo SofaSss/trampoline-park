@@ -899,6 +899,26 @@ class S {
   String get spaces {
     return Intl.message('Мест:', name: 'spaces', desc: '', args: []);
   }
+
+  /// `Выбери категории`
+  String get chooseFilter {
+    return Intl.message(
+      'Выбери категории',
+      name: 'chooseFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Тип тренировки`
+  String get workoutType {
+    return Intl.message(
+      'Тип тренировки',
+      name: 'workoutType',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

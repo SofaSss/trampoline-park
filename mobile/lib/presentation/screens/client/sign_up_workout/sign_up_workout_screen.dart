@@ -13,7 +13,10 @@ class SignUpWorkoutScreen extends StatefulWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create:
-          (_) => (SignUpWorkoutBloc(workoutUseCases: injection())..add(
+          (_) => (SignUpWorkoutBloc(
+            workoutUseCases: injection(),
+            coachUseCases: injection(),
+          )..add(
             SignUpWorkoutEvent.loadData(
               coachId: coachId,
               workoutTypeId: workoutTypeId,
@@ -35,6 +38,9 @@ List<DateTime> _daysInMonth(DateTime date) {
 }
 
 class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
+  bool isChecked = false;
+  int? selectedCoachId;
+  int? selectedWorkoutTypeId;
   List<DateTime> days =
       _daysInMonth(DateTime.now())
           .where(
@@ -48,19 +54,29 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
                 ),
           )
           .toList();
+  @override
+  void initState() {
+    super.initState();
+    selectedCoachId = widget.coachId;
+    selectedWorkoutTypeId = widget.workoutTypeId;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocConsumer<SignUpWorkoutBloc, SignUpWorkoutState>(
       listener: (context, state) {
         // TODO: implement listener
       },
       builder: (context, state) {
         return Scaffold(
+          key: _scaffoldKey,
           appBar: appBarWithCalendar(
             context: context,
             title: 'Расписание',
             back: () => (context.router.push(ClientHomeRoute())),
+            onPressedDrawerIcon: () => _scaffoldKey.currentState?.openDrawer(),
+            isDrawer: true,
             days: days,
             onTapDate: (day) {
               setState(() {
@@ -68,14 +84,39 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
               });
 
               context.read<SignUpWorkoutBloc>().add(
+                SignUpWorkoutEvent.loadData(date: _selectedDate),
+              );
+            },
+            selectedDate: _selectedDate,
+          ),
+          drawer: filterDrawer(
+            context: context,
+            selectedCoachId: selectedCoachId,
+            onCoachSelected: (id) {
+              setState(() {
+                selectedCoachId = id;
+              });
+              context.read<SignUpWorkoutBloc>().add(
                 SignUpWorkoutEvent.loadData(
-                  coachId: widget.coachId,
-                  workoutTypeId: widget.workoutTypeId,
+                  coachId: selectedCoachId,
                   date: _selectedDate,
                 ),
               );
             },
-            selectedDate: _selectedDate,
+            selectedWorkoutTypeId: selectedWorkoutTypeId,
+            onWorkoutTypeSelected: (id) {
+              setState(() {
+                selectedWorkoutTypeId = id;
+              });
+              context.read<SignUpWorkoutBloc>().add(
+                SignUpWorkoutEvent.loadData(
+                  workoutTypeId: selectedWorkoutTypeId,
+                  date: _selectedDate,
+                ),
+              );
+            },
+            coachList: state.coachList,
+            workoutTypeList: state.workoutTypeList,
           ),
           body: switch (state.status) {
             WorkoutStatus.loaded => SizedBox(

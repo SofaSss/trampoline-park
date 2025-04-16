@@ -4,14 +4,8 @@ part of '../sign_up_workout_part.dart';
 abstract class SignUpWorkoutState with _$SignUpWorkoutState {
   const factory SignUpWorkoutState({
     required WorkoutStatus status,
-    @Default([ ]) List<WorkoutModel> workoutList,
-    @Default(' ') String time,
-    @Default(' ') String duration,
-    @Default(' ') String freeSpace,
-    @Default(' ') String workoutType,
-    @Default(' ') String coachPicture,
-    @Default(' ') String coachFirstName,
-    @Default(' ') String coachLastName,
-    @Default(' ') String price,
+    @Default([]) List<WorkoutModel> workoutList,
+    @Default([]) List<CoachModel> coachList,
+    @Default([]) List<WorkoutTypeModel> workoutTypeList,
   }) = _SignUpWorkoutState;
 }
