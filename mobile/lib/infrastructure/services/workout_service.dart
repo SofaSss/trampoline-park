@@ -76,4 +76,9 @@ class WorkoutService implements IWorkoutService {
 
     return workoutModelList;
   }
+
+  @override
+  Future<void> clientSignUpWorkout({required int id}) async {
+    await workoutApi.clientSignUpWorkout(id: id);
+  }
 }

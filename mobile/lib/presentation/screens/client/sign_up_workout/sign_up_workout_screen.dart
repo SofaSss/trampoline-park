@@ -16,6 +16,7 @@ class SignUpWorkoutScreen extends StatefulWidget implements AutoRouteWrapper {
           (_) => (SignUpWorkoutBloc(
             workoutUseCases: injection(),
             coachUseCases: injection(),
+            clientUseCases: injection(),
           )..add(
             SignUpWorkoutEvent.loadData(
               coachId: coachId,
@@ -66,7 +67,15 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocConsumer<SignUpWorkoutBloc, SignUpWorkoutState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state.status == WorkoutStatus.success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            baseSnackBar(
+              context: context,
+              message: context.localization.successSignUpWorkout,
+            ),
+          );
+          context.router.push(ClientWorkoutsRoute());
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -121,33 +130,75 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
           body: switch (state.status) {
             WorkoutStatus.loaded => SizedBox(
               height: MediaQuery.of(context).size.height,
-              child: ListView.builder(
-                itemCount: state.workoutList.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(top: 10, right: 10, left: 10),
-                    child: BaseWorkoutCard(
-                      time: DateFormat(
-                        'HH:mm',
-                      ).format(state.workoutList[index].dateTime),
-                      duration:
-                          state.workoutList[index].workoutType.duration
-                              .toString(),
-                      freeSpace:
-                          (state.workoutList[index].workoutType.maxClients -
-                                  state.workoutList[index].clients.length)
-                              .toString(),
-                      workoutType: state.workoutList[index].workoutType.name,
-                      coachPicture:
-                          state.workoutList[index].coach.profilePicture,
-                      coachFirstName: state.workoutList[index].coach.firstName,
-                      coachLastName: state.workoutList[index].coach.lastName,
-                      price:
-                          state.workoutList[index].workoutType.price.toString(),
-                    ),
-                  );
-                },
-              ),
+              child:
+                  state.workoutList.isNotEmpty
+                      ? ListView.builder(
+                        itemCount: state.workoutList.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: EdgeInsets.only(
+                              top: 10,
+                              right: 10,
+                              left: 10,
+                            ),
+                            child: BaseWorkoutCard(
+                              isClientSignUpWorkout: state
+                                  .workoutList[index]
+                                  .clients
+                                  .contains(state.clientId),
+                              time: DateFormat(
+                                'HH:mm',
+                              ).format(state.workoutList[index].dateTime),
+                              duration:
+                                  state.workoutList[index].workoutType.duration
+                                      .toString(),
+                              freeSpace:
+                                  (state
+                                              .workoutList[index]
+                                              .workoutType
+                                              .maxClients -
+                                          state
+                                              .workoutList[index]
+                                              .clients
+                                              .length)
+                                      .toString(),
+                              workoutType:
+                                  state.workoutList[index].workoutType.name,
+                              coachPicture:
+                                  state.workoutList[index].coach.profilePicture,
+                              coachFirstName:
+                                  state.workoutList[index].coach.firstName,
+                              coachLastName:
+                                  state.workoutList[index].coach.lastName,
+                              price:
+                                  state.workoutList[index].workoutType.price
+                                      .toString(),
+                              onSignUpWorkout:
+                                  state
+                                                      .workoutList[index]
+                                                      .workoutType
+                                                      .maxClients -
+                                                  state
+                                                      .workoutList[index]
+                                                      .clients
+                                                      .length >
+                                              0 &&
+                                          !state.workoutList[index].clients
+                                              .contains(state.clientId)
+                                      ? () {
+                                        context.read<SignUpWorkoutBloc>().add(
+                                          SignUpWorkoutEvent.clientSignUpWorkout(
+                                            workoutId:
+                                                state.workoutList[index].id,
+                                          ),
+                                        );
+                                      }
+                                      : null,
+                            ),
+                          );
+                        },
+                      )
+                      : NoWorkoutsWidget(),
             ),
 
             WorkoutStatus.loading => BaseProgressIndicator(),

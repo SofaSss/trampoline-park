@@ -7,4 +7,8 @@ abstract class SignUpWorkoutEvent with _$SignUpWorkoutEvent {
     int? workoutTypeId,
     DateTime? date,
   }) = _LoadData;
+
+  const factory SignUpWorkoutEvent.clientSignUpWorkout({
+    required int workoutId,
+  }) = _ClientSignUpWorkout;
 }

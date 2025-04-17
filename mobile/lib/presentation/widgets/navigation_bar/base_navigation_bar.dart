@@ -6,11 +6,6 @@ NavigationBar baseNavigationBar({
 }) {
   return NavigationBar(
     onDestinationSelected: onDestinationSelected,
-    // (int index) {
-    //   setState(() {
-    //     currentPageIndex = index;
-    //   });
-    // },
     labelTextStyle: WidgetStatePropertyAll(TextStyle(fontSize: 0)),
     height: 50,
     backgroundColor: AppColors.blue,

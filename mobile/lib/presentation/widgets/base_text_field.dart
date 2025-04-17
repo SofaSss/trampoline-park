@@ -13,8 +13,8 @@ class BaseTextField extends StatefulWidget {
     required this.icon,
     this.enabled = true,
     this.onTap,
-    this.inputFormatters, 
-   this.readOnly = false,
+    this.inputFormatters,
+    this.readOnly = false,
   });
 
   final TextEditingController? controller;
@@ -69,7 +69,10 @@ class _BaseTextFieldState extends State<BaseTextField> {
               fit: BoxFit.fitHeight,
               width: 14,
               height: 14,
-              color: widget.errorText != null ? AppColors.red : AppColors.blue,
+              colorFilter:
+                  widget.errorText != null
+                      ? ColorFilter.mode(AppColors.red, BlendMode.srcIn)
+                      : ColorFilter.mode(AppColors.blue, BlendMode.srcIn),
             ),
           ),
         ),

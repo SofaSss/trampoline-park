@@ -6,6 +6,9 @@ class AuthPicturesHelper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(picture, color: AppColors.lightBlue);
+    return SvgPicture.asset(
+      picture,
+      colorFilter: ColorFilter.mode(AppColors.lightBlue, BlendMode.srcIn),
+    );
   }
 }

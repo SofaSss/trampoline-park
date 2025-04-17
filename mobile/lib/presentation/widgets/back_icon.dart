@@ -11,7 +11,7 @@ class BackIcon extends StatelessWidget {
         width: 50,
         height: 50,
         AppIcons.back,
-        color: AppColors.lightYellow,
+        colorFilter: ColorFilter.mode(AppColors.lightYellow, BlendMode.srcIn),
       ),
     );
   }

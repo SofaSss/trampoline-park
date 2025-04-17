@@ -47,6 +47,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "chooseDate": MessageLookupByLibrary.simpleMessage("Выберите дату"),
     "chooseFilter": MessageLookupByLibrary.simpleMessage("Выбери категории"),
     "chooseTime": MessageLookupByLibrary.simpleMessage("Выбери время"),
+    "clientWasSignUpWorkout": MessageLookupByLibrary.simpleMessage(
+      "Вы записаны",
+    ),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "coach": MessageLookupByLibrary.simpleMessage("Тренер"),
     "coaches": MessageLookupByLibrary.simpleMessage("Наши тренеры"),
@@ -137,6 +140,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "needHelp": MessageLookupByLibrary.simpleMessage("Нужна помощь?"),
     "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
     "no": MessageLookupByLibrary.simpleMessage("Нет"),
+    "noWorkoutsOnTheseFilters": MessageLookupByLibrary.simpleMessage(
+      "На данный момент по выбранным фильтрам не найдено тренировок",
+    ),
     "notNeed": MessageLookupByLibrary.simpleMessage("Не нужен"),
     "ok": MessageLookupByLibrary.simpleMessage("Ок"),
     "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
@@ -191,6 +197,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "successResetPassword": MessageLookupByLibrary.simpleMessage(
       "Пароль успешно обновлен",
+    ),
+    "successSignUpWorkout": MessageLookupByLibrary.simpleMessage(
+      "Вы успешно записаны на тренировку!",
     ),
     "sureDeleteAccount": MessageLookupByLibrary.simpleMessage(
       "Вы действительно хотите удалить аккаунт?",

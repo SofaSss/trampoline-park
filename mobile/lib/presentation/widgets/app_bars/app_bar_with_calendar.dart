@@ -29,7 +29,13 @@ AppBar appBarWithCalendar({
             color: AppColors.white,
             shape: BoxShape.circle,
           ),
-          child: SvgPicture.asset(AppIcons.back, color: AppColors.lightYellow),
+          child: SvgPicture.asset(
+            AppIcons.back,
+            colorFilter: ColorFilter.mode(
+              AppColors.lightYellow,
+              BlendMode.srcIn,
+            ),
+          ),
         ),
       ),
     ),

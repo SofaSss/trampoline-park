@@ -108,5 +108,8 @@
   "rub": "руб.",
   "spaces": "Мест:",
   "chooseFilter": "Выбери категории",
-  "workoutType": "Тип тренировки"
+  "workoutType": "Тип тренировки",
+  "successSignUpWorkout": "Вы успешно записаны на тренировку!",
+  "noWorkoutsOnTheseFilters": "На данный момент по выбранным фильтрам не найдено тренировок",
+  "clientWasSignUpWorkout": "Вы записаны"
 }

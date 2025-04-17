@@ -34,4 +34,8 @@ class WorkoutUseCases {
       date: date,
     );
   }
+
+  Future<void> clientSignUpWorkout({required int id}) async {
+    await workoutService.clientSignUpWorkout(id: id);
+  }
 }

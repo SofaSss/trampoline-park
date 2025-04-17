@@ -1,28 +1,21 @@
 part of 'client_main_part.dart';
 
 @RoutePage()
-class ClientMainScreen extends StatefulWidget {
+class ClientMainScreen extends StatelessWidget {
   const ClientMainScreen({super.key});
 
   @override
-  State<ClientMainScreen> createState() => _ClientMainScreenState();
-}
-
-class _ClientMainScreenState extends State<ClientMainScreen> {
-  int currentPageIndex = 0;
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: baseNavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        selectedIndex: currentPageIndex,
-      ),
-      body:
-          <Widget>[
+    return AutoTabsRouter(
+      routes: const [
+        ClientHomeRoute(),
+        ClientWorkoutsRoute(),
+        ClientProfileRoute(),
+      ],
+      builder: (context, child) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        return MultiBlocProvider(
+          providers: [
             BlocProvider(
               create:
                   (_) =>
@@ -39,8 +32,6 @@ class _ClientMainScreenState extends State<ClientMainScreen> {
               child: ClientHomeScreen(),
             ),
 
-            ClientWorkoutsScreen(),
-
             BlocProvider(
               create:
                   (_) => ClientProfileBloc(
@@ -50,7 +41,16 @@ class _ClientMainScreenState extends State<ClientMainScreen> {
                   )..add(ClientProfileEvent.getCurrentClient()),
               child: ClientProfileScreen(),
             ),
-          ][currentPageIndex],
+          ],
+          child: Scaffold(
+            body: child,
+            bottomNavigationBar: baseNavigationBar(
+              selectedIndex: tabsRouter.activeIndex,
+              onDestinationSelected: tabsRouter.setActiveIndex,
+            ),
+          ),
+        );
+      },
     );
   }
 }

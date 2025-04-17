@@ -16,7 +16,7 @@ class FailureWidget extends StatelessWidget {
               AppIcons.logo,
               width: 100,
               height: 100,
-              color: AppColors.gray,
+              colorFilter: ColorFilter.mode(AppColors.gray, BlendMode.srcIn),
             ),
             Text(
               context.localization.failure,

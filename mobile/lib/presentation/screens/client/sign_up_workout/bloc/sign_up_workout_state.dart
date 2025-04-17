@@ -7,5 +7,6 @@ abstract class SignUpWorkoutState with _$SignUpWorkoutState {
     @Default([]) List<WorkoutModel> workoutList,
     @Default([]) List<CoachModel> coachList,
     @Default([]) List<WorkoutTypeModel> workoutTypeList,
+    @Default(0) int clientId,
   }) = _SignUpWorkoutState;
 }

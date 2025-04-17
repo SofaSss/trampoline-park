@@ -13,7 +13,7 @@ abstract class WorkoutApi {
   @GET('workout_type/{id}/')
   Future<WorkoutTypeInfraDto> getWorkoutType({@Path() required int id});
 
-   @GET('workout/list/')
+  @GET('workout/list/')
   Future<ResponseWrapperDto<WorkoutInfraDto>> getWorkoutList({
     @Query('limit') int? limit,
     @Query('offset') int? offset,
@@ -21,5 +21,7 @@ abstract class WorkoutApi {
     @Query('workout_type_id') int? workoutTypeId,
     @Query('date') String? date,
   });
-}
 
+  @PATCH('workout/update/{id}/')
+  Future<void> clientSignUpWorkout({@Path() required int id});
+}

@@ -48,7 +48,7 @@ class _BaseImageNetworkWidgetState extends State<BaseImageNetworkWidget> {
                   AppIcons.logo,
                   width: 70,
                   height: 70,
-                  color: AppColors.blue,
+                  colorFilter: ColorFilter.mode(AppColors.blue, BlendMode.srcIn),
                 ),
               ),
         ),

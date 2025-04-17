@@ -10,4 +10,6 @@ abstract class IWorkoutService {
     int? workoutTypeId,
     DateTime? date,
   });
+
+  Future<void> clientSignUpWorkout({required int id});
 }

@@ -919,6 +919,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Вы успешно записаны на тренировку!`
+  String get successSignUpWorkout {
+    return Intl.message(
+      'Вы успешно записаны на тренировку!',
+      name: 'successSignUpWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `На данный момент по выбранным фильтрам не найдено тренировок`
+  String get noWorkoutsOnTheseFilters {
+    return Intl.message(
+      'На данный момент по выбранным фильтрам не найдено тренировок',
+      name: 'noWorkoutsOnTheseFilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вы записаны`
+  String get clientWasSignUpWorkout {
+    return Intl.message(
+      'Вы записаны',
+      name: 'clientWasSignUpWorkout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

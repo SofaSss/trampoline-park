@@ -4,21 +4,40 @@ class AppButtonStyles {
   static final ElevatedButtonThemeData elevatedButtonTheme =
       ElevatedButtonThemeData(
         style: ButtonStyle(
-          textStyle: WidgetStatePropertyAll(
-            const TextStyle(
+          textStyle: WidgetStateProperty.resolveWith<TextStyle>((
+            Set<WidgetState> states,
+          ) {
+            return TextStyle(
               fontFamily: 'SofiaSans',
               fontWeight: FontWeight.w400,
               fontSize: 18,
-              color: Colors.white,
-            ),
-          ),
-          backgroundColor: WidgetStatePropertyAll(AppColors.blue),
-          padding: WidgetStatePropertyAll(
+              color:
+                  states.contains(WidgetState.disabled)
+                      ? AppColors.gray
+                      : AppColors.white,
+            );
+          }),
+          backgroundColor: WidgetStateProperty.resolveWith<Color>((
+            Set<WidgetState> states,
+          ) {
+            return states.contains(WidgetState.disabled)
+                ? AppColors.lightGray.withValues(alpha: 0.6)
+                : AppColors.blue;
+          }),
+          foregroundColor: WidgetStateProperty.resolveWith<Color>((
+            Set<WidgetState> states,
+          ) {
+            return states.contains(WidgetState.disabled)
+                ? AppColors.gray
+                : AppColors.white;
+          }),
+          padding: const WidgetStatePropertyAll(
             EdgeInsets.symmetric(vertical: 8, horizontal: 15),
           ),
-          foregroundColor: WidgetStatePropertyAll(Colors.white),
           shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(58)),
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(58)),
+            ),
           ),
         ),
       );

@@ -64,7 +64,10 @@ class _BaseAuthHeaderState extends State<BaseAuthHeader> {
                 ),
                 child: SvgPicture.asset(
                   AppIcons.back,
-                  color: AppColors.lightYellow,
+                  colorFilter: ColorFilter.mode(
+                    AppColors.lightYellow,
+                    BlendMode.srcIn,
+                  ),
                   width: 25,
                   height: 25,
                 ),

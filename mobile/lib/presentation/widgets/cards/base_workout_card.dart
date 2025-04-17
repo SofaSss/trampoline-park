@@ -11,6 +11,8 @@ class BaseWorkoutCard extends StatefulWidget {
     required this.coachFirstName,
     required this.coachLastName,
     required this.price,
+    required this.onSignUpWorkout,
+    required this.isClientSignUpWorkout,
   });
   final String time;
   final String duration;
@@ -20,6 +22,8 @@ class BaseWorkoutCard extends StatefulWidget {
   final String coachFirstName;
   final String coachLastName;
   final String price;
+  final void Function()? onSignUpWorkout;
+  final bool isClientSignUpWorkout;
 
   @override
   State<BaseWorkoutCard> createState() => _BaseWorkoutCardState();
@@ -50,16 +54,21 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
             top: 5,
             right: 5,
             child: Container(
-              height: 20,
-              width: 75,
+              height: widget.isClientSignUpWorkout ? 30 : 20,
+              width: widget.isClientSignUpWorkout ? 150 : 75,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(
+                  widget.isClientSignUpWorkout ? 20 : 10,
+                ),
                 color: AppColors.white.withValues(alpha: 0.5),
               ),
               child: Center(
-                child: Text(
-                  '${context.localization.spaces} ${widget.freeSpace}',
-                ),
+                child:
+                    widget.isClientSignUpWorkout
+                        ? Text(context.localization.clientWasSignUpWorkout)
+                        : Text(
+                          '${context.localization.spaces} ${widget.freeSpace}',
+                        ),
               ),
             ),
           ),
@@ -96,7 +105,7 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
             bottom: 5,
             right: 5,
             child: ElevatedButton(
-              onPressed: () => (),
+              onPressed: widget.onSignUpWorkout,
               child: Text(context.localization.enter),
             ),
           ),
