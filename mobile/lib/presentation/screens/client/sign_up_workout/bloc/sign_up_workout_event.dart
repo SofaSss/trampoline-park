@@ -6,6 +6,7 @@ abstract class SignUpWorkoutEvent with _$SignUpWorkoutEvent {
     int? coachId,
     int? workoutTypeId,
     DateTime? date,
+    @Default(false) bool reset,
   }) = _LoadData;
 
   const factory SignUpWorkoutEvent.clientSignUpWorkout({

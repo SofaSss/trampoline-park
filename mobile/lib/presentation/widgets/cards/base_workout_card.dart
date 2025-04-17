@@ -14,7 +14,7 @@ class BaseWorkoutCard extends StatefulWidget {
     required this.onSignUpWorkout,
     required this.isClientSignUpWorkout,
   });
-  final String time;
+  final DateTime time;
   final String duration;
   final String freeSpace;
   final String workoutType;
@@ -41,12 +41,21 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
       ),
       child: Stack(
         children: [
-          Positioned(top: 5, left: 12, child: Text(widget.time)),
           Positioned(
             top: 5,
+            left: 12,
+            child: Text(DateFormat('dd-MM-yyyy').format(widget.time)),
+          ),
+          Positioned(
+            top: 25,
+            left: 12,
+            child: Text(DateFormat('HH:mm').format(widget.time)),
+          ),
+          Positioned(
+            top: 25,
             left: 55,
             child: Text(
-              '${widget.duration} ${context.localization.hour}',
+              ' ${widget.duration}${context.localization.hour}',
               style: TextStyle(color: AppColors.lightGray),
             ),
           ),
@@ -73,7 +82,7 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
             ),
           ),
           Positioned(
-            top: 28,
+            top: 48,
             left: 12,
             child: Text(
               widget.workoutType,
@@ -83,7 +92,7 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
             ),
           ),
           Positioned(
-            top: 55,
+            top: 75,
             left: 12,
             child: BaseImageNetworkWidget(
               url: widget.coachPicture,
@@ -92,12 +101,12 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
             ),
           ),
           Positioned(
-            top: 55,
+            top: 75,
             left: 70,
             child: Text('${widget.coachFirstName} ${widget.coachLastName}'),
           ),
           Positioned(
-            top: 75,
+            top: 95,
             left: 70,
             child: Text('${widget.price} ${context.localization.rub}'),
           ),

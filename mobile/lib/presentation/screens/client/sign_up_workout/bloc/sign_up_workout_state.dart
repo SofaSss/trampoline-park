@@ -8,5 +8,6 @@ abstract class SignUpWorkoutState with _$SignUpWorkoutState {
     @Default([]) List<CoachModel> coachList,
     @Default([]) List<WorkoutTypeModel> workoutTypeList,
     @Default(0) int clientId,
+    @Default(false) bool hasReachedEnd,
   }) = _SignUpWorkoutState;
 }

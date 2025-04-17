@@ -12,4 +12,5 @@ class AppConstants {
   static const double videoHeight = videoWidth * 9 / 16;
   static const double verticalVideoHeight = 600;
   static const double verticalVideoWidth = verticalVideoHeight * 9 / 16;
+  static const int limit = 6;
 }

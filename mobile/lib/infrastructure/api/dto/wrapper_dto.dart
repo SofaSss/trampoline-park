@@ -4,8 +4,8 @@ part of '../../infrastructure_part.dart';
 abstract class ResponseWrapperDto<T> with _$ResponseWrapperDto<T> {
   const factory ResponseWrapperDto({
     required int? count,
-    required int? next,
-    required int? previous,
+    required String? next,
+    required String? previous,
     required List<T> results,
   }) = _ResponseWrapperDto;
 
