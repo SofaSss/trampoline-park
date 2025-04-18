@@ -84,7 +84,7 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
           key: _scaffoldKey,
           appBar: appBarWithCalendar(
             context: context,
-            title: 'Расписание',
+            title: context.localization.schedule,
             back: () => (context.router.push(ClientHomeRoute())),
             onPressedDrawerIcon: () => _scaffoldKey.currentState?.openDrawer(),
             isDrawer: true,

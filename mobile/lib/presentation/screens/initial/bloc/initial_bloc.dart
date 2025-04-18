@@ -14,6 +14,7 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
     Emitter<InitialState> emit,
   ) async {
     try {
+      await tokenUseCases.getRefreshToken();
       final String? refreshToken = await tokenUseCases.getRefreshToken();
       final bool isClient = await userUseCases.isClient();
       final bool isCoach = await userUseCases.isCoach();

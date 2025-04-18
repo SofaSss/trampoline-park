@@ -170,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "rub": MessageLookupByLibrary.simpleMessage("руб."),
     "rubH": MessageLookupByLibrary.simpleMessage("руб/ч"),
+    "schedule": MessageLookupByLibrary.simpleMessage("Расписание"),
     "services": MessageLookupByLibrary.simpleMessage("Услуги"),
     "servicesDescription": MessageLookupByLibrary.simpleMessage(
       "Все развлечения и активности парка — в одном месте! 🎉",

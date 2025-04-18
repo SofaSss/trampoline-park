@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile_trampoline_park/application/application_part.dart';
 import 'package:mobile_trampoline_park/domain/domain_part.dart';
 import 'package:mobile_trampoline_park/presentation/enums/status_enum.dart';

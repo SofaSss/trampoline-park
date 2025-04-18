@@ -110,14 +110,16 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
             left: 70,
             child: Text('${widget.price} ${context.localization.rub}'),
           ),
-          Positioned(
-            bottom: 5,
-            right: 5,
-            child: ElevatedButton(
-              onPressed: widget.onSignUpWorkout,
-              child: Text(context.localization.enter),
-            ),
-          ),
+          widget.isClientSignUpWorkout
+              ? SizedBox()
+              : Positioned(
+                bottom: 5,
+                right: 5,
+                child: ElevatedButton(
+                  onPressed: widget.onSignUpWorkout,
+                  child: Text(context.localization.enter),
+                ),
+              ),
         ],
       ),
     );
