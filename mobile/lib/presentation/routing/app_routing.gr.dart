@@ -169,7 +169,7 @@ class ClientWorkoutsRoute extends _i19.PageRouteInfo<void> {
   static _i19.PageInfo page = _i19.PageInfo(
     name,
     builder: (data) {
-      return const _i6.ClientWorkoutsScreen();
+      return _i19.WrappedRoute(child: const _i6.ClientWorkoutsScreen());
     },
   );
 }

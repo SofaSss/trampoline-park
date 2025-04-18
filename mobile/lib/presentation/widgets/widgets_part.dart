@@ -7,6 +7,7 @@ import 'package:mobile_trampoline_park/presentation/extensions/extensions_part.d
 import 'package:mobile_trampoline_park/presentation/helpers/helpers_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/constants/constants_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/theme_resources.dart/theme_resources_part.dart';
+import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart';
 import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
 

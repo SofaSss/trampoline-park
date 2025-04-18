@@ -38,4 +38,16 @@ class WorkoutUseCases {
   Future<void> clientSignUpWorkout({required int id}) async {
     await workoutService.clientSignUpWorkout(id: id);
   }
+
+  Future<List<WorkoutModel>> getCLientWorkoutList({
+    int? limit,
+    int? offset,
+    DateTime? date,
+  }) async {
+    return await workoutService.getClientWorkoutList(
+      limit: limit,
+      offset: offset,
+      date: date,
+    );
+  }
 }

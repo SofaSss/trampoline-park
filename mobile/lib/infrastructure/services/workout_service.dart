@@ -81,4 +81,31 @@ class WorkoutService implements IWorkoutService {
   Future<void> clientSignUpWorkout({required int id}) async {
     await workoutApi.clientSignUpWorkout(id: id);
   }
+
+  @override
+  Future<List<WorkoutModel>> getClientWorkoutList({
+    int? limit,
+    int? offset,
+    DateTime? date,
+  }) async {
+    final response = await workoutApi.getClientWorkoutList(
+      limit: limit,
+      offset: offset,
+      date: date != null ? DateFormat('yyyy-MM-dd').format(date) : null,
+    );
+
+    final List<WorkoutModel> workoutModelList = await Future.wait(
+      response.results.map((workout) async {
+        return WorkoutModel(
+          id: workout.id,
+          dateTime: workout.dateTime,
+          workoutType: await getWorkoutType(id: workout.workoutType),
+          coach: await coachService.getCoachById(id: workout.coach),
+          clients: workout.clients,
+        );
+      }),
+    );
+
+    return workoutModelList;
+  }
 }

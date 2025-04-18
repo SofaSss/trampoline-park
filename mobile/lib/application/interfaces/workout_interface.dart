@@ -10,6 +10,11 @@ abstract class IWorkoutService {
     int? workoutTypeId,
     DateTime? date,
   });
+  Future<List<WorkoutModel>> getClientWorkoutList({
+    int? limit,
+    int? offset,
+    DateTime? date,
+  });
 
   Future<void> clientSignUpWorkout({required int id});
 }

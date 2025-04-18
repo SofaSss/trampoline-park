@@ -24,4 +24,11 @@ abstract class WorkoutApi {
 
   @PATCH('workout/update/{id}/')
   Future<void> clientSignUpWorkout({@Path() required int id});
+
+  @GET('client_workout/list/')
+  Future<ResponseWrapperDto<WorkoutInfraDto>> getClientWorkoutList({
+    @Query('limit') int? limit,
+    @Query('offset') int? offset,
+    @Query('date') String? date,
+  });
 }

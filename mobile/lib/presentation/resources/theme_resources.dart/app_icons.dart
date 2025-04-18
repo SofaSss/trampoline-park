@@ -16,5 +16,5 @@ class AppIcons{
   static String parkPhone = 'assets/icons/park_phone.svg';
   static String vk = 'assets/icons/vk.svg';
   static String calendar = 'assets/icons/calendar.svg';
-
+  static String plus = 'assets/icons/plus.svg';
 }
