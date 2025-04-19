@@ -13,7 +13,8 @@ class ClientWorkoutsScreen extends StatefulWidget implements AutoRouteWrapper {
       create:
           (_) =>
               (ClientWorkoutsBloc(workoutUseCases: injection())
-                ..add(ClientWorkoutsEvent.loadData(date: _selectedDate))),
+                  ..add(ClientWorkoutsEvent.loadData(date: _selectedDate)))
+                ..add(ClientWorkoutsEvent.loadRatingData()),
       child: this,
     );
   }
@@ -55,7 +56,12 @@ class _ClientWorkoutsScreenState extends State<ClientWorkoutsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClientRatingWidget(),
+                  ClientRatingWidget(
+                    isFirstRating: state.isFirstRating,
+                    isSecondRating: state.isSecondRating,
+                    isThirdRating: state.isThirdRating,
+                    stayedWorkout: state.stayedWorkout,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 18.0,

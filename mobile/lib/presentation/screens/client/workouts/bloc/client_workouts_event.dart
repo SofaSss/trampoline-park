@@ -5,4 +5,6 @@ abstract class ClientWorkoutsEvent with _$ClientWorkoutsEvent {
   const factory ClientWorkoutsEvent.loadData({
     required DateTime date,
   }) = _LoadData;
+
+   const factory ClientWorkoutsEvent.loadRatingData() = _LoadRatingData;
 }

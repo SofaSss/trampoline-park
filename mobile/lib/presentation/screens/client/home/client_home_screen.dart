@@ -20,7 +20,8 @@ class ClientHomeScreen extends StatefulWidget implements AutoRouteWrapper {
                 ..add(ClientHomeEvent.getProfilePicture())
                 ..add(ClientHomeEvent.getWorkoutTypeList())
                 ..add(ClientHomeEvent.getCoachList())
-                ..add(ClientHomeEvent.getVideoWarmUp()),
+                ..add(ClientHomeEvent.getVideoWarmUp())
+                ..add(ClientHomeEvent.getCommunicationList()),
       child: this,
     );
   }
