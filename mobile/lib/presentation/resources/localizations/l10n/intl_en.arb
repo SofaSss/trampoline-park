@@ -112,5 +112,6 @@
   "successSignUpWorkout": "Вы успешно записаны на тренировку!",
   "noWorkoutsOnTheseFilters": "На данный момент по выбранным фильтрам не найдено тренировок",
   "clientWasSignUpWorkout": "Вы записаны",
-  "schedule": "Расписание"
+  "schedule": "Расписание",
+  "quote": "Цитата"
 }

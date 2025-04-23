@@ -160,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "photo": MessageLookupByLibrary.simpleMessage("Фотограф: "),
     "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
+    "quote": MessageLookupByLibrary.simpleMessage("Цитата"),
     "rePassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
     "resetPasswordDescription": MessageLookupByLibrary.simpleMessage(

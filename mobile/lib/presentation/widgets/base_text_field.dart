@@ -61,7 +61,6 @@ class _BaseTextFieldState extends State<BaseTextField> {
           hintText: widget.hintText,
           errorText: widget.errorText,
           errorMaxLines: 3,
-
           suffixIcon: Padding(
             padding: const EdgeInsets.all(15),
             child: SvgPicture.asset(
@@ -72,8 +71,17 @@ class _BaseTextFieldState extends State<BaseTextField> {
               colorFilter:
                   widget.errorText != null
                       ? ColorFilter.mode(AppColors.red, BlendMode.srcIn)
+                      : widget.readOnly
+                      ? ColorFilter.mode(AppColors.gray, BlendMode.srcIn)
                       : ColorFilter.mode(AppColors.blue, BlendMode.srcIn),
             ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide:
+                widget.readOnly
+                    ? BorderSide(color: AppColors.gray)
+                    : BorderSide(color: AppColors.blue),
           ),
         ),
       ),

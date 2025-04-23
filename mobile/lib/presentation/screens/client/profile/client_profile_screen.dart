@@ -95,7 +95,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                       firstName: state.name,
                       lastName: state.lastName,
                     ),
-                    ClientDataSection(
+                    ProfileDataSection(
                       birthController: birthController,
                       emailController: emailController,
                       phoneController: phoneController,

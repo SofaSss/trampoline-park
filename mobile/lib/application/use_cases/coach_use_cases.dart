@@ -12,4 +12,8 @@ class CoachUseCases {
   Future<CoachModel> getCoachById({required int id}) async {
     return await coachService.getCoachById(id: id);
   }
+
+  Future<CoachModel> getCurrentCoach() async {
+    return await coachService.getCurrentCoach();
+  }
 }

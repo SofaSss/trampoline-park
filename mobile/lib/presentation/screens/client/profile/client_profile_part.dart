@@ -18,11 +18,10 @@ import 'package:mobile_trampoline_park/presentation/resources/theme_resources.da
 import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart';
 import 'package:mobile_trampoline_park/presentation/widgets/widgets_part.dart';
 
-
 part 'client_profile_part.freezed.dart';
 part 'bloc/client_profile_bloc.dart';
 part 'bloc/client_profile_event.dart';
 part 'bloc/client_profile_state.dart';
 part 'client_profile_screen.dart';
-part 'client_data_section.dart';
+part '../../../widgets/profile/profile_data_section.dart';
 part 'client_delete_account_section.dart';

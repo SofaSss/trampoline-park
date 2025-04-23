@@ -1,7 +1,7 @@
-part of 'client_profile_part.dart';
+part of '../../screens/client/profile/client_profile_part.dart';
 
-class ClientDataSection extends StatefulWidget {
-  const ClientDataSection({
+class ProfileDataSection extends StatefulWidget {
+  const ProfileDataSection({
     super.key,
     required this.birthController,
     required this.emailController,
@@ -10,21 +10,25 @@ class ClientDataSection extends StatefulWidget {
     this.onChangeHealthySwitched,
     required this.onPressedChangeData,
     this.isClientDataSection = true,
+    this.quoteController,
+    this.experienceController,
   });
 
   final TextEditingController birthController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
+  final TextEditingController? quoteController;
+  final TextEditingController? experienceController;
   final bool? isHealthySwitched;
   final void Function(bool)? onChangeHealthySwitched;
   final void Function() onPressedChangeData;
   final bool isClientDataSection;
 
   @override
-  State<ClientDataSection> createState() => _ClientDataSectionState();
+  State<ProfileDataSection> createState() => _ProfileDataSectionState();
 }
 
-class _ClientDataSectionState extends State<ClientDataSection> {
+class _ProfileDataSectionState extends State<ProfileDataSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -60,6 +64,20 @@ class _ClientDataSectionState extends State<ClientDataSection> {
           ProfileSwitched(
             value: widget.isHealthySwitched!,
             onChange: widget.onChangeHealthySwitched,
+          ),
+        ],
+        if (!widget.isClientDataSection) ...[
+          BaseTextField(
+            controller: widget.quoteController,
+            textInputType: TextInputType.text,
+            hintText: context.localization.quote,
+            icon: AppIcons.quote,
+          ),
+          BaseTextField(
+            controller: widget.experienceController,
+            textInputType: TextInputType.text,
+            hintText: context.localization.experience,
+            icon: AppIcons.experience,
           ),
         ],
         ElevatedButton(

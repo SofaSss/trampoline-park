@@ -954,6 +954,11 @@ class S {
   String get schedule {
     return Intl.message('Расписание', name: 'schedule', desc: '', args: []);
   }
+
+  /// `Цитата`
+  String get quote {
+    return Intl.message('Цитата', name: 'quote', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -21,6 +21,7 @@ class _ListActionWidgetState extends State<ListActionWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 20),
@@ -53,18 +54,21 @@ class _ListActionWidgetState extends State<ListActionWidget> {
             ],
           ),
         ),
-        Wrap(
-          spacing: 8.0,
-          children:
-              widget.actionsList
-                  .map(
-                    (action) => actionWidget(
-                      action: action,
-                      context: context,
-                      isAchievement: widget.isAchievement,
-                    ),
-                  )
-                  .toList(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Wrap(
+            spacing: 8.0,
+            children:
+                widget.actionsList
+                    .map(
+                      (action) => actionWidget(
+                        action: action,
+                        context: context,
+                        isAchievement: widget.isAchievement,
+                      ),
+                    )
+                    .toList(),
+          ),
         ),
       ],
     );

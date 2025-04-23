@@ -1,6 +1,6 @@
 part of 'theme_resources_part.dart';
 
-class AppIcons{
+class AppIcons {
   static String back = 'assets/icons/back.svg';
   static String home = 'assets/icons/home.svg';
   static String workout = 'assets/icons/workouts.svg';
@@ -17,4 +17,6 @@ class AppIcons{
   static String vk = 'assets/icons/vk.svg';
   static String calendar = 'assets/icons/calendar.svg';
   static String plus = 'assets/icons/plus.svg';
+  static String quote = 'assets/icons/quote.svg';
+  static String experience = 'assets/icons/experience.svg';
 }

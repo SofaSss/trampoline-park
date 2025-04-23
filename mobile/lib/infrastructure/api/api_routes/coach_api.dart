@@ -4,6 +4,9 @@ part of '../../infrastructure_part.dart';
 abstract class CoachApi {
   factory CoachApi(Dio dio, {String baseUrl}) = _CoachApi;
 
+  @GET('coach/me/')
+  Future<CoachInfraDto> getCurrentCoach();
+
   @GET('coach/list/')
   Future<ResponseWrapperDto<CoachInfraDto>> getCoachList({
     @Query('limit') int? limit,

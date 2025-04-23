@@ -13,23 +13,33 @@ class _CoachMainScreenState extends State<CoachMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: baseNavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        selectedIndex: currentPageIndex,
-      ),
-      body:
-          <Widget>[
-            CoachHomeScreen(),
-
-            CoachWorkoutsScreen(),
-
-            CoachProfileScreen(),
-          ][currentPageIndex],
+    return AutoTabsRouter(
+      routes: const [
+        CoachHomeRoute(),
+        CoachWorkoutsRoute(),
+        CoachProfileRoute(),
+      ],
+      builder: (context, child) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create:
+                  (_) =>
+                      CoachProfileBloc(coachUseCases: injection())
+                        ..add(CoachProfileEvent.loadData()),
+              child: CoachProfileScreen(),
+            ),
+          ],
+          child: Scaffold(
+            body: child,
+            bottomNavigationBar: baseNavigationBar(
+              selectedIndex: tabsRouter.activeIndex,
+              onDestinationSelected: tabsRouter.setActiveIndex,
+            ),
+          ),
+        );
+      },
     );
   }
 }
