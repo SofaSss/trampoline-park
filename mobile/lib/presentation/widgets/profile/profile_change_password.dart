@@ -37,7 +37,9 @@ class _ProfileChangePasswordSectionState
             padding: const EdgeInsets.only(left: 21.0, top: 20),
             child: Text(
               context.localization.changePassword,
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(
+                context,
+              ).textTheme.displayLarge?.copyWith(color: AppColors.blue),
             ),
           ),
         ),

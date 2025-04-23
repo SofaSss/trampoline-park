@@ -18,7 +18,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
   late AnimationController _animationController;
   VideoPlayerController? _videoController;
   Future<void>? _initializeVideoPlayerFuture;
-  String? _currentVideoPath;
+  // String? _currentVideoPath;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
       setState(() {});
     });
     _videoController!.setLooping(true);
-    _currentVideoPath = path;
+    // _currentVideoPath = path;
   }
 
   @override

@@ -29,6 +29,7 @@ class _InitialScreenState extends State<InitialScreen> {
         } else if (state.status == InitialStatus.toCoachMainScreen) {
           context.router.replaceAll([CoachMainRoute()]);
         } else if (state.status == InitialStatus.toOnBoardingScreen) {
+          // context.router.replaceAll([CoachMainRoute()]);
           context.router.replaceAll([OnBoardingRoute()]);
         }
       },

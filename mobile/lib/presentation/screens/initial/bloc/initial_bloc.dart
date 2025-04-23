@@ -15,10 +15,11 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
   ) async {
     try {
       await tokenUseCases.getRefreshToken();
-      final String? refreshToken = await tokenUseCases.getRefreshToken();
+
       final bool isClient = await userUseCases.isClient();
       final bool isCoach = await userUseCases.isCoach();
-
+      final String? refreshToken = await tokenUseCases.getRefreshToken();
+      
       if (refreshToken != null) {
         if (isClient) {
           emit(state.copyWith(status: InitialStatus.toClientMainScreen));

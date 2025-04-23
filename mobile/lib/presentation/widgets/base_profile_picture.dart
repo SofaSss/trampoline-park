@@ -46,6 +46,7 @@ class _BaseProfilePictureState extends State<BaseProfilePicture> {
                             return BaseAnimatedBuilder(height: 95, width: 95);
                           }
                         },
+                        errorBuilder:(context, error, stackTrace) => BaseAnimatedBuilder(height: 95, width: 95),
                       ),
                     )
                     : Padding(

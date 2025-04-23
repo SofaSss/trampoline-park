@@ -171,4 +171,16 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
       },
     );
   }
+
+  @override
+  void dispose() {
+    birthController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    oldPasswordController.dispose();
+    newPasswordController.dispose();
+    deleteAccountPasswordController.dispose();
+    confirmNewPasswordController.dispose();
+    super.dispose();
+  }
 }

@@ -6,17 +6,19 @@ class ClientDataSection extends StatefulWidget {
     required this.birthController,
     required this.emailController,
     required this.phoneController,
-    required this.isHealthySwitched,
-    required this.onChangeHealthySwitched,
+    this.isHealthySwitched,
+    this.onChangeHealthySwitched,
     required this.onPressedChangeData,
+    this.isClientDataSection = true,
   });
 
   final TextEditingController birthController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
-  final bool isHealthySwitched;
-  final void Function(bool) onChangeHealthySwitched;
+  final bool? isHealthySwitched;
+  final void Function(bool)? onChangeHealthySwitched;
   final void Function() onPressedChangeData;
+  final bool isClientDataSection;
 
   @override
   State<ClientDataSection> createState() => _ClientDataSectionState();
@@ -54,10 +56,12 @@ class _ClientDataSectionState extends State<ClientDataSection> {
             ),
           ],
         ),
-        ProfileSwitched(
-          value: widget.isHealthySwitched,
-          onChange: widget.onChangeHealthySwitched,
-        ),
+        if (widget.isClientDataSection) ...[
+          ProfileSwitched(
+            value: widget.isHealthySwitched!,
+            onChange: widget.onChangeHealthySwitched,
+          ),
+        ],
         ElevatedButton(
           onPressed: widget.onPressedChangeData,
           style: ButtonStyle(
