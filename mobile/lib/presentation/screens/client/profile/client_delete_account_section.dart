@@ -23,7 +23,6 @@ class _ClientDeleteAccountSectionState
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -45,14 +44,6 @@ class _ClientDeleteAccountSectionState
                       ),
                       sureText: context.localization.delete,
                       onSure: widget.onSureDeleteAccount,
-                      //  () {
-                      //   clientProfileBloc.add(
-                      //     ClientProfileEvent.deleteAccount(
-                      //       password:
-                      //           deleteAccountPasswordController.text.trim(),
-                      //     ),
-                      //   );
-                      // },
                     );
                   },
                 );

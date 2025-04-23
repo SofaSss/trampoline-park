@@ -53,6 +53,13 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
           phoneController.text = state.phone;
           quoteController.text = state.quote;
           experienceController.text = state.experience;
+        } else if (state.status == StatusProfile.success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            baseSnackBar(
+              context: context,
+              message: context.localization.updateProfileIsSuccess,
+            ),
+          );
         }
       },
       builder: (context, state) {
@@ -82,13 +89,39 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                     quoteController: quoteController,
                     experienceController: experienceController,
                     isClientDataSection: false,
-                    onPressedChangeData: () => (),
+                    onPressedChangeData:
+                        () => (
+                          context.read<CoachProfileBloc>()..add(
+                            CoachProfileEvent.updateCoachData(
+                              profilePicture: _image,
+                              phone: phoneController.text.trim(),
+                              quote: quoteController.text.trim(),
+                              experience: int.tryParse(
+                                experienceController.text.trim(),
+                              ),
+                            ),
+                          ),
+                        ),
                   ),
                   ListActionWidget(
                     sectionName: context.localization.specialization,
                     actionsList: state.specialties,
                     isAchievement: false,
-                    onTapPlusIcon: () => (),
+                    onTapPlusIcon:
+                        () => (showDialog(
+                          context: context,
+                          builder: (context) {
+                            return chooseOptionDialog(
+                              context: context,
+                              title: 'Выбери вариант из списка или добавь свой',
+                              options: [
+                                'ddkkdkdkd',
+                                'djjdjdjd',
+                                'dkkdkdkdkdkdk',
+                              ],
+                            );
+                          },
+                        )),
                   ),
                   ListActionWidget(
                     sectionName: context.localization.achievements,

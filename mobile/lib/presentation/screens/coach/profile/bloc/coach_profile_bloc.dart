@@ -4,6 +4,7 @@ class CoachProfileBloc extends Bloc<CoachProfileEvent, CoachProfileState> {
   CoachProfileBloc({required this.coachUseCases})
     : super(CoachProfileState(status: StatusProfile.loaded)) {
     on<_LoadData>(_loadData);
+    on<_UpdateCoachData>(_updateCoachData);
   }
 
   final CoachUseCases coachUseCases;
@@ -29,5 +30,20 @@ class CoachProfileBloc extends Bloc<CoachProfileEvent, CoachProfileState> {
         experience: coach.experience.toString(),
       ),
     );
+  }
+
+  Future<void> _updateCoachData(
+    _UpdateCoachData event,
+    Emitter<CoachProfileState> emit,
+  ) async {
+    emit(state.copyWith(status: StatusProfile.loading));
+    await coachUseCases.updateCoach(
+      profilePicture: event.profilePicture,
+      phone: event.phone,
+      experience: event.experience,
+      quote: event.quote,
+    );
+    add(_LoadData());
+    emit(state.copyWith(status: StatusProfile.success));
   }
 }

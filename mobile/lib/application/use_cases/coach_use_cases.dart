@@ -16,4 +16,18 @@ class CoachUseCases {
   Future<CoachModel> getCurrentCoach() async {
     return await coachService.getCurrentCoach();
   }
+
+  Future<CoachModel> updateCoach({
+    File? profilePicture,
+    String? phone,
+    String? quote,
+    int? experience,
+  }) async {
+    return await coachService.updateCoach(
+      profilePicture: profilePicture,
+      phone: phone,
+      quote: quote,
+      experience: experience,
+    );
+  }
 }
