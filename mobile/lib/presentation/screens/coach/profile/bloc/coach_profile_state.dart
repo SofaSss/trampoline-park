@@ -14,5 +14,7 @@ abstract class CoachProfileState with _$CoachProfileState {
     @Default(' ') String experience,
     @Default([ ]) List<String> achievements,
     @Default([ ]) List<String> specialties,
+    @Default([ ]) List<IdNameModel> coachSpecialties,
+    @Default([ ]) List<IdNameModel> coachAchievements,
   }) = _CoachProfileState;
 }

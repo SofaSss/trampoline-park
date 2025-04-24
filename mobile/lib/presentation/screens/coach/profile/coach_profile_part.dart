@@ -8,6 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_trampoline_park/application/application_part.dart';
+import 'package:mobile_trampoline_park/domain/domain_part.dart';
 import 'package:mobile_trampoline_park/presentation/enums/status_enum.dart';
 import 'package:mobile_trampoline_park/presentation/extensions/extensions_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/theme_resources.dart/theme_resources_part.dart';

@@ -13,7 +13,9 @@ class CoachProfileScreen extends StatefulWidget implements AutoRouteWrapper {
       create:
           (_) =>
               (CoachProfileBloc(coachUseCases: injection())
-                ..add(CoachProfileEvent.loadData())),
+                  ..add(CoachProfileEvent.loadData()))
+                ..add(CoachProfileEvent.getCoachAchievementList())
+                ..add(CoachProfileEvent.getCoachSpecialtyList()),
       child: this,
     );
   }
@@ -107,27 +109,49 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                     sectionName: context.localization.specialization,
                     actionsList: state.specialties,
                     isAchievement: false,
-                    onTapPlusIcon:
-                        () => (showDialog(
-                          context: context,
-                          builder: (context) {
-                            return chooseOptionDialog(
-                              context: context,
-                              title: 'Выбери вариант из списка или добавь свой',
-                              options: [
-                                'ddkkdkdkd',
-                                'djjdjdjd',
-                                'dkkdkdkdkdkdk',
-                              ],
-                            );
-                          },
-                        )),
+                    onTapPlusIcon: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return chooseOptionDialog(
+                            context: context,
+                            title: 'Выбери вариант из списка или добавь свой',
+                            options: state.coachSpecialties,
+                            onAdd: (int selectedId) {
+                              context.read<CoachProfileBloc>().add(
+                                CoachProfileEvent.updateCoachData(
+                                  specialtyList: [selectedId],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
                   ),
                   ListActionWidget(
                     sectionName: context.localization.achievements,
                     actionsList: state.achievements,
                     isAchievement: true,
-                    onTapPlusIcon: () => (),
+                    onTapPlusIcon: () {
+                      showDialog(
+                        context: context,
+                        builder: (dialogContext) {
+                          return chooseOptionDialog(
+                            context: dialogContext,
+                            title: 'Выбери вариант из списка или добавь свой',
+                            options: state.coachAchievements,
+                            onAdd: (int selectedId) {
+                              context.read<CoachProfileBloc>().add(
+                                CoachProfileEvent.updateCoachData(
+                                  achievementList: [selectedId],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
                   ),
 
                   ProfileChangePasswordSection(

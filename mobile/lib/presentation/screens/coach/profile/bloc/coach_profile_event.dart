@@ -8,5 +8,16 @@ abstract class CoachProfileEvent with _$CoachProfileEvent {
     String? phone,
     String? quote,
     int? experience,
+    List<int>? achievementList,
+    List<int>? specialtyList,
   }) = _UpdateCoachData;
+  const factory CoachProfileEvent.getCoachAchievementList() =
+      _GetCoachAchievementList;
+  const factory CoachProfileEvent.getCoachSpecialtyList() =
+      _GetCoachSpecialtyList;
+  const factory CoachProfileEvent.createCoachAchievement({
+    required String name,
+  }) = _CreateCoachAchievement;
+  const factory CoachProfileEvent.createCoachSpecialty({required String name}) =
+      _CreateCoachSpecialty;
 }

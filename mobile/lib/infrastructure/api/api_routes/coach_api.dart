@@ -13,6 +13,28 @@ abstract class CoachApi {
     @Query('offset') int? offset,
   });
 
+  @GET('coach/specialty/list/')
+  Future<ResponseWrapperDto<SpecialtyInfraDto>> getCoachSpecialtyList({
+    @Query('limit') int? limit,
+    @Query('offset') int? offset,
+  });
+
+  @POST('coach/specialty/create/')
+  Future<void> createCoachSpecialty({
+    @Body() required Map<String, dynamic> name,
+  });
+
+  @GET('coach/achievement/list/')
+  Future<ResponseWrapperDto<AchievementInfraDto>> getCoachAchievementList({
+    @Query('limit') int? limit,
+    @Query('offset') int? offset,
+  });
+
+  @POST('coach/achievement/create/')
+  Future<void> createCoachAchievement({
+    @Body() required Map<String, dynamic> name,
+  });
+
   @GET('coach/{id}/')
   Future<CoachInfraDto> getCoachById({@Path() required int id});
 
@@ -24,5 +46,7 @@ abstract class CoachApi {
     @Part(name: 'phone_number') String? phone,
     @Part(name: 'quote') String? quote,
     @Part(name: 'experience') int? experience,
+    @Part(name: 'achievements')  List<Map<String, int>>? achievements,
+    @Part(name: 'specialties')  List<Map<String, int>>? specialties,
   });
 }

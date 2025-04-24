@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,3 +12,4 @@ part 'models/optional_service_model.dart';
 part 'models/coach_costume_model.dart';
 part 'models/photo_video_price_model.dart';
 part 'models/workout_model.dart';
+part 'models/id_name_model.dart';
