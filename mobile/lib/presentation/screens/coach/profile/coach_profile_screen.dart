@@ -12,8 +12,11 @@ class CoachProfileScreen extends StatefulWidget implements AutoRouteWrapper {
     return BlocProvider(
       create:
           (_) =>
-              (CoachProfileBloc(coachUseCases: injection())
-                  ..add(CoachProfileEvent.loadData()))
+              (CoachProfileBloc(
+                  coachUseCases: injection(),
+                  authUserUseCases: injection(),
+                  tokenUseCases: injection(),
+                )..add(CoachProfileEvent.loadData()))
                 ..add(CoachProfileEvent.getCoachAchievementList())
                 ..add(CoachProfileEvent.getCoachSpecialtyList()),
       child: this,
@@ -62,6 +65,11 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
               message: context.localization.updateProfileIsSuccess,
             ),
           );
+          oldPasswordController.clear();
+          newPasswordController.clear();
+          confirmNewPasswordController.clear();
+        } else if (state.status == StatusProfile.successSignOut) {
+          context.router.replaceAll([OnBoardingRoute()]);
         }
       },
       builder: (context, state) {
@@ -70,7 +78,9 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
             context: context,
             title: 'Профиль',
             back: () => (context.router.push(CoachHomeRoute())),
-            onSignOut: () => (),
+            onSignOut: () {
+              context.read<CoachProfileBloc>().add(CoachProfileEvent.signOut());
+            },
             actions: true,
           ),
           body: switch (state.status) {
@@ -158,7 +168,30 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                     oldPasswordController: oldPasswordController,
                     newPasswordController: newPasswordController,
                     confirmNewPasswordController: confirmNewPasswordController,
-                    onPressedChangePassword: () => (),
+                    oldPasswordErrorText:
+                        state.errors[InputErrorTypeEnum.textField]?.localize(
+                          context.localization,
+                        ) ??
+                        state.apiErrors['current_password'],
+                    newPasswordErrorText:
+                        state.errors[InputErrorTypeEnum.password]?.localize(
+                          context.localization,
+                        ) ??
+                        state.apiErrors['new_password'],
+                    confirmNewPasswordErrorText:
+                        state.errors[InputErrorTypeEnum.password]?.localize(
+                          context.localization,
+                        ) ??
+                        state.apiErrors['re_new_password'],
+                    onPressedChangePassword:
+                        () => (context.read<CoachProfileBloc>().add(
+                          CoachProfileEvent.setPassword(
+                            oldPassword: oldPasswordController.text.trim(),
+                            newPassword: newPasswordController.text.trim(),
+                            reNewPassword:
+                                confirmNewPasswordController.text.trim(),
+                          ),
+                        )),
                   ),
                 ],
               ),

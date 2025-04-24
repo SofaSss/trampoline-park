@@ -25,9 +25,11 @@ class _CoachMainScreenState extends State<CoachMainScreen> {
           providers: [
             BlocProvider(
               create:
-                  (_) =>
-                      CoachProfileBloc(coachUseCases: injection())
-                        ..add(CoachProfileEvent.loadData()),
+                  (_) => CoachProfileBloc(
+                    coachUseCases: injection(),
+                    authUserUseCases: injection(),
+                    tokenUseCases: injection(),
+                  )..add(CoachProfileEvent.loadData()),
               child: CoachProfileScreen(),
             ),
           ],

@@ -20,4 +20,12 @@ abstract class CoachProfileEvent with _$CoachProfileEvent {
   }) = _CreateCoachAchievement;
   const factory CoachProfileEvent.createCoachSpecialty({required String name}) =
       _CreateCoachSpecialty;
+
+  const factory CoachProfileEvent.signOut() = _SignOut;
+
+  const factory CoachProfileEvent.setPassword({
+    required String oldPassword,
+    required String newPassword,
+    required String reNewPassword,
+  }) = _SetPassword;
 }

@@ -75,7 +75,7 @@ class _ProfileDataSectionState extends State<ProfileDataSection> {
           ),
           BaseTextField(
             controller: widget.experienceController,
-            textInputType: TextInputType.text,
+            textInputType: TextInputType.number,
             hintText: context.localization.experience,
             icon: AppIcons.experience,
           ),
