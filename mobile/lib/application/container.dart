@@ -48,8 +48,10 @@ Future<void> setUpDependencies() async {
     ..registerLazySingleton<WorkoutApi>(() => WorkoutApi(dio))
     ..registerLazySingleton<IWorkoutService>(
       () => WorkoutService(
+        clientService: ClientService(clientApi: injection()),
         workoutApi: injection(),
         coachService: CoachService(coachApi: injection()),
+       
       ),
     )
     ..registerLazySingleton<WorkoutUseCases>(

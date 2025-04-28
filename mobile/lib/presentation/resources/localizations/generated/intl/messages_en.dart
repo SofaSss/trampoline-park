@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clientWasSignUpWorkout": MessageLookupByLibrary.simpleMessage(
       "Вы записаны",
     ),
+    "clients": MessageLookupByLibrary.simpleMessage("Клиенты:"),
     "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
     "coach": MessageLookupByLibrary.simpleMessage("Тренер"),
     "coaches": MessageLookupByLibrary.simpleMessage("Наши тренеры"),
@@ -140,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "needHelp": MessageLookupByLibrary.simpleMessage("Нужна помощь?"),
     "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
     "no": MessageLookupByLibrary.simpleMessage("Нет"),
+    "noClients": MessageLookupByLibrary.simpleMessage("Пока что нет клиентов"),
     "noWorkoutsOnTheseFilters": MessageLookupByLibrary.simpleMessage(
       "На данный момент по выбранным фильтрам не найдено тренировок",
     ),
@@ -226,6 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "videographer": MessageLookupByLibrary.simpleMessage("Видеограф"),
     "workoutType": MessageLookupByLibrary.simpleMessage("Тип тренировки"),
+    "workouts": MessageLookupByLibrary.simpleMessage("Тренировки"),
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",
     ),

@@ -25,6 +25,12 @@ class _CoachMainScreenState extends State<CoachMainScreen> {
           providers: [
             BlocProvider(
               create:
+                  (_) => (CoachWorkoutsBloc(workoutUseCases: injection())
+                  ),
+              child: CoachWorkoutsScreen(),
+            ),
+            BlocProvider(
+              create:
                   (_) => CoachProfileBloc(
                     coachUseCases: injection(),
                     authUserUseCases: injection(),

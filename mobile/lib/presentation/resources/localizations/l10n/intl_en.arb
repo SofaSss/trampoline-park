@@ -113,5 +113,8 @@
   "noWorkoutsOnTheseFilters": "На данный момент по выбранным фильтрам не найдено тренировок",
   "clientWasSignUpWorkout": "Вы записаны",
   "schedule": "Расписание",
-  "quote": "Цитата"
+  "quote": "Цитата",
+  "noClients": "Пока что нет клиентов",
+  "clients": "Клиенты:",
+  "workouts": "Тренировки"
 }

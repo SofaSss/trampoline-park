@@ -959,6 +959,26 @@ class S {
   String get quote {
     return Intl.message('Цитата', name: 'quote', desc: '', args: []);
   }
+
+  /// `Пока что нет клиентов`
+  String get noClients {
+    return Intl.message(
+      'Пока что нет клиентов',
+      name: 'noClients',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Клиенты:`
+  String get clients {
+    return Intl.message('Клиенты:', name: 'clients', desc: '', args: []);
+  }
+
+  /// `Тренировки`
+  String get workouts {
+    return Intl.message('Тренировки', name: 'workouts', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

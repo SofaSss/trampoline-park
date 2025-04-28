@@ -1,4 +1,4 @@
-part of '../sign_up_workout_part.dart';
+part of '../widgets_part.dart';
 
 class NoWorkoutsWidget extends StatelessWidget {
   const NoWorkoutsWidget({super.key});

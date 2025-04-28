@@ -7,7 +7,7 @@ abstract class WorkoutModel with _$WorkoutModel {
     required DateTime dateTime,
     required WorkoutTypeModel workoutType,
     required CoachModel coach,
-    required List<int> clients,
+    required List<ClientModel> clients,
   }) = _WorkoutModel;
 }
 

@@ -13,7 +13,6 @@ import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart'
 import 'package:mobile_trampoline_park/presentation/widgets/widgets_part.dart';
 
 part 'widgets/filter_drawer_widget.dart';
-part 'widgets/no_workouts_widget.dart';
 part 'sign_up_workout_part.freezed.dart';
 part 'sign_up_workout_screen.dart';
 part 'bloc/sign_up_workout_bloc.dart';

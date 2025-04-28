@@ -1,11 +1,22 @@
 part of 'coach_workouts_part.dart';
 
 @RoutePage()
-class CoachWorkoutsScreen extends StatefulWidget {
+class CoachWorkoutsScreen extends StatefulWidget implements AutoRouteWrapper {
   const CoachWorkoutsScreen({super.key});
 
   @override
   State<CoachWorkoutsScreen> createState() => _CoachWorkoutsScreenState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create:
+          (_) =>
+              (CoachWorkoutsBloc(workoutUseCases: injection())
+                ..add(CoachWorkoutsEvent.loadData(date: _selectedDate))),
+      child: this,
+    );
+  }
 }
 
 DateTime _selectedDate = DateTime.now();
@@ -22,41 +33,66 @@ class _CoachWorkoutsScreenState extends State<CoachWorkoutsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBarWithCalendar(
-        context: context,
-        title: 'Тренировки',
-        back: () => (context.router.push(CoachHomeRoute())),
-        days: days,
-        onTapDate: (day) {
-          setState(() {
-            _selectedDate = day;
-          });
-        },
-        selectedDate: _selectedDate,
-        isDrawer: true
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            child: BaseWorkoutCard(
-              time: DateTime.now(),
-              duration: '1',
-              freeSpace: '8',
-              workoutType: 'Тип трени',
-              coachPicture:
-                  'https://avatars.mds.yandex.net/i?id=dee1618aed588626b4bd61a2df1ad27bf76c0752e152419c-12635967-images-thumbs&n=13',
-              coachFirstName: 'Ivan',
-              coachLastName: "Иванов",
-              price: "1000",
-              onSignUpWorkout: () => (),
-              isClientSignUpWorkout: false,
-              isCoach: true,
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<CoachWorkoutsBloc, CoachWorkoutsState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: appBarWithCalendar(
+            context: context,
+            title: context.localization.workouts,
+            back: () => (context.router.push(CoachHomeRoute())),
+            days: days,
+            onTapDate: (day) {
+              setState(() {
+                _selectedDate = day;
+              });
+              context.read<CoachWorkoutsBloc>().add(
+                CoachWorkoutsEvent.loadData(date: _selectedDate),
+              );
+            },
+            selectedDate: _selectedDate,
+            isCoach: true,
+          ),
+          body: switch (state.status) {
+            WorkoutStatus.loaded =>
+              state.workoutList.isNotEmpty
+                  ? ListView.builder(
+                    itemCount: state.workoutList.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5,
+                          horizontal: 20,
+                        ),
+                        child: BaseWorkoutCard(
+                          time: state.workoutList[index].dateTime,
+                          duration:
+                              state.workoutList[index].workoutType.duration
+                                  .toString(),
+                          freeSpace: AppConstants.empty,
+                          workoutType:
+                              state.workoutList[index].workoutType.name,
+                          coachPicture: AppConstants.empty,
+                          coachFirstName:
+                              state.workoutList[index].coach.firstName,
+                          coachLastName:
+                              state.workoutList[index].coach.lastName,
+                          price: AppConstants.empty,
+                          onSignUpWorkout: null,
+                          isClientSignUpWorkout: false,
+                          isCoach: true,
+                          clientsList: state.workoutList[index].clients,
+                        ),
+                      );
+                    },
+                  )
+                  : NoWorkoutsWidget(),
+
+            WorkoutStatus.loading => BaseProgressIndicator(),
+            WorkoutStatus.failure => FailureWidget(),
+            _ => FailureWidget(),
+          },
+        );
+      },
     );
   }
 }

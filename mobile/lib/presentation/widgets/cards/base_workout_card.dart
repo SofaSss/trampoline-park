@@ -14,6 +14,7 @@ class BaseWorkoutCard extends StatefulWidget {
     required this.onSignUpWorkout,
     required this.isClientSignUpWorkout,
     this.isCoach = false,
+    this.clientsList,
   });
   final DateTime time;
   final String duration;
@@ -26,6 +27,7 @@ class BaseWorkoutCard extends StatefulWidget {
   final void Function()? onSignUpWorkout;
   final bool isClientSignUpWorkout;
   final bool isCoach;
+  final List<ClientModel>? clientsList;
 
   @override
   State<BaseWorkoutCard> createState() => _BaseWorkoutCardState();
@@ -35,7 +37,10 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width - 20,
+      width:
+          widget.isCoach
+              ? (MediaQuery.of(context).size.width - 20) * 0.45
+              : MediaQuery.of(context).size.width - 20,
       height:
           widget.isCoach
               ? AppConstants.bigCardHeight + 25
@@ -91,11 +96,17 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
           Positioned(
             top: 48,
             left: 12,
-            child: Text(
-              widget.workoutType,
-              style: Theme.of(
-                context,
-              ).textTheme.displayMedium?.copyWith(color: AppColors.white),
+            child: SizedBox(
+              width:
+                  widget.isCoach
+                      ? (MediaQuery.of(context).size.width - 20) * 0.45
+                      : MediaQuery.of(context).size.width - 20,
+              child: Text(
+                widget.workoutType,
+                style: Theme.of(
+                  context,
+                ).textTheme.displayMedium?.copyWith(color: AppColors.white),
+              ),
             ),
           ),
           if (widget.isCoach == false) ...[
@@ -135,41 +146,70 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
               child: SizedBox(
                 width: (MediaQuery.of(context).size.width - 20) * 0.55,
                 height: AppConstants.bigCardHeight + 10,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0, bottom: 3),
-                        child: Text('Клиенты:'),
-                      ),
-                      Container(
-                        width: (MediaQuery.of(context).size.width - 20) * 0.40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: AppColors.gray.withValues(alpha: 0.6),
-                        ),
-                        child: Row(
+                child:
+                    widget.clientsList!.isNotEmpty
+                        ? SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 5.0,
+                                  bottom: 3,
+                                ),
+                                child: Text(
+                                  context.localization.clients),
+                              ),
+                              ...widget.clientsList!.map((client) {
+                                return Container(
+                                  margin: EdgeInsets.only(top: 2),
+                                  width:
+                                      (MediaQuery.of(context).size.width - 20) *
+                                      0.40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: AppColors.lightGray.withValues(
+                                      alpha: 0.6,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    spacing: 10,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 10,
+                                        ),
+                                        child: BaseImageNetworkWidget(
+                                          url:
+                                              client.profilePicture ??
+                                              AppConstants.empty,
+                                          width: 35,
+                                          height: 35,
+                                        ),
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(client.firstName),
+                                          Text(client.lastName),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }),
+                            ],
+                          ),
+                        )
+                        : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           spacing: 10,
                           children: [
-                            BaseImageNetworkWidget(
-                              url: widget.coachPicture,
-                              width: 40,
-                              height: 40,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(widget.coachFirstName),
-                                Text(widget.coachLastName),
-                              ],
-                            ),
+                            SvgPicture.asset(AppIcons.logo),
+                            Text(context.localization.noClients),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
               ),
             ),
           ],

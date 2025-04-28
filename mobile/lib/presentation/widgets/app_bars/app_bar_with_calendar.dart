@@ -9,42 +9,49 @@ AppBar appBarWithCalendar({
   void Function()? onPressedDrawerIcon,
   required DateTime selectedDate,
   bool? isDrawer,
+  bool isCoach = false,
 }) {
   return AppBar(
     actions:
-        isDrawer != null
-            ? [
-              IconButton(
-                onPressed: onPressedDrawerIcon,
-                icon: Icon(Icons.filter_alt, color: AppColors.yellow, size: 40),
-              ),
-            ]
-            : [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () => (context.router.push(SignUpWorkoutRoute())),
-                  child: Container(
-                    width: 38,
-                    height: 38,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(180),
-                      color: AppColors.white,
+        isCoach == false
+            ? isDrawer != null
+                ? [
+                  IconButton(
+                    onPressed: onPressedDrawerIcon,
+                    icon: Icon(
+                      Icons.filter_alt,
+                      color: AppColors.yellow,
+                      size: 40,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: SvgPicture.asset(
-                        AppIcons.plus,
-                        colorFilter: ColorFilter.mode(
-                          AppColors.yellow,
-                          BlendMode.srcIn,
+                  ),
+                ]
+                : [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () => (context.router.push(SignUpWorkoutRoute())),
+                      child: Container(
+                        width: 38,
+                        height: 38,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(180),
+                          color: AppColors.white,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: SvgPicture.asset(
+                            AppIcons.plus,
+                            colorFilter: ColorFilter.mode(
+                              AppColors.yellow,
+                              BlendMode.srcIn,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
-            ],
+                ]
+            : null,
     leading: Padding(
       padding: const EdgeInsets.only(left: 10.0),
       child: GestureDetector(
