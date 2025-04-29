@@ -41,7 +41,7 @@ class _CoachHomeScreenState extends State<CoachHomeScreen> {
                     SectionHeader(title: context.localization.todayWorkouts),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                      height: AppConstants.mediumCardHeight + 10,
+                      height: AppConstants.mediumCardHeight * 1.5,
                       child: Scrollbar(
                         child: ListView.builder(
                           itemCount: state.todayWorkoutsList.length,
@@ -114,16 +114,16 @@ class _CoachHomeScreenState extends State<CoachHomeScreen> {
                     ),
 
                     SectionHeader(title: context.localization.students),
+                    SizedBox(height: 10),
                     SizedBox(
                       height: AppConstants.mediumCardHeight,
-                      child: ListView.separated(
-                        padding: EdgeInsets.only(left: 20, right: 20),
+                      child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: state.coachClients.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10),
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
                               child: BaseMediumCard(
                                 imageUrl:
                                     state.coachClients[index].profilePicture,
@@ -134,22 +134,17 @@ class _CoachHomeScreenState extends State<CoachHomeScreen> {
                                     state.coachClients[index].isHealthy ?? true,
                               ),
                             ),
+
                             onTap: () => (),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return SizedBox(
-                            width: 15,
-                            height: AppConstants.mediumCardHeight,
                           );
                         },
                       ),
                     ),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
             ),
-
             Status.loading => BaseProgressIndicator(),
             Status.failure => FailureWidget(),
             _ => FailureWidget(),

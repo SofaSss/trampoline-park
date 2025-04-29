@@ -77,7 +77,7 @@ class _CoachWorkoutCardState extends State<CoachWorkoutCard> {
                     ),
                     if (widget.clientsList.isNotEmpty)
                       ...widget.clientsList.map((client) {
-                        return Text('${client.firstName} ${client.lastName}');
+                        return Text('- ${client.firstName} ${client.lastName}');
                       }),
                     if (widget.clientsList.isEmpty)
                       Text(context.localization.noClients),
