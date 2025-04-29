@@ -1,132 +1,161 @@
 part of 'coach_home_part.dart';
 
 @RoutePage()
-class CoachHomeScreen extends StatefulWidget {
+class CoachHomeScreen extends StatefulWidget implements AutoRouteWrapper {
   const CoachHomeScreen({super.key});
 
   @override
   State<CoachHomeScreen> createState() => _CoachHomeScreenState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create:
+          (_) => (CoachHomeBloc(
+            workoutUseCases: injection(),
+            coachUseCases: injection(),
+            eventUseCases: injection(),
+          ))..add(CoachHomeEvent.loadData()),
+      child: this,
+    );
+  }
 }
 
 class _CoachHomeScreenState extends State<CoachHomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HomeHeader(
-                profilePicture:
-                    'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13',
-                isCoach: true,
-                coachName: 'Иван',
-              ),
-              SectionHeader(title: 'Тренировки на сегодня'),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                height: AppConstants.mediumCardHeight + 10,
-                child: Scrollbar(
-                  child: ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 5,
-                          horizontal: 20,
-                        ),
-                        child: BaseWorkoutCard(
-                          time: DateTime.now(),
-                          duration: '3',
-                          freeSpace: AppConstants.empty,
-                          workoutType: 'тип',
-                          coachPicture: AppConstants.empty,
-                          coachFirstName: 'иван',
-                          coachLastName: 'иванов',
-                          price: AppConstants.empty,
-                          onSignUpWorkout: null,
-                          isClientSignUpWorkout: false,
-                          isCoach: true,
-                          clientsList: [],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              SectionHeader(title: 'Ваш прогресс в цифрах:'),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-
+    return BlocBuilder<CoachHomeBloc, CoachHomeState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: switch (state.status) {
+            Status.loaded => SafeArea(
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ProgressInNumbersWidget(
-                      icon: '✅',
-                      title: 'Отработано часов:',
-                      number: '20',
+                    HomeHeader(
+                      profilePicture: state.coachProfilePicture,
+                      isCoach: true,
+                      coachName: state.coachName,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: ProgressInNumbersWidget(
-                        icon: '💪',
-                        title: 'Проведено тренеровок:',
-                        number: '15',
+                    SectionHeader(title: context.localization.todayWorkouts),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                      height: AppConstants.mediumCardHeight + 10,
+                      child: Scrollbar(
+                        child: ListView.builder(
+                          itemCount: state.todayWorkoutsList.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 5,
+                                horizontal: 20,
+                              ),
+                              child: CoachWorkoutCard(
+                                time: state.todayWorkoutsList[index].dateTime,
+                                duration:
+                                    state
+                                        .todayWorkoutsList[index]
+                                        .workoutType
+                                        .duration
+                                        .toString(),
+                                workoutType:
+                                    state
+                                        .todayWorkoutsList[index]
+                                        .workoutType
+                                        .name,
+                                clientsList:
+                                    state.todayWorkoutsList[index].clients,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 80.0),
-                      child: ProgressInNumbersWidget(
-                        icon: '🔥',
-                        title: 'Проведено мероприятий:',
-                        number: '30',
+                    SectionHeader(title: context.localization.progressTitle),
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 20,
+                      ),
+
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ProgressInNumbersWidget(
+                            icon: '✅',
+                            title: context.localization.progressHours,
+                            number: state.coachMonthHours,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 40.0),
+                            child: ProgressInNumbersWidget(
+                              icon: '💪',
+                              title: context.localization.progressWorkouts,
+                              number: state.coachMonthWorkouts,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 80.0),
+                            child: ProgressInNumbersWidget(
+                              icon: '🔥',
+                              title: context.localization.progressEvents,
+                              number: state.coachMonthEvents,
+                            ),
+                          ),
+                          Text(
+                            context.localization.progressSentence,
+                            style: Theme.of(context).textTheme.headlineMedium
+                                ?.copyWith(color: AppColors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      'Это на ХХ% больше, чем в прошлом месяце. Чем больше тренировок – тем выше ваш результат!',
-                      style: Theme.of(context).textTheme.displayMedium,
-                      textAlign: TextAlign.center,
+
+                    SectionHeader(title: context.localization.students),
+                    SizedBox(
+                      height: AppConstants.mediumCardHeight,
+                      child: ListView.separated(
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.coachClients.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: BaseMediumCard(
+                                imageUrl:
+                                    state.coachClients[index].profilePicture,
+                                name: state.coachClients[index].firstName,
+                                lastName: state.coachClients[index].lastName,
+                                isCoach: true,
+                                isClientHealthy:
+                                    state.coachClients[index].isHealthy ?? true,
+                              ),
+                            ),
+                            onTap: () => (),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return SizedBox(
+                            width: 15,
+                            height: AppConstants.mediumCardHeight,
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
               ),
+            ),
 
-              SectionHeader(title: 'Ученики:'),
-              SizedBox(
-                height: AppConstants.mediumCardHeight,
-                child: ListView.separated(
-                  padding: EdgeInsets.only(left: 20, right: 20),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: BaseMediumCard(
-                          imageUrl:
-                              'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13',
-                          name: 'иван',
-                          lastName: 'иванов',
-                          isCoach: true,
-                          isClientHealthy: false,
-                        ),
-                      ),
-                      onTap: () => (),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(
-                      width: 15,
-                      height: AppConstants.mediumCardHeight,
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+            Status.loading => BaseProgressIndicator(),
+            Status.failure => FailureWidget(),
+            _ => FailureWidget(),
+          },
+        );
+      },
     );
   }
 }

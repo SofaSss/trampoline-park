@@ -13,6 +13,10 @@ class EventUseCases {
     return await eventService.getListCoachCostume(limit: limit, offset: offset);
   }
 
+  Future<List<EventModel>> getListEvent() async {
+    return await eventService.getEventList();
+  }
+
   Future<List<OptionalServiceModel>> getShowPrograms({
     int? limit,
     int? offset,

@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "coachesDescription": MessageLookupByLibrary.simpleMessage(
       "Опытные тренеры для ярких и безопасных прыжков!🤸‍♂️",
     ),
+    "completed": MessageLookupByLibrary.simpleMessage("Пройдено"),
     "confirmation": MessageLookupByLibrary.simpleMessage("Подтверждение"),
     "connect": MessageLookupByLibrary.simpleMessage("Связаться с нами"),
     "date": MessageLookupByLibrary.simpleMessage("Дата: "),
@@ -161,7 +162,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "phone": MessageLookupByLibrary.simpleMessage("Телефон"),
     "photo": MessageLookupByLibrary.simpleMessage("Фотограф: "),
     "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+    "progressEvents": MessageLookupByLibrary.simpleMessage(
+      "Проведено мероприятий:",
+    ),
+    "progressHours": MessageLookupByLibrary.simpleMessage("Отработано часов:"),
+    "progressSentence": MessageLookupByLibrary.simpleMessage(
+      "Ваши усилия создают чемпионов. Не останавливайтесь!",
+    ),
     "progressText": MessageLookupByLibrary.simpleMessage("Минутку..."),
+    "progressTitle": MessageLookupByLibrary.simpleMessage(
+      "Ваш прогресс в цифрах:",
+    ),
+    "progressWorkouts": MessageLookupByLibrary.simpleMessage(
+      "Проведено тренеровок:",
+    ),
     "quote": MessageLookupByLibrary.simpleMessage("Цитата"),
     "rePassword": MessageLookupByLibrary.simpleMessage("Повторите пароль"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
@@ -193,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "spaces": MessageLookupByLibrary.simpleMessage("Мест:"),
     "specialization": MessageLookupByLibrary.simpleMessage("Специализация"),
     "start": MessageLookupByLibrary.simpleMessage("Начало"),
+    "students": MessageLookupByLibrary.simpleMessage("Ученики:"),
     "successBooking": MessageLookupByLibrary.simpleMessage(
       "Успешное бронирование",
     ),
@@ -217,6 +232,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "time": MessageLookupByLibrary.simpleMessage("Дата: "),
     "titlePDn": MessageLookupByLibrary.simpleMessage(
       "Согласие на обработку персональных данных",
+    ),
+    "todayWorkouts": MessageLookupByLibrary.simpleMessage(
+      "Тренировки на сегодня",
     ),
     "update": MessageLookupByLibrary.simpleMessage("Обновить данные"),
     "updateProfileIsSuccess": MessageLookupByLibrary.simpleMessage(

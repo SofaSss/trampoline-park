@@ -12,7 +12,7 @@ class WorkoutService implements IWorkoutService {
   });
 
   @override
-  Future<List<WorkoutTypeModel>> getListWorkoutList({
+  Future<List<WorkoutTypeModel>> getListWorkoutModel({
     int? limit,
     int? offset,
   }) async {

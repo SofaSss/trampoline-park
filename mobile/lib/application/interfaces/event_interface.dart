@@ -12,6 +12,8 @@ abstract class IEventService {
     int? offset,
   });
 
+  Future<List<EventModel>> getEventList();
+
   Future<void> createEvent({required CreateEventDto createEventDto});
 
   Future<PhotoVideoPriceModel> getPhotoVideoPrice();

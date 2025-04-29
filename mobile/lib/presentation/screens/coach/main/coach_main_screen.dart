@@ -24,9 +24,7 @@ class _CoachMainScreenState extends State<CoachMainScreen> {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-              create:
-                  (_) => (CoachWorkoutsBloc(workoutUseCases: injection())
-                  ),
+              create: (_) => (CoachWorkoutsBloc(workoutUseCases: injection())),
               child: CoachWorkoutsScreen(),
             ),
             BlocProvider(
@@ -37,6 +35,15 @@ class _CoachMainScreenState extends State<CoachMainScreen> {
                     tokenUseCases: injection(),
                   )..add(CoachProfileEvent.loadData()),
               child: CoachProfileScreen(),
+            ),
+            BlocProvider(
+              create:
+                  (_) => (CoachHomeBloc(
+                    workoutUseCases: injection(),
+                    coachUseCases: injection(),
+                    eventUseCases: injection(),
+                  ))..add(CoachHomeEvent.loadData()),
+              child: CoachHomeScreen(),
             ),
           ],
           child: Scaffold(

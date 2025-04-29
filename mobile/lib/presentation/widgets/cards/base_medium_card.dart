@@ -12,7 +12,7 @@ class BaseMediumCard extends StatefulWidget {
   });
 
   final String? description;
-  final String imageUrl;
+  final String? imageUrl;
   final String name;
   final String lastName;
   final bool isCoach;
@@ -45,20 +45,38 @@ class _BaseMediumCardState extends State<BaseMediumCard> {
               height: AppConstants.mediumCardHeight - 20,
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                child: Image.network(
-                  widget.imageUrl,
-                  fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    } else {
-                      return BaseAnimatedBuilder(
-                        height: AppConstants.mediumCardHeight - 20,
-                        width: AppConstants.mediumCardWidth,
-                      );
-                    }
-                  },
-                ),
+                child:
+                    widget.imageUrl != null
+                        ? Image.network(
+                          widget.imageUrl!,
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) {
+                              return child;
+                            } else {
+                              return BaseAnimatedBuilder(
+                                height: AppConstants.mediumCardHeight - 20,
+                                width: AppConstants.mediumCardWidth,
+                              );
+                            }
+                          },
+                        )
+                        : Stack(
+                          children: [
+                            BaseAnimatedBuilder(
+                              height: AppConstants.mediumCardHeight - 20,
+                              width: AppConstants.mediumCardWidth,
+                            ),
+                            SizedBox(
+                              height:
+                                  (AppConstants.mediumCardHeight - 20) * 0.7,
+                              width: AppConstants.mediumCardWidth,
+                              child: Center(
+                                child: SvgPicture.asset(AppIcons.logo),
+                              ),
+                            ),
+                          ],
+                        ),
               ),
             ),
           ),

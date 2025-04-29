@@ -9,7 +9,7 @@ class WorkoutUseCases {
     int? limit,
     int? offset,
   }) async {
-    return await workoutService.getListWorkoutList(
+    return await workoutService.getListWorkoutModel(
       limit: limit,
       offset: offset,
     );

@@ -29,6 +29,9 @@ abstract class EventApi {
     @Body() required Map<String, dynamic> createEventInfraDto,
   });
 
+  @GET('event/list/')
+  Future<ResponseWrapperDto<EventInfraDto>> getEventList();
+
   @GET('photo_video_price/1/')
   Future<PhotoVideoPriceInfraDto> getPhotoVideoPrice();
 }

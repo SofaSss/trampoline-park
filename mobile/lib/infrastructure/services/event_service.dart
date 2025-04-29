@@ -80,4 +80,27 @@ class EventService implements IEventService {
     );
     return photoVideoPriceModel;
   }
+
+  @override
+  Future<List<EventModel>> getEventList() async {
+    final response = await eventApi.getEventList();
+    final List<EventModel> eventList =
+        response.results.map((eventInfraDto) {
+          return EventModel(
+            id: eventInfraDto.id,
+            name: eventInfraDto.name,
+            date: eventInfraDto.date,
+            coach: eventInfraDto.coach,
+            eventStartTime: eventInfraDto.eventStartTime,
+            eventEndTime: eventInfraDto.eventEndTime,
+            isPhotographer: eventInfraDto.isPhotographer,
+            isVideographer: eventInfraDto.isVideographer,
+            optionalService: eventInfraDto.optionalService,
+            coachCostume: eventInfraDto.coachCostume,
+            client: eventInfraDto.client,
+          );
+        }).toList();
+
+    return eventList;
+  }
 }

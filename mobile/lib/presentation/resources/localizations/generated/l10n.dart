@@ -979,6 +979,76 @@ class S {
   String get workouts {
     return Intl.message('Тренировки', name: 'workouts', desc: '', args: []);
   }
+
+  /// `Отработано часов:`
+  String get progressHours {
+    return Intl.message(
+      'Отработано часов:',
+      name: 'progressHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Проведено тренеровок:`
+  String get progressWorkouts {
+    return Intl.message(
+      'Проведено тренеровок:',
+      name: 'progressWorkouts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Проведено мероприятий:`
+  String get progressEvents {
+    return Intl.message(
+      'Проведено мероприятий:',
+      name: 'progressEvents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ваши усилия создают чемпионов. Не останавливайтесь!`
+  String get progressSentence {
+    return Intl.message(
+      'Ваши усилия создают чемпионов. Не останавливайтесь!',
+      name: 'progressSentence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ваш прогресс в цифрах:`
+  String get progressTitle {
+    return Intl.message(
+      'Ваш прогресс в цифрах:',
+      name: 'progressTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Тренировки на сегодня`
+  String get todayWorkouts {
+    return Intl.message(
+      'Тренировки на сегодня',
+      name: 'todayWorkouts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ученики:`
+  String get students {
+    return Intl.message('Ученики:', name: 'students', desc: '', args: []);
+  }
+
+  /// `Пройдено`
+  String get completed {
+    return Intl.message('Пройдено', name: 'completed', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

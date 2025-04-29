@@ -28,6 +28,8 @@ class ClientService implements IClientService {
       id: dto.id,
       firstName: dto.firstName,
       lastName: dto.lastName,
+      profilePicture: dto.profilePicture,
+      isHealthy: dto.isHealthy,
       email: dto.user.username,
       birthday: DateTime.parse(dto.dateOfBirth),
       phone: dto.phone,

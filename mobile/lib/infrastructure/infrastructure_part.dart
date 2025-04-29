@@ -55,6 +55,7 @@ part 'api/dto/event/optional_service/type_optional_service_dto.dart';
 part 'api/dto/event/optional_service/optional_service_dto.dart';
 part 'api/dto/event/coach_costume/coach_costume_dto.dart';
 part 'api/dto/event/event/create_event_dto.dart';
+part 'api/dto/event/event/event_dto.dart';
 part 'api/dto/event/photo_video/photo_video_price_dto.dart';
 
 part 'services/auth_user_service.dart';

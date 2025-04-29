@@ -116,5 +116,13 @@
   "quote": "Цитата",
   "noClients": "Пока что нет клиентов",
   "clients": "Клиенты:",
-  "workouts": "Тренировки"
+  "workouts": "Тренировки",
+  "progressHours": "Отработано часов:",
+  "progressWorkouts": "Проведено тренеровок:",
+  "progressEvents": "Проведено мероприятий:",
+  "progressSentence": "Ваши усилия создают чемпионов. Не останавливайтесь!",
+  "progressTitle": "Ваш прогресс в цифрах:",
+  "todayWorkouts": "Тренировки на сегодня",
+  "students": "Ученики:",
+  "completed": "Пройдено"
 }
