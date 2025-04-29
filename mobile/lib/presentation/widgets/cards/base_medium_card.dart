@@ -1,98 +1,4 @@
- part of '../widgets_part.dart';
-
-// class BaseMediumCard extends StatefulWidget {
-//   const BaseMediumCard({
-//     super.key,
-//     required this.imageUrl,
-//     required this.name,
-//     required this.lastName,
-//     this.description,
-//   });
-//   final String? description;
-//   final String imageUrl;
-//   final String name;
-//   final String lastName;
-
-//   @override
-//   State<BaseMediumCard> createState() => _BaseMediumCardState();
-// }
-
-// class _BaseMediumCardState extends State<BaseMediumCard> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       width: AppConstants.mediumCardWidth,
-//       height: AppConstants.mediumCardHeight,
-//       child: Stack(
-//         clipBehavior: Clip.none,
-//         children: [
-//           Positioned(
-//             top: 0,
-//             child: SizedBox(
-//               width: AppConstants.mediumCardWidth,
-//               height: AppConstants.mediumCardHeight - 20,
-//               child: ClipRRect(
-//                 borderRadius: BorderRadius.all(Radius.circular(20)),
-//                 child: Image.network(
-//                   widget.imageUrl,
-//                   fit: BoxFit.cover,
-//                   loadingBuilder: (context, child, loadingProgress) {
-//                     if (loadingProgress == null) {
-//                       return child;
-//                     } else {
-//                       return BaseAnimatedBuilder(
-//                         height: AppConstants.mediumCardHeight - 20,
-//                         width: AppConstants.mediumCardWidth,
-//                       );
-//                     }
-//                   },
-//                 ),
-//               ),
-//             ),
-//           ),
-//           Positioned(
-//             bottom: 0,
-//             child: Container(
-//               height: AppConstants.mediumCardHeight / 3,
-//               width: AppConstants.mediumCardWidth,
-//               decoration: ShapeDecoration(
-//                 color: getRandomColor(),
-//                 shape: CurvedPentagonBorder(
-//                   borderRadius: BorderRadius.only(
-//                     bottomLeft: Radius.circular(20),
-//                     bottomRight: Radius.circular(20),
-//                   ),
-//                   topCurveHeight: 25,
-//                 ),
-//               ),
-//               child:
-//                   widget.description != null
-//                       ? Center(
-//                         child: Text(
-//                           widget.description!,
-//                           textAlign: TextAlign.center,
-//                           style: Theme.of(context).textTheme.headlineMedium,
-//                         ),
-//                       )
-//                       : Column(
-//                         children: [
-//                           Text(
-//                             widget.name,
-//                             style: Theme.of(context).textTheme.headlineMedium,
-//                           ),
-//                           Text(
-//                             widget.lastName,
-//                             style: Theme.of(context).textTheme.headlineMedium,
-//                           ),
-//                         ],
-//                       ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+part of '../widgets_part.dart';
 
 class BaseMediumCard extends StatefulWidget {
   const BaseMediumCard({
@@ -101,25 +7,29 @@ class BaseMediumCard extends StatefulWidget {
     required this.name,
     required this.lastName,
     this.description,
+    this.isCoach = false,
+    this.isClientHealthy = true,
   });
-  
+
   final String? description;
   final String imageUrl;
   final String name;
   final String lastName;
+  final bool isCoach;
+  final bool isClientHealthy;
 
   @override
   State<BaseMediumCard> createState() => _BaseMediumCardState();
 }
 
 class _BaseMediumCardState extends State<BaseMediumCard> {
-  Color? backgroundColor; // убрал late
-
+  Color? backgroundColor;
   @override
   void initState() {
     super.initState();
-    backgroundColor = getRandomColor(); // присваиваем сразу
+    backgroundColor = getRandomColor();
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -152,13 +62,28 @@ class _BaseMediumCardState extends State<BaseMediumCard> {
               ),
             ),
           ),
+          widget.isCoach
+              ? Positioned(
+                right: 5,
+                top: 5,
+                child: SvgPicture.asset(
+                  AppIcons.isHealthy,
+                  width: 30,
+                  height: 30,
+                  colorFilter: ColorFilter.mode(
+                    widget.isClientHealthy ? AppColors.green : AppColors.red,
+                    BlendMode.srcIn,
+                  ),
+                ),
+              )
+              : SizedBox(),
           Positioned(
             bottom: 0,
             child: Container(
               height: AppConstants.mediumCardHeight / 3,
               width: AppConstants.mediumCardWidth,
               decoration: ShapeDecoration(
-                color: backgroundColor, // используем сохранённый цвет
+                color: backgroundColor,
                 shape: CurvedPentagonBorder(
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
@@ -167,26 +92,27 @@ class _BaseMediumCardState extends State<BaseMediumCard> {
                   topCurveHeight: 25,
                 ),
               ),
-              child: widget.description != null
-                  ? Center(
-                      child: Text(
-                        widget.description!,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headlineMedium,
+              child:
+                  widget.description != null
+                      ? Center(
+                        child: Text(
+                          widget.description!,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                      )
+                      : Column(
+                        children: [
+                          Text(
+                            widget.name,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          Text(
+                            widget.lastName,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                        ],
                       ),
-                    )
-                  : Column(
-                      children: [
-                        Text(
-                          widget.name,
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                        Text(
-                          widget.lastName,
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ],
-                    ),
             ),
           ),
         ],
@@ -194,4 +120,3 @@ class _BaseMediumCardState extends State<BaseMediumCard> {
     );
   }
 }
-

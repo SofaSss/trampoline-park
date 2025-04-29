@@ -40,38 +40,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 13.0),
-                        child: Row(
-                          spacing: 10,
-                          children: [
-                            BaseProfilePicture(imageUrl: state.profilePicture),
-                            Expanded(
-                              child: Column(
-                                spacing: 5,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    context.localization.hiHome,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displayLarge
-                                        ?.copyWith(color: AppColors.blue),
-                                  ),
-                                  Text(
-                                    context.localization.homeDescription,
-                                    style:
-                                        Theme.of(
-                                          context,
-                                        ).textTheme.headlineSmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
+                      HomeHeader(profilePicture: state.profilePicture),
                       HeaderSectionWidget(
                         title: context.localization.services,
                         description: context.localization.servicesDescription,

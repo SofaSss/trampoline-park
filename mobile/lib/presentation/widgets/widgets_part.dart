@@ -37,3 +37,4 @@ part 'app_bars/app_bar_with_calendar.dart';
 part 'cards/base_workout_card.dart';
 part 'progress_indicators/load_more_data_indicator.dart';
 part 'workouts/no_workouts_widget.dart';
+part 'profile_pictures/home_header.dart';
