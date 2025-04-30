@@ -15,9 +15,15 @@ class CoachWorkoutsBloc extends Bloc<CoachWorkoutsEvent, CoachWorkoutsState> {
       emit(state.copyWith(status: WorkoutStatus.loading));
       final workoutList = await workoutUseCases.getWorkoutList(
         date: event.date,
+        workoutTypeId: event.workoutTypeId,
       );
+      final workoutTypeList = await workoutUseCases.getWorkoutTypeList();
       emit(
-        state.copyWith(status: WorkoutStatus.loaded, workoutList: workoutList),
+        state.copyWith(
+          status: WorkoutStatus.loaded,
+          workoutList: workoutList,
+          workoutTypeList: workoutTypeList,
+        ),
       );
     } catch (_) {
       emit(state.copyWith(status: WorkoutStatus.failure));

@@ -7,11 +7,9 @@ import 'package:mobile_trampoline_park/domain/domain_part.dart';
 import 'package:mobile_trampoline_park/presentation/enums/status_enum.dart';
 import 'package:mobile_trampoline_park/presentation/extensions/extensions_part.dart';
 import 'package:mobile_trampoline_park/presentation/resources/constants/constants_part.dart';
-import 'package:mobile_trampoline_park/presentation/resources/theme_resources.dart/theme_resources_part.dart';
 import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart';
 import 'package:mobile_trampoline_park/presentation/widgets/widgets_part.dart';
 
-part 'widgets/filter_drawer_widget.dart';
 part 'sign_up_workout_part.freezed.dart';
 part 'sign_up_workout_screen.dart';
 part 'bloc/sign_up_workout_bloc.dart';

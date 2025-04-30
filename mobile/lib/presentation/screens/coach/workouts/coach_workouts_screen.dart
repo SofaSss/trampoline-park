@@ -30,27 +30,54 @@ List<DateTime> _daysInMonth(DateTime date) {
 
 class _CoachWorkoutsScreenState extends State<CoachWorkoutsScreen> {
   List<DateTime> days = _daysInMonth(DateTime.now()).toList();
+  int? selectedWorkoutTypeId;
+  @override
+  void initState() {
+    super.initState();
+    selectedWorkoutTypeId = null;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocBuilder<CoachWorkoutsBloc, CoachWorkoutsState>(
       builder: (context, state) {
         return Scaffold(
+          key: scaffoldKey,
           appBar: appBarWithCalendar(
             context: context,
-            title: context.localization.workouts,
-            back: () => (context.router.push(CoachHomeRoute())),
+            title: context.localization.schedule,
+            back: () => (context.router.push(ClientHomeRoute())),
+            onPressedDrawerIcon: () => scaffoldKey.currentState?.openDrawer(),
+            isDrawer: true,
             days: days,
             onTapDate: (day) {
               setState(() {
                 _selectedDate = day;
+                selectedWorkoutTypeId = null;
               });
+
               context.read<CoachWorkoutsBloc>().add(
                 CoachWorkoutsEvent.loadData(date: _selectedDate),
               );
             },
             selectedDate: _selectedDate,
-            isCoach: true,
+          ),
+          drawer: filterDrawer(
+            context: context,
+            selectedWorkoutTypeId: selectedWorkoutTypeId,
+            onWorkoutTypeSelected: (id) {
+              setState(() {
+                selectedWorkoutTypeId = id;
+              });
+              context.read<CoachWorkoutsBloc>().add(
+                CoachWorkoutsEvent.loadData(
+                  workoutTypeId: selectedWorkoutTypeId,
+                  date: _selectedDate,
+                ),
+              );
+            },
+            workoutTypeList: state.workoutTypeList,
           ),
           body: switch (state.status) {
             WorkoutStatus.loaded =>

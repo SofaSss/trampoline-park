@@ -42,19 +42,7 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
   bool isChecked = false;
   int? selectedCoachId;
   int? selectedWorkoutTypeId;
-  List<DateTime> days =
-      _daysInMonth(DateTime.now())
-          .where(
-            (day) =>
-                !day.isBefore(
-                  DateTime(
-                    DateTime.now().year,
-                    DateTime.now().month,
-                    DateTime.now().day,
-                  ),
-                ),
-          )
-          .toList();
+  List<DateTime> days = _daysInMonth(DateTime.now()).toList();
   final scrollController = ScrollController();
 
   @override
@@ -66,7 +54,7 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocConsumer<SignUpWorkoutBloc, SignUpWorkoutState>(
       listener: (context, state) {
         if (state.status == WorkoutStatus.success) {
@@ -81,12 +69,12 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          key: _scaffoldKey,
+          key: scaffoldKey,
           appBar: appBarWithCalendar(
             context: context,
             title: context.localization.schedule,
             back: () => (context.router.push(ClientHomeRoute())),
-            onPressedDrawerIcon: () => _scaffoldKey.currentState?.openDrawer(),
+            onPressedDrawerIcon: () => scaffoldKey.currentState?.openDrawer(),
             isDrawer: true,
             days: days,
             onTapDate: (day) {

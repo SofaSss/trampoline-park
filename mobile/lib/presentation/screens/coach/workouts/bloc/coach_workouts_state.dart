@@ -5,5 +5,6 @@ abstract class CoachWorkoutsState with _$CoachWorkoutsState {
   const factory CoachWorkoutsState({
     required WorkoutStatus status,
     @Default([]) List<WorkoutModel> workoutList,
+    @Default([]) List<WorkoutTypeModel> workoutTypeList,
   }) = _CoachWorkoutsState;
 }
