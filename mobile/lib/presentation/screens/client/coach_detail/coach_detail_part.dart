@@ -15,5 +15,4 @@ part 'bloc/coach_detail_event.dart';
 part 'bloc/coach_detail_state.dart';
 part 'coach_detail_screen.dart';
 part 'widgets/element_list_widget.dart';
-part 'widgets/coach_basic_information_widget.dart';
 part 'widgets/quote_widget.dart';

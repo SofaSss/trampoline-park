@@ -1049,6 +1049,21 @@ class S {
   String get completed {
     return Intl.message('Пройдено', name: 'completed', desc: '', args: []);
   }
+
+  /// `Здоров`
+  String get healthy {
+    return Intl.message('Здоров', name: 'healthy', desc: '', args: []);
+  }
+
+  /// `Есть проблемы со здоровьем`
+  String get notHealthy {
+    return Intl.message(
+      'Есть проблемы со здоровьем',
+      name: 'notHealthy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

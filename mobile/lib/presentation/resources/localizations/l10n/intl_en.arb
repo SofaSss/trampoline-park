@@ -124,5 +124,7 @@
   "progressTitle": "Ваш прогресс в цифрах:",
   "todayWorkouts": "Тренировки на сегодня",
   "students": "Ученики:",
-  "completed": "Пройдено"
+  "completed": "Пройдено",
+  "healthy": "Здоров",
+  "notHealthy": "Есть проблемы со здоровьем"
 }

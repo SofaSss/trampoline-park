@@ -53,7 +53,7 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
                             ),
                             Positioned(
                               bottom: 10,
-                              child: CoachBasicInformationWidget(
+                              child: UserBasicInformationWidget(
                                 experience: state.experience,
                                 firstName: state.firstName,
                                 lastName: state.lastName,

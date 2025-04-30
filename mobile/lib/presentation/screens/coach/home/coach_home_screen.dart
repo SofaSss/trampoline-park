@@ -135,7 +135,12 @@ class _CoachHomeScreenState extends State<CoachHomeScreen> {
                               ),
                             ),
 
-                            onTap: () => (),
+                            onTap:
+                                () => (context.router.push(
+                                  ClientDetailRoute(
+                                    clientId: state.coachClients[index].id,
+                                  ),
+                                )),
                           );
                         },
                       ),

@@ -95,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "happyBirthdayDescription": MessageLookupByLibrary.simpleMessage(
       "Устройте незабываемый праздник ребенку🎂",
     ),
+    "healthy": MessageLookupByLibrary.simpleMessage("Здоров"),
     "hi": MessageLookupByLibrary.simpleMessage("Привет,"),
     "hiHome": MessageLookupByLibrary.simpleMessage("Привет, Батутер!"),
     "homeDescription": MessageLookupByLibrary.simpleMessage(
@@ -145,6 +146,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noClients": MessageLookupByLibrary.simpleMessage("Пока что нет клиентов"),
     "noWorkoutsOnTheseFilters": MessageLookupByLibrary.simpleMessage(
       "На данный момент по выбранным фильтрам не найдено тренировок",
+    ),
+    "notHealthy": MessageLookupByLibrary.simpleMessage(
+      "Есть проблемы со здоровьем",
     ),
     "notNeed": MessageLookupByLibrary.simpleMessage("Не нужен"),
     "ok": MessageLookupByLibrary.simpleMessage("Ок"),

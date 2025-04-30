@@ -39,3 +39,4 @@ part 'progress_indicators/load_more_data_indicator.dart';
 part 'workouts/no_workouts_widget.dart';
 part 'profile_pictures/home_header.dart';
 part 'cards/coach_workout_card.dart';
+part 'user_detail_screen_widgets/user_basic_information_widget.dart';

@@ -30,6 +30,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: CoachProfileRoute.page),
       ],
     ),
+    AutoRoute(page: ClientDetailRoute.page),
     AutoRoute(page: ActivationRoute.page),
     AutoRoute(page: ResetPasswordRoute.page),
   ];
