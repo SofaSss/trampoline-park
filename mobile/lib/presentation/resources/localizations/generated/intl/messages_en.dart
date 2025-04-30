@@ -224,6 +224,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "successSignUpWorkout": MessageLookupByLibrary.simpleMessage(
       "Вы успешно записаны на тренировку!",
     ),
+    "summerYears": MessageLookupByLibrary.simpleMessage("лет"),
     "sureDeleteAccount": MessageLookupByLibrary.simpleMessage(
       "Вы действительно хотите удалить аккаунт?",
     ),
@@ -254,6 +255,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "wrongPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Номер телефона введен не верно",
     ),
+    "year": MessageLookupByLibrary.simpleMessage("год"),
+    "yearA": MessageLookupByLibrary.simpleMessage("года"),
     "years": MessageLookupByLibrary.simpleMessage("год(а)"),
     "yes": MessageLookupByLibrary.simpleMessage("Да"),
   };

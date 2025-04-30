@@ -126,5 +126,8 @@
   "students": "Ученики:",
   "completed": "Пройдено",
   "healthy": "Здоров",
-  "notHealthy": "Есть проблемы со здоровьем"
+  "notHealthy": "Есть проблемы со здоровьем",
+  "year": "год",
+  "yearA": "года",
+  "summerYears": "лет"
 }

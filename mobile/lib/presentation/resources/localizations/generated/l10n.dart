@@ -1064,6 +1064,21 @@ class S {
       args: [],
     );
   }
+
+  /// `год`
+  String get year {
+    return Intl.message('год', name: 'year', desc: '', args: []);
+  }
+
+  /// `года`
+  String get yearA {
+    return Intl.message('года', name: 'yearA', desc: '', args: []);
+  }
+
+  /// `лет`
+  String get summerYears {
+    return Intl.message('лет', name: 'summerYears', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

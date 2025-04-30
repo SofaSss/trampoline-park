@@ -11,7 +11,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i20;
 import 'package:flutter/material.dart' as _i21;
-import 'package:flutter/widgets.dart' as _i22;
 import 'package:mobile_trampoline_park/presentation/screens/auth/activation/activation_part.dart'
     as _i1;
 import 'package:mobile_trampoline_park/presentation/screens/auth/on_boarding/on_boarding_part.dart'
@@ -117,7 +116,7 @@ class BookingEventRoute extends _i20.PageRouteInfo<void> {
 /// [_i3.ClientDetailScreen]
 class ClientDetailRoute extends _i20.PageRouteInfo<ClientDetailRouteArgs> {
   ClientDetailRoute({
-    _i22.Key? key,
+    _i21.Key? key,
     required int clientId,
     List<_i20.PageRouteInfo>? children,
   }) : super(
@@ -132,7 +131,9 @@ class ClientDetailRoute extends _i20.PageRouteInfo<ClientDetailRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ClientDetailRouteArgs>();
-      return _i3.ClientDetailScreen(key: args.key, clientId: args.clientId);
+      return _i20.WrappedRoute(
+        child: _i3.ClientDetailScreen(key: args.key, clientId: args.clientId),
+      );
     },
   );
 }
@@ -140,7 +141,7 @@ class ClientDetailRoute extends _i20.PageRouteInfo<ClientDetailRouteArgs> {
 class ClientDetailRouteArgs {
   const ClientDetailRouteArgs({this.key, required this.clientId});
 
-  final _i22.Key? key;
+  final _i21.Key? key;
 
   final int clientId;
 

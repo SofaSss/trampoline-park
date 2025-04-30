@@ -42,13 +42,13 @@ class _BaseImageNetworkWidgetState extends State<BaseImageNetworkWidget> {
                 width: widget.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: AppColors.lightBlue,
+                  color: AppColors.gray,
                 ),
                 child: SvgPicture.asset(
                   AppIcons.logo,
                   width: 70,
                   height: 70,
-                  colorFilter: ColorFilter.mode(AppColors.blue, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(AppColors.lightGray, BlendMode.srcIn),
                 ),
               ),
         ),
