@@ -129,5 +129,6 @@
   "notHealthy": "Есть проблемы со здоровьем",
   "year": "год",
   "yearA": "года",
-  "summerYears": "лет"
+  "summerYears": "лет",
+  "noWorkoutsToday": "На сегодня тренировок нет"
 }

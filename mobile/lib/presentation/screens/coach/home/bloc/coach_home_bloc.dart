@@ -27,7 +27,9 @@ class CoachHomeBloc extends Bloc<CoachHomeEvent, CoachHomeState> {
               .map((workout) => workout.workoutType.duration)
               .fold(0, (sum, item) => sum + item)
               .toString();
-      final coachWorkoutsCount = coachWorkouts.length.toString();
+      final coachAllWorkouts =
+          coachWorkouts.where((workout) => workout.clients.isNotEmpty).toList();
+      final coachWorkoutsCount = coachAllWorkouts.length.toString();
       final eventCount = coachEventList.length.toString();
 
       final Set<ClientModel> uniqueClients = <ClientModel>{};

@@ -38,40 +38,63 @@ class _CoachHomeScreenState extends State<CoachHomeScreen> {
                       isCoach: true,
                       coachName: state.coachName,
                     ),
-                    SectionHeader(title: context.localization.todayWorkouts),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                      height: AppConstants.mediumCardHeight * 1.5,
-                      child: Scrollbar(
-                        child: ListView.builder(
-                          itemCount: state.todayWorkoutsList.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5,
-                                horizontal: 20,
-                              ),
-                              child: CoachWorkoutCard(
-                                time: state.todayWorkoutsList[index].dateTime,
-                                duration:
-                                    state
-                                        .todayWorkoutsList[index]
-                                        .workoutType
-                                        .duration
-                                        .toString(),
-                                workoutType:
-                                    state
-                                        .todayWorkoutsList[index]
-                                        .workoutType
-                                        .name,
-                                clientsList:
-                                    state.todayWorkoutsList[index].clients,
-                              ),
-                            );
-                          },
+                    if (state.todayWorkoutsList.isNotEmpty) ...[
+                      SectionHeader(title: context.localization.todayWorkouts),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.gray.withValues(alpha: 0.2),
+                              spreadRadius: 0.5,
+                              blurRadius: 8,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        height: AppConstants.mediumCardHeight * 1.5,
+                        child: Scrollbar(
+                          child: ListView.builder(
+                            itemCount: state.todayWorkoutsList.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 5,
+                                  horizontal: 20,
+                                ),
+                                child: CoachWorkoutCard(
+                                  time: state.todayWorkoutsList[index].dateTime,
+                                  duration:
+                                      state
+                                          .todayWorkoutsList[index]
+                                          .workoutType
+                                          .duration
+                                          .toString(),
+                                  workoutType:
+                                      state
+                                          .todayWorkoutsList[index]
+                                          .workoutType
+                                          .name,
+                                  clientsList:
+                                      state.todayWorkoutsList[index].clients,
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
-                    ),
+                    ],
+                    if (state.todayWorkoutsList.isEmpty) ...[
+                      SizedBox(height: 20),
+                      Center(
+                        child: SectionHeader(
+                          title: '😌 ${context.localization.noWorkoutsToday}',
+                        ),
+                      ),
+                    ],
                     SectionHeader(title: context.localization.progressTitle),
                     Container(
                       margin: EdgeInsets.symmetric(

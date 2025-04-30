@@ -147,6 +147,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noWorkoutsOnTheseFilters": MessageLookupByLibrary.simpleMessage(
       "На данный момент по выбранным фильтрам не найдено тренировок",
     ),
+    "noWorkoutsToday": MessageLookupByLibrary.simpleMessage(
+      "На сегодня тренировок нет",
+    ),
     "notHealthy": MessageLookupByLibrary.simpleMessage(
       "Есть проблемы со здоровьем",
     ),

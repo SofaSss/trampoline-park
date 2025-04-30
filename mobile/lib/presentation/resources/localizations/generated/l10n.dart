@@ -1079,6 +1079,16 @@ class S {
   String get summerYears {
     return Intl.message('лет', name: 'summerYears', desc: '', args: []);
   }
+
+  /// `На сегодня тренировок нет`
+  String get noWorkoutsToday {
+    return Intl.message(
+      'На сегодня тренировок нет',
+      name: 'noWorkoutsToday',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
