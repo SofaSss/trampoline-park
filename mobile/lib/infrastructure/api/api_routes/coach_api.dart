@@ -46,7 +46,5 @@ abstract class CoachApi {
     @Part(name: 'phone_number') String? phone,
     @Part(name: 'quote') String? quote,
     @Part(name: 'experience') int? experience,
-    @Part(name: 'achievements')  List<Map<String, int>>? achievements,
-    @Part(name: 'specialties')  List<Map<String, int>>? specialties,
   });
 }

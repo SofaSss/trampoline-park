@@ -8,10 +8,6 @@ class CoachProfileBloc extends Bloc<CoachProfileEvent, CoachProfileState> {
   }) : super(CoachProfileState(status: StatusProfile.loaded)) {
     on<_LoadData>(_loadData);
     on<_UpdateCoachData>(_updateCoachData);
-    on<_GetCoachAchievementList>(_getCoachAchievementList);
-    on<_GetCoachSpecialtyList>(_getCoachSpecialtyList);
-    on<_CreateCoachAchievement>(_createCoachAchievement);
-    on<_CreateCoachSpecialty>(_createCoachSpecialty);
     on<_SignOut>(_signOut);
     on<_SetPassword>(_setPassword);
   }
@@ -58,69 +54,9 @@ class CoachProfileBloc extends Bloc<CoachProfileEvent, CoachProfileState> {
         phone: event.phone,
         experience: event.experience,
         quote: event.quote,
-        achievementList: event.achievementList,
-        specialtyList: event.specialtyList,
       );
       add(_LoadData());
       emit(state.copyWith(status: StatusProfile.success));
-    } catch (_) {
-      emit(state.copyWith(status: StatusProfile.failure));
-    }
-  }
-
-  Future<void> _getCoachAchievementList(
-    _GetCoachAchievementList event,
-    Emitter<CoachProfileState> emit,
-  ) async {
-    try {
-      emit(state.copyWith(status: StatusProfile.loading));
-      final coachAchievements = await coachUseCases.getCoachAchievementsList();
-      emit(
-        state.copyWith(
-          status: StatusProfile.loaded,
-          coachAchievements: coachAchievements,
-        ),
-      );
-    } catch (_) {
-      emit(state.copyWith(status: StatusProfile.failure));
-    }
-  }
-
-  Future<void> _getCoachSpecialtyList(
-    _GetCoachSpecialtyList event,
-    Emitter<CoachProfileState> emit,
-  ) async {
-    try {
-      emit(state.copyWith(status: StatusProfile.loading));
-      final coachSpecialties = await coachUseCases.getCoachSpecialtyList();
-      emit(
-        state.copyWith(
-          status: StatusProfile.loaded,
-          coachSpecialties: coachSpecialties,
-        ),
-      );
-    } catch (_) {
-      emit(state.copyWith(status: StatusProfile.failure));
-    }
-  }
-
-  Future<void> _createCoachAchievement(
-    _CreateCoachAchievement event,
-    Emitter<CoachProfileState> emit,
-  ) async {
-    try {
-      await coachUseCases.createCoachAchievement(name: event.name);
-    } catch (_) {
-      emit(state.copyWith(status: StatusProfile.failure));
-    }
-  }
-
-  Future<void> _createCoachSpecialty(
-    _CreateCoachSpecialty event,
-    Emitter<CoachProfileState> emit,
-  ) async {
-    try {
-      await coachUseCases.createCoachSpecialty(name: event.name);
     } catch (_) {
       emit(state.copyWith(status: StatusProfile.failure));
     }

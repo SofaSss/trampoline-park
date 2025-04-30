@@ -9,11 +9,5 @@ abstract class ICoachService {
     String? phone,
     String? quote,
     int? experience,
-    List<int>? achievementList,
-    List<int>? specialtyList
   });
-  Future<void> createCoachAchievement({required String name});
-  Future<List<IdNameModel>>  getCoachAchievementsList();
-  Future<void> createCoachSpecialty({required String name});
-  Future<List<IdNameModel>>  getCoachSpecialtyList();
 }

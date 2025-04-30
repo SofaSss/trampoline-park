@@ -9,7 +9,7 @@ class ListActionWidget extends StatefulWidget {
     this.onTapPlusIcon,
   });
   final String sectionName;
-  final List actionsList;
+  final List<String> actionsList;
   final bool isAchievement;
   final void Function()? onTapPlusIcon;
 
@@ -34,21 +34,6 @@ class _ListActionWidgetState extends State<ListActionWidget> {
                   style: Theme.of(
                     context,
                   ).textTheme.displayLarge?.copyWith(color: AppColors.blue),
-                ),
-              ),
-              GestureDetector(
-                onTap: widget.onTapPlusIcon,
-                child: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: AppColors.blue.withValues(alpha: 0.5),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(AppIcons.plus),
-                  ),
                 ),
               ),
             ],

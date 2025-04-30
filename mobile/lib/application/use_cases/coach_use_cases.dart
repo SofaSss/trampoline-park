@@ -22,32 +22,12 @@ class CoachUseCases {
     String? phone,
     String? quote,
     int? experience,
-    List<int>? achievementList,
-    List<int>? specialtyList,
   }) async {
     return await coachService.updateCoach(
       profilePicture: profilePicture,
       phone: phone,
       quote: quote,
       experience: experience,
-      achievementList: achievementList,
-      specialtyList: specialtyList,
     );
-  }
-
-  Future<void> createCoachAchievement({required String name}) async {
-    await coachService.createCoachAchievement(name: name);
-  }
-
-  Future<List<IdNameModel>> getCoachAchievementsList() async {
-    return await coachService.getCoachAchievementsList();
-  }
-
-  Future<void> createCoachSpecialty({required String name}) async {
-    await coachService.createCoachSpecialty(name: name);
-  }
-
-  Future<List<IdNameModel>> getCoachSpecialtyList() async {
-    return await coachService.getCoachSpecialtyList();
   }
 }

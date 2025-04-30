@@ -14,8 +14,6 @@ abstract class CoachProfileState with _$CoachProfileState {
     @Default(' ') String experience,
     @Default([]) List<String> achievements,
     @Default([]) List<String> specialties,
-    @Default([]) List<IdNameModel> coachSpecialties,
-    @Default([]) List<IdNameModel> coachAchievements,
     @Default({}) Map<InputErrorTypeEnum, InputFieldError> errors,
     @Default({}) Map<String, String> apiErrors,
   }) = _CoachProfileState;

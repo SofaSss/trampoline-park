@@ -91,8 +91,6 @@ class CoachService implements ICoachService {
     String? phone,
     String? quote,
     int? experience,
-    List<int>? achievementList,
-    List<int>? specialtyList,
   }) async {
     final currentCoach = await coachApi.getCurrentCoach();
     final coachDto = await coachApi.updateCoach(
@@ -101,8 +99,6 @@ class CoachService implements ICoachService {
       phone: phone,
       quote: quote,
       experience: experience,
-      achievements: achievementList?.map((id)=>{"id":id}).toList(),
-      specialties: specialtyList?.map((id)=>{"id":id}).toList(),
     );
     final coachModel = CoachModel(
       id: coachDto.id,
@@ -125,35 +121,5 @@ class CoachService implements ICoachService {
     );
 
     return coachModel;
-  }
-
-  @override
-  Future<void> createCoachAchievement({required String name}) async {
-    await coachApi.createCoachAchievement(name: {"name": name});
-  }
-
-  @override
-  Future<void> createCoachSpecialty({required String name}) async {
-    await coachApi.createCoachSpecialty(name: {"name": name});
-  }
-
-  @override
-  Future<List<IdNameModel>> getCoachAchievementsList() async {
-    final response = await coachApi.getCoachAchievementList();
-    final List<IdNameModel> achievementsList =
-        response.results.map((achievement) {
-          return IdNameModel(id: achievement.id, name: achievement.name);
-        }).toList();
-    return achievementsList;
-  }
-
-  @override
-  Future<List<IdNameModel>> getCoachSpecialtyList() async {
-    final response = await coachApi.getCoachSpecialtyList();
-    final specialtyList =
-        response.results.map((specialty) {
-          return IdNameModel(id: specialty.id, name: specialty.name);
-        }).toList();
-    return specialtyList;
   }
 }
