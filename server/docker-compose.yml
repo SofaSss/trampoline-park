@@ -12,13 +12,13 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark.localhost`)"
+      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark1.ru`)"
       - "traefik.http.services.trampolinepark.loadbalancer.server.port=8080"
     environment:
       SECRET_KEY: lxt@w%wfty8krk%i*dcyf4pha5oe3vfv1o(wi0fop%jc9h=n!c
       DB_NAME: trampoline_park_db
-      DB_USER: postgres
-      DB_PASSWORD: postgres
+      DB_USER: sofa
+      DB_PASSWORD: 5apRVrP_u0
       DB_HOST: postgresql
       DB_PORT: 5432
       EMAIL_HOST: connect.smtp.bz
@@ -37,8 +37,8 @@ services:
     image: postgres:15.0
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: sofa
+      POSTGRES_PASSWORD: 5apRVrP_u0
       POSTGRES_DB: trampoline_park_db
       POSTGRES_MAX_CONNECTIONS: 500
     networks:
@@ -66,18 +66,15 @@ services:
     image: dpage/pgadmin4
     restart: unless-stopped
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=web"
-      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.localhost`)"
-      - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
+      PGADMIN_DEFAULT_EMAIL: sofas8642@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: -8VJ3fYFlO
     networks:
       - web
     depends_on:
       - traefik
       - postgresql
+    ports:
+      - "80:9371"
 volumes:
   media:
 networks:

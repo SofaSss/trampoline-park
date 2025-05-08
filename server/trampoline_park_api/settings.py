@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = bool(int(os.getenv('DEBUG')))
 
 ALLOWED_HOSTS = [
-    'trampolinepark.localhost',
+    'trampolinepark1.ru',
     '192.168.50.73',
     '127.0.0.1',
 ]
