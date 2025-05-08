@@ -12,8 +12,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark1.ru`)"
+      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark1.ru`) && (!PathPrefix(`/.well-known/`))"
       - "traefik.http.services.trampolinepark.loadbalancer.server.port=8080"
+      - 'traefik.http.routers.trampolinepark.priority=20'
+
     environment:
       SECRET_KEY: lxt@w%wfty8krk%i*dcyf4pha5oe3vfv1o(wi0fop%jc9h=n!c
       DB_NAME: trampoline_park_db
