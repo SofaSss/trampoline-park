@@ -13,14 +13,10 @@ DEBUG = bool(int(os.getenv('DEBUG')))
 
 ALLOWED_HOSTS = [
     'trampolinepark1.ru',
-    '192.168.50.73',
-    '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'trampolinepark1.ru',
-    '192.168.50.73',
-    '127.0.0.1',
+    'https://trampolinepark1.ru',
 ]
 
 INSTALLED_APPS = [
