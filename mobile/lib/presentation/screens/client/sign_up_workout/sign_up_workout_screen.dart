@@ -159,7 +159,10 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
                                     isClientSignUpWorkout: state
                                         .workoutList[index]
                                         .clients
-                                        .contains(state.clientId),
+                                        .any(
+                                          (client) =>
+                                              client.id == state.clientId,
+                                        ),
                                     time: state.workoutList[index].dateTime,
                                     duration:
                                         state
@@ -213,7 +216,11 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
                                                 !state
                                                     .workoutList[index]
                                                     .clients
-                                                    .contains(state.clientId)
+                                                    .any(
+                                                      (client) =>
+                                                          client.id ==
+                                                          state.clientId,
+                                                    )
                                             ? () {
                                               context.read<SignUpWorkoutBloc>().add(
                                                 SignUpWorkoutEvent.clientSignUpWorkout(
