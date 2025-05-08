@@ -73,24 +73,48 @@ class CoachRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = CoachSerializer
     permission_classes = (IsAdminOrCoachOrReadOnly,)
 
-    def get_queryset(self):
-        user = self.request.user
-        queryset = Coach.objects.all()
-        if user.role == 'COACH':
-            queryset = queryset.filter(clients=user.client)
-        return queryset
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     queryset = Coach.objects.all()
+    #     if user.role == 'COACH':
+    #         queryset = queryset.filter(clients=user.client)
+    #     return queryset
+
+
+class CoachSpecialtyListAPIView(generics.ListAPIView):
+    queryset = CoachSpecialty.objects.all()
+    serializer_class = CoachSpecialtySerializer
+    permission_classes = (IsAdminOrCoach,)
+
+
+class CoachSpecialtyCreateAPIView(generics.CreateAPIView):
+    queryset = CoachSpecialty.objects.all()
+    serializer_class = CoachSpecialtySerializer
+    permission_classes = (IsAdminOrCoach,)
+
+
+class CoachAchievementListAPIView(generics.ListAPIView):
+    queryset = CoachAchievement.objects.all()
+    serializer_class = CoachAchievementSerializer
+    permission_classes = (IsAdminOrCoach,)
+
+
+class CoachAchievementCreateAPIView(generics.CreateAPIView):
+    queryset = CoachAchievement.objects.all()
+    serializer_class = CoachAchievementSerializer
+    permission_classes = (IsAdminOrCoach,)
 
 
 class WorkoutTypeAPIView(generics.ListAPIView):
     queryset = WorkoutType.objects.all()
     serializer_class = WorkoutTypeSerializer
-    permission_classes = (IsAdminOrClient,)
+    permission_classes = (IsAuthenticated,)
 
 
 class WorkoutTypeRetrieveAPIView(generics.RetrieveAPIView):
     queryset = WorkoutType.objects.all()
     serializer_class = WorkoutTypeSerializer
-    permission_classes = (IsAdminOrClient,)
+    permission_classes = (IsAuthenticated,)
 
 
 class WorkoutUpdateAPIView(generics.UpdateAPIView):
@@ -115,6 +139,21 @@ class WorkoutUpdateAPIView(generics.UpdateAPIView):
         workout.save()
 
         return Response({"detail": "Вы успешно записались на тренировку."})
+
+
+class ClientWorkoutListApiView(generics.ListAPIView):
+    serializer_class = WorkoutSerializer
+    permission_classes = (IsAdminOrClient,)
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Workout.objects.filter(clients=user.client)
+        date = self.request.query_params.get("date")
+        if date:
+            parsed_date = parse_datetime(date)
+            if parsed_date:
+                queryset = queryset.filter(datetime__date=parsed_date.date())
+        return queryset
 
 
 class WorkoutListAPIView(generics.ListAPIView):
@@ -184,7 +223,7 @@ class CoachCostumeListAPIView(generics.ListAPIView):
     permission_classes = (IsAdminOrClient,)
 
 
-class PhotoVideoServicePriceApiView(generics.ListAPIView):
+class PhotoVideoServicePriceApiView(generics.RetrieveAPIView):
     queryset = PhotoVideoServicePrice.objects.all()
     serializer_class = PhotoVideoServicePriceSerializer
     permission_classes = (IsAdminOrClient,)
@@ -209,7 +248,6 @@ class EventCreateAPIView(generics.CreateAPIView):
                                 event_end_time=event_end_time,
                                 is_photographer=is_photographer,
                                 is_videographer=is_videographer,
-                                optional_service=optional_service,
                                 coach_costume=coach_costume
                                 ).exists():
             raise ValidationError("Мероприятие уже создано.")
@@ -231,3 +269,15 @@ class EventListAPIView(generics.ListAPIView):
             queryset = queryset.filter(clients=user.client)
 
         return queryset
+
+
+class VideoWarmUpRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = VideoWarmUp.objects.all()
+    serializer_class = VideoWarmUpSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class CommunicationListAPIView(generics.ListAPIView):
+    queryset = Communication.objects.all()
+    serializer_class = CommunicationSerializer
+    permission_classes = (permissions.IsAuthenticated,)

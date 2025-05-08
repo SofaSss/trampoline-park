@@ -9,10 +9,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = bool(int(os.getenv('DEBUG')))
 
 ALLOWED_HOSTS = [
-    '192.168.187.73',
+    'trampolinepark.localhost',
+    '192.168.50.73',
     '127.0.0.1',
 ]
 
@@ -128,13 +129,19 @@ REST_FRAMEWORK = {
 }
 
 DJOSER = {
-    "USER_CREATE_PASSWORD_RETYPE": True,  # повторный ввод пароля при регистрации
-    "SEND_ACTIVATION_EMAIL": True,  # отключение подтверждения email (если True, потребуется email-сервис)
+    "USER_CREATE_PASSWORD_RETYPE": True,
+    "SEND_ACTIVATION_EMAIL": True,
     'ACTIVATION_URL': 'activation/{uid}/{token}/',
+    'PASSWORD_RESET_CONFIRM_URL': 'reset-password/{uid}/{token}/',
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
     "SERIALIZERS": {
         "user_create": "djoser.serializers.UserCreateSerializer",  # Стандартный сериализатор
         "user": "djoser.serializers.UserSerializer",  # Вывод данных о пользователе
     },
+    "TOKEN_MODEL": None,
+    "LOGOUT_ON_PASSWORD_CHANGE": False,
+    "LOGOUT_ON_USER_DELETE": False,
 }
 
 # EMAIL

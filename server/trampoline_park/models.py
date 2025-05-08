@@ -19,7 +19,7 @@ class User(AbstractUser):
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "username"
     role = models.CharField(max_length=50, choices=ROLES, default="ADMIN", verbose_name="Роль пользователя")
-    REQUIRED_FIELDS = ["role"]  # больше обязательных полей не будет
+    REQUIRED_FIELDS = ["role"]
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
@@ -182,7 +182,7 @@ class Event(models.Model):
     event_end_time = models.TimeField(blank=False, null=False, verbose_name="Время конца")
     is_photographer = models.BooleanField(blank=False, null=False, verbose_name="Услуги фотографа")
     is_videographer = models.BooleanField(blank=False, null=False, verbose_name="Услуги видеографа")
-    optional_service = models.ManyToManyField(OptionalService, blank=True,
+    optional_service = models.ManyToManyField(OptionalService, blank=True, null =True,
                                               verbose_name="Дополнительные услуги")
     coach = models.ForeignKey(Coach, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Тренер")
     coach_costume = models.ForeignKey(CoachCostume, on_delete=models.CASCADE, verbose_name="Костюм")
@@ -202,10 +202,10 @@ class VideoWarmUp(models.Model):
     class Meta:
         verbose_name = "Видеоразминка"
 
-    def clean(self, *args, **kwargs):
-        if VideoWarmUp.objects.count() >= 1:
-            raise ValidationError("Невозможно создать больше одной записи.")
-        super().save(*args, **kwargs)
+    # def clean(self, *args, **kwargs):
+    #     if VideoWarmUp.objects.count() >= 1:
+    #         raise ValidationError("Невозможно создать больше одной записи.")
+    #     super().save(*args, **kwargs)
 
 
 class Communication(models.Model):

@@ -1,4 +1,38 @@
 services:
+  trampolinepark1:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn trampoline_park_api.wsgi:application --bind 0.0.0.0:8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark.localhost`)"
+      - "traefik.http.services.trampolinepark.loadbalancer.server.port=8080"
+    environment:
+      SECRET_KEY: lxt@w%wfty8krk%i*dcyf4pha5oe3vfv1o(wi0fop%jc9h=n!c
+      DB_NAME: trampoline_park_db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgresql
+      DB_PORT: 5432
+      EMAIL_HOST: connect.smtp.bz
+      EMAIL_PORT: 2525
+      EMAIL_HOST_USER: sofas8642@gmail.com
+      EMAIL_HOST_PASSWORD: JyetfdGEL2E4
+      DEFAULT_FROM_EMAIL: info@trampolinepark1.ru
+      SERVER_EMAIL: info@trampolinepark1.ru
+      DEBUG: 1
+    volumes:
+      - media:/app/media/
+    networks:
+      - web
+
   postgresql:
     image: postgres:15.0
     restart: unless-stopped
@@ -44,6 +78,8 @@ services:
     depends_on:
       - traefik
       - postgresql
+volumes:
+  media:
 networks:
   web:
     external: true

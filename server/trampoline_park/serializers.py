@@ -13,6 +13,7 @@ class UserSerializer(UserCreateSerializer):
 
 class ClientSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+
     # def create(self, validated_data):
     #     super().create(validated_data)
     #     settings.EMAIL.activation(self.request, context).send(to)
@@ -32,7 +33,7 @@ class UserWithPasswordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("id", "username", "email", "role", "password","is_active",)
+        fields = ("id", "username", "email", "role", "password", "is_active",)
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -75,9 +76,17 @@ class CoachAchievementSerializer(serializers.ModelSerializer):
 
 
 class CoachSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    specialties = CoachSpecialtySerializer( many=True)
+    achievements = CoachAchievementSerializer( many=True)
+
     class Meta:
         model = Coach
-        fields = '__all__'
+        fields = ("id",
+                  "first_name", "last_name", "date_of_birth",
+                  "phone_number", "profile_picture", "experience",
+                  "quote", "specialties", "achievements",
+                  "user")
 
 
 class WorkoutTypeSerializer(serializers.ModelSerializer):
@@ -124,4 +133,16 @@ class PhotoVideoServicePriceSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
+        fields = '__all__'
+
+
+class VideoWarmUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoWarmUp
+        fields = '__all__'
+
+
+class CommunicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Communication
         fields = '__all__'
