@@ -2,8 +2,6 @@ services:
   trampolinepark1:
     build:
       context: .
-    ports:
-      - "8080:8080"
     command: >
       sh -c "python manage.py makemigrations &&
              python manage.py migrate &&
@@ -45,8 +43,6 @@ services:
       POSTGRES_MAX_CONNECTIONS: 500
     networks:
       - web
-    ports:
-      - "5432:5432"
 
   traefik:
     image: traefik:latest
