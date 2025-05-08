@@ -76,7 +76,7 @@ services:
       - traefik
       - postgresql
     ports:
-      - "80:9371"
+      - "9371:80"
 volumes:
   media:
 networks:
