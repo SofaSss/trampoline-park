@@ -110,7 +110,6 @@ class WorkoutService implements IWorkoutService {
           dateTime: workout.dateTime,
           workoutType: await getWorkoutType(id: workout.workoutType),
           coach: await coachService.getCoachById(id: workout.coach),
-          // clients: workout.clients,
           clients: await Future.wait(
             workout.clients.map((id) async {
               return await clientService.getClientById(id: id);
