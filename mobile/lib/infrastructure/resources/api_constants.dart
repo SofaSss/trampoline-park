@@ -1,4 +1,4 @@
 class ApiConstants {
-  static const baseUrl = 'http://192.168.161.73:8000/api/';
-  static const host = '192.168.161.73:8000';
+  static const baseUrl = 'https://trampolinepark1.ru/api/';
+  static const host = 'trampolinepark1.ru';
 }
