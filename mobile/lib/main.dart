@@ -6,7 +6,6 @@ import 'package:mobile_trampoline_park/presentation/resources/theme/theme_part.d
 import 'package:mobile_trampoline_park/presentation/routing/app_routing.dart';
 import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart';
 import 'presentation/resources/localizations/generated/l10n.dart';
-// import 'package:yandex_maps_mapkit_lite/init.dart' as init;
 
 
 void main() async {
