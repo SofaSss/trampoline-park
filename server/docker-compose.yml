@@ -12,7 +12,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark.localhost`) && (!PathPrefix(`/.well-known/`))"
+      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark.localhost`) && (!(PathPrefix(`/.well-known`) || PathPrefix(`/public`)))"
       - "traefik.http.services.trampolinepark.loadbalancer.server.port=8080"
       - 'traefik.http.routers.trampolinepark.priority=20'
 
