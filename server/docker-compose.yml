@@ -22,7 +22,7 @@ services:
       DB_HOST: postgresql
       DB_PORT: 5432
       EMAIL_HOST: connect.smtp.bz
-      EMAIL_PORT: 465
+      EMAIL_PORT: 587
       EMAIL_HOST_USER: sofas8642@gmail.com
       EMAIL_HOST_PASSWORD: JyetfdGEL2E4
       DEFAULT_FROM_EMAIL: info@trampolinepark1.ru
