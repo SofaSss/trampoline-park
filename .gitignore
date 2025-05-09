@@ -1,0 +1,8 @@
+venv/
+*.pyc
+__pycache__/
+*.idea/*
+*.vscode/*
+media/
+trampoline_park/fixtures/
+.env
