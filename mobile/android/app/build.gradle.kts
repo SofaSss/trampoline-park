@@ -15,7 +15,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.example.mobile_trampoline_park"
+    namespace = "ru.mobile_trampoline_park"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

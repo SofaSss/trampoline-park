@@ -14,9 +14,7 @@ void main() async {
   await setUpDependencies();
   runApp(TrampolinePark());
 
-  // await init.initMapkit(
-  //   apiKey: '2fd0438b-8b7c-4325-9718-fdb76abfb712'
-  // ); 
+
 }
 
 class TrampolinePark extends StatefulWidget {

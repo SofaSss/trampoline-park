@@ -3,7 +3,7 @@
         "relation": ["delegate_permission/common.handle_all_urls"],
         "target": {
             "namespace": "android_app",
-            "package_name": "mobile_trampoline_park",
+            "package_name": "ru.mobile_trampoline_park",
             "sha256_cert_fingerprints": [
                 "0A:52:24:D7:A8:B1:B5:0B:FD:38:3E:5F:6D:21:EF:F8:6F:E9:C7:7C:70:5B:53:41:EF:9E:90:D9:01:F7:E2:4A"
             ]
