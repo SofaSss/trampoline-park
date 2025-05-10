@@ -165,6 +165,7 @@ class _BookingEventScreenState extends State<BookingEventScreen> {
               });
             },
             selectedDate: _selectedDate,
+            isWorkout: false,
           ),
 
           body: switch (state.status) {
