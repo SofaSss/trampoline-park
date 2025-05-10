@@ -11,6 +11,7 @@ class DateTimeHelper {
       firstDate: DateTime(1950),
       lastDate: DateTime(2017),
       locale: const Locale('ru'),
+      keyboardType: TextInputType.text
     );
     if (selected != null && selected != selectedDate) {
       selectedDate = selected;
