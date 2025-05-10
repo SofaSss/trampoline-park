@@ -5,6 +5,7 @@ enum InputErrorTypeEnum {
   password,
   birth,
   isConfirmPDn,
+  isPolicy,
 }
 
 enum InputFieldError {
@@ -14,4 +15,5 @@ enum InputFieldError {
   incorrectPassword,
   passwordNotMatch,
   isConfirmPDn,
+  isPolicy,
 }

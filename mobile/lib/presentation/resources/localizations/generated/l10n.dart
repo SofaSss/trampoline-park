@@ -1089,6 +1089,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Для использования приложения необходимо согласие с политикой конфиденциальности`
+  String get isPolicy {
+    return Intl.message(
+      'Для использования приложения необходимо согласие с политикой конфиденциальности',
+      name: 'isPolicy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -24,6 +24,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           confirmPassword: event.confirmPassword,
         ),
         ...ValidationHelper.isConfirmPDn(isConfirmPDn: event.isConfirmPDn),
+        ...ValidationHelper.isPolicy(isPolicy: event.isPolicy),
       };
 
       if (errors.isNotEmpty) {

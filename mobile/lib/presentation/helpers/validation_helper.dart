@@ -59,10 +59,19 @@ class ValidationHelper {
   }
 
   static Map<InputErrorTypeEnum, InputFieldError> isConfirmPDn({
-    required bool isConfirmPDn
+    required bool isConfirmPDn,
   }) {
     if (isConfirmPDn == false) {
       return {InputErrorTypeEnum.isConfirmPDn: InputFieldError.isConfirmPDn};
+    }
+    return {};
+  }
+
+  static Map<InputErrorTypeEnum, InputFieldError> isPolicy({
+    required bool isPolicy,
+  }) {
+    if (isPolicy == false) {
+      return {InputErrorTypeEnum.isPolicy: InputFieldError.isPolicy};
     }
     return {};
   }

@@ -14,6 +14,7 @@ import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart'
 import 'package:mobile_trampoline_park/presentation/widgets/widgets_part.dart';
 import 'package:mobile_trampoline_park/presentation/helpers/helpers_part.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'sign_up_part.freezed.dart';
 part 'sign_up_screen.dart';

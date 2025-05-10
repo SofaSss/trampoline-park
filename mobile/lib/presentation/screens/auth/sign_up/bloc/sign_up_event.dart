@@ -12,5 +12,6 @@ abstract class SignUpEvent with _$SignUpEvent {
     required DateTime? birth,
     required bool isHealthy,
     required bool isConfirmPDn,
+    required bool isPolicy,
   }) = _SignUp;
 }

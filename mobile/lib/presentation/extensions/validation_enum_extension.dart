@@ -9,6 +9,7 @@ extension InputFieldErrorX on InputFieldError {
       InputFieldError.passwordNotMatch => locale.passwordNotMatch,
       InputFieldError.emptyField => locale.emptyField,
       InputFieldError.isConfirmPDn => locale.isConfirmPDn,
+      InputFieldError.isPolicy => locale.isPolicy,
     };
   }
 }

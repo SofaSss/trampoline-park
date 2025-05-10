@@ -121,6 +121,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "isPhotograph": MessageLookupByLibrary.simpleMessage(
       "Нужен ли будет фотограф?",
     ),
+    "isPolicy": MessageLookupByLibrary.simpleMessage(
+      "Для использования приложения необходимо согласие с политикой конфиденциальности",
+    ),
     "isVideographer": MessageLookupByLibrary.simpleMessage(
       "Нужен ли будет видео оператор?",
     ),

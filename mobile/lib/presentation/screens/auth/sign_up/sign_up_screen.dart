@@ -19,6 +19,7 @@ class SignUpScreen extends StatefulWidget implements AutoRouteWrapper {
 class _SignUpScreenState extends State<SignUpScreen> {
   DateTime? selectedDate;
   bool isSwitchedPDn = false;
+  bool isSwitchedPolicy = false;
   bool isHealthySwitched = true;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -40,6 +41,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 context: context,
                 message: state.errors[InputErrorTypeEnum.isConfirmPDn]!
                     .localize(context.localization),
+              ),
+            );
+          } else if (state.errors.containsKey(InputErrorTypeEnum.isPolicy)) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              baseSnackBar(
+                context: context,
+                message: state.errors[InputErrorTypeEnum.isPolicy]!.localize(
+                  context.localization,
+                ),
               ),
             );
           }
@@ -210,6 +220,50 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width - 40,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          BaseSwitchedWidget(
+                            value: isSwitchedPolicy,
+                            onChange: (bool value) {
+                              setState(() {
+                                isSwitchedPolicy = value;
+                              });
+                            },
+                          ),
+                          SizedBox(width: 10),
+                          TextButton(
+                            onPressed: () {
+                              _launchURL(
+                                url: Uri.parse(
+                                  'https://trampolinepark1.ru/public/privacy_policy.pdf',
+                                ),
+                                context: context,
+                              );
+                            },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width - 40,
+                              child: Text(
+                                'Я согласен с политикой конфиденциальности',
+                                style: TextStyle(
+                                  color: AppColors.blue,
+                                  fontSize: 15,
+                                ),
+                                textAlign: TextAlign.left,
+                                overflow: TextOverflow.clip,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
                     Padding(
                       padding: const EdgeInsets.only(top: 30, bottom: 5),
                       child: ElevatedButton(
@@ -226,6 +280,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               birth: selectedDate,
                               isHealthy: isHealthySwitched,
                               isConfirmPDn: isSwitchedPDn,
+                              isPolicy: isSwitchedPolicy,
                             ),
                           );
                         },
@@ -259,5 +314,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
       ),
     );
+  }
+
+  Future<void> _launchURL({
+    required Uri url,
+    required BuildContext context,
+  }) async {
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        baseSnackBar(context: context, message: context.localization.linkError),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    lastNameController.dispose();
+    birthController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
   }
 }
