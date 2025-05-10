@@ -158,7 +158,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           state.apiErrors['phone_number'],
                       inputFormatters: [
                         MaskTextInputFormatter(
-                          mask: RegExpConstants.mask,
+                          mask: RegExpConstants.phoneMask,
                           filter: {"#": RegExp(r'[0-9]')},
                           type: MaskAutoCompletionType.lazy,
                         ),
@@ -181,15 +181,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       isObscureText: true,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        BaseSwitchedWidget(
-                          value: isSwitchedPDn,
-                          onChange: (bool value) {
-                            setState(() {
-                              isSwitchedPDn = value;
-                            });
-                          },
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40),
+                          child: BaseSwitchedWidget(
+                            value: isSwitchedPDn,
+                            onChange: (bool value) {
+                              setState(() {
+                                isSwitchedPDn = value;
+                              });
+                            },
+                          ),
                         ),
                         SizedBox(width: 10),
                         TextButton(
@@ -220,12 +223,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 40,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          BaseSwitchedWidget(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40),
+                          child: BaseSwitchedWidget(
                             value: isSwitchedPolicy,
                             onChange: (bool value) {
                               setState(() {
@@ -233,35 +236,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               });
                             },
                           ),
-                          SizedBox(width: 10),
-                          TextButton(
-                            onPressed: () {
-                              _launchURL(
-                                url: Uri.parse(
-                                  'https://trampolinepark1.ru/public/privacy_policy.pdf',
-                                ),
-                                context: context,
-                              );
-                            },
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            ),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width - 40,
-                              child: Text(
-                                'Я согласен с политикой конфиденциальности',
-                                style: TextStyle(
-                                  color: AppColors.blue,
-                                  fontSize: 15,
-                                ),
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.clip,
+                        ),
+                        SizedBox(width: 10),
+                        TextButton(
+                          onPressed: () {
+                            _launchURL(
+                              url: Uri.parse(
+                                'https://trampolinepark1.ru/public/privacy_policy.pdf',
                               ),
-                            ),
+                              context: context,
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           ),
-                        ],
-                      ),
+                          child: Text(
+                            'Я согласен с политикой \nконфиденциальности',
+                            style: TextStyle(
+                              color: AppColors.blue,
+                              fontSize: 15,
+                            ),
+                            textAlign: TextAlign.left,
+                            overflow: TextOverflow.clip,
+                          ),
+                        ),
+                      ],
                     ),
 
                     Padding(

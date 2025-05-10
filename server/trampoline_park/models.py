@@ -20,6 +20,7 @@ class User(AbstractUser):
     USERNAME_FIELD = "username"
     role = models.CharField(max_length=50, choices=ROLES, default="ADMIN", verbose_name="Роль пользователя")
     REQUIRED_FIELDS = ["role"]
+
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
@@ -89,7 +90,7 @@ class Coach(models.Model):
 
 class WorkoutType(models.Model):
     name = models.CharField(max_length=100, unique=True, null=False, blank=False, verbose_name="Название тренировки")
-    description = models.TextField(max_length=300, null=False, blank=False, verbose_name="Описание тренировки")
+    description = models.TextField(null=False, blank=False, verbose_name="Описание тренировки")
     price = models.IntegerField(null=False, blank=False, verbose_name="Цена", validators=[MinValueValidator(1), ], )
     workout_picture = models.FileField(upload_to='workout_pictures', verbose_name="Фото")
     duration = models.IntegerField(verbose_name="Продолжительность", validators=[MinValueValidator(1), ], )
@@ -120,7 +121,7 @@ class Workout(models.Model):
 
 
 class TypeOptionalService(models.Model):
-    name = models.CharField(max_length=100, unique=True, verbose_name="Тип дополнительной услуги")
+    name = models.CharField(unique=True, verbose_name="Тип дополнительной услуги")
 
     class Meta:
         verbose_name = "Тип дополнительной услуги"
@@ -131,7 +132,7 @@ class TypeOptionalService(models.Model):
 
 
 class OptionalService(models.Model):
-    name = models.CharField(max_length=100, unique=True, null=False, blank=False, verbose_name="Название услуги")
+    name = models.CharField(unique=True, null=False, blank=False, verbose_name="Название услуги")
     optional_service_picture = models.FileField(upload_to='optional_service_pictures', verbose_name="Фото")
     type = models.ForeignKey(TypeOptionalService, on_delete=models.CASCADE, verbose_name="Тип услуги")
     price = models.IntegerField(verbose_name="Цена", validators=[MinValueValidator(1), ], )
@@ -145,7 +146,7 @@ class OptionalService(models.Model):
 
 
 class CoachCostume(models.Model):
-    name = models.CharField(max_length=100, unique=True, blank=False, null=False, verbose_name="Название")
+    name = models.CharField(unique=True, blank=False, null=False, verbose_name="Название")
     coach_costume_picture = models.FileField(upload_to='coach_costume_picture', verbose_name="Фото", )
     price = models.IntegerField(verbose_name="Цена", validators=[MinValueValidator(1), ], )
 
@@ -176,13 +177,13 @@ class PhotoVideoServicePrice(models.Model):
 
 
 class Event(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Название мероприятия")
+    name = models.CharField(verbose_name="Название мероприятия")
     date = models.DateField(blank=False, null=False, verbose_name="Дата")
     event_start_time = models.TimeField(blank=False, null=False, verbose_name="Время начала")
     event_end_time = models.TimeField(blank=False, null=False, verbose_name="Время конца")
     is_photographer = models.BooleanField(blank=False, null=False, verbose_name="Услуги фотографа")
     is_videographer = models.BooleanField(blank=False, null=False, verbose_name="Услуги видеографа")
-    optional_service = models.ManyToManyField(OptionalService, blank=True, null =True,
+    optional_service = models.ManyToManyField(OptionalService, blank=True, null=True,
                                               verbose_name="Дополнительные услуги")
     coach = models.ForeignKey(Coach, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Тренер")
     coach_costume = models.ForeignKey(CoachCostume, on_delete=models.CASCADE, verbose_name="Костюм")
@@ -201,11 +202,6 @@ class VideoWarmUp(models.Model):
 
     class Meta:
         verbose_name = "Видеоразминка"
-
-    # def clean(self, *args, **kwargs):
-    #     if VideoWarmUp.objects.count() >= 1:
-    #         raise ValidationError("Невозможно создать больше одной записи.")
-    #     super().save(*args, **kwargs)
 
 
 class Communication(models.Model):
