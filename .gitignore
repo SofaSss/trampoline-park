@@ -1,8 +1,8 @@
 venv/
 *.pyc
 __pycache__/
-*.idea/*
-*.vscode/*
+.idea
+.vscode
 media/
 trampoline_park/fixtures/
 .env
