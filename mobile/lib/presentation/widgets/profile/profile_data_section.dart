@@ -54,7 +54,7 @@ class _ProfileDataSectionState extends State<ProfileDataSection> {
           icon: AppIcons.phone,
           inputFormatters: [
             MaskTextInputFormatter(
-              mask: RegExpConstants.mask,
+              mask: RegExpConstants.phoneMask,
               filter: {"#": RegExp(r'[0-9]')},
               type: MaskAutoCompletionType.lazy,
             ),
