@@ -73,13 +73,6 @@ class CoachRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = CoachSerializer
     permission_classes = (IsAdminOrCoachOrReadOnly,)
 
-    # def get_queryset(self):
-    #     user = self.request.user
-    #     queryset = Coach.objects.all()
-    #     if user.role == 'COACH':
-    #         queryset = queryset.filter(clients=user.client)
-    #     return queryset
-
 
 class CoachSpecialtyListAPIView(generics.ListAPIView):
     queryset = CoachSpecialty.objects.all()
