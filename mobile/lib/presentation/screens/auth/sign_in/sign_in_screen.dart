@@ -35,6 +35,14 @@ class _SignInScreenState extends State<SignInScreen> {
               message: context.localization.emailResetPassword,
             ),
           );
+        } else if (state.status == SignInStatus.failure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            baseSnackBar(
+              context: context,
+              message: context.localization.invalidEmailOrPassword,
+            ),
+          );
+          context.router.push(SignInRoute());
         }
       },
       builder: (context, state) {
@@ -123,9 +131,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
           case SignInStatus.loading:
             return BaseProgressIndicator();
-
-          case SignInStatus.failure:
-            return FailureWidget();
 
           default:
             return Container();

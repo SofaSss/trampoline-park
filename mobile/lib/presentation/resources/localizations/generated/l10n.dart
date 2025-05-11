@@ -1109,6 +1109,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Неверный email или пароль`
+  String get invalidEmailOrPassword {
+    return Intl.message(
+      'Неверный email или пароль',
+      name: 'invalidEmailOrPassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

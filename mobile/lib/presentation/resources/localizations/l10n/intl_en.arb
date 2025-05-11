@@ -132,5 +132,6 @@
   "summerYears": "лет",
   "noWorkoutsToday": "На сегодня тренировок нет",
   "isPolicy": "Для использования приложения необходимо согласие с политикой конфиденциальности",
-  "forgetPassword": "Забыли пароль?"
+  "forgetPassword": "Забыли пароль?",
+  "invalidEmailOrPassword": "Неверный email или пароль"
 }
