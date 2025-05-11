@@ -106,12 +106,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-        'LOCATION': os.path.join(BASE_DIR, 'media'),
     },
-    'default': {
-        'BACKEND': 'django.core.files.storage.FileSystemStorage',
-        'LOCATION': os.path.join(BASE_DIR, 'media'),
-    },
+
 }
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

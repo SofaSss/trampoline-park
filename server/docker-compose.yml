@@ -10,7 +10,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark1.ru`) && (!(PathPrefix(`/.well-known`) || PathPrefix(`/public`)))"
+      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark1.ru`) && (!(PathPrefix(`/.well-known`) || PathPrefix(`/public`) || PathPrefix(`/media`)))"
       - "traefik.http.services.trampolinepark.loadbalancer.server.port=8080"
       - "traefik.http.middlewares.https-redirect.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.trampolinepark.middlewares=https-redirect"
@@ -41,6 +41,8 @@ services:
       POSTGRES_PASSWORD: 5apRVrP_u0
       POSTGRES_DB: trampoline_park_db
       POSTGRES_MAX_CONNECTIONS: 500
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - web
 
@@ -75,6 +77,7 @@ services:
       - "9371:80"
 volumes:
   media:
+  postgres_data:
 networks:
   web:
     external: true
