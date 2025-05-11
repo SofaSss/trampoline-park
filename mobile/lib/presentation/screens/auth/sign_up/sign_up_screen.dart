@@ -170,6 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintText: context.localization.password,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      enableVisibilityToggle: true,
                       errorText: state.errors[InputErrorTypeEnum.password]
                           ?.localize(context.localization),
                     ),
@@ -179,6 +180,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintText: context.localization.rePassword,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      enableVisibilityToggle: true,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,

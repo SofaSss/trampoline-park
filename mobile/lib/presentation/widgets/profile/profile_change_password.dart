@@ -49,6 +49,7 @@ class _ProfileChangePasswordSectionState
           hintText: context.localization.oldPassword,
           icon: AppIcons.eyeOff,
           isObscureText: true,
+          enableVisibilityToggle: true,
           errorText: widget.oldPasswordErrorText,
         ),
         BaseTextField(
@@ -57,6 +58,7 @@ class _ProfileChangePasswordSectionState
           hintText: context.localization.newPassword,
           icon: AppIcons.eyeOff,
           isObscureText: true,
+          enableVisibilityToggle: true,
           errorText: widget.newPasswordErrorText,
         ),
         BaseTextField(
@@ -65,6 +67,7 @@ class _ProfileChangePasswordSectionState
           hintText: context.localization.rePassword,
           icon: AppIcons.eyeOff,
           isObscureText: true,
+          enableVisibilityToggle: true,
           errorText: widget.confirmNewPasswordErrorText,
         ),
         Padding(

@@ -63,6 +63,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       hintText: context.localization.newPassword,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      enableVisibilityToggle: true,
                       errorText: state.errors[InputErrorTypeEnum.password]
                           ?.localize(context.localization),
                     ),
@@ -73,6 +74,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     hintText: context.localization.rePassword,
                     icon: AppIcons.eyeOff,
                     isObscureText: true,
+                    enableVisibilityToggle: true,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),

@@ -69,6 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       hintText: context.localization.password,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      enableVisibilityToggle: true,
                       errorText:
                           state.errors[InputErrorTypeEnum.password]?.localize(
                             context.localization,
