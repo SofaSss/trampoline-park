@@ -35,7 +35,7 @@ services:
 
   static:
     build:
-      context: .
+      context: ../static
     restart: unless-stopped
     networks:
       - web
