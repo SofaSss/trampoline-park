@@ -79,45 +79,52 @@ class _CoachWorkoutsScreenState extends State<CoachWorkoutsScreen> {
             },
             workoutTypeList: state.workoutTypeList,
           ),
-          body: switch (state.status) {
-            WorkoutStatus.loaded =>
-              state.workoutList.isNotEmpty
-                  ? ListView.builder(
-                    itemCount: state.workoutList.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 5,
-                          horizontal: 20,
-                        ),
-                        child: BaseWorkoutCard(
-                          time: state.workoutList[index].dateTime,
-                          duration:
-                              state.workoutList[index].workoutType.duration
-                                  .toString(),
-                          freeSpace: AppConstants.empty,
-                          workoutType:
-                              state.workoutList[index].workoutType.name,
-                          coachPicture: AppConstants.empty,
-                          coachFirstName:
-                              state.workoutList[index].coach.firstName,
-                          coachLastName:
-                              state.workoutList[index].coach.lastName,
-                          price: AppConstants.empty,
-                          onSignUpWorkout: null,
-                          isClientSignUpWorkout: false,
-                          isCoach: true,
-                          clientsList: state.workoutList[index].clients,
-                        ),
-                      );
-                    },
-                  )
-                  : NoWorkoutsWidget(),
+          body: RefreshIndicator(
+            onRefresh: () async {
+              context.read<CoachWorkoutsBloc>().add(
+                CoachWorkoutsEvent.loadData(date: _selectedDate),
+              );
+            },
+            child: switch (state.status) {
+              WorkoutStatus.loaded =>
+                state.workoutList.isNotEmpty
+                    ? ListView.builder(
+                      itemCount: state.workoutList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 5,
+                            horizontal: 20,
+                          ),
+                          child: BaseWorkoutCard(
+                            time: state.workoutList[index].dateTime,
+                            duration:
+                                state.workoutList[index].workoutType.duration
+                                    .toString(),
+                            freeSpace: AppConstants.empty,
+                            workoutType:
+                                state.workoutList[index].workoutType.name,
+                            coachPicture: AppConstants.empty,
+                            coachFirstName:
+                                state.workoutList[index].coach.firstName,
+                            coachLastName:
+                                state.workoutList[index].coach.lastName,
+                            price: AppConstants.empty,
+                            onSignUpWorkout: null,
+                            isClientSignUpWorkout: false,
+                            isCoach: true,
+                            clientsList: state.workoutList[index].clients,
+                          ),
+                        );
+                      },
+                    )
+                    : NoWorkoutsWidget(),
 
-            WorkoutStatus.loading => BaseProgressIndicator(),
-            WorkoutStatus.failure => FailureWidget(),
-            _ => FailureWidget(),
-          },
+              WorkoutStatus.loading => BaseProgressIndicator(),
+              WorkoutStatus.failure => FailureWidget(),
+              _ => FailureWidget(),
+            },
+          ),
         );
       },
     );

@@ -44,11 +44,14 @@ class _BaseImageNetworkWidgetState extends State<BaseImageNetworkWidget> {
                   borderRadius: BorderRadius.circular(20),
                   color: AppColors.gray,
                 ),
-                child: SvgPicture.asset(
-                  AppIcons.logo,
-                  width: 70,
-                  height: 70,
-                  colorFilter: ColorFilter.mode(AppColors.lightGray, BlendMode.srcIn),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(
+                    AppIcons.logo,
+                    width: 70,
+                    height: 70,
+                    colorFilter: ColorFilter.mode(AppColors.lightGray, BlendMode.srcIn),
+                  ),
                 ),
               ),
         ),

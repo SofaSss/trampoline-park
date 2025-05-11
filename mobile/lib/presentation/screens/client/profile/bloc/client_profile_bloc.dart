@@ -22,6 +22,7 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
     Emitter<ClientProfileState> emit,
   ) async {
     try {
+      emit(state.copyWith(status: StatusProfile.loading));
       final client = await clientUseCases.getCurrentClient();
       emit(
         state.copyWith(

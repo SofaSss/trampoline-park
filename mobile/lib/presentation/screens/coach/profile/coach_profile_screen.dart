@@ -82,78 +82,86 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
             actions: true,
           ),
           body: switch (state.status) {
-            StatusProfile.loaded => SingleChildScrollView(
-              child: Column(
-                children: [
-                  ProfileHeader(
-                    onTapProfilePicture: _pickImage,
-                    pickImage: _image,
-                    imageUrl: state.profilePicture,
-                    firstName: state.firstName,
-                    lastName: state.lastName,
-                  ),
-                  ProfileDataSection(
-                    birthController: birthController,
-                    emailController: emailController,
-                    phoneController: phoneController,
-                    quoteController: quoteController,
-                    experienceController: experienceController,
-                    isClientDataSection: false,
-                    onPressedChangeData:
-                        () => (
-                          context.read<CoachProfileBloc>()..add(
-                            CoachProfileEvent.updateCoachData(
-                              profilePicture: _image,
-                              phone: phoneController.text.trim(),
-                              quote: quoteController.text.trim(),
-                              experience: int.tryParse(
-                                experienceController.text.trim(),
+            StatusProfile.loaded => RefreshIndicator(
+              onRefresh: () async {
+                context.read<CoachProfileBloc>().add(
+                  CoachProfileEvent.loadData(),
+                );
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ProfileHeader(
+                      onTapProfilePicture: _pickImage,
+                      pickImage: _image,
+                      imageUrl: state.profilePicture,
+                      firstName: state.firstName,
+                      lastName: state.lastName,
+                    ),
+                    ProfileDataSection(
+                      birthController: birthController,
+                      emailController: emailController,
+                      phoneController: phoneController,
+                      quoteController: quoteController,
+                      experienceController: experienceController,
+                      isClientDataSection: false,
+                      onPressedChangeData:
+                          () => (
+                            context.read<CoachProfileBloc>()..add(
+                              CoachProfileEvent.updateCoachData(
+                                profilePicture: _image,
+                                phone: phoneController.text.trim(),
+                                quote: quoteController.text.trim(),
+                                experience: int.tryParse(
+                                  experienceController.text.trim(),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                  ),
-                  ListActionWidget(
-                    sectionName: context.localization.specialization,
-                    actionsList: state.specialties,
-                    isAchievement: false,
-                  ),
-                  ListActionWidget(
-                    sectionName: context.localization.achievements,
-                    actionsList: state.achievements,
-                    isAchievement: true,
-                  ),
+                    ),
+                    ListActionWidget(
+                      sectionName: context.localization.specialization,
+                      actionsList: state.specialties,
+                      isAchievement: false,
+                    ),
+                    ListActionWidget(
+                      sectionName: context.localization.achievements,
+                      actionsList: state.achievements,
+                      isAchievement: true,
+                    ),
 
-                  ProfileChangePasswordSection(
-                    oldPasswordController: oldPasswordController,
-                    newPasswordController: newPasswordController,
-                    confirmNewPasswordController: confirmNewPasswordController,
-                    oldPasswordErrorText:
-                        state.errors[InputErrorTypeEnum.textField]?.localize(
-                          context.localization,
-                        ) ??
-                        state.apiErrors['current_password'],
-                    newPasswordErrorText:
-                        state.errors[InputErrorTypeEnum.password]?.localize(
-                          context.localization,
-                        ) ??
-                        state.apiErrors['new_password'],
-                    confirmNewPasswordErrorText:
-                        state.errors[InputErrorTypeEnum.password]?.localize(
-                          context.localization,
-                        ) ??
-                        state.apiErrors['re_new_password'],
-                    onPressedChangePassword:
-                        () => (context.read<CoachProfileBloc>().add(
-                          CoachProfileEvent.setPassword(
-                            oldPassword: oldPasswordController.text.trim(),
-                            newPassword: newPasswordController.text.trim(),
-                            reNewPassword:
-                                confirmNewPasswordController.text.trim(),
-                          ),
-                        )),
-                  ),
-                ],
+                    ProfileChangePasswordSection(
+                      oldPasswordController: oldPasswordController,
+                      newPasswordController: newPasswordController,
+                      confirmNewPasswordController:
+                          confirmNewPasswordController,
+                      oldPasswordErrorText:
+                          state.errors[InputErrorTypeEnum.textField]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['current_password'],
+                      newPasswordErrorText:
+                          state.errors[InputErrorTypeEnum.password]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['new_password'],
+                      confirmNewPasswordErrorText:
+                          state.errors[InputErrorTypeEnum.password]?.localize(
+                            context.localization,
+                          ) ??
+                          state.apiErrors['re_new_password'],
+                      onPressedChangePassword:
+                          () => (context.read<CoachProfileBloc>().add(
+                            CoachProfileEvent.setPassword(
+                              oldPassword: oldPasswordController.text.trim(),
+                              newPassword: newPasswordController.text.trim(),
+                              reNewPassword:
+                                  confirmNewPasswordController.text.trim(),
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
               ),
             ),
             StatusProfile.loading => BaseProgressIndicator(),

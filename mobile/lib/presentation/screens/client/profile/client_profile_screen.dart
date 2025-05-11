@@ -85,79 +85,85 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                   );
                 },
               ),
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ProfileHeader(
-                      onTapProfilePicture: _pickImage,
-                      pickImage: _image,
-                      imageUrl: state.profilePicture,
-                      firstName: state.name,
-                      lastName: state.lastName,
-                    ),
-                    ProfileDataSection(
-                      birthController: birthController,
-                      emailController: emailController,
-                      phoneController: phoneController,
-                      isHealthySwitched: isHealthySwitched,
-                      onChangeHealthySwitched:
-                          (value) => setState(() => isHealthySwitched = value),
-                      onPressedChangeData:
-                          () => (context.read<ClientProfileBloc>().add(
-                            ClientProfileEvent.updateClient(
-                              profilePicture: _image,
-                              phoneNumber: phoneController.text.trim(),
-                              isHealthy: isHealthySwitched,
+              body: RefreshIndicator(
+                onRefresh: () async {
+                  context.read<ClientProfileBloc>().add(
+                    ClientProfileEvent.getCurrentClient(),
+                  );
+                },
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ProfileHeader(
+                        onTapProfilePicture: _pickImage,
+                        pickImage: _image,
+                        imageUrl: state.profilePicture,
+                        firstName: state.name,
+                        lastName: state.lastName,
+                      ),
+                      ProfileDataSection(
+                        birthController: birthController,
+                        emailController: emailController,
+                        phoneController: phoneController,
+                        isHealthySwitched: isHealthySwitched,
+                        onChangeHealthySwitched:
+                            (value) =>
+                                setState(() => isHealthySwitched = value),
+                        onPressedChangeData:
+                            () => (context.read<ClientProfileBloc>().add(
+                              ClientProfileEvent.updateClient(
+                                profilePicture: _image,
+                                phoneNumber: phoneController.text.trim(),
+                                isHealthy: isHealthySwitched,
+                              ),
+                            )),
+                      ),
+                      ProfileChangePasswordSection(
+                        oldPasswordController: oldPasswordController,
+                        newPasswordController: newPasswordController,
+                        confirmNewPasswordController:
+                            confirmNewPasswordController,
+                        oldPasswordErrorText:
+                            state.errors[InputErrorTypeEnum.textField]
+                                ?.localize(context.localization) ??
+                            state.apiErrors['current_password'],
+                        newPasswordErrorText:
+                            state.errors[InputErrorTypeEnum.password]?.localize(
+                              context.localization,
+                            ) ??
+                            state.apiErrors['new_password'],
+                        confirmNewPasswordErrorText:
+                            state.errors[InputErrorTypeEnum.password]?.localize(
+                              context.localization,
+                            ) ??
+                            state.apiErrors['re_new_password'],
+                        onPressedChangePassword:
+                            () => (context.read<ClientProfileBloc>().add(
+                              ClientProfileEvent.setPassword(
+                                oldPassword: oldPasswordController.text.trim(),
+                                newPassword: newPasswordController.text.trim(),
+                                reNewPassword:
+                                    confirmNewPasswordController.text.trim(),
+                              ),
+                            )),
+                      ),
+                      ClientDeleteAccountSection(
+                        passwordController: deleteAccountPasswordController,
+                        passwordErrorText:
+                            state.errors[InputErrorTypeEnum.textField]
+                                ?.localize(context.localization) ??
+                            state.apiErrors['current_password'],
+                        onSureDeleteAccount: () {
+                          context.read<ClientProfileBloc>().add(
+                            ClientProfileEvent.deleteAccount(
+                              password:
+                                  deleteAccountPasswordController.text.trim(),
                             ),
-                          )),
-                    ),
-                    ProfileChangePasswordSection(
-                      oldPasswordController: oldPasswordController,
-                      newPasswordController: newPasswordController,
-                      confirmNewPasswordController:
-                          confirmNewPasswordController,
-                      oldPasswordErrorText:
-                          state.errors[InputErrorTypeEnum.textField]?.localize(
-                            context.localization,
-                          ) ??
-                          state.apiErrors['current_password'],
-                      newPasswordErrorText:
-                          state.errors[InputErrorTypeEnum.password]?.localize(
-                            context.localization,
-                          ) ??
-                          state.apiErrors['new_password'],
-                      confirmNewPasswordErrorText:
-                          state.errors[InputErrorTypeEnum.password]?.localize(
-                            context.localization,
-                          ) ??
-                          state.apiErrors['re_new_password'],
-                      onPressedChangePassword:
-                          () => (context.read<ClientProfileBloc>().add(
-                            ClientProfileEvent.setPassword(
-                              oldPassword: oldPasswordController.text.trim(),
-                              newPassword: newPasswordController.text.trim(),
-                              reNewPassword:
-                                  confirmNewPasswordController.text.trim(),
-                            ),
-                          )),
-                    ),
-                    ClientDeleteAccountSection(
-                      passwordController: deleteAccountPasswordController,
-                      passwordErrorText:
-                          state.errors[InputErrorTypeEnum.textField]?.localize(
-                            context.localization,
-                          ) ??
-                          state.apiErrors['current_password'],
-                      onSureDeleteAccount: () {
-                        context.read<ClientProfileBloc>().add(
-                          ClientProfileEvent.deleteAccount(
-                            password:
-                                deleteAccountPasswordController.text.trim(),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
