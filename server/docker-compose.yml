@@ -33,6 +33,20 @@ services:
     networks:
       - web
 
+  static:
+    build:
+      context: .
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=web'
+      - 'traefik.http.routers.static.rule=Host(`trampolinepark1.ru`) && (PathPrefix(`/.well-known`) || PathPrefix(`/public`) || PathPrefix(`/media`))'
+      - 'traefik.http.services.static.loadbalancer.server.port=80'
+    volumes:
+      - media:/usr/share/nginx/html/media
+
   postgresql:
     image: postgres:15.0
     restart: unless-stopped
@@ -77,7 +91,6 @@ services:
       - "9371:80"
 volumes:
   media:
-        external: true
   postgres_data:
 networks:
   web:
