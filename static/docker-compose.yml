@@ -14,6 +14,7 @@ services:
             - media:/usr/share/nginx/html/media
 volumes:
     media:
+        external: true
 networks:
     web:
         external: true
