@@ -134,15 +134,9 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                         child: GestureDetector(
                           onTap:
                               () => (context.router.push(BookingEventRoute())),
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 20),
-                            height: 250,
-                            decoration: BoxDecoration(
-                              color: AppColors.blue,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width - 40,
                             child: Row(
-                              spacing: 7,
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.only(
@@ -156,7 +150,16 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                                     height: 250,
                                   ),
                                 ),
-                                Expanded(
+                                Container(
+                                  height: 250,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.blue,
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(20),
+                                      bottomRight: Radius.circular(20),
+                                    ),
+                                  ),
                                   child: Center(
                                     child: Transform(
                                       alignment: Alignment.center,
