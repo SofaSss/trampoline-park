@@ -17,14 +17,14 @@ class _BaseAuthHeaderState extends State<BaseAuthHeader> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 3 / 10,
+      height: MediaQuery.of(context).size.height * 3 / 10 ,
       width: MediaQuery.of(context).size.width,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
           Positioned(
             child: Container(
-              height: MediaQuery.of(context).size.height * 3 / 10,
+              height: 500,
               width: MediaQuery.of(context).size.width,
               color: AppColors.blue,
             ),

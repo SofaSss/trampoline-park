@@ -89,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "experience": MessageLookupByLibrary.simpleMessage("Стаж"),
     "failure": MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("Забыли пароль?"),
     "happyBirthday": MessageLookupByLibrary.simpleMessage(
       "День Рождения под ключ",
     ),

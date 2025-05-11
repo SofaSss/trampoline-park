@@ -103,7 +103,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           )),
                       child: Text(
-                        context.localization.resetPassword,
+                        context.localization.forgetPassword,
                         textAlign: TextAlign.center,
                         style: TextStyle(color: AppColors.red),
                       ),
