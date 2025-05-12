@@ -134,12 +134,6 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                         ),
 
                         HeaderSectionWidget(
-                          title: context.localization.video,
-                          description: context.localization.videoDescription,
-                        ),
-                        VideoPlayerWidget(videoPath: state.videoUrl),
-
-                        HeaderSectionWidget(
                           title: context.localization.happyBirthday,
                           description:
                               context.localization.happyBirthdayDescription,

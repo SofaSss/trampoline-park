@@ -135,7 +135,10 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
                   bottom: 5,
                   right: 5,
                   child: ElevatedButton(
-                    onPressed: widget.onSignUpWorkout,
+                    onPressed:
+                        widget.time.isAfter(DateTime.now())
+                            ? widget.onSignUpWorkout
+                            : null,
                     child: Text(context.localization.enter),
                   ),
                 ),
@@ -156,8 +159,7 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
                                   top: 5.0,
                                   bottom: 3,
                                 ),
-                                child: Text(
-                                  context.localization.clients),
+                                child: Text(context.localization.clients),
                               ),
                               ...widget.clientsList!.map((client) {
                                 return Container(

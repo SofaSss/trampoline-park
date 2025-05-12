@@ -172,7 +172,7 @@ class _SignUpWorkoutScreenState extends State<SignUpWorkoutScreen> {
                                           .any(
                                             (client) =>
                                                 client.id == state.clientId,
-                                          ),
+                                          ) && state.workoutList[index].dateTime.isAfter(DateTime.now()),
                                       time: state.workoutList[index].dateTime,
                                       duration:
                                           state

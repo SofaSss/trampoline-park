@@ -47,7 +47,7 @@ class _CoachWorkoutsScreenState extends State<CoachWorkoutsScreen> {
           appBar: appBarWithCalendar(
             context: context,
             title: context.localization.schedule,
-            back: () => (context.router.push(ClientHomeRoute())),
+            back: () => (context.router.push(CoachHomeRoute())),
             onPressedDrawerIcon: () => scaffoldKey.currentState?.openDrawer(),
             isDrawer: true,
             days: days,
