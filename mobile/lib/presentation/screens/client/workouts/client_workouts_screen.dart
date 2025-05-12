@@ -52,112 +52,118 @@ class _ClientWorkoutsScreenState extends State<ClientWorkoutsScreen> {
             selectedDate: _selectedDate,
           ),
           body: switch (state.status) {
-            WorkoutStatus.loaded => SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClientRatingWidget(
-                    isFirstRating: state.isFirstRating,
-                    isSecondRating: state.isSecondRating,
-                    isThirdRating: state.isThirdRating,
-                    stayedWorkout: state.stayedWorkout,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 18.0,
-                      horizontal: 18,
+            WorkoutStatus.loaded => RefreshIndicator(
+              onRefresh: () async {
+                final bloc = context.read<ClientWorkoutsBloc>();
+                bloc.add(ClientWorkoutsEvent.loadData(date: _selectedDate));
+                bloc.add(ClientWorkoutsEvent.loadRatingData());
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClientRatingWidget(
+                      isFirstRating: state.isFirstRating,
+                      isSecondRating: state.isSecondRating,
+                      isThirdRating: state.isThirdRating,
+                      stayedWorkout: state.stayedWorkout,
                     ),
-                    child: Text(
-                      'Тренировки на ${DateFormat('dd.MM').format(_selectedDate)}:',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.displayLarge?.copyWith(color: AppColors.blue),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 18.0,
+                        horizontal: 18,
+                      ),
+                      child: Text(
+                        'Тренировки на ${DateFormat('dd.MM').format(_selectedDate)}:',
+                        style: Theme.of(context).textTheme.displayLarge
+                            ?.copyWith(color: AppColors.blue),
+                      ),
                     ),
-                  ),
-                  Center(
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width - 50,
-                      height: MediaQuery.of(context).size.height * 0.5,
-                      child:
-                          state.workoutList.isNotEmpty
-                              ? ListView.builder(
-                                itemCount: state.workoutList.length,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: BaseWorkoutCard(
-                                      time: state.workoutList[index].dateTime,
-                                      duration:
-                                          state
-                                              .workoutList[index]
-                                              .workoutType
-                                              .duration
-                                              .toString(),
-                                      freeSpace: AppConstants.empty,
-                                      workoutType:
-                                          state
-                                              .workoutList[index]
-                                              .workoutType
-                                              .name,
-                                      coachPicture:
-                                          state
-                                              .workoutList[index]
-                                              .coach
-                                              .profilePicture,
-                                      coachFirstName:
-                                          state
-                                              .workoutList[index]
-                                              .coach
-                                              .firstName,
-                                      coachLastName:
-                                          state
-                                              .workoutList[index]
-                                              .coach
-                                              .lastName,
-                                      price:
-                                          state
-                                              .workoutList[index]
-                                              .workoutType
-                                              .price
-                                              .toString(),
-                                      onSignUpWorkout: () => (),
-                                      isClientSignUpWorkout: true,
+                    Center(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width - 50,
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        child:
+                            state.workoutList.isNotEmpty
+                                ? ListView.builder(
+                                  itemCount: state.workoutList.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: BaseWorkoutCard(
+                                        time: state.workoutList[index].dateTime,
+                                        duration:
+                                            state
+                                                .workoutList[index]
+                                                .workoutType
+                                                .duration
+                                                .toString(),
+                                        freeSpace: AppConstants.empty,
+                                        workoutType:
+                                            state
+                                                .workoutList[index]
+                                                .workoutType
+                                                .name,
+                                        coachPicture:
+                                            state
+                                                .workoutList[index]
+                                                .coach
+                                                .profilePicture,
+                                        coachFirstName:
+                                            state
+                                                .workoutList[index]
+                                                .coach
+                                                .firstName,
+                                        coachLastName:
+                                            state
+                                                .workoutList[index]
+                                                .coach
+                                                .lastName,
+                                        price:
+                                            state
+                                                .workoutList[index]
+                                                .workoutType
+                                                .price
+                                                .toString(),
+                                        onSignUpWorkout: () => (),
+                                        isClientSignUpWorkout: true,
+                                      ),
+                                    );
+                                  },
+                                )
+                                : Column(
+                                  spacing: 20,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.logo,
+                                      height: 150,
+                                      width: 150,
+                                      colorFilter: ColorFilter.mode(
+                                        AppColors.gray,
+                                        BlendMode.srcIn,
+                                      ),
                                     ),
-                                  );
-                                },
-                              )
-                              : Column(
-                                spacing: 20,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.logo,
-                                    height: 150,
-                                    width: 150,
-                                    colorFilter: ColorFilter.mode(
-                                      AppColors.gray,
-                                      BlendMode.srcIn,
+                                    Text(
+                                      'На выбранную дату не найдено тренировок',
+                                      style:
+                                          Theme.of(
+                                            context,
+                                          ).textTheme.displayMedium,
+                                      textAlign: TextAlign.center,
                                     ),
-                                  ),
-                                  Text(
-                                    'На выбранную дату не найдено тренировок',
-                                    style:
-                                        Theme.of(
-                                          context,
-                                        ).textTheme.displayMedium,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  ElevatedButton(
-                                    onPressed:
-                                        () => (context.router.push(
-                                          SignUpWorkoutRoute(),
-                                        )),
-                                    child: Text(context.localization.enter),
-                                  ),
-                                ],
-                              ),
+                                    ElevatedButton(
+                                      onPressed:
+                                          () => (context.router.push(
+                                            SignUpWorkoutRoute(),
+                                          )),
+                                      child: Text(context.localization.enter),
+                                    ),
+                                  ],
+                                ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             WorkoutStatus.loading => BaseProgressIndicator(),

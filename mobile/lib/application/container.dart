@@ -23,20 +23,24 @@ Future<void> setUpDependencies() async {
   dio.interceptors.add(tokenInterceptor);
 
   injection
-    ..registerLazySingleton<DioInterceptor>(() => tokenInterceptor)
-    ..registerLazySingleton<AuthUserApi>(() => AuthUserApi(dio))
-    ..registerLazySingleton<IAuthUserService>(
-      () => AuthUserService(userApi: injection(), tokenStorage: injection()),
-    )
-    ..registerLazySingleton<AuthUserUseCases>(
-      () => AuthUserUseCases(authUserService: injection()),
-    )
     ..registerLazySingleton<ClientApi>(() => ClientApi(dio))
     ..registerLazySingleton<IClientService>(
       () => ClientService(clientApi: injection()),
     )
     ..registerLazySingleton<ClientUseCases>(
       () => ClientUseCases(clientService: injection()),
+    )
+    ..registerLazySingleton<DioInterceptor>(() => tokenInterceptor)
+    ..registerLazySingleton<AuthUserApi>(() => AuthUserApi(dio))
+    ..registerLazySingleton<IAuthUserService>(
+      () => AuthUserService(
+        clientApi: injection(),
+        userApi: injection(),
+        tokenStorage: injection(),
+      ),
+    )
+    ..registerLazySingleton<AuthUserUseCases>(
+      () => AuthUserUseCases(authUserService: injection()),
     )
     ..registerLazySingleton<CoachApi>(() => CoachApi(dio))
     ..registerLazySingleton<ICoachService>(
@@ -51,7 +55,6 @@ Future<void> setUpDependencies() async {
         clientService: ClientService(clientApi: injection()),
         workoutApi: injection(),
         coachService: CoachService(coachApi: injection()),
-       
       ),
     )
     ..registerLazySingleton<WorkoutUseCases>(

@@ -89,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "experience": MessageLookupByLibrary.simpleMessage("Стаж"),
     "failure": MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("Забыли пароль?"),
     "happyBirthday": MessageLookupByLibrary.simpleMessage(
       "День Рождения под ключ",
     ),
@@ -108,6 +109,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "incorrectPassword": MessageLookupByLibrary.simpleMessage(
       "Пароль должен состоять из букв и цифр, длина - не менее 8 символов",
+    ),
+    "invalidEmailOrPassword": MessageLookupByLibrary.simpleMessage(
+      "Неверный email или пароль",
     ),
     "isConfirmPDn": MessageLookupByLibrary.simpleMessage(
       "Без согласия на обработку персональных данных невозможно продолжить использование сервиса",

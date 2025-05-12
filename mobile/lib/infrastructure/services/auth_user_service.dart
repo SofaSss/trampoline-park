@@ -3,8 +3,13 @@ part of '../infrastructure_part.dart';
 class AuthUserService implements IAuthUserService {
   final AuthUserApi userApi;
   final TokenStorage tokenStorage;
+  final ClientApi clientApi;
 
-  AuthUserService({required this.tokenStorage, required this.userApi});
+  AuthUserService({
+    required this.clientApi,
+    required this.tokenStorage,
+    required this.userApi,
+  });
 
   @override
   Future<void> signUp({required UnregisteredClient model}) async {
@@ -72,8 +77,10 @@ class AuthUserService implements IAuthUserService {
 
   @override
   Future<void> deleteAccount({
+    required int clientId,
     required DeleteAccountDto deleteAccountDto,
   }) async {
+    await clientApi.deleteClient(id: clientId);
     final DeleteAccountInfraDto password = DeleteAccountInfraDto(
       password: deleteAccountDto.password,
     );

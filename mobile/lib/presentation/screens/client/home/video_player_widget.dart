@@ -64,41 +64,21 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
             _videoController!.value.isInitialized) {
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  AspectRatio(
-                    aspectRatio: _videoController!.value.aspectRatio,
-                    child: VideoPlayer(_videoController!),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _videoController!.value.isPlaying
-                            ? _videoController!.pause()
-                            : _videoController!.play();
-                      });
-                    },
-                    child:
-                        _videoController!.value.isPlaying
-                            ? null
-                            : Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.black45,
-                                shape: BoxShape.circle,
-                              ),
-                              padding: const EdgeInsets.all(8),
-                              child: const Icon(
-                                Icons.play_arrow,
-                                color: Colors.white,
-                                size: 32,
-                              ),
-                            ),
-                  ),
-                ],
+            child: GestureDetector(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: AspectRatio(
+                  aspectRatio: _videoController!.value.aspectRatio,
+                  child: VideoPlayer(_videoController!),
+                ),
               ),
+              onTap: () {
+                setState(() {
+                  _videoController!.value.isPlaying
+                      ? _videoController!.pause()
+                      : _videoController!.play();
+                });
+              },
             ),
           );
         } else {

@@ -40,6 +40,7 @@ class _ClientDeleteAccountSectionState
                         hintText: context.localization.password,
                         icon: AppIcons.eyeOff,
                         isObscureText: true,
+                        enableVisibilityToggle: true,
                         errorText: widget.passwordErrorText,
                       ),
                       sureText: context.localization.delete,

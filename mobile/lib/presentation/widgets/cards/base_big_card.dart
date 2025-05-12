@@ -45,10 +45,31 @@ class _BaseBigCardState extends State<BaseBigCard> {
                               return child;
                             } else {
                               return BaseAnimatedBuilder(
-                                height: AppConstants.bigCardWidth - 130,
-                                width: AppConstants.bigCardHeight,
+                                height: AppConstants.bigCardHeight,
+                                width: AppConstants.bigCardWidth - 130,
                               );
                             }
+                          },
+                          errorBuilder: (context, error, stackTrace) {
+                            return Stack(
+                              children: [
+                                BaseAnimatedBuilder(
+                                height: AppConstants.bigCardHeight,
+                                width: AppConstants.bigCardWidth - 130,
+                                ),
+                                Positioned(
+                                  top: 40,
+                                  left: 40,
+                                  child: SvgPicture.asset(
+                                    AppIcons.logo,
+                                    colorFilter: ColorFilter.mode(
+                                      AppColors.lightGray,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
                           },
                         ),
               ),

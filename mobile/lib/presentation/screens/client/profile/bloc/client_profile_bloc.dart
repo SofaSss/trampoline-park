@@ -22,6 +22,7 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
     Emitter<ClientProfileState> emit,
   ) async {
     try {
+      emit(state.copyWith(status: StatusProfile.loading));
       final client = await clientUseCases.getCurrentClient();
       emit(
         state.copyWith(
@@ -120,7 +121,11 @@ class ClientProfileBloc extends Bloc<ClientProfileEvent, ClientProfileState> {
   ) async {
     try {
       emit(state.copyWith(status: StatusProfile.loading));
-      await authUserUseCases.deleteAccount(password: event.password);
+      final currentClient = await clientUseCases.getCurrentClient();
+      await authUserUseCases.deleteAccount(
+        password: event.password,
+        clientId: currentClient.id,
+      );
       emit(state.copyWith(status: StatusProfile.successDeleteAccount));
     } catch (e) {
       if (e is ApiError) {

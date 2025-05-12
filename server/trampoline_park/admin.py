@@ -25,17 +25,6 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'phone_number', 'is_healthy', 'user')
     search_fields = ('first_name', 'last_name', 'phone_number')
     list_filter = ('is_healthy',)
-    readonly_fields = (
-        'first_name', 'last_name', 'date_of_birth', 'phone_number', 'profile_picture', 'is_healthy', 'user')
-
-    def has_change_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-    def has_add_permission(self, request):
-        return False
 
 
 class CoachAdmin(admin.ModelAdmin):

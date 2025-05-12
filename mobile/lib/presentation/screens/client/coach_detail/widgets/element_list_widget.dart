@@ -17,7 +17,14 @@ class _ElementListWidgetState extends State<ElementListWidget> {
         children: [
           Icon(Icons.circle, size: 6, color: AppColors.gray),
           SizedBox(width: 8),
-          Text(widget.element, style: Theme.of(context).textTheme.bodyLarge),
+          SizedBox(
+            width: MediaQuery.of(context).size.width - 40,
+            child: Text(
+              widget.element,
+              style: Theme.of(context).textTheme.bodyLarge,
+              overflow: TextOverflow.clip,
+            ),
+          ),
         ],
       ),
     );

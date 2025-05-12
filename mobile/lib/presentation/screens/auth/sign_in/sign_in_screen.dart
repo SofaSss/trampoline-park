@@ -35,6 +35,14 @@ class _SignInScreenState extends State<SignInScreen> {
               message: context.localization.emailResetPassword,
             ),
           );
+        } else if (state.status == SignInStatus.failure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            baseSnackBar(
+              context: context,
+              message: context.localization.invalidEmailOrPassword,
+            ),
+          );
+          context.router.push(SignInRoute());
         }
       },
       builder: (context, state) {
@@ -69,6 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       hintText: context.localization.password,
                       icon: AppIcons.eyeOff,
                       isObscureText: true,
+                      enableVisibilityToggle: true,
                       errorText:
                           state.errors[InputErrorTypeEnum.password]?.localize(
                             context.localization,
@@ -103,7 +112,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           )),
                       child: Text(
-                        context.localization.resetPassword,
+                        context.localization.forgetPassword,
                         textAlign: TextAlign.center,
                         style: TextStyle(color: AppColors.red),
                       ),
@@ -122,9 +131,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
           case SignInStatus.loading:
             return BaseProgressIndicator();
-
-          case SignInStatus.failure:
-            return FailureWidget();
 
           default:
             return Container();

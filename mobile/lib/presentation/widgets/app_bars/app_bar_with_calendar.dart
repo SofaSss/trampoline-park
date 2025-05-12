@@ -10,6 +10,7 @@ AppBar appBarWithCalendar({
   required DateTime selectedDate,
   bool? isDrawer,
   bool isCoach = false,
+  bool isWorkout = true,
 }) {
   return AppBar(
     actions:
@@ -25,7 +26,8 @@ AppBar appBarWithCalendar({
                     ),
                   ),
                 ]
-                : [
+                : isWorkout
+                ? [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
@@ -51,6 +53,7 @@ AppBar appBarWithCalendar({
                     ),
                   ),
                 ]
+                : null
             : null,
     leading: Padding(
       padding: const EdgeInsets.only(left: 10.0),

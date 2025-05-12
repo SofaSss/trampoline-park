@@ -60,6 +60,27 @@ class _BaseMediumCardState extends State<BaseMediumCard> {
                               );
                             }
                           },
+                          errorBuilder: (context, error, stackTrace) {
+                            return Stack(
+                              children: [
+                                BaseAnimatedBuilder(
+                                  height: AppConstants.mediumCardHeight - 20,
+                                  width: AppConstants.mediumCardWidth,
+                                ),
+                                Positioned(
+                                  top: 20,
+                                  left: 40,
+                                  child: SvgPicture.asset(
+                                    AppIcons.logo,
+                                    colorFilter: ColorFilter.mode(
+                                      AppColors.lightGray,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
                         )
                         : Stack(
                           children: [
