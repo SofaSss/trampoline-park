@@ -7,13 +7,10 @@ import 'package:mobile_trampoline_park/presentation/routing/app_routing.dart';
 import 'package:mobile_trampoline_park/presentation/routing/app_routing.gr.dart';
 import 'presentation/resources/localizations/generated/l10n.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setUpDependencies();
   runApp(TrampolinePark());
-
-
 }
 
 class TrampolinePark extends StatefulWidget {
@@ -66,6 +63,17 @@ class _TrampolineParkState extends State<TrampolinePark> {
           }
         },
       ),
+      builder: (context, child) {
+        final mediaQuery = MediaQuery.of(context);
+        final clampedTextScaler = mediaQuery.textScaler.clamp(
+          minScaleFactor: 1.0,
+          maxScaleFactor: 1.1,
+        );
+        return MediaQuery(
+          data: mediaQuery.copyWith(textScaler: clampedTextScaler),
+          child: child!,
+        );
+      },
     );
   }
 }

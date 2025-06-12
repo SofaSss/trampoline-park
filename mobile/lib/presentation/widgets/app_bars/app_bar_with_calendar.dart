@@ -93,7 +93,7 @@ AppBar appBarWithCalendar({
           scrollDirection: Axis.horizontal,
           itemCount: days.length,
           itemBuilder: (context, index) {
-            DateTime day = days[index];
+            DateTime day = days[index].toLocal();
             bool isSelected = day.day == selectedDate.day;
 
             return GestureDetector(

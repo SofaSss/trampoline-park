@@ -56,7 +56,7 @@ class _CoachWorkoutCardState extends State<CoachWorkoutCard> {
               ),
               child: Center(
                 child: Text(
-                  widget.time.isAfter(DateTime.now())
+                  widget.time.isAfter(DateTime.now().toLocal())
                       ? DateFormat('HH:mm').format(widget.time.toLocal())
                       : context.localization.completed,
                   textAlign: TextAlign.center,

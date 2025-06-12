@@ -54,12 +54,12 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
           Positioned(
             top: 5,
             left: 12,
-            child: Text(DateFormat('dd-MM-yyyy').format(widget.time)),
+            child: Text(DateFormat('dd-MM-yyyy').format(widget.time.toLocal())),
           ),
           Positioned(
             top: 25,
             left: 12,
-            child: Text(DateFormat('HH:mm').format(widget.time)),
+            child: Text(DateFormat('HH:mm').format(widget.time.toLocal())),
           ),
           Positioned(
             top: 25,
@@ -136,7 +136,7 @@ class _BaseWorkoutCardState extends State<BaseWorkoutCard> {
                   right: 5,
                   child: ElevatedButton(
                     onPressed:
-                        widget.time.isAfter(DateTime.now())
+                        widget.time.isAfter(DateTime.now().toLocal())
                             ? widget.onSignUpWorkout
                             : null,
                     child: Text(context.localization.enter),

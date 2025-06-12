@@ -73,7 +73,7 @@ class _CoachHomeScreenState extends State<CoachHomeScreen> {
                                   ),
                                   child: CoachWorkoutCard(
                                     time:
-                                        state.todayWorkoutsList[index].dateTime,
+                                        state.todayWorkoutsList[index].dateTime.toLocal(),
                                     duration:
                                         state
                                             .todayWorkoutsList[index]

@@ -97,7 +97,7 @@ class _CoachWorkoutsScreenState extends State<CoachWorkoutsScreen> {
                             horizontal: 20,
                           ),
                           child: BaseWorkoutCard(
-                            time: state.workoutList[index].dateTime,
+                            time: state.workoutList[index].dateTime.toLocal(),
                             duration:
                                 state.workoutList[index].workoutType.duration
                                     .toString(),

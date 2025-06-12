@@ -18,7 +18,7 @@ class CoachHomeBloc extends Bloc<CoachHomeEvent, CoachHomeState> {
       emit(state.copyWith(status: Status.loading));
       final coach = await coachUseCases.getCurrentCoach();
       final coachTodayWorkouts = await workoutUseCases.getWorkoutList(
-        date: DateTime.now(),
+        date: DateTime.now().toLocal(),
       );
       final coachEventList = await eventUseCases.getListEvent();
       final coachWorkouts = await workoutUseCases.getWorkoutList();

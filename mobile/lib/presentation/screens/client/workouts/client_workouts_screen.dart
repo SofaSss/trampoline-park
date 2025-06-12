@@ -91,7 +91,7 @@ class _ClientWorkoutsScreenState extends State<ClientWorkoutsScreen> {
                                     return Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: BaseWorkoutCard(
-                                        time: state.workoutList[index].dateTime,
+                                        time: state.workoutList[index].dateTime.toLocal(),
                                         duration:
                                             state
                                                 .workoutList[index]
