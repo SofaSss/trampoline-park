@@ -14,10 +14,6 @@ class UserSerializer(UserCreateSerializer):
 class ClientSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     class Meta:
         model = Client
         fields = (
