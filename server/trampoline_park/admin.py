@@ -4,7 +4,6 @@ from django.contrib.auth.base_user import BaseUserManager
 
 from trampoline_park.models import *
 
-
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password', 'role', 'is_active')}),

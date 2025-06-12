@@ -146,8 +146,6 @@ DJOSER = {
     "LOGOUT_ON_USER_DELETE": False,
 }
 
-# EMAIL
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')

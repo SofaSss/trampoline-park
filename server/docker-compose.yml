@@ -10,7 +10,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark1.ru`) && (!(PathPrefix(`/.well-known`) || PathPrefix(`/public`)))"
+      - "traefik.http.routers.trampolinepark.rule=Host(`trampolinepark1.ru`) && (PathPrefix(`/static`) || PathPrefix(`/api`) || PathPrefix(`/admin`)) "
       - "traefik.http.services.trampolinepark.loadbalancer.server.port=8080"
     environment:
       SECRET_KEY: lxt@w%wfty8krk%i*dcyf4pha5oe3vfv1o(wi0fop%jc9h=n!c

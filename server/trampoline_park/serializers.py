@@ -14,10 +14,6 @@ class UserSerializer(UserCreateSerializer):
 class ClientSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
-    # def create(self, validated_data):
-    #     super().create(validated_data)
-    #     settings.EMAIL.activation(self.request, context).send(to)
-
     class Meta:
         model = Client
         fields = (
